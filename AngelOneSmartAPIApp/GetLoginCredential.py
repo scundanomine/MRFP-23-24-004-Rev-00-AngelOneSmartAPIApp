@@ -8,7 +8,7 @@ def get_login_credentials():
 
     def login_credentials():
         global login_credential
-        print("---- Enter you Zerodha login_credentials ---")
+        print("---- Enter you Angel One login_credentials ---")
         login_credential = {"api_key": str(input("Enter API Key :")),
                             "api_secret": str(input("Enter API Secret :"))
                             }
