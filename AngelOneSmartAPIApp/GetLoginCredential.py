@@ -9,8 +9,12 @@ def get_login_credentials():
     def login_credentials():
         global login_credential
         print("---- Enter you Angel One login_credentials ---")
+        # login_credential = {"api_key": str(input("Enter API Key :")),
+        #                     "api_secret": str(input("Enter API Secret :"))
+        #                     }
+
         login_credential = {"api_key": str(input("Enter API Key :")),
-                            "api_secret": str(input("Enter API Secret :"))
+                            "api_secret": "mnfknfjbdnf"
                             }
         if input("Press Y to save login_credential and any key to bypass : ").upper() == "Y":
             with open(f"login_credentials.txt", "w") as f:
