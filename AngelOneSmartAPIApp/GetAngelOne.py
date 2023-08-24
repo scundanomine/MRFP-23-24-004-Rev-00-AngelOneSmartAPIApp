@@ -15,3 +15,4 @@ def get_angel_one():
         os.remove(f"AccessToken/{datetime.datetime.now().date()}.json") if os.path.exists(
             f"AccessToken/{datetime.datetime.now().date()}.json") else None
         sys.exit()
+    return smartApi

@@ -41,14 +41,22 @@ def get_access_token():
             with open(f"AccessToken/{datetime.datetime.now().date()}.json", "w") as g:
                 json.dump(access_token, g)
             print("Login successful...")
+
+            ltp = smartApi.ltpData("NSE", "SBIN-EQ", "3045")
+            print("Ltp Data :", ltp)
         except Exception as e:
             print(f"Login Failed {{{e}}}")
 
-    while True:
-        if os.path.exists(f"AccessToken/{datetime.datetime.now().date()}.json"):
-            with open(f"AccessToken/{datetime.datetime.now().date()}.json", "r") as f:
-                access_token = json.load(f)
-            break
-        else:
-            login()
-    return access_token
+    login()
+
+    # while True:
+    #     if os.path.exists(f"AccessToken/{datetime.datetime.now().date()}.json"):
+    #         with open(f"AccessToken/{datetime.datetime.now().date()}.json", "r") as f:
+    #             access_token = json.load(f)
+    #         break
+    #     else:
+    #         login()
+    # return access_token
+
+
+get_access_token()
