@@ -12,25 +12,18 @@ access_token = ""
 def get_access_token():
     global access_token
 
+    api_key = get_login_credentials()["api_key"]
+    clientId = get_login_credentials()["clientId"]
+    pwd = get_login_credentials()["pwd"]
+    token = get_login_credentials()["token"]
+    smartApi = SmartConnect(api_key)
+    totp = pyotp.TOTP(token).now()
+    correlation_id = "abc123"
+    data = smartApi.generateSession(clientId, pwd, totp)
+
     def login():
         global access_token
-        # api_key = str(input("Enter API Key :"))
-        # get_api_key = get_login_credentials()
-        api_key = get_login_credentials()["api_key"]
-        clientId = str(input('Your Client Id :'))
-        pwd = str(input('Your Pin :'))
-        token = str(input("Your QR code value :"))
         try:
-            smartApi = SmartConnect(api_key)
-            totp = pyotp.TOTP(token).now()
-            correlation_id = "abc123"
-            data = smartApi.generateSession(clientId, pwd, totp)
-            # print(data)
-            # authToken = data['data']['jwtToken']
-            # refreshToken = data['data']['refreshToken']
-
-            # fetch the feedtoken
-            # feedToken = smartApi.getfeedToken()
             print("Trying Log In...")
             access_token = {"authToken": data['data']['jwtToken'],
                             "refreshToken": data['data']['refreshToken'],
@@ -41,22 +34,14 @@ def get_access_token():
             with open(f"AccessToken/{datetime.datetime.now().date()}.json", "w") as g:
                 json.dump(access_token, g)
             print("Login successful...")
-
-            ltp = smartApi.ltpData("NSE", "SBIN-EQ", "3045")
-            print("Ltp Data :", ltp)
         except Exception as e:
             print(f"Login Failed {{{e}}}")
 
-    login()
-
-    # while True:
-    #     if os.path.exists(f"AccessToken/{datetime.datetime.now().date()}.json"):
-    #         with open(f"AccessToken/{datetime.datetime.now().date()}.json", "r") as f:
-    #             access_token = json.load(f)
-    #         break
-    #     else:
-    #         login()
-    # return access_token
-
-
-get_access_token()
+    while True:
+        if os.path.exists(f"AccessToken/{datetime.datetime.now().date()}.json"):
+            with open(f"AccessToken/{datetime.datetime.now().date()}.json", "r") as f:
+                access_token = json.load(f)
+            break
+        else:
+            login()
+    return smartApi, access_token

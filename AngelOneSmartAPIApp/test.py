@@ -7,4 +7,4 @@ from GetAngelOne import *
 # print(a["api_key"])
 # print(login_credential)
 print(get_access_token()["authToken"])
-get_angel_one()
+# get_angel_one()

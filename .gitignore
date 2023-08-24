@@ -9,6 +9,7 @@ AngelOneSmartAPIApp/login_credentials.txt
 used/
 # Distribution / packaging
 .Python
+AngelOneSmartAPIApp/AccessToken
 build/
 develop-eggs/
 dist/

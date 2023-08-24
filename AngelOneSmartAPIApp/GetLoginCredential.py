@@ -14,7 +14,9 @@ def get_login_credentials():
         #                     }
 
         login_credential = {"api_key": str(input("Enter API Key :")),
-                            "api_secret": "mnfknfjbdnf"
+                            "clientId": str(input("Enter clientId :")),
+                            "pwd": str(input("Enter pin :")),
+                            "token": str(input("Enter token :"))
                             }
         if input("Press Y to save login_credential and any key to bypass : ").upper() == "Y":
             with open(f"login_credentials.txt", "w") as f:
