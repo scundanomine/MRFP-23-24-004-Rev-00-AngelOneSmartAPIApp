@@ -13,7 +13,7 @@ def getLiveData(instruments):
     obj, toc = get_access_token()
     exchange = "NSE"
     sheet = xw.Book(
-        "E:/WebDevelopment/2023-2024/MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp/AngelOneSmartAPIApp/AngelSheet.xlsm").sheets[
+        "E:/WebDevelopment/2023-2024/MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp/AngelOneSmartAPIApp/TA_Python.xlsm").sheets[
         0]
     scriptList = {
         'AAKASH-EQ': '235'
@@ -22,7 +22,9 @@ def getLiveData(instruments):
 
     ltp = obj.ltpData("NSE", "SBIN-EQ", "3045")
     print("Ltp Data :", ltp)
-    print(toc)
+    ltp = obj.ltpData("NSE", "MOL-EQ", "5394")
+    print("Ltp Data :", ltp)
+
     # ltp = obj.ltpData("NSE", "AAKASH-EQ", "235")
     # print("Ltp Data :", ltp)
     # ltp = obj.ltpData("NSE", "SBIN-EQ", "3045")
