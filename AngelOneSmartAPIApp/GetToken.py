@@ -12,7 +12,7 @@ def getToken():
     wb = xw.Book("TA_Python.xlsm")
     dt = wb.sheets("Sheet2")
 
-    smallData = dt.range("g2:g202").value
+    smallData = dt.range("h2:h202").value
     x = {"symbol": smallData}
     varSmall = pd.DataFrame(x)
     varSmall["token"] = varSmall["symbol"]
