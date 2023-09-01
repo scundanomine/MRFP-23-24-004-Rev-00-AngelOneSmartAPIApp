@@ -22,4 +22,4 @@ driver.maximize_window()
 
 rows = driver.find_elements(By.CSS_SELECTOR, "#results tbody tr")
 
-print(rows[1].find_elements(By.CSS_SELECTOR, "td")[1].text)
+print(rows[1].find_element(By.CSS_SELECTOR, "a").text)
