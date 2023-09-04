@@ -11,3 +11,6 @@ def getSmallData():
     varS["id"] = varS["id"].astype("int64")
     varS = varS.drop(columns=['symbol', 'token'])
     return varS
+
+
+# print(getSmallData())
