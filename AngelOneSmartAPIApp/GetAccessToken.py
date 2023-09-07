@@ -1,6 +1,6 @@
 import os
 import time, json, datetime, sys
-from GetLoginCredential import *
+from AngelOneSmartAPIApp.GetLoginCredential import *
 import xlwings as xw
 import pandas as pd
 from SmartApi import SmartConnect  # or from SmartApi.smartConnect import SmartConnect

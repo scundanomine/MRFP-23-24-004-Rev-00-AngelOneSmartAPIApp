@@ -9,5 +9,6 @@ def getSRData():
     varSR.columns = varSR.iloc[0]
     varSR = varSR[1:]
     varSR["id"] = varSR["id"].astype("int64")
+    varSR["token"] = varSR["token"].astype("int64")
     # varSR = varSR.drop(columns=['symbol', 'token'])
     return varSR

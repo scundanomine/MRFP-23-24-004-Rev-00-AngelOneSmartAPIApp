@@ -9,6 +9,7 @@ def getSmallData():
     varS.columns = varS.iloc[0]
     varS = varS[1:]
     varS["id"] = varS["id"].astype("int64")
+    varS["token"] = varS["token"].astype("int64")
     varS = varS.drop(columns=['symbol', 'token'])
     return varS
 
