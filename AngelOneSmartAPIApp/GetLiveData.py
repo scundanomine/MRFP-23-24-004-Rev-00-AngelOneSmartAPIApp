@@ -22,7 +22,7 @@ def getLiveData(instruments):
 
     ltp = obj.ltpData("NSE", "SBIN-EQ", "3045")
     print("Ltp Data :", ltp)
-    ltp = obj.ltpData("NSE", "MOL-EQ", "5394")
+    ltp = obj.ltpData("NSE", "JINDALSTEL-EQ", "6733")
     print("Ltp Data :", ltp)
 
     # ltp = obj.ltpData("NSE", "AAKASH-EQ", "235")

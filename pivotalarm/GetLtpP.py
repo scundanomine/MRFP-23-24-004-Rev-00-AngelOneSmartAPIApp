@@ -22,4 +22,4 @@ def loadLtpP():
     return ltpP
 
 
-print(loadLtpP())
+# print(loadLtpP())
