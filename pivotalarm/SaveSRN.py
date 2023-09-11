@@ -3,7 +3,8 @@ import pandas as pd
 
 def saveSRN(df):
     df.to_csv("srn.csv", index=False)
-    print(df)
+    print(df[5])
+    print(df[6])
 
 
 def readSRN():

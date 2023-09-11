@@ -10,10 +10,10 @@ import time
 
 def pivotAlarm():
     start_time = time.time()
-    srD = getSRData()
     ltpPList = loadLtpP()
     obj, toc = get_access_token()
     exchange = "NSE"
+
     # SR area half width
     width = 0.04
 
@@ -23,7 +23,7 @@ def pivotAlarm():
     # alarm expiry in minutes
     alarmExp = 30
 
-    srN = srD
+    srN = getSRData()
     srN.insert(5, "alrmTimer", 0.00)
     srN.insert(6, "refT", 0.00)
     srN.insert(7, "bigS", 0)
@@ -31,23 +31,18 @@ def pivotAlarm():
 
     srN.columns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-    # save the rft time
-    # loadRFT(srN[[5, 6]])
-    # srN = saveSRN(srN)
-
     print("--- %s seconds ---" % (time.time() - start_time))
-
+    x = 10
     # real time loop
-    while realTime * 3600 - (time.time() - start_time) > 0:
+    while x > 0:
         alarmItr = 0
-        srN = srN
-        print(srN)
+        # print(srN)
         # srN = readSRN()
         # nifty 200 SR loop
         for index, rows in srN.iterrows():
             uid = rows[0]
             if rows[5] > 0:
-                srN.loc[uid - 1, 5] = rows[5] - ((time.time() - start_time) - rows[6])
+                srN.loc[uid - 1, 5] = alarmExp * 60 - ((time.time() - start_time) - rows[6])
                 continue
             else:
                 srN.loc[uid - 1, 5] = 0
@@ -81,9 +76,10 @@ def pivotAlarm():
                     break
 
             # ltpPList.loc[uid-1, "ltp"] = ltpC
-        loadRFT(srN[[5, 6]])
+        # loadRFT(srN[[5, 6]])
         saveSRN(srN)
         print("--- %s seconds ---" % (time.time() - start_time))
+        x = x - 1
 
 
 pivotAlarm()
