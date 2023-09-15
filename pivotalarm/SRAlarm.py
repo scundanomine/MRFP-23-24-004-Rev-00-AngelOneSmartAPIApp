@@ -24,12 +24,12 @@ def pivotAlarm():
     alarmExp = 30
 
     srN = getSRData()
-    srN.insert(5, "alrmTimer", 0.00)
-    srN.insert(6, "refT", 0.00)
-    srN.insert(7, "bigS", 0)
-    srN.insert(15, "bigM", 200000)
+    srN.insert(6, "alrmTimer", 0.00)
+    srN.insert(7, "refT", 0.00)
+    srN.insert(8, "bigS", 0)
+    srN.insert(16, "bigM", 200000)
 
-    srN.columns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    srN.columns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
     print("--- %s seconds ---" % (time.time() - start_time))
     x = 10
@@ -49,7 +49,7 @@ def pivotAlarm():
 
             ltpP = ltpPList["ltp"][uid - 1]
             try:
-                ltp = obj.ltpData(exchange, rows[2], str(rows[3]))
+                ltp = obj.ltpData(exchange, rows[2], str(rows[4]))
                 ltpC = ltp['data']['ltp']
             except:
                 print(f"failed {rows[1]} uid!!!!!!!!!!!!!! {rows[0]}")
