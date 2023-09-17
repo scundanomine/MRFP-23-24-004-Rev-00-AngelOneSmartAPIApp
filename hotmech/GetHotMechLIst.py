@@ -10,7 +10,7 @@ def getHotMechList():
             break
         except:
             hotMechLst = pd.DataFrame(index=list(range(50)),
-                                      columns=["slot", "timer", "id", "desc", "sector", "symbol", "token", "ltp"])
+                                      columns=["slot", "rft", "id", "desc", "sector", "symbol", "token", "ltp", 'typ'])
             hotMechLst['slot'] = range(1, 51)
             hotMechLst['id'] = 0
             hotMechLst.to_csv("HotMechLst.csv", index=False)
@@ -19,4 +19,4 @@ def getHotMechList():
     return hotMechLst
 
 
-print(getHotMechList())
+# print(getHotMechList())

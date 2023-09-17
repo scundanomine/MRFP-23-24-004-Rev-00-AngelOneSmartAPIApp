@@ -11,8 +11,9 @@ def getLtpFromThread():
     exchange = "NSE"
     mat = getSRData()
     mat["ltp"] = 0
-    print(mat["ltp"])
-    print("--- %s seconds ---" % (time.perf_counter() - startTime))
+
+    # print(mat["ltp"])
+    # print("--- %s seconds ---" % (time.perf_counter() - startTime))
 
     def getLtpX(uid):
         a = mat["symbol"][uid]
@@ -32,15 +33,16 @@ def getLtpFromThread():
                 lt = list(range(i, i + 10))
             # print(lt)
             results = executor.map(getLtpX, lt)
-            time.sleep(1)
+            time.sleep(1.001)
             index = i
             for result in results:
                 mat.loc[index, "ltp"] = result
                 index = index + 1
+            mat.to_csv("mat.csv", index=False)
 
     print(mat["ltp"])
     print("--- %s seconds ---" % (time.perf_counter() - startTime))
-    mat.to_csv("mat.csv", index=False)
+    # mat.to_csv("mat.csv", index=False)
 
 
 getLtpFromThread()
