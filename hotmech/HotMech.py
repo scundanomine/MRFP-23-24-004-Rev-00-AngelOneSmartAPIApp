@@ -13,20 +13,27 @@ def hotMech(uid, desc, symbol, sector, token, ltp, rft, typ):
     htR = getHotMechList()
     roomKey = getHotelRoomKey()
 
+    # print(roomKey)
+    if roomKey != 0:
+        index = roomKey - 1
+        htR.loc[index, "rft"] = rft
+        htR.loc[index, "id"] = uid
+        htR.loc[index, "desc"] = desc
+        htR.loc[index, "sector"] = sector
+        htR.loc[index, "symbol"] = symbol
+        htR.loc[index, "token"] = token
+        htR.loc[index, "ltp"] = ltp
+        htR.loc[index, "typ"] = typ
+
+    # loading csv file
+    htR.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\hotmech\\HotMechLst.csv",
+               index=False)
+
+    # loading the excel
+    wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
+    dt = wb.sheets("Vitals")
+    dt.range("a5:i105").options(pd.DataFrame, index=False).value = htR
     print("--- %s seconds ---" % (time.time() - start_time))
-    print(roomKey)
 
 
-hotMech(23, "dhkjh", "dsmjdklsh", "bankpo", "token", 1234, 145544, "S")
-# for rows in htR.iterrows():
-#     if rows["id"] == 0:
-#         index = rows["slot"]
-#         htR.loc[index - 1, "rft"] = rft
-#         htR.loc[index - 1, "id"] = uid
-#         htR.loc[index - 1, "desc"] = desc
-#         htR.loc[index - 1, "sector"] = sector
-#         htR.loc[index - 1, "symbol"] = symbol
-#         htR.loc[index - 1, "token"] = token
-#         htR.loc[index - 1, "ltp"] = ltp
-#         htR.loc[index - 1, "typ"] = typ
-#         break
+hotMech(23, "dhkjh", "dsmjdklsh", "bankpo", "jhdkfjgh", 1234, 145544, "S")
