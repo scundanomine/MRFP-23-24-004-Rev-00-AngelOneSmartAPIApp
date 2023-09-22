@@ -19,7 +19,7 @@ def getCandleStickDataViaThreads():
                 "exchange": "NSE",
                 "symboltoken": token,
                 "interval": "ONE_MINUTE",
-                "fromdate": "2023-09-20 09:15",
+                "fromdate": "2023-09-20 09:20",
                 "todate": "2023-09-20 09:29"
             }
             candleStickData = obj.getCandleData(historicParam)
