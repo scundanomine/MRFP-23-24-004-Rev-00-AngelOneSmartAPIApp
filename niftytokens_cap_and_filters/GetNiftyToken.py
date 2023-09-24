@@ -9,7 +9,7 @@ varBig = []
 smallData = []
 
 
-def getToken(sheetName):
+def getNiftyToken(sheetName):
     global varBig, smallData
     startTime = time.time()
     with open(
@@ -43,4 +43,4 @@ def getToken(sheetName):
     print(f"Execution time is {time.time() - startTime}")
 
 
-getToken("nifty500")
+getNiftyToken("nifty500")
