@@ -22,8 +22,18 @@ def getMarketCap(smallDataSheetName, smallDataUpperBound):
     smallData = pd.DataFrame(dtSmall.range(rangeS).value)
     smallData = smallData.drop(columns=[1])
     smallData.rename(columns={2: "cap"}, inplace=True)
-
     print(smallData)
+
+    # get data using nested loop
+    for i in range(len(smallData)):
+        for j in range(len(bigData)):
+            if smallData[0][i] == f"{bigData[0][j]}-EQ":
+                smallData.loc[i, "cap"] = bigData[1][j]
+                break
+    smallData = smallData.drop(columns=[0])
+
+    # render data to the excel
+    dtSmall.range(f"f1:f{smallDataUpperBound}").options(pd.DataFrame, index=False).value = smallData
     print(f"execution time is {time.time() - startTime}")
 
 
