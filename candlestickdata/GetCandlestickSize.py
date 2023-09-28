@@ -15,4 +15,4 @@ def getCandlestickSize(body, atr):
         return "GIG"
 
 
-print(getCandlestickSize(9, 4))
+# print(getCandlestickSize(9, 4))

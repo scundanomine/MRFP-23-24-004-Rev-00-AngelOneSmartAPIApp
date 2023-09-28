@@ -6,4 +6,4 @@ def getCandleStickGender(opn, cls):
         return "BRS"
 
 
-print(getCandleStickGender(2, 8))
+# print(getCandleStickGender(2, 8))

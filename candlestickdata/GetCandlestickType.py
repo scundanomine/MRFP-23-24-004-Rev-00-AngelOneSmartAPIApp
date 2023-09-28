@@ -26,4 +26,4 @@ def getCandlestickType(b, us, ls, size):
         return 'normal'
 
 
-print(getCandlestickType(4, 0.1, 0.011, "x"))
+# print(getCandlestickType(4, 0.1, 0.011, "x"))

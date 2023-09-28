@@ -8,16 +8,16 @@ from statistics import mean
 df = []
 
 
-def calculationForATR():
+def calculationForATR(sdf):
     global df
-    df = pd.DataFrame(getCandleStickData())
-    print(df)
-    startTime = time.time()
+    df = sdf
+    # print(df)
+    # startTime = time.time()
 
     def getTR(r):
         try:
             global df
-            avg = (df[1][r] + df[4][r])/2
+            avg = (df[1][r] + df[4][r]) / 2
             if r == 0:
                 tr = df[2][r] - df[3][r]
             else:
@@ -27,7 +27,8 @@ def calculationForATR():
                 lst = [a, b, c]
                 tr = max(lst)
             # print(f"for given r:{r}, tr is {tr}")
-            return tr/avg*100
+            # return tr/avg*100
+            return tr
         except:
             return 0
 
@@ -36,8 +37,7 @@ def calculationForATR():
         # print(lt)
         results = executor.map(getTR, lt)
         atr = mean(results)
-    print(f"time of execution is {time.time() - startTime}")
+    # print(f"time of execution is {time.time() - startTime}")
     return atr
 
-
-print(calculationForATR())
+# print(calculationForATR())
