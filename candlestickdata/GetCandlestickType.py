@@ -5,23 +5,23 @@ def getCandlestickType(b, us, ls, size):
     if size == "zero":
         return "doji"
     # condition for marubozu
-    elif b >= 0.9 * r:
+    elif b >= 0.8 * r:
         return "marubozu"
     # condition for spn_top
-    elif us >= 2 * b and ls >= 2 * b:
+    elif us >= 1.5 * b and ls >= 1.5 * b:
         return "spn_top"
     # condition for hammer
-    elif us <= 0.125 * r and b <= 0.25 * r:
+    elif us <= 0.25 * r and b <= 0.25 * r:
         return "hammer"
-    # condition for tweezer_t
-    elif us <= 0.125 * r and b <= 0.6 * r:
-        return "tweezer_t"
-    # condition for shooting_star
-    elif ls <= 0.125 * r and b <= 0.25 * r:
-        return "shooting_star"
     # condition for tweezer_b
-    elif ls <= 0.125 * r and b <= 0.6 * r:
+    elif us <= 0.125 * r and b <= 0.6 * r:
         return "tweezer_b"
+    # condition for shooting_star
+    elif ls <= 0.25 * r and b <= 0.25 * r:
+        return "shooting_star"
+    # condition for tweezer_t
+    elif ls <= 0.125 * r and b <= 0.6 * r:
+        return "tweezer_t"
     else:
         return 'normal'
 

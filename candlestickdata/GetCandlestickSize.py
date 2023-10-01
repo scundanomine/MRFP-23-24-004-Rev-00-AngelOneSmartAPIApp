@@ -1,15 +1,17 @@
-def getCandlestickSize(body, atr):
-    if body <= 0.125 * atr:
+def getCandlestickSize(rangeS, atrS):
+    # rangeS = rangeS*10000
+    # atrS = atrS * 10000
+    if rangeS <= 0.25 * atrS:
         return "zero"
-    elif body <= 0.25 * atr:
+    elif rangeS <= 0.5 * atrS:
         return "S"
-    elif body <= 0.5 * atr:
+    elif rangeS <= atrS:
         return "M"
-    elif body <= atr:
+    elif rangeS <= 1.5 * atrS:
         return "L"
-    elif body <= 2 * atr:
+    elif rangeS <= 2.5 * atrS:
         return "XL"
-    elif body <= 3 * atr:
+    elif rangeS <= 3.5 * atrS:
         return "2XL"
     else:
         return "GIG"

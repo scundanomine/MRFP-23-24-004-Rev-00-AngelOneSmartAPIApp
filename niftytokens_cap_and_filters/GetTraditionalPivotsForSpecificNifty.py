@@ -21,9 +21,10 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound):
 
     # getting dataframe
     dt = wb.sheets(sheetName)
-    df = pd.DataFrame(dt.range(f"d2:r{upperBound}").value)
-    df.rename(columns={0: "symbol", 1: "token", 2: "cap", 3: "ltp", 4: "s5", 5: "s4", 6: "s3", 7: "s2", 8: "s1", 9: "p",
-                       10: "r1", 11: "r2", 12: "r3", 13: "r4", 14: "r5"}, inplace=True)
+    df = pd.DataFrame(dt.range(f"d2:u{upperBound}").value)
+    df.rename(
+        columns={0: "symbol", 1: "token", 2: "cap", 3: "O", 4: "H", 5: "L", 6: "C", 7: "s5", 8: "s4", 9: "s3", 10: "s2",
+                 11: "s1", 12: "p", 13: "r1", 14: "r2", 15: "r3", 16: "r4", 17: "r5"}, inplace=True)
     df["token"] = df["token"].astype("int64")
     df = df.drop(columns=["cap"])
     results = []
@@ -36,12 +37,21 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound):
             return
         else:
             # get past data
-            data = getHistoricDataForOneDay(obj, "2023-09-27", str(df["token"][r]))
+            data = getHistoricDataForOneDay(obj, "2023-09-28", str(df["token"][r]))[0]
             # print(data)
             # df.loc[r, "ltp"] = data["ltp"]
+            opn = data[1]
             high = data[2]
             low = data[3]
             close = data[4]
+
+            # setting ohlc data
+            df.loc[r, "O"] = opn
+            df.loc[r, "H"] = high
+            df.loc[r, "L"] = low
+            df.loc[r, "C"] = close
+
+            # setting pivots data
             median = (high + low + close) / 3
             df.loc[r, "p"] = median
             df.loc[r, "r1"] = median * 2 - low
@@ -56,7 +66,7 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound):
             df.loc[r, "s5"] = median * 4 - (4 * high - low)
 
     # Logic of magic no '3, n + 2 * 3 - n % 3, 3'
-    for i in range(3, 50 + 2 * 3 - 50 % 3, 3):
+    for i in range(3, n + 2 * 3 - n % 3, 3):
         time.sleep(1)
         with ThreadPoolExecutor() as executor:
             lt = list(range(i - 3, i))
@@ -65,7 +75,7 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound):
     # render data back to excel
     df = df.drop(columns=["symbol", "token"])
     print(df)
-    dt.range(f"g1:r{upperBound}").options(pd.DataFrame, index=False).value = df
+    dt.range(f"g1:u{upperBound}").options(pd.DataFrame, index=False).value = df
     print(f"execution time is {time.time() - startTime}")
 
 

@@ -1,9 +1,9 @@
 def getCandleStickGender(opn, cls):
     gender = cls - opn
     if gender >= 0:
-        return "BLS"
+        return "Green"
     else:
-        return "BRS"
+        return "Red"
 
 
 # print(getCandleStickGender(2, 8))
