@@ -27,6 +27,7 @@ def getCandlestickGSTData():
     cols_to_add = [col for col in new_cols if col not in sdf.columns]
     sdf.loc[:, cols_to_add] = 0
     sdf["atr"] = atr
+    sdf["p"] = "none"
 
     # print(sdf.iloc[0])
 
@@ -49,7 +50,7 @@ def getCandlestickGSTData():
         s = getCandlestickSize(rangeL, atrL)
 
         # calculation for type
-        if g == 'Green':
+        if g == 'green':
             usL = highL - clsL
             lsL = opnL - lowL
         else:

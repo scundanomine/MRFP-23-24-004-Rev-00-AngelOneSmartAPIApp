@@ -18,8 +18,8 @@ def getCandleStickData():
             "exchange": "NSE",
             "symboltoken": "2885",
             "interval": "ONE_MINUTE",
-            "fromdate": "2023-09-29 14:40",
-            "todate": "2023-09-29 14:49"
+            "fromdate": "2023-09-28 09:40",
+            "todate": "2023-09-28 09:49"
         }
         candleStickData = obj.getCandleData(historicParam)
     except Exception as e:
