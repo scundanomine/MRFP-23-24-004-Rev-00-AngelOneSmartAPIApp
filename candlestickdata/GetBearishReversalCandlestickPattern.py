@@ -16,8 +16,6 @@ def getBearishReversalCandlestickPattern():
     # get Pattern data
     def getBearishReversalPatternData(r):
         global tdg
-        time.sleep(0.05)
-
         # condition for double candlestick pattern
         if tdg["t"][r] == "shooting_star":
             tdg.loc[r, "p"] = "shooting_star"
@@ -27,15 +25,15 @@ def getBearishReversalCandlestickPattern():
         if r != 0:
             if tdg["g"][r - 1] == "green" and tdg["g"][r] == "red":
                 # condition for tweezer bottom
-                if tdg["t"][r - 1] == "tweezer_t" and tdg["t"][r] == "tweezer_t":
+                if tdg["t"][r - 1] == "tweezer_t" and tdg["t"][r] == "tweezer_t" and (tdg["O"][r]-tdg["C"][r-1]) <= 0.25*tdg["atr"][r]:
                     tdg.loc[r, "p"] = "tweezer_top"
                     return
                 # condition for Dark Cloud Cover Pattern
-                elif tdg[1][r - 1] < tdg[4][r]:
+                elif tdg["O"][r - 1] < tdg["C"][r] and (tdg["O"][r]-tdg["C"][r-1]) <= 0.25*tdg["atr"][r]:
                     tdg.loc[r, "p"] = "dark_cloud_cover"
                     return
                     # condition for Bearish Engulfing Pattern
-                elif tdg[1][r - 1] > tdg[4][r]:
+                elif tdg["O"][r - 1] > tdg["C"][r] and (tdg["O"][r]-tdg["C"][r-1]) <= 0.25*tdg["atr"][r]:
                     tdg.loc[r, "p"] = "Bearish_Engulfing"
                     return
 
@@ -44,10 +42,13 @@ def getBearishReversalCandlestickPattern():
             if tdg["g"][r - 1] == "green" and tdg["t"][r] == "doji" and tdg["g"][r + 1] == "red":
                 tdg.loc[r, "p"] = "evening_star"
 
+        time.sleep(0.05)
+
     # calculation for pattern
     with ThreadPoolExecutor() as executorOne:
         lt = list(range(10))
         executorOne.map(getBearishReversalPatternData, lt)
+    # getBearishReversalPatternData(6)
 
     print(tdg)
     tdg.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\candlestickdata\\candle_state\\gstData.csv", index=False)

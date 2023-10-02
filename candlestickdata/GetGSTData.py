@@ -22,6 +22,8 @@ def getCandlestickGSTData():
     atr = round(calculationForATR(sdf), 2)
     print(atr)
 
+    # rename ohlc
+    sdf.rename(columns={0: "time", 1: "O", 2: "H", 3: "L", 4: "C", 5: "V"}, inplace=True)
     # add required columns
     new_cols = ['atr', 'g', 's', 't', 'p']
     cols_to_add = [col for col in new_cols if col not in sdf.columns]
@@ -35,10 +37,10 @@ def getCandlestickGSTData():
     def getGstData(r):
         global sdf
         time.sleep(0.05)
-        opnL = sdf[1][r]
-        highL = sdf[2][r]
-        lowL = sdf[3][r]
-        clsL = sdf[4][r]
+        opnL = sdf["O"][r]
+        highL = sdf["H"][r]
+        lowL = sdf["L"][r]
+        clsL = sdf["C"][r]
         atrL = sdf["atr"][r]
 
         # calculation for gender

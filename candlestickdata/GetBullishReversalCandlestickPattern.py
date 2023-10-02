@@ -31,11 +31,11 @@ def getBullishReversalCandlestickPattern():
                     tdf.loc[r, "p"] = "tweezer_bottom"
                     return
                 # condition for Piercing Pattern
-                elif tdf[1][r - 1] > tdf[4][r]:
+                elif tdf["O"][r - 1] > tdf["C"][r]:
                     tdf.loc[r, "p"] = "Piercing"
                     return
                     # condition for Bullish Engulfing Pattern
-                elif tdf[1][r - 1] < tdf[4][r]:
+                elif tdf["O"][r - 1] < tdf["C"][r]:
                     tdf.loc[r, "p"] = "Bullish_Engulfing"
                     return
 
