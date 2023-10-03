@@ -27,15 +27,15 @@ def getBullishReversalCandlestickPattern():
         if r != 0:
             if tdf["g"][r - 1] == "red" and tdf["g"][r] == "green":
                 # condition for tweezer bottom
-                if tdf["t"][r - 1] == "tweezer_b" and tdf["t"][r] == "tweezer_b":
+                if tdf["t"][r - 1] == "tweezer_b" and tdf["t"][r] == "tweezer_b" and tdf["C"][r-1] - tdf["O"][r] <= 0.25*tdf["atr"][r]:
                     tdf.loc[r, "p"] = "tweezer_bottom"
                     return
                 # condition for Piercing Pattern
-                elif tdf["O"][r - 1] > tdf["C"][r]:
+                elif tdf["O"][r - 1] > tdf["C"][r] and tdf["C"][r-1] - tdf["O"][r] <= 0.25*tdf["atr"][r]:
                     tdf.loc[r, "p"] = "Piercing"
                     return
                     # condition for Bullish Engulfing Pattern
-                elif tdf["O"][r - 1] < tdf["C"][r]:
+                elif tdf["O"][r - 1] < tdf["C"][r] and tdf["C"][r-1] - tdf["O"][r] <= 0.25*tdf["atr"][r]:
                     tdf.loc[r, "p"] = "Bullish_Engulfing"
                     return
 

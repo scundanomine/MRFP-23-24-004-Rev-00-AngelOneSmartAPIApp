@@ -41,9 +41,9 @@ def getUpperBoundForSpecificSheet(sheetName, ect=2):
             if result != 0:
                 upperBound = result
                 break
-    print(f"time of execution is {time.time() - startTime}")
+    # print(f"time of execution is {time.time() - startTime}")
 
     return upperBound
 
 
-print(getUpperBoundForSpecificSheet("nifty500", 5))
+# print(getUpperBoundForSpecificSheet("nifty500", 5))
