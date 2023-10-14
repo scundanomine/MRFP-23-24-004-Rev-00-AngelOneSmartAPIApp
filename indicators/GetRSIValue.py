@@ -8,7 +8,7 @@ cdf = pd.DataFrame()
 
 def getRSIValue():
     global cdf
-
+    startTime = time.time()
     # get df
     df = getCandlestickTenMinuteData()
     n = len(df)
@@ -24,22 +24,32 @@ def getRSIValue():
         global cdf
         change = cdf["close"][r] - cdf["close"][r - 1]
         if change >= 0:
-            cdf.iloc[r, "um"] = change
-            cdf.iloc[r, "dm"] = 0
+            cdf.loc[r, "um"] = change
+            cdf.loc[r, "dm"] = 0
         else:
-            cdf.iloc[r, "um"] = 0
-            cdf.iloc[r, "dm"] = abs(change)
+            cdf.loc[r, "um"] = 0
+            cdf.loc[r, "dm"] = abs(change)
 
     with ThreadPoolExecutor() as executor:
         lt = list(range(1, n))
         results = executor.map(getUmAndDm, lt)
 
     # calculate upward and downward avg
-    umAvg = cdf["um"].sum() / (n - 1)
-    dmAvg = cdf["dm"].sum() / (n - 1)
-    relStrength = umAvg / dmAvg
-    rsi = 100 - 100/(relStrength+1)
-    return rsi
+    umAvg = cdf["um"].sum() / 9
+    dmAvg = cdf["dm"].sum() / 9
+    try:
+        relStrength = umAvg / dmAvg
+    except:
+        dmAvg = 0.000001
+        if umAvg == 0:
+            relStrength = 1
+            print("RSI is indeterminate")
+        else:
+            relStrength = umAvg / dmAvg
+
+    rsi = 100 - 100 / (relStrength + 1)
+    print(f"time of execution is {time.time()-startTime}")
+    return round(rsi, 2)
 
 
-getRSIValue()
+print(getRSIValue())
