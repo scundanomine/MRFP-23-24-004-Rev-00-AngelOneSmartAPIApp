@@ -2,12 +2,23 @@ from pivotalarm.GetSAndR import *
 import time
 from AngelOneSmartAPIApp.GetAccessToken import *
 from concurrent.futures import ThreadPoolExecutor
+from AngelOneSmartAPIApp.test import *
+
+obj = []
+i = 0
 
 
-def getLtpFromThread():
-    global i
+def getLtpFromThread(objZ=0):
+    global i, obj
     startTime = time.perf_counter()
-    obj, toc = get_access_token()
+    while True:
+        try:
+            obj, accessToken = get_access_token()
+            break
+        except Exception as e:
+            print(f"Not getting accessToken due to {e}")
+            time.sleep(1)
+    # obj = objZ
     exchange = "NSE"
     mat = getSRData()
     mat["ltp"] = 0
@@ -16,13 +27,22 @@ def getLtpFromThread():
     # print("--- %s seconds ---" % (time.perf_counter() - startTime))
 
     def getLtpX(uid):
+        global obj
         a = mat["symbol"][uid]
         b = mat["token"][uid]
         ltp = obj.ltpData(exchange, a, str(b))
+        # while True:
+        #     try:
+        #         ltp = obj.ltpData(exchange, a, str(b))
+        #         break
+        #     except Exception as e:
+        #         print(f"Not getting ltp data due to {e}")
+        #         time.sleep(1)
         return ltp['data']['ltp']
 
     results = []
-    for i in range(0, 210, 10):
+    for i in range(0, 60, 10):
+        time.sleep(1.001)
         with ThreadPoolExecutor() as executor:
             # lt = list(range(len(mat["id"])))
             if i == 200:
@@ -33,7 +53,6 @@ def getLtpFromThread():
                 lt = list(range(i, i + 10))
             # print(lt)
             results = executor.map(getLtpX, lt)
-            time.sleep(1.001)
             index = i
             for result in results:
                 mat.loc[index, "ltp"] = result
@@ -44,5 +63,4 @@ def getLtpFromThread():
     print("--- %s seconds ---" % (time.perf_counter() - startTime))
     # mat.to_csv("mat.csv", index=False)
 
-
-getLtpFromThread()
+# getLtpFromThread()

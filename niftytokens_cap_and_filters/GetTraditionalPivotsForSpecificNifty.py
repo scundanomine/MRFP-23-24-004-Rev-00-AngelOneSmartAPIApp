@@ -10,11 +10,18 @@ n = 0
 obj = []
 
 
-def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound):
+def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, objC=0):
     global df, n, obj
     startTime = time.time()
 
-    obj, toc = get_access_token()
+    # obj = objC
+    while True:
+        try:
+            obj, accessToken = get_access_token()
+            break
+        except Exception as e:
+            print(f"Not getting accessToken due to {e}")
+            time.sleep(1)
 
     wb = xw.Book(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
@@ -79,4 +86,4 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound):
     print(f"execution time is {time.time() - startTime}")
 
 
-getTraditionalPivotsForSpecificNiftyFile("nifty500", "502")
+# getTraditionalPivotsForSpecificNiftyFile("nifty500", "502")

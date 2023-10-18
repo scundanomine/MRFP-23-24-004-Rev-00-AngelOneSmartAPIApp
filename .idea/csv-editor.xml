@@ -10,7 +10,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\commonudm\resource\SymbolAndToken.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\filters\filter_state\filter.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\threadresearch\mat.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

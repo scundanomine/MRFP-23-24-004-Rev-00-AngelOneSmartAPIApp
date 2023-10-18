@@ -6,9 +6,10 @@ import pandas as pd
 candleStickData = []
 
 
-def getCandleStickDataViaThreads():
+def getCandleStickDataViaThreads(objC):
     global candleStickData
-    obj, toc = get_access_token()
+    # obj, toc = get_access_token()
+    obj = objC
 
     # Historic api
     def getMultipleCandleStick(token):
@@ -37,9 +38,9 @@ def getCandleStickDataViaThreads():
             print(result["data"])
 
 
-startTimeTwo = time.time()
-for i in range(10):
-    print(getCandleStickDataViaThreads())
-    print(f"execution time is {time.time() - startTimeTwo}")
+# startTimeTwo = time.time()
+# for i in range(10):
+#     print(getCandleStickDataViaThreads())
+#     print(f"execution time is {time.time() - startTimeTwo}")
 # df = pd.DataFrame(getCandleStickData()["data"])
 # print(df)

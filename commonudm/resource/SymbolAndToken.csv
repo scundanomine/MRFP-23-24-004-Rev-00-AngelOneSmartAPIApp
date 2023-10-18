@@ -1,0 +1,502 @@
+id,disc,sector,symbol,token,cap,ltp
+1,Reliance Industries Ltd.,Oil Gas & Consumable Fuels,RELIANCE-EQ,2885,1577069,1.1
+2,Tata Consultancy Services Ltd.,Information Technology,TCS-EQ,11536,1173055,1.1
+3,HDFC Bank Ltd.,Financial Services,HDFCBANK-EQ,1333,898087,1.1
+4,ICICI Bank Ltd.,Financial Services,ICICIBANK-EQ,4963,612482,1.1
+5,Hindustan Unilever Ltd.,Fast Moving Consumer Goods,HINDUNILVR-EQ,1394,601577,1.1
+6,Infosys Ltd.,Information Technology,INFY-EQ,1594,592393,1.1
+7,ITC Ltd.,Fast Moving Consumer Goods,ITC-EQ,1660,476322,1.1
+8,State Bank of India,Financial Services,SBIN-EQ,3045,467426,1.1
+9,Bharti Airtel Ltd.,Telecommunication,BHARTIARTL-EQ,10604,417577,1.1
+10,Kotak Mahindra Bank Ltd.,Financial Services,KOTAKBANK-EQ,1922,344231,1.1
+11,Bajaj Finance Ltd.,Financial Services,BAJFINANCE-EQ,317,340054,1.1
+12,Life Insurance Corporation of India,Financial Services,LICI-EQ,9480,337976,1.1
+13,Larsen & Toubro Ltd.,Construction,LT-EQ,11483,304164,1.1
+14,HCL Technologies Ltd.,Information Technology,HCLTECH-EQ,7229,294500,1.1
+15,Asian Paints Ltd.,Consumer Durables,ASIANPAINT-EQ,236,264896,1.1
+16,Axis Bank Ltd.,Financial Services,AXISBANK-EQ,5900,264120,1.1
+17,Maruti Suzuki India Ltd.,Automobile and Auto Components,MARUTI-EQ,10999,250489,1.1
+18,Sun Pharmaceutical Industries Ltd.,Healthcare,SUNPHARMA-EQ,3351,235878,1.1
+19,Titan Company Ltd.,Consumer Durables,TITAN-EQ,3506,223269,1.1
+20,Avenue Supermarts Ltd.,Consumer Services,DMART-EQ,19913,220311,1.1
+21,UltraTech Cement Ltd.,Construction Materials,ULTRACEMCO-EQ,11532,220038,1.1
+22,Nestle India Ltd.,Fast Moving Consumer Goods,NESTLEIND-EQ,17963,217000,1.1
+23,Bajaj Finserv Ltd.,Financial Services,BAJAJFINSV-EQ,16675,201730,1.1
+24,Wipro Ltd.,Information Technology,WIPRO-EQ,3787,200446,1.1
+25,Adani Enterprises Ltd.,Metals & Mining,ADANIENT-EQ,25,199551,1.1
+26,Oil & Natural Gas Corporation Ltd.,Oil Gas & Consumable Fuels,ONGC-EQ,2475,190025,1.1
+27,NTPC Ltd.,Power,NTPC-EQ,11630,169788,1.1
+28,JSW Steel Ltd.,Metals & Mining,JSWSTEEL-EQ,11723,166328,1.1
+29,Power Grid Corporation of India Ltd.,Power,POWERGRID-EQ,14977,157435,1.1
+30,Mahindra & Mahindra Ltd.,Automobile and Auto Components,M&M-EQ,2031,144087,1.1
+31,LTIMindtree Ltd.,Information Technology,LTIM-EQ,17818,140799,1.1
+32,Tata Motors Ltd.,Automobile and Auto Components,TATAMOTORS-EQ,3456,139762,1.1
+33,Adani Green Energy Ltd.,Power,ADANIGREEN-EQ,3563,139577,1.1
+34,Adani Ports and Special Economic Zone Ltd.,Services,ADANIPORTS-EQ,15083,136499,1.1
+35,Coal India Ltd.,Oil Gas & Consumable Fuels,COALINDIA-EQ,20374,131666,1.1
+36,Tata Steel Ltd.,Metals & Mining,TATASTEEL-EQ,3499,127715,1.1
+37,Hindustan Zinc Ltd.,Metals & Mining,HINDZINC-EQ,1424,123949,1.1
+38,Pidilite Industries Ltd.,Chemicals,PIDILITIND-EQ,2664,119606,1.1
+39,Siemens Ltd.,Capital Goods,SIEMENS-EQ,3150,118486,1.1
+40,SBI Life Insurance Company Ltd.,Financial Services,SBILIFE-EQ,21808,110206,1.1
+41,Indian Oil Corporation Ltd.,Oil Gas & Consumable Fuels,IOC-EQ,1624,110004,1.1
+42,Bajaj Auto Ltd.,Automobile and Auto Components,BAJAJ-AUTO-EQ,16669,109921,1.1
+43,Grasim Industries Ltd.,Construction Materials,GRASIM-EQ,1232,107502,1.1
+44,Tech Mahindra Ltd.,Information Technology,TECHM-EQ,13538,107336,1.1
+45,HDFC Life Insurance Company Ltd.,Financial Services,HDFCLIFE-EQ,467,107296,1.1
+46,Britannia Industries Ltd.,Fast Moving Consumer Goods,BRITANNIA-EQ,547,104106,1.1
+47,Vedanta Ltd.,Metals & Mining,VEDL-EQ,3063,102018,1.1
+48,Godrej Consumer Products Ltd.,Fast Moving Consumer Goods,GODREJCP-EQ,10099,99012,1.1
+49,Dabur India Ltd.,Fast Moving Consumer Goods,DABUR-EQ,772,96543,1.1
+50,Adani Total Gas Ltd.,Oil Gas & Consumable Fuels,ATGL-EQ,6066,95436,1.1
+51,Shree Cement Ltd.,Construction Materials,SHREECEM-EQ,3103,94484,1.1
+52,Adani Energy Solutions Ltd.,Power,ADANIENSOL-EQ,10217,93695,1.1
+53,Hindustan Aeronautics Ltd.,Capital Goods,HAL-EQ,2303,91324,1.1
+54,Hindalco Industries Ltd.,Metals & Mining,HINDALCO-EQ,1363,91090,1.1
+55,Varun Beverages Ltd.,Fast Moving Consumer Goods,VBL-EQ,18921,90093,1.1
+56,DLF Ltd.,Realty,DLF-EQ,14732,88294,1.1
+57,Bank of Baroda,Financial Services,BANKBARODA-EQ,4668,87318,1.1
+58,IndusInd Bank Ltd.,Financial Services,INDUSINDBK-EQ,5258,82857,1.1
+59,Eicher Motors Ltd.,Automobile and Auto Components,EICHERMOT-EQ,910,80645,1.1
+60,Dr. Reddy's Laboratories Ltd.,Healthcare,DRREDDY-EQ,881,76981,1.1
+61,Divi's Laboratories Ltd.,Healthcare,DIVISLAB-EQ,10940,74951,1.1
+62,Bharat Petroleum Corporation Ltd.,Oil Gas & Consumable Fuels,BPCL-EQ,526,74687,1.1
+63,Havells India Ltd.,Consumer Durables,HAVELLS-EQ,9819,74460,1.1
+64,Adani Power Ltd.,Power,ADANIPOWER-EQ,17388,73898,1.1
+65,InterGlobe Aviation Ltd.,Services,INDIGO-EQ,11195,73664,1.1
+66,Cipla Ltd.,Healthcare,CIPLA-EQ,694,72683,1.1
+67,Ambuja Cements Ltd.,Construction Materials,AMBUJACEM-EQ,1270,72585,1.1
+68,SRF Ltd.,Chemicals,SRF-EQ,3273,71493,1.1
+69,ABB India Ltd.,Capital Goods,ABB-EQ,13,71310,1.1
+70,Bharat Electronics Ltd.,Capital Goods,BEL-EQ,383,71306,1.1
+71,Mankind Pharma Ltd.,Healthcare,MANKIND-EQ,15380,70153,1.1
+72,SBI Cards and Payment Services Ltd.,Financial Services,SBICARD-EQ,17971,70028,1.1
+73,GAIL (India) Ltd.,Oil Gas & Consumable Fuels,GAIL-EQ,4717,69137,1.1
+74,Bajaj Holdings & Investment Ltd.,Financial Services,BAJAJHLDNG-EQ,305,65886,1.1
+75,Tata Consumer Products Ltd.,Fast Moving Consumer Goods,TATACONSUM-EQ,3432,65852,1.1
+76,ICICI Prudential Life Insurance Company Ltd.,Financial Services,ICICIPRULI-EQ,18652,62678,1.1
+77,Cholamandalam Investment and Finance Company Ltd.,Financial Services,CHOLAFIN-EQ,685,62581,1.1
+78,Marico Ltd.,Fast Moving Consumer Goods,MARICO-EQ,4067,62040,1.1
+79,Apollo Hospitals Enterprise Ltd.,Healthcare,APOLLOHOSP-EQ,157,61984,1.1
+80,Tata Power Co. Ltd.,Power,TATAPOWER-EQ,3426,60791,1.1
+81,Bosch Ltd.,Automobile and Auto Components,BOSCHLTD-EQ,2181,57128,1.1
+82,Berger Paints India Ltd.,Consumer Durables,BERGEPAINT-EQ,404,56507,1.1
+83,Jindal Steel & Power Ltd.,Metals & Mining,JINDALSTEL-EQ,6733,55717,1.1
+84,United Spirits Ltd.,Fast Moving Consumer Goods,MCDOWELL-N-EQ,10447,55009,1.1
+85,UPL Ltd.,Chemicals,UPL-EQ,11287,53867,1.1
+86,Adani Wilmar Ltd.,Fast Moving Consumer Goods,AWL-EQ,8110,52747,1.1
+87,ICICI Lombard General Insurance Company Ltd.,Financial Services,ICICIGI-EQ,21770,52525,1.1
+88,Torrent Pharmaceuticals Ltd.,Healthcare,TORNTPHARM-EQ,3518,52024,1.1
+89,Canara Bank,Financial Services,CANBK-EQ,10794,51602,1.1
+90,Punjab National Bank,Financial Services,PNB-EQ,10666,51311,1.1
+91,TVS Motor Company Ltd.,Automobile and Auto Components,TVSMOTOR-EQ,8479,51176,1.1
+92,Zydus Lifesciences Ltd.,Healthcare,ZYDUSLIFE-EQ,7929,49754,1.1
+93,Tube Investments of India Ltd.,Automobile and Auto Components,TIINDIA-EQ,312,49179,1.1
+94,Trent Ltd.,Consumer Services,TRENT-EQ,1964,48877,1.1
+95,IDBI Bank Ltd.,Financial Services,IDBI-EQ,1476,48385,1.1
+96,Info Edge (India) Ltd.,Consumer Services,NAUKRI-EQ,13751,48102,1.1
+97,Abbott India Ltd.,Healthcare,ABBOTINDIA-EQ,17903,47930,1.1
+98,Shriram Finance Ltd.,Financial Services,SHRIRAMFIN-EQ,4306,47155,1.1
+99,Hero MotoCorp Ltd.,Automobile and Auto Components,HEROMOTOCO-EQ,1348,46909,1.1
+100,Indian Hotels Co. Ltd.,Consumer Services,INDHOTEL-EQ,1512,46070,1.1
+101,PI Industries Ltd.,Chemicals,PIIND-EQ,24184,45973,1.1
+102,Indian Railway Catering And Tourism Corporation Ltd.,Consumer Services,IRCTC-EQ,13611,45824,1.1
+103,CG Power and Industrial Solutions Ltd.,Capital Goods,CGPOWER-EQ,760,45821,1.1
+104,Union Bank of India,Financial Services,UNIONBANK-EQ,10753,45485,1.1
+105,Samvardhana Motherson International Ltd.,Automobile and Auto Components,MOTHERSON-EQ,4204,45469,1.1
+106,Cummins India Ltd.,Capital Goods,CUMMINSIND-EQ,1901,45172,1.1
+107,Schaeffler India Ltd.,Automobile and Auto Components,SCHAEFFLER-EQ,1011,44820,1.1
+108,Macrotech Developers Ltd.,Realty,LODHA-EQ,3220,44820,1.1
+109,Zomato Ltd.,Consumer Services,ZOMATO-EQ,5097,43622,1.1
+110,Procter & Gamble Hygiene & Health Care Ltd.,Fast Moving Consumer Goods,PGHH-EQ,2535,43301,1.1
+111,Yes Bank Ltd.,Financial Services,YESBANK-EQ,11915,43275,1.1
+112,Polycab India Ltd.,Capital Goods,POLYCAB-EQ,9590,43130,1.1
+113,Max Healthcare Institute Ltd.,Healthcare,MAXHEALTH-EQ,22377,42824,1.1
+114,Indian Overseas Bank,Financial Services,IOB-EQ,9348,42435,1.1
+115,Page Industries Ltd.,Textiles,PAGEIND-EQ,14413,42276,1.1
+116,Colgate Palmolive (India) Ltd.,Fast Moving Consumer Goods,COLPAL-EQ,15141,40997,1.1
+117,Ashok Leyland Ltd.,Capital Goods,ASHOKLEY-EQ,212,40870,1.1
+118,Alkem Laboratories Ltd.,Healthcare,ALKEM-EQ,11703,40605,1.1
+119,NHPC Ltd.,Power,NHPC-EQ,17400,40381,1.1
+120,One 97 Communications Ltd.,Financial Services,PAYTM-EQ,6705,40359,1.1
+121,Power Finance Corporation Ltd.,Financial Services,PFC-EQ,14299,40063,1.1
+122,JSW Energy Ltd.,Power,JSWENERGY-EQ,17869,39612,1.1
+123,Muthoot Finance Ltd.,Financial Services,MUTHOOTFIN-EQ,23650,39339,1.1
+124,AU Small Finance Bank Ltd.,Financial Services,AUBANK-EQ,21238,38614,1.1
+125,Indus Towers Ltd.,Telecommunication,INDUSTOWER-EQ,29135,38537,1.1
+126,Balkrishna Industries Ltd.,Automobile and Auto Components,BALKRISIND-EQ,335,37724,1.1
+127,United Breweries Ltd.,Fast Moving Consumer Goods,UBL-EQ,16713,37663,1.1
+128,Aditya Birla Capital Ltd.,Financial Services,ABCAPITAL-EQ,21614,37128,1.1
+129,Tata Elxsi Ltd.,Information Technology,TATAELXSI-EQ,3411,37111,1.1
+130,Dalmia Bharat Ltd.,Construction Materials,DALBHARAT-EQ,8075,36900,1.1
+131,HDFC Asset Management Company Ltd.,Financial Services,HDFCAMC-EQ,4244,36449,1.1
+132,Indian Bank,Financial Services,INDIANB-EQ,14309,35937,1.1
+133,Astral Ltd.,Capital Goods,ASTRAL-EQ,14418,35913,1.1
+134,Bharat Forge Ltd.,Capital Goods,BHARATFORG-EQ,422,35871,1.1
+135,L&T Technology Services Ltd.,Information Technology,LTTS-EQ,18564,35678,1.1
+136,MRF Ltd.,Automobile and Auto Components,MRF-EQ,2277,35645,1.1
+137,Tata Communications Ltd.,Telecommunication,TATACOMM-EQ,3721,35496,1.1
+138,FSN E-Commerce Ventures Ltd.,Consumer Services,NYKAA-EQ,6545,35431,1.1
+139,Container Corporation of India Ltd.,Services,CONCOR-EQ,4749,35354,1.1
+140,Persistent Systems Ltd.,Information Technology,PERSISTENT-EQ,18365,35228,1.1
+141,Patanjali Foods Ltd.,Fast Moving Consumer Goods,PATANJALI-EQ,0,35084,1.1
+142,Indian Railway Finance Corporation Ltd.,Financial Services,IRFC-EQ,2029,34762,1.1
+143,Linde India Ltd.,Chemicals,LINDEINDIA-EQ,1627,34368,1.1
+144,IDFC First Bank Ltd.,Financial Services,IDFCFIRSTB-EQ,11184,34350,1.1
+145,Petronet LNG Ltd.,Oil Gas & Consumable Fuels,PETRONET-EQ,11351,34327,1.1
+146,Solar Industries India Ltd.,Chemicals,SOLARINDS-EQ,13332,34318,1.1
+147,Steel Authority of India Ltd.,Metals & Mining,SAIL-EQ,2963,34159,1.1
+148,MphasiS Ltd.,Information Technology,MPHASIS-EQ,4503,33831,1.1
+149,Hindustan Petroleum Corporation Ltd.,Oil Gas & Consumable Fuels,HINDPETRO-EQ,1406,33591,1.1
+150,APL Apollo Tubes Ltd.,Capital Goods,APLAPOLLO-EQ,25780,33428,1.1
+151,Gujarat Fluorochemicals Ltd.,Chemicals,FLUOROCHEM-EQ,13750,33176,1.1
+152,NMDC Ltd.,Metals & Mining,NMDC-EQ,15332,32690,1.1
+153,Honeywell Automation India Ltd.,Capital Goods,HONAUT-EQ,3417,32170,1.1
+154,Supreme Industries Ltd.,Capital Goods,SUPREMEIND-EQ,3363,31928,1.1
+155,Gujarat Gas Ltd.,Oil Gas & Consumable Fuels,GUJGASLTD-EQ,10599,31638,1.1
+156,Bandhan Bank Ltd.,Financial Services,BANDHANBNK-EQ,2263,31532,1.1
+157,ACC Ltd.,Construction Materials,ACC-EQ,22,31307,1.1
+158,Oberoi Realty Ltd.,Realty,OBEROIRLTY-EQ,20242,30637,1.1
+159,Bank of India,Financial Services,BANKINDIA-EQ,4745,30633,1.1
+160,REC Ltd.,Financial Services,RECLTD-EQ,15355,30400,1.1
+161,Aurobindo Pharma Ltd.,Healthcare,AUROPHARMA-EQ,275,30357,1.1
+162,Star Health and Allied Insurance Company Ltd.,Financial Services,STARHEALTH-EQ,7083,30148,1.1
+163,Indraprastha Gas Ltd.,Oil Gas & Consumable Fuels,IGL-EQ,11262,30009,1.1
+164,Lupin Ltd.,Healthcare,LUPIN-EQ,10440,29500,1.1
+165,UCO Bank,Financial Services,UCOBANK-EQ,11223,29052,1.1
+166,Jubilant Foodworks Ltd.,Consumer Services,JUBLFOOD-EQ,18096,29039,1.1
+167,PB Fintech Ltd.,Financial Services,POLICYBZR-EQ,6656,28757,1.1
+168,Godrej Properties Ltd.,Realty,GODREJPROP-EQ,17875,28665,1.1
+169,Mahindra & Mahindra Financial Services Ltd.,Financial Services,M&MFIN-EQ,13285,28621,1.1
+170,Vodafone Idea Ltd.,Telecommunication,IDEA-EQ,14366,28234,1.1
+171,Oracle Financial Services Software Ltd.,Information Technology,OFSS-EQ,10738,28197,1.1
+172,Federal Bank Ltd.,Financial Services,FEDERALBNK-EQ,1023,28010,1.1
+173,Vedant Fashions Ltd.,Consumer Services,MANYAVAR-EQ,8167,27656,1.1
+174,UNO Minda Ltd.,Automobile and Auto Components,UNOMINDA-EQ,14154,27554,1.1
+175,AIA Engineering Ltd.,Capital Goods,AIAENG-EQ,13086,27382,1.1
+176,Thermax Ltd.,Capital Goods,THERMAX-EQ,3475,27318,1.1
+177,Oil India Ltd.,Oil Gas & Consumable Fuels,OIL-EQ,17438,27289,1.1
+178,Voltas Ltd.,Consumer Durables,VOLTAS-EQ,3718,27074,1.1
+179,3M India Ltd.,Diversified,3MINDIA-EQ,474,25868,1.1
+180,Coromandel International Ltd.,Chemicals,COROMANDEL-EQ,739,25850,1.1
+181,Sundaram Finance Ltd.,Financial Services,SUNDARMFIN-EQ,3339,25548,1.1
+182,KPIT Technologies Ltd.,Information Technology,KPITTECH-EQ,9683,25361,1.1
+183,Deepak Nitrite Ltd.,Chemicals,DEEPAKNTR-EQ,19943,25131,1.1
+184,Escorts Kubota Ltd.,Capital Goods,ESCORTS-EQ,958,24950,1.1
+185,Biocon Ltd.,Healthcare,BIOCON-EQ,11373,24774,1.1
+186,Tata Chemicals Ltd.,Chemicals,TATACHEM-EQ,3405,24773,1.1
+187,Torrent Power Ltd.,Power,TORNTPOWER-EQ,13786,24530,1.1
+188,GMR Airports Infrastructure Ltd.,Services,GMRINFRA-EQ,13528,24475,1.1
+189,Bharat Heavy Electricals Ltd.,Capital Goods,BHEL-EQ,438,24391,1.1
+190,Sona BLW Precision Forgings Ltd.,Automobile and Auto Components,SONACOMS-EQ,4684,24206,1.1
+191,Bayer Cropscience Ltd.,Chemicals,BAYERCROP-EQ,17927,24196,1.1
+192,Delhivery Ltd.,Services,DELHIVERY-EQ,9599,24167,1.1
+193,Syngene International Ltd.,Healthcare,SYNGENE-EQ,10243,23865,1.1
+194,CRISIL Ltd.,Financial Services,CRISIL-EQ,757,23520,1.1
+195,General Insurance Corporation of India,Financial Services,GICRE-EQ,277,23447,1.1
+196,Coforge Ltd.,Information Technology,COFORGE-EQ,11543,23295,1.1
+197,Phoenix Mills Ltd.,Realty,PHOENIXLTD-EQ,14552,23235,1.1
+198,J.K. Cement Ltd.,Construction Materials,JKCEMENT-EQ,13270,22590,1.1
+199,Poonawalla Fincorp Ltd.,Financial Services,POONAWALLA-EQ,11403,22462,1.1
+200,Glaxosmithkline Pharmaceuticals Ltd.,Healthcare,GLAXO-EQ,1153,22442,1.1
+201,Max Financial Services Ltd.,Financial Services,MFSL-EQ,2142,21914,1.1
+202,Metro Brands Ltd.,Consumer Durables,METROBRAND-EQ,7242,21593,1.1
+203,Tata Motors Ltd DVR,Automobile and Auto Components,TATAMTRDVR-EQ,16965,21416,1.1
+204,Motherson Sumi Wiring India Ltd.,Automobile and Auto Components,MSUMI-EQ,8596,21331,1.1
+205,Sumitomo Chemical India Ltd.,Chemicals,SUMICHEM-EQ,17105,21268,1.1
+206,Relaxo Footwears Ltd.,Consumer Durables,RELAXO-EQ,24225,21182,1.1
+207,Navin Fluorine International Ltd.,Chemicals,NAVINFLUOR-EQ,14672,21162,1.1
+208,SKF India Ltd.,Capital Goods,SKFINDIA-EQ,3186,21039,1.1
+209,Central Bank of India,Financial Services,CENTRALBK-EQ,14894,20921,1.1
+210,Gland Pharma Ltd.,Healthcare,GLAND-EQ,1186,20886,1.1
+211,Kansai Nerolac Paints Ltd.,Consumer Durables,KANSAINER-EQ,1196,20845,1.1
+212,Grindwell Norton Ltd.,Capital Goods,GRINDWELL-EQ,13560,20797,1.1
+213,Timken India Ltd.,Capital Goods,TIMKEN-EQ,14198,20726,1.1
+214,Ipca Laboratories Ltd.,Healthcare,IPCALAB-EQ,1633,20558,1.1
+215,Sundram Fasteners Ltd.,Automobile and Auto Components,SUNDRMFAST-EQ,3345,20550,1.1
+216,Atul Ltd.,Chemicals,ATUL-EQ,263,20538,1.1
+217,Zee Entertainment Enterprises Ltd.,Media Entertainment & Publication,ZEEL-EQ,3812,20387,1.1
+218,L&T Finance Holdings Ltd.,Financial Services,L&TFH-EQ,24948,20345,1.1
+219,Aditya Birla Fashion and Retail Ltd.,Consumer Services,ABFRL-EQ,30108,20336,1.1
+220,Apollo Tyres Ltd.,Automobile and Auto Components,APOLLOTYRE-EQ,163,20316,1.1
+221,K.P.R. Mill Ltd.,Textiles,KPRMILL-EQ,14912,19760,1.1
+222,ZF Commercial Vehicle Control Systems India Ltd.,Automobile and Auto Components,ZFCVINDIA-EQ,16915,19743,1.1
+223,Fortis Healthcare Ltd.,Healthcare,FORTIS-EQ,14592,19621,1.1
+224,Aarti Industries Ltd.,Chemicals,AARTIIND-EQ,7,18783,1.1
+225,Carborundum Universal Ltd.,Capital Goods,CARBORUNIV-EQ,595,18719,1.1
+226,Crompton Greaves Consumer Electricals Ltd.,Consumer Durables,CROMPTON-EQ,17094,18634,1.1
+227,Vinati Organics Ltd.,Chemicals,VINATIORGA-EQ,17364,18587,1.1
+228,IIFL Finance Ltd.,Financial Services,IIFL-EQ,11809,18559,1.1
+229,Bata India Ltd.,Consumer Durables,BATAINDIA-EQ,371,18229,1.1
+230,Bharat Dynamics Ltd.,Capital Goods,BDL-EQ,2144,18121,1.1
+231,LIC Housing Finance Ltd.,Financial Services,LICHSGFIN-EQ,1997,18083,1.1
+232,Rajesh Exports Ltd.,Consumer Durables,RAJESHEXPO-EQ,7401,18013,1.1
+233,CIE Automotive India Ltd.,Automobile and Auto Components,CIEINDIA-EQ,14937,17983,1.1
+234,The Ramco Cements Ltd.,Construction Materials,RAMCOCEM-EQ,2043,17879,1.1
+235,Endurance Technologies Ltd.,Automobile and Auto Components,ENDURANCE-EQ,18822,17465,1.1
+236,Devyani International Ltd.,Consumer Services,DEVYANI-EQ,5373,17429,1.1
+237,Dixon Technologies (India) Ltd.,Consumer Durables,DIXON-EQ,21690,17041,1.1
+238,PVR INOX Ltd.,Media Entertainment & Publication,PVRINOX-EQ,13147,16841,1.1
+239,Kajaria Ceramics Ltd.,Consumer Durables,KAJARIACER-EQ,1808,16787,1.1
+240,Whirlpool of India Ltd.,Consumer Durables,WHIRLPOOL-EQ,18011,16684,1.1
+241,Bank of Maharashtra,Financial Services,MAHABANK-EQ,11377,16657,1.1
+242,Sun TV Network Ltd.,Media Entertainment & Publication,SUNTV-EQ,13404,16388,1.1
+243,Piramal Enterprises Ltd.,Financial Services,PEL-EQ,2412,16189,1.1
+244,Prestige Estates Projects Ltd.,Realty,PRESTIGE-EQ,20302,16162,1.1
+245,The New India Assurance Company Ltd.,Financial Services,NIACL-EQ,399,16035,1.1
+246,Radico Khaitan Ltd,Fast Moving Consumer Goods,RADICO-EQ,10990,15968,1.1
+247,Pfizer Ltd.,Healthcare,PFIZER-EQ,2643,15861,1.1
+248,Narayana Hrudayalaya Ltd.,Healthcare,NH-EQ,11840,15820,1.1
+249,Emami Ltd.,Fast Moving Consumer Goods,EMAMILTD-EQ,13517,15817,1.1
+250,Laurus Labs Ltd.,Healthcare,LAURUSLABS-EQ,19234,15779,1.1
+251,Five-Star Business Finance Ltd.,Financial Services,FIVESTAR-EQ,12032,15751,1.1
+252,Ajanta Pharmaceuticals Ltd.,Healthcare,AJANTPHARM-EQ,8124,15487,1.1
+253,Indiamart Intermesh Ltd.,Consumer Services,INDIAMART-EQ,10726,15367,1.1
+254,360 ONE WAM Ltd.,Financial Services,360ONE-EQ,13061,15336,1.1
+255,KEI Industries Ltd.,Capital Goods,KEI-EQ,13310,15320,1.1
+256,J.B. Chemicals & Pharmaceuticals Ltd.,Healthcare,JBCHEPHARM-EQ,1726,15292,1.1
+257,Dr. Lal Path Labs Ltd.,Healthcare,LALPATHLAB-EQ,11654,15240,1.1
+258,Jindal Stainless Ltd.,Metals & Mining,JSL-EQ,11236,15228,1.1
+259,IRB Infrastructure Developers Ltd.,Construction,IRB-EQ,15313,15188,1.1
+260,Exide Industries Ltd.,Automobile and Auto Components,EXIDEIND-EQ,676,15125,1.1
+261,Gujarat State Petronet Ltd.,Oil Gas & Consumable Fuels,GSPL-EQ,13197,14951,1.1
+262,Blue Dart Express Ltd.,Services,BLUEDART-EQ,495,14742,1.1
+263,Westlife Foodworld Ltd.,Consumer Services,WESTLIFE-EQ,11580,14731,1.1
+264,National Aluminium Co. Ltd.,Metals & Mining,NATIONALUM-EQ,6364,14399,1.1
+265,Rail Vikas Nigam Ltd.,Construction,RVNL-EQ,9552,14303,1.1
+266,CreditAccess Grameen Ltd.,Financial Services,CREDITACC-EQ,4421,14296,1.1
+267,Trident Ltd.,Textiles,TRIDENT-EQ,9685,14243,1.1
+268,Hitachi Energy India Ltd.,Capital Goods,POWERINDIA-EQ,18457,14169,1.1
+269,Global Health Ltd.,Healthcare,MEDANTA-EQ,11956,14132,1.1
+270,Ratnamani Metals & Tubes Ltd.,Capital Goods,RATNAMANI-EQ,13451,13891,1.1
+271,Elgi Equipments Ltd.,Capital Goods,ELGIEQUIP-EQ,937,13885,1.1
+272,ICICI Securities Ltd.,Financial Services,ISEC-EQ,2489,13820,1.1
+273,Capri Global Capital Ltd.,Financial Services,CGCL-EQ,20329,13629,1.1
+274,Godrej Industries Ltd.,Diversified,GODREJIND-EQ,10925,13595,1.1
+275,Clean Science and Technology Ltd.,Chemicals,CLEAN-EQ,5049,13469,1.1
+276,Mazagoan Dock Shipbuilders Ltd.,Capital Goods,MAZDOCK-EQ,509,13373,1.1
+277,Aegis Logistics Ltd.,Oil Gas & Consumable Fuels,AEGISCHEM-EQ,40,13301,1.1
+278,Fertilisers and Chemicals Travancore Ltd.,Chemicals,FACT-EQ,1008,13290,1.1
+279,Blue Star Ltd.,Consumer Durables,BLUESTARCO-EQ,8311,13283,1.1
+280,Sanofi India Ltd.,Healthcare,SANOFI-EQ,1442,13208,1.1
+281,Fine Organic Industries Ltd.,Chemicals,FINEORG-EQ,3744,13204,1.1
+282,Affle (India) Ltd.,Information Technology,AFFLE-EQ,11343,13153,1.1
+283,Glenmark Pharmaceuticals Ltd.,Healthcare,GLENMARK-EQ,7406,13112,1.1
+284,Nippon Life India Asset Management Ltd.,Financial Services,NAM-INDIA-EQ,357,13089,1.1
+285,SJVN Ltd.,Power,SJVN-EQ,18883,13066,1.1
+286,Redington Ltd.,Services,REDINGTON-EQ,14255,13024,1.1
+287,Aavas Financiers Ltd.,Financial Services,AAVAS-EQ,5385,12734,1.1
+288,IDFC Ltd.,Financial Services,IDFC-EQ,11957,12567,1.1
+289,Finolex Cables Ltd.,Capital Goods,FINCABLES-EQ,1038,12427,1.1
+290,Nuvoco Vistas Corporation Ltd.,Construction Materials,NUVOCO-EQ,5426,12318,1.1
+291,Aptus Value Housing Finance India Ltd.,Financial Services,APTUS-EQ,5435,12097,1.1
+292,Suven Pharmaceuticals Ltd.,Healthcare,SUVENPHAR-EQ,17945,12025,1.1
+293,Aster DM Healthcare Ltd.,Healthcare,ASTERDM-EQ,1508,12023,1.1
+294,RHI MAGNESITA INDIA LTD.,Capital Goods,RHIM-EQ,31163,11849,1.1
+295,Kec International Ltd.,Capital Goods,KEC-EQ,13260,11732,1.1
+296,Sonata Software Ltd.,Information Technology,SONATSOFTW-EQ,6596,11725,1.1
+297,Aether Industries Ltd.,Chemicals,AETHER-EQ,9810,11661,1.1
+298,DCM Shriram Ltd.,Diversified,DCMSHRIRAM-EQ,811,11655,1.1
+299,Indian Energy Exchange Ltd.,Financial Services,IEX-EQ,220,11409,1.1
+300,Happiest Minds Technologies Ltd.,Information Technology,HAPPSTMNDS-EQ,48,11276,1.1
+301,Krishna Institute of Medical Sciences Ltd.,Healthcare,KIMS-EQ,4847,11215,1.1
+302,Alkyl Amines Chemicals Ltd.,Chemicals,ALKYLAMINE-EQ,4487,11014,1.1
+303,Cyient Ltd.,Information Technology,CYIENT-EQ,5748,11004,1.1
+304,Chambal Fertilizers & Chemicals Ltd.,Chemicals,CHAMBLFERT-EQ,637,10992,1.1
+305,Asahi India Glass Ltd.,Automobile and Auto Components,ASAHIINDIA-EQ,5378,10991,1.1
+306,Castrol India Ltd.,Oil Gas & Consumable Fuels,CASTROLIND-EQ,1250,10974,1.1
+307,Brigade Enterprises Ltd.,Realty,BRIGADE-EQ,15184,10952,1.1
+308,Kalyan Jewellers India Ltd.,Consumer Durables,KALYANKJIL-EQ,2955,10851,1.1
+309,Tata Teleservices (Maharashtra) Ltd.,Telecommunication,TTML-EQ,8954,10840,1.1
+310,V-Guard Industries Ltd.,Consumer Durables,VGUARD-EQ,15362,10804,1.1
+311,NLC India Ltd.,Power,NLCINDIA-EQ,8585,10697,1.1
+312,Lakshmi Machine Works Ltd.,Capital Goods,LAXMIMACH-EQ,1979,10664,1.1
+313,Triveni Turbine Ltd.,Capital Goods,TRITURBINE-EQ,25584,10590,1.1
+314,Finolex Industries Ltd.,Capital Goods,FINPIPE-EQ,1041,10585,1.1
+315,Manappuram Finance Ltd.,Financial Services,MANAPPURAM-EQ,19061,10469,1.1
+316,EIH Ltd.,Consumer Services,EIHOTEL-EQ,919,10359,1.1
+317,Century Plyboards (India) Ltd.,Consumer Durables,CENTURYPLY-EQ,13305,10357,1.1
+318,NATCO Pharma Ltd.,Healthcare,NATCOPHARM-EQ,3918,10284,1.1
+319,Cholamandalam Financial Holdings Ltd.,Financial Services,CHOLAHLDNG-EQ,21740,10227,1.1
+320,Campus Activewear Ltd.,Consumer Durables,CAMPUS-EQ,9362,10155,1.1
+321,Kalpataru Projects International Ltd.,Construction,KPIL-EQ,1814,10129,1.1
+322,Computer Age Management Services Ltd.,Financial Services,CAMS-EQ,342,9950,1.1
+323,Amara Raja Batteries Ltd.,Automobile and Auto Components,AMARAJABAT-EQ,100,9891,1.1
+324,Zydus Wellness Ltd.,Fast Moving Consumer Goods,ZYDUSWELL-EQ,17635,9864,1.1
+325,BASF India Ltd.,Chemicals,BASF-EQ,368,9850,1.1
+326,Tejas Networks Ltd.,Telecommunication,TEJASNET-EQ,21131,9777,1.1
+327,Alembic Pharmaceuticals Ltd.,Healthcare,APLLTD-EQ,25328,9756,1.1
+328,Mahanagar Gas Ltd.,Oil Gas & Consumable Fuels,MGL-EQ,17534,9714,1.1
+329,G R Infraprojects Ltd.,Construction,GRINFRA-EQ,5054,9713,1.1
+330,Angel One Ltd.,Financial Services,ANGELONE-EQ,324,9700,1.1
+331,TTK Prestige Ltd.,Consumer Durables,TTKPRESTIG-EQ,3546,9691,1.1
+332,Apar Industries Ltd.,Capital Goods,APARINDS-EQ,11491,9585,1.1
+333,Hindustan Copper Ltd.,Metals & Mining,HINDCOPPER-EQ,17939,9510,1.1
+334,Central Depository Services (India) Ltd.,Financial Services,CDSL-EQ,21174,9496,1.1
+335,Godfrey Phillips India Ltd.,Fast Moving Consumer Goods,GODFRYPHLP-EQ,1181,9461,1.1
+336,Shree Renuka Sugars Ltd.,Fast Moving Consumer Goods,RENUKA-EQ,12026,9386,1.1
+337,City Union Bank Ltd.,Financial Services,CUB-EQ,5701,9318,1.1
+338,JK Lakshmi Cement Ltd.,Construction Materials,JKLAKSHMI-EQ,13491,9312,1.1
+339,Anupam Rasayan India Ltd.,Chemicals,ANURAS-EQ,2829,9299,1.1
+340,Mangalore Refinery & Petrochemicals Ltd.,Oil Gas & Consumable Fuels,MRPL-EQ,2283,9209,1.1
+341,Great Eastern Shipping Co. Ltd.,Services,GESHIP-EQ,13776,9202,1.1
+342,Poly Medicure Ltd.,Healthcare,POLYMED-EQ,25718,9140,1.1
+343,NMDC Steel Ltd.,Metals & Mining,NSLNISP-EQ,14180,9099,1.1
+344,Multi Commodity Exchange of India Ltd.,Financial Services,MCX-EQ,31181,9079,1.1
+345,Bikaji Foods International Ltd.,Fast Moving Consumer Goods,BIKAJI-EQ,11966,9047,1.1
+346,Motilal Oswal Financial Services Ltd.,Financial Services,MOTILALOFS-EQ,14947,9029,1.1
+347,CESC Ltd.,Power,CESC-EQ,628,8834,1.1
+348,Tata Investment Corporation Ltd.,Financial Services,TATAINVEST-EQ,1621,8827,1.1
+349,PNB Housing Finance Ltd.,Financial Services,PNBHOUSING-EQ,18908,8663,1.1
+350,Housing & Urban Development Corporation Ltd.,Financial Services,HUDCO-EQ,20825,8658,1.1
+351,ITI Ltd.,Telecommunication,ITI-EQ,1675,8560,1.1
+352,Route Mobile Ltd.,Telecommunication,ROUTE-EQ,128,8529,1.1
+353,RITES Ltd.,Construction,RITES-EQ,3761,8519,1.1
+354,Vardhman Textiles Ltd.,Textiles,VTL-EQ,2073,8491,1.1
+355,RBL Bank Ltd.,Financial Services,RBLBANK-EQ,18391,8459,1.1
+356,HFCL Ltd.,Telecommunication,HFCL-EQ,21951,8397,1.1
+357,Karur Vysya Bank Ltd.,Financial Services,KARURVYSYA-EQ,1838,8370,1.1
+358,Cera Sanitaryware Ltd,Consumer Durables,CERA-EQ,15039,8327,1.1
+359,E.I.D. Parry (India) Ltd.,Chemicals,EIDPARRY-EQ,916,8320,1.1
+360,Ingersoll Rand (India) Ltd.,Capital Goods,INGERRAND-EQ,1597,8267,1.1
+361,Galaxy Surfactants Ltd.,Chemicals,GALAXYSURF-EQ,1315,8258,1.1
+362,Piramal Pharma Ltd.,Healthcare,PPLPHARMA-EQ,11571,8168,1.1
+363,UTI Asset Management Company Ltd.,Financial Services,UTIAMC-EQ,527,8151,1.1
+364,KRBL Ltd.,Fast Moving Consumer Goods,KRBL-EQ,10577,8139,1.1
+365,Raymond Ltd.,Textiles,RAYMOND-EQ,2859,8135,1.1
+366,V.I.P. Industries Ltd.,Consumer Durables,VIPIND-EQ,3703,8112,1.1
+367,Archean Chemical Industries Ltd.,Chemicals,ACI-EQ,12024,8003,1.1
+368,Balrampur Chini Mills Ltd.,Fast Moving Consumer Goods,BALRAMCHIN-EQ,341,7993,1.1
+369,Suzlon Energy Ltd.,Capital Goods,SUZLON-EQ,12018,7957,1.1
+370,Godrej Agrovet Ltd.,Fast Moving Consumer Goods,GODREJAGRO-EQ,144,7930,1.1
+371,Gujarat Narmada Valley Fertilizers and Chemicals Ltd.,Chemicals,GNFC-EQ,1174,7916,1.1
+372,Eris Lifesciences Ltd.,Healthcare,ERIS-EQ,21154,7780,1.1
+373,Medplus Health Services Ltd.,Consumer Services,MEDPLUS-EQ,7254,7751,1.1
+374,Sapphire Foods India Ltd.,Consumer Services,SAPPHIRE-EQ,6718,7740,1.1
+375,Data Patterns (India) Ltd.,Capital Goods,DATAPATTNS-EQ,7358,7701,1.1
+376,JBM Auto Ltd.,Automobile and Auto Components,JBMA-EQ,0,7615,1.1
+377,Easy Trip Planners Ltd.,Consumer Services,EASEMYTRIP-EQ,2792,7579,1.1
+378,CCL Products (I) Ltd.,Fast Moving Consumer Goods,CCL-EQ,11452,7551,1.1
+379,Equitas Small Finance Bank Ltd.,Financial Services,EQUITASBNK-EQ,913,7451,1.1
+380,Chalet Hotels Ltd.,Consumer Services,CHALET-EQ,8546,7445,1.1
+381,Rainbow Childrens Medicare Ltd.,Healthcare,RAINBOW-EQ,9408,7414,1.1
+382,PNC Infratech Ltd.,Construction,PNCINFRA-EQ,9385,7411,1.1
+383,Firstsource Solutions Ltd.,Services,FSL-EQ,14304,7353,1.1
+384,KSB Ltd.,Capital Goods,KSB-EQ,1949,7291,1.1
+385,Birlasoft Ltd.,Information Technology,BSOFT-EQ,6994,7178,1.1
+386,KNR Constructions Ltd.,Construction,KNRCON-EQ,15283,7134,1.1
+387,Shoppers Stop Ltd.,Consumer Services,SHOPERSTOP-EQ,11813,7113,1.1
+388,Century Textile & Industries Ltd.,Forest Materials,CENTURYTEX-EQ,625,7081,1.1
+389,Can Fin Homes Ltd.,Financial Services,CANFINHOME-EQ,583,7046,1.1
+390,Granules India Ltd.,Healthcare,GRANULES-EQ,11872,7036,1.1
+391,Tanla Platforms Ltd.,Information Technology,TANLA-EQ,13976,7032,1.1
+392,Jyothy Labs Ltd.,Fast Moving Consumer Goods,JYOTHYLAB-EQ,15146,6995,1.1
+393,Deepak Fertilisers & Petrochemicals Corp. Ltd.,Chemicals,DEEPAKFERT-EQ,827,6926,1.1
+394,Craftsman Automation Ltd.,Automobile and Auto Components,CRAFTSMAN-EQ,2854,6877,1.1
+395,Birla Corporation Ltd.,Construction Materials,BIRLACORPN-EQ,480,6855,1.1
+396,BLS International Services Ltd.,Consumer Services,BLS-EQ,17279,6807,1.1
+397,Shyam Metalics and Energy Ltd.,Metals & Mining,SHYAMMETL-EQ,4693,6704,1.1
+398,NCC Ltd.,Construction,NCC-EQ,2319,6661,1.1
+399,GMM Pfaudler Ltd.,Capital Goods,GMMPFAUDLR-EQ,1570,6590,1.1
+400,Latent View Analytics Ltd.,Information Technology,LATENTVIEW-EQ,6818,6579,1.1
+401,Home First Finance Company India Ltd.,Financial Services,HOMEFIRST-EQ,2056,6535,1.1
+402,JK Paper Ltd.,Forest Materials,JKPAPER-EQ,11860,6466,1.1
+403,Tamilnad Mercantile Bank Ltd.,Financial Services,TMB-EQ,10945,6454,1.1
+404,Jindal Worldwide Ltd.,Textiles,JINDWORLD-EQ,20642,6431,1.1
+405,Metropolis Healthcare Ltd.,Healthcare,METROPOLIS-EQ,9581,6392,1.1
+406,NBCC (India) Ltd.,Construction,NBCC-EQ,31415,6381,1.1
+407,eClerx Services Ltd.,Services,ECLERX-EQ,15179,6326,1.1
+408,Balaji Amines Ltd.,Chemicals,BALAMINES-EQ,14501,6296,1.1
+409,Welspun India Ltd.,Textiles,WELSPUNIND-EQ,11253,6288,1.1
+410,Praj Industries Ltd.,Capital Goods,PRAJIND-EQ,2705,6264,1.1
+411,Cochin Shipyard Ltd.,Capital Goods,COCHINSHIP-EQ,21508,6258,1.1
+412,Zensar Technolgies Ltd.,Information Technology,ZENSARTECH-EQ,1076,6210,1.1
+413,Amber Enterprises India Ltd.,Consumer Durables,AMBER-EQ,1185,6147,1.1
+414,Lemon Tree Hotels Ltd.,Consumer Services,LEMONTREE-EQ,2606,6120,1.1
+415,Kennametal India Ltd.,Capital Goods,KENNAMET-EQ,11841,6050,1.1
+416,Prince Pipes and Fittings Ltd.,Capital Goods,PRINCEPIPE-EQ,16045,5997,1.1
+417,Triveni Engineering & Industries Ltd.,Fast Moving Consumer Goods,TRIVENI-EQ,13081,5935,1.1
+418,Garware Technical Fibres Ltd.,Textiles,GARFIBRES-EQ,1100,5930,1.1
+419,Laxmi Organic Industries Ltd.,Chemicals,LXCHEM-EQ,2841,5906,1.1
+420,Sterlite Technologies Ltd.,Telecommunication,STLTECH-EQ,9309,5878,1.1
+421,Ceat Ltd.,Automobile and Auto Components,CEATLTD-EQ,15254,5867,1.1
+422,BSE Ltd.,Financial Services,BSE-EQ,19585,5837,1.1
+423,Sun Pharma Advanced Research Company Ltd.,Healthcare,SPARC-EQ,14788,5819,1.1
+424,Orient Electric Ltd.,Consumer Durables,ORIENTELEC-EQ,2972,5751,1.1
+425,India Cements Ltd.,Construction Materials,INDIACEM-EQ,1515,5734,1.1
+426,Jubilant Ingrevia Ltd.,Chemicals,JUBLINGREA-EQ,2783,5733,1.1
+427,TCI Express Ltd.,Services,TCIEXP-EQ,19223,5719,1.1
+428,JM Financial Ltd.,Financial Services,JMFINANCIL-EQ,13637,5690,1.1
+429,Network18 Media & Investments Ltd.,Media Entertainment & Publication,NETWORK18-EQ,14111,5679,1.1
+430,Bombay Burmah Trading Corporation Ltd.,Fast Moving Consumer Goods,BBTC-EQ,380,5660,1.1
+431,Swan Energy Ltd.,Realty,SWANENERGY-EQ,27095,5642,1.1
+432,Gujarat Pipavav Port Ltd.,Services,GPPL-EQ,19731,5629,1.1
+433,Intellect Design Arena Ltd.,Information Technology,INTELLECT-EQ,5926,5572,1.1
+434,Sterling and Wilson Renewable Energy Ltd.,Construction,SWSOLAR-EQ,0,5531,1.1
+435,Chemplast Sanmar Ltd.,Chemicals,CHEMPLASTS-EQ,5449,5499,1.1
+436,Quess Corp Ltd.,Services,QUESS-EQ,17704,5478,1.1
+437,Mahindra Lifespace Developers Ltd.,Realty,MAHLIFE-EQ,8050,5445,1.1
+438,Mahindra Holidays & Resorts India Ltd.,Consumer Services,MHRIL-EQ,17333,5430,1.1
+439,Go Fashion (India) Ltd.,Consumer Services,GOCOLORS-EQ,6964,5426,1.1
+440,Hinduja Global Solutions Ltd.,Services,HGS-EQ,14712,5408,1.1
+441,Borosil Renewables Ltd.,Capital Goods,BORORENEW-EQ,3149,5361,1.1
+442,Gujarat Ambuja Exports Ltd.,Fast Moving Consumer Goods,GAEL-EQ,8828,5328,1.1
+443,C.E. Info Systems Ltd.,Information Technology,MAPMYINDIA-EQ,7227,5324,1.1
+444,Prism Johnson Ltd.,Construction Materials,PRSMJOHNSN-EQ,2739,5302,1.1
+445,Keystone Realtors Ltd.,Realty,RUSTOMJEE-EQ,12219,5274,1.1
+446,Rashtriya Chemicals & Fertilizers Ltd.,Chemicals,RCF-EQ,2866,5260,1.1
+447,Welspun Corp Ltd.,Capital Goods,WELCORP-EQ,11821,5243,1.1
+448,BEML Ltd.,Capital Goods,BEML-EQ,395,5236,1.1
+449,EPL Ltd.,Capital Goods,EPL-EQ,981,5162,1.1
+450,Graphite India Ltd.,Capital Goods,GRAPHITE-EQ,592,5129,1.1
+451,Olectra Greentech Ltd.,Automobile and Auto Components,OLECTRA-EQ,10637,5082,1.1
+452,Justdial Ltd.,Consumer Services,JUSTDIAL-EQ,29962,5018,1.1
+453,Rain Industries Ltd,Chemicals,RAIN-EQ,15337,5013,1.1
+454,TV18 Broadcast Ltd.,Media Entertainment & Publication,TV18BRDCST-EQ,14208,4928,1.1
+455,MTAR Technologies Ltd.,Capital Goods,MTARTECH-EQ,2709,4864,1.1
+456,Transport Corporation of India Ltd.,Services,TCI-EQ,10580,4862,1.1
+457,RattanIndia Enterprises Ltd.,Services,RTNINDIA-EQ,27297,4858,1.1
+458,Delta Corp Ltd.,Consumer Services,DELTACORP-EQ,15044,4833,1.1
+459,Indigo Paints Ltd.,Consumer Durables,INDIGOPNTS-EQ,2048,4798,1.1
+460,Suprajit Engineering Ltd.,Automobile and Auto Components,SUPRAJIT-EQ,11689,4771,1.1
+461,Kfin Technologies Ltd.,Financial Services,KFINTECH-EQ,13359,4742,1.1
+462,Gujarat State Fertilizers & Chemicals Ltd.,Chemicals,GSFC-EQ,1247,4741,1.1
+463,Mastek Ltd.,Information Technology,MASTEK-EQ,2124,4691,1.1
+464,Avanti Feeds Ltd.,Fast Moving Consumer Goods,AVANTIFEED-EQ,7936,4624,1.1
+465,Indiabulls Housing Finance Ltd.,Financial Services,IBULHSGFIN-EQ,30125,4590,1.1
+466,Vaibhav Global Ltd.,Consumer Durables,VAIBHAVGBL-EQ,11364,4502,1.1
+467,Restaurant Brands Asia Ltd.,Consumer Services,RBA-EQ,1494,4455,1.1
+468,Jubilant Pharmova Ltd.,Healthcare,JUBLPHARMA-EQ,3637,4441,1.1
+469,Sharda Cropchem Ltd.,Chemicals,SHARDACROP-EQ,4992,4418,1.1
+470,PCBL Ltd.,Chemicals,PCBL-EQ,2649,4382,1.1
+471,Gujarat Alkalies & Chemicals Ltd.,Chemicals,GUJALKALI-EQ,1267,4297,1.1
+472,V-Mart Retail Ltd.,Consumer Services,VMART-EQ,29284,4275,1.1
+473,FDC Ltd.,Healthcare,FDC-EQ,4898,4252,1.1
+474,CSB Bank Ltd.,Financial Services,CSBBANK-EQ,14966,4252,1.1
+475,MMTC Ltd.,Services,MMTC-EQ,17957,4185,1.1
+476,Engineers India Ltd.,Construction,ENGINERSIN-EQ,4907,4184,1.1
+477,Sunteck Realty Ltd.,Realty,SUNTECK-EQ,17641,4170,1.1
+478,Epigral Ltd.,Chemicals,EPIGRAL-EQ,5382,4097,1.1
+479,Sobha Ltd.,Realty,SOBHA-EQ,13826,4084,1.1
+480,Vijaya Diagnostic Centre Ltd.,Healthcare,VIJAYA-EQ,5585,3994,1.1
+481,Jamna Auto Industries Ltd.,Automobile and Auto Components,JAMNAAUTO-EQ,20778,3972,1.1
+482,Teamlease Services Ltd.,Services,TEAMLEASE-EQ,12716,3828,1.1
+483,Varroc Engineering Ltd.,Automobile and Auto Components,VARROC-EQ,3857,3809,1.1
+484,Infibeam Avenues Ltd.,Financial Services,INFIBEAM-EQ,16249,3789,1.1
+485,Rallis India Ltd.,Chemicals,RALLIS-EQ,2816,3751,1.1
+486,Polyplex Corporation Ltd.,Capital Goods,POLYPLEX-EQ,2687,3586,1.1
+487,H.E.G. Ltd.,Capital Goods,HEG-EQ,1336,3553,1.1
+488,Lux Industries Ltd.,Textiles,LUXIND-EQ,11301,3491,1.1
+489,Hikal Ltd.,Healthcare,HIKAL-EQ,9668,3472,1.1
+490,HLE Glascoat Ltd.,Capital Goods,HLEGLAS-EQ,2289,3446,1.1
+491,NOCIL Ltd.,Chemicals,NOCIL-EQ,2442,3443,1.1
+492,Nazara Technologies Ltd.,Media Entertainment & Publication,NAZARA-EQ,2987,3417,1.1
+493,Greenpanel Industries Ltd.,Consumer Durables,GREENPANEL-EQ,13810,3336,1.1
+494,Rossari Biotech Ltd.,Chemicals,ROSSARI-EQ,19410,3287,1.1
+495,Aarti Drugs Ltd.,Healthcare,AARTIDRUGS-EQ,4481,3127,1.1
+496,IFB Industries Ltd.,Consumer Durables,IFBIND-EQ,1485,2988,1.1
+497,Brightcom Group Ltd.,Information Technology,BCG-EQ,8833,2946,1.1
+498,Indiabulls Real Estate Ltd.,Realty,IBREALEST-EQ,14450,2648,1.1
+499,TCNS Clothing Co. Ltd.,Textiles,TCNSBRANDS-EQ,4172,2597,1.1
+500,Mahindra Logistics Ltd.,Services,MAHLOG-EQ,385,2550,1.1
+501,UFLEX Ltd.,Capital Goods,UFLEX-EQ,1053,2423,1.1
