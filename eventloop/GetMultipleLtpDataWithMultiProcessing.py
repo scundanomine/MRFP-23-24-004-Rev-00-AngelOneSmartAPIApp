@@ -14,11 +14,12 @@ objTwoX = []
 exchange = "NSE"
 dtc = []
 ctr = 20
+ds = pd.Series(index=list(range(100)))
 
 
-def getAccessTokenWithThread(r):
+def getAccessTokenWithThread(r, lock=""):
     startTime = time.time()
-    global objOneX, objTwoX, dfm, p, i, dtc, ctr
+    global objOneX, objTwoX, dfm, p, i, dtc, ctr, ds
     dfm = getSymbolAndToken()
 
     # data instance for excel
@@ -46,42 +47,43 @@ def getAccessTokenWithThread(r):
             time.sleep(1)
 
     def getLtpE(uid):
-        global objOneX, objTwoX, dfm, i, dtc, ctr
+        time.sleep(0.001)
+        global objOneX, objTwoX, dfm, i, dtc, ctr, ds
         a = dfm["symbol"][uid]
         b = dfm["token"][uid]
         if uid < i - 10:
-            ltp = objOneX.ltpData(exchange, a, str(b))
+            try:
+                ltp = objOneX.ltpData(exchange, a, str(b))['data']['ltp']
+            except:
+                ltp = 0
         else:
-            ltp = objTwoX.ltpData(exchange, a, str(b))
-        dfm.loc[uid, "ltp"] = ltp['data']['ltp']
+            try:
+                ltp = objTwoX.ltpData(exchange, a, str(b))['data']['ltp']
+            except:
+                ltp = 0
+        # dfm.loc[uid, "ltp"] = ltp['data']['ltp']
+        return ltp
 
     # main loop for thread
     ctrA = 0
-    while 300 - (time.time() - startTime) > 0:
+    while 50 - (time.time() - startTime) > 0:
+        ds[:] = 0
         ctr = 20
         for i in range(r - p + 20, r + 20, 20):
             time.sleep(1.001)
             with ThreadPoolExecutor() as executor:
                 ltc = list(range(i - 20, i))
-                executor.map(getLtpE, ltc)
+                results = executor.map(getLtpE, ltc)
+                ck = ctr-20
+                for result in results:
+                    ds[ck] = result
+                    ck = ck + 1
+
             ctr = ctr + 20
-        dtc.range('g1:g500').value = dfm['ltp']
+        dtc.range(f"g{r-100+2}:g{r+2}").options(pd.Series, index=False).value = ds[:]
         ctrA = ctrA + 1
-        print(f"{ctrA} execution time is {time.time() - startTime}")
+        # print(f"{ctrA} execution time is {time.time() - startTime}")
 
 
-getAccessTokenWithThread(100)
+# getAccessTokenWithThread(200)
 
-# if __name__ == "__main__":
-#     # get dfm
-#     # get object for angel one
-#     startTime = time.time()
-#     dfm = getSymbolAndToken()
-#
-#     # create multiple process
-#     with ProcessPoolExecutor() as pExecutor:
-#         lt = list(range(p, math.floor(m / p) * p + p, p))
-#         print(lt)
-#         pExecutor.map(getAccessTokenWithThread, lt)
-#     print(dfm)
-#     print(f"execution time is {time.time() - startTime}")

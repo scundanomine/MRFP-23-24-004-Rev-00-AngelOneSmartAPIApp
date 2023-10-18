@@ -5,64 +5,60 @@ import multiprocessing
 from niftytokens_cap_and_filters.GetTraditionalPivotsForSpecificNifty import *
 from candlestickdata.CandleStickDataWithThread import *
 from threadresearch.LtpDataUsingThreads import *
-
-objE = []
-if __name__ == "__main__":
-    # get object for angel one
-    while True:
-        try:
-            objE, accessToken = get_access_token()
-            break
-        except Exception as e:
-            print(f"Not getting accessToken due to {e}")
-            time.sleep(1)
+from eventloop.GetMultipleLtpDataWithMultiProcessing import *
 
 
 # function for PivotAlarm
-def pivotAlarmEvent():
-    global objE
+def pivotAlarmEvent(lock):
     print("Multiprocess One has been started")
-    getTraditionalPivotsForSpecificNiftyFile("nifty500", "400", objE)
+    getAccessTokenWithThread(100, lock)
 
 
-def pivotAlarmEventTwo():
-    global objE
+def pivotAlarmEventTwo(lock):
     print("Multiprocess two has been started")
-    getTraditionalPivotsForSpecificNiftyFile("nifty500", "400", objE)
+    getAccessTokenWithThread(200, lock)
 
 
-def ltpDataEventThree():
-    global objE
+def ltpDataEventThree(lock):
     print("Multiprocess three has been started")
     # getLtpFromThread(objE)
-    getTraditionalPivotsForSpecificNiftyFile("nifty500", "500", objE)
+    getAccessTokenWithThread(300, lock)
 
 
-def readRecordEventFour():
-    global objE
+def readRecordEventFour(lock):
     print("Multiprocess four has been started")
     # getLtpFromThread(objE)
-    getTraditionalPivotsForSpecificNiftyFile("nifty500", "400", objE)
+    getAccessTokenWithThread(400, lock)
+
+
+def readRecordEventFive(lock):
+    print("Multiprocess five has been started")
+    # getLtpFromThread(objE)
+    getAccessTokenWithThread(500, lock)
 
 
 def eventLoop():
-    global objE
-
+    startTime = time.time()
     # four multiple process
     if __name__ == "__main__":
-        pOne = multiprocessing.Process(target=pivotAlarmEvent, args=[])
-        pTwo = multiprocessing.Process(target=pivotAlarmEventTwo, args=[])
-        pThree = multiprocessing.Process(target=ltpDataEventThree, args=[])
-        pFour = multiprocessing.Process(target=readRecordEventFour, args=[])
+        lock = multiprocessing.Lock()
+        pOne = multiprocessing.Process(target=pivotAlarmEvent, args=[lock])
+        pTwo = multiprocessing.Process(target=pivotAlarmEventTwo, args=[lock])
+        pThree = multiprocessing.Process(target=ltpDataEventThree, args=[lock])
+        pFour = multiprocessing.Process(target=readRecordEventFour, args=[lock])
+        pFive = multiprocessing.Process(target=readRecordEventFive, args=[lock])
         pOne.start()
         pTwo.start()
         pThree.start()
         pFour.start()
+        pFive.start()
         pOne.join()
         pTwo.join()
         pThree.join()
         pFour.join()
+        pFive.join()
         print("Multiprocess have been finished")
+        print(f"execution time is {time.time() - startTime}")
 
 
 eventLoop()
