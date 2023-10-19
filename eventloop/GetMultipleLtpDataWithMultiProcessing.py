@@ -12,15 +12,15 @@ i = 0
 objOneX = []
 objTwoX = []
 exchange = "NSE"
-dtc = []
-ctr = 20
-ds = pd.Series(index=list(range(100)))
 
 
 def getAccessTokenWithThread(r, lock=""):
     startTime = time.time()
-    global objOneX, objTwoX, dfm, p, i, dtc, ctr, ds
+    global objOneX, objTwoX, dfm, p, i
     dfm = getSymbolAndToken()
+    ds = pd.Series(index=list(range(100)))
+    dtc = []
+    ctr = 20
 
     # data instance for excel
     wb = xw.Book(
@@ -48,7 +48,7 @@ def getAccessTokenWithThread(r, lock=""):
 
     def getLtpE(uid):
         time.sleep(0.001)
-        global objOneX, objTwoX, dfm, i, dtc, ctr, ds
+        global objOneX, objTwoX, dfm, i
         a = dfm["symbol"][uid]
         b = dfm["token"][uid]
         if uid < i - 10:
