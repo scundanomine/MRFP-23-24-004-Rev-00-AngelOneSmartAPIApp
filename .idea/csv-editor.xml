@@ -17,6 +17,41 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\ltpFive.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\ltpFour.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\ltpOne.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\ltpThree.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\ltpTwo.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\filters\filter_state\filter.csv">
           <value>
             <Attribute>

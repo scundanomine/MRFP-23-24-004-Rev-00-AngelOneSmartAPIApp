@@ -139,7 +139,7 @@ id,disc,sector,symbol,token,cap,ltp
 138,FSN E-Commerce Ventures Ltd.,Consumer Services,NYKAA-EQ,6545,35431,1.1
 139,Container Corporation of India Ltd.,Services,CONCOR-EQ,4749,35354,1.1
 140,Persistent Systems Ltd.,Information Technology,PERSISTENT-EQ,18365,35228,1.1
-141,Patanjali Foods Ltd.,Fast Moving Consumer Goods,PATANJALI-EQ,0,35084,1.1
+141,Patanjali Foods Ltd.,Fast Moving Consumer Goods,PERSISTENT-EQ,18365,35084,1.1
 142,Indian Railway Finance Corporation Ltd.,Financial Services,IRFC-EQ,2029,34762,1.1
 143,Linde India Ltd.,Chemicals,LINDEINDIA-EQ,1627,34368,1.1
 144,IDFC First Bank Ltd.,Financial Services,IDFCFIRSTB-EQ,11184,34350,1.1
@@ -374,7 +374,7 @@ id,disc,sector,symbol,token,cap,ltp
 373,Medplus Health Services Ltd.,Consumer Services,MEDPLUS-EQ,7254,7751,1.1
 374,Sapphire Foods India Ltd.,Consumer Services,SAPPHIRE-EQ,6718,7740,1.1
 375,Data Patterns (India) Ltd.,Capital Goods,DATAPATTNS-EQ,7358,7701,1.1
-376,JBM Auto Ltd.,Automobile and Auto Components,JBMA-EQ,0,7615,1.1
+376,JBM Auto Ltd.,Automobile and Auto Components,DATAPATTNS-EQ,7358,7615,1.1
 377,Easy Trip Planners Ltd.,Consumer Services,EASEMYTRIP-EQ,2792,7579,1.1
 378,CCL Products (I) Ltd.,Fast Moving Consumer Goods,CCL-EQ,11452,7551,1.1
 379,Equitas Small Finance Bank Ltd.,Financial Services,EQUITASBNK-EQ,913,7451,1.1
@@ -432,7 +432,7 @@ id,disc,sector,symbol,token,cap,ltp
 431,Swan Energy Ltd.,Realty,SWANENERGY-EQ,27095,5642,1.1
 432,Gujarat Pipavav Port Ltd.,Services,GPPL-EQ,19731,5629,1.1
 433,Intellect Design Arena Ltd.,Information Technology,INTELLECT-EQ,5926,5572,1.1
-434,Sterling and Wilson Renewable Energy Ltd.,Construction,SWSOLAR-EQ,0,5531,1.1
+434,Sterling and Wilson Renewable Energy Ltd.,Construction,INTELLECT-EQ,5926,5531,1.1
 435,Chemplast Sanmar Ltd.,Chemicals,CHEMPLASTS-EQ,5449,5499,1.1
 436,Quess Corp Ltd.,Services,QUESS-EQ,17704,5478,1.1
 437,Mahindra Lifespace Developers Ltd.,Realty,MAHLIFE-EQ,8050,5445,1.1

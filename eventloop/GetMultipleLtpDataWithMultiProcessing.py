@@ -14,7 +14,7 @@ objTwoX = []
 exchange = "NSE"
 
 
-def getAccessTokenWithThread(r, lock=""):
+def getAccessTokenWithThread(r, fileName, lock=""):
     startTime = time.time()
     global objOneX, objTwoX, dfm, p, i
     dfm = getSymbolAndToken()
@@ -31,6 +31,7 @@ def getAccessTokenWithThread(r, lock=""):
     # creating session one
     while True:
         try:
+            print("getting obj1")
             objOneX, accessTokenOneX = getAccessTokenOne("h7mCIfdW", "J52460798", "4235", "4AGGACU2HEUMO2T2UV5YZHNG7M")
             break
         except Exception as e:
@@ -40,6 +41,7 @@ def getAccessTokenWithThread(r, lock=""):
     # creating session two
     while True:
         try:
+            print("getting obj2")
             objTwoX, accessTokenOneX = getAccessTokenOne("F5SzrULj", "S53761277", "8813", "2NF7QBQP7R3NEDXC4VN6UNWYWM")
             break
         except Exception as e:
@@ -52,21 +54,25 @@ def getAccessTokenWithThread(r, lock=""):
         a = dfm["symbol"][uid]
         b = dfm["token"][uid]
         if uid < i - 10:
-            try:
-                ltp = objOneX.ltpData(exchange, a, str(b))['data']['ltp']
-            except:
-                ltp = 0
+            while True:
+                try:
+                    ltp = objOneX.ltpData(exchange, a, str(b))['data']['ltp']
+                    break
+                except:
+                    time.sleep(1)
         else:
-            try:
-                ltp = objTwoX.ltpData(exchange, a, str(b))['data']['ltp']
-            except:
-                ltp = 0
+            while True:
+                try:
+                    ltp = objTwoX.ltpData(exchange, a, str(b))['data']['ltp']
+                    break
+                except:
+                    time.sleep(1)
         # dfm.loc[uid, "ltp"] = ltp['data']['ltp']
         return ltp
 
     # main loop for thread
     ctrA = 0
-    while 50 - (time.time() - startTime) > 0:
+    while 300 - (time.time() - startTime) > 0:
         ds[:] = 0
         ctr = 20
         for i in range(r - p + 20, r + 20, 20):
@@ -74,16 +80,16 @@ def getAccessTokenWithThread(r, lock=""):
             with ThreadPoolExecutor() as executor:
                 ltc = list(range(i - 20, i))
                 results = executor.map(getLtpE, ltc)
-                ck = ctr-20
+                ck = ctr - 20
                 for result in results:
                     ds[ck] = result
                     ck = ck + 1
 
             ctr = ctr + 20
-        dtc.range(f"g{r-100+2}:g{r+2}").options(pd.Series, index=False).value = ds[:]
+        dtc.range(f"g{r - 100 + 2}:g{r + 2}").options(pd.Series, index=False).value = ds[:]
+        # ds.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\{fileName}")
         ctrA = ctrA + 1
         # print(f"{ctrA} execution time is {time.time() - startTime}")
 
 
-# getAccessTokenWithThread(200)
-
+getAccessTokenWithThread(100, "")

@@ -11,30 +11,30 @@ from eventloop.GetMultipleLtpDataWithMultiProcessing import *
 # function for PivotAlarm
 def pivotAlarmEvent(lock):
     print("Multiprocess One has been started")
-    getAccessTokenWithThread(100, lock)
+    getAccessTokenWithThread(100, "ltpOne.csv", lock)
 
 
 def pivotAlarmEventTwo(lock):
     print("Multiprocess two has been started")
-    getAccessTokenWithThread(200, lock)
+    getAccessTokenWithThread(200, "ltpTwo.csv", lock)
 
 
 def ltpDataEventThree(lock):
     print("Multiprocess three has been started")
     # getLtpFromThread(objE)
-    getAccessTokenWithThread(300, lock)
+    getAccessTokenWithThread(300, "ltpThree.csv", lock)
 
 
 def readRecordEventFour(lock):
     print("Multiprocess four has been started")
     # getLtpFromThread(objE)
-    getAccessTokenWithThread(400, lock)
+    getAccessTokenWithThread(400, "ltpFour.csv", lock)
 
 
 def readRecordEventFive(lock):
     print("Multiprocess five has been started")
     # getLtpFromThread(objE)
-    getAccessTokenWithThread(500, lock)
+    getAccessTokenWithThread(500, "ltpFive.csv", lock)
 
 
 def eventLoop():
