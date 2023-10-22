@@ -45,10 +45,10 @@ def getCandlestickDataWithMultiProcessing(r, fileName, lock=""):
     def getCandleDataC(uid):
         global objOneX, objTwoX, dfc, i
         b = dfc["token"][uid]
-        # if uid < i - 3:
-        data = getHistoricDataForOneDay(objOneX, "2023-10-20", str(b))[0]
-        # else:
-        #     data = getHistoricDataForOneDay(objTwoX, "2023-10-20", str(b))[0]
+        if uid < i - 3:
+            data = getHistoricDataForOneDay(objOneX, "2023-10-20", str(b))[0]
+        else:
+            data = getHistoricDataForOneDay(objTwoX, "2023-10-20", str(b))[0]
         # dfc.loc[uid, "ltp"] = ltp['data']['ltp']
         return data
 
