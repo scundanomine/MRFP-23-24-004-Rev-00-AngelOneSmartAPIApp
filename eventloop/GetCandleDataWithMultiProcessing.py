@@ -1,3 +1,5 @@
+import time
+
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 
@@ -8,11 +10,12 @@ i = 0
 objOneX = []
 objTwoX = []
 exchange = "NSE"
+stt = 0
 
 
 def getCandlestickDataWithMultiProcessing(r, fileName, lock=""):
     startTime = time.time()
-    global objOneX, objTwoX, dfc, p, i
+    global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
     ds = pd.DataFrame(index=list(range(r)))
 
@@ -46,19 +49,28 @@ def getCandlestickDataWithMultiProcessing(r, fileName, lock=""):
         global objOneX, objTwoX, dfc, i
         b = dfc["token"][uid]
         if uid < i - 3:
-            data = getHistoricDataForOneDay(objOneX, "2023-10-20", str(b))[0]
+            try:
+                data = getHistoricDataForOneDay(objOneX, "2023-10-20", str(b))[0]
+            except:
+                time.sleep(1)
+                data = getHistoricDataForOneDay(objOneX, "2023-10-20", str(b))[0]
         else:
-            data = getHistoricDataForOneDay(objTwoX, "2023-10-20", str(b))[0]
+            try:
+                data = getHistoricDataForOneDay(objTwoX, "2023-10-20", str(b))[0]
+            except:
+                time.sleep(1)
+                data = getHistoricDataForOneDay(objTwoX, "2023-10-20", str(b))[0]
         # dfc.loc[uid, "ltp"] = ltp['data']['ltp']
         return data
 
     # main loop for thread
     ctrA = 0
     # while 300 - (time.time() - startTime) > 0:
-    while ctrA == 0:
+    while ctrA < 1:
         ds[:] = 0
         ctr = 6
         for i in range(6, r + 6, 6):
+            stt = time.time()
             with ThreadPoolExecutor() as executor:
                 ltc = list(range(i - 6, i))
                 results = executor.map(getCandleDataC, ltc)
@@ -71,12 +83,14 @@ def getCandlestickDataWithMultiProcessing(r, fileName, lock=""):
                     ds.loc[ck, 4] = result[5]
                     ck = ck + 1
             ctr = ctr + 6
-            time.sleep(1)
-        dtc.range(f"g{2}:k{r + 2}").options(pd.DataFrame, index=False, header=False).value = ds
-        # ds.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\{fileName}")
+            timeDiff = 1 - (time.time() - stt)
+            if timeDiff > 0:
+                time.sleep(timeDiff)
+            dtc.range(f"g{2}:k{r + 2}").options(pd.DataFrame, index=False, header=False).value = ds
+            # ds.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\{fileName}")
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")
-        break
+        # break
 
 
-getCandlestickDataWithMultiProcessing(204, "")
+getCandlestickDataWithMultiProcessing(300, "")
