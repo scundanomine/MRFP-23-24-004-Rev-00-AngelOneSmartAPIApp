@@ -5,9 +5,9 @@ def getHistoricDataForOneDay(obj, date, token):
         historicParam = {
             "exchange": "NSE",
             "symboltoken": token,
-            "interval": "ONE_DAY",
-            "fromdate": f"{date} 00:00",
-            "todate": f"{date} 15:30"
+            "interval": "ONE_MINUTE",
+            "fromdate": f"{date} 09:25",
+            "todate": f"{date} 09:25"
         }
         candleStickData = obj.getCandleData(historicParam)
     except Exception as e:
