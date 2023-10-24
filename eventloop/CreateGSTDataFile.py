@@ -6,6 +6,12 @@ def createGSTDataFile(sid, symbol, data):
     # get df
     sdf = pd.DataFrame(data)
 
+    # making entry for missing rows
+    if len(sdf) < 10:
+        k = ["", 0, 0, 0, 0, 0]
+        for i in range(10 - len(sdf)):
+            sdf.loc[len(sdf.index)] = k
+
     # rename ohlc
     sdf.rename(columns={0: "time", 1: "O", 2: "H", 3: "L", 4: "C", 5: "V"}, inplace=True)
 
@@ -17,4 +23,6 @@ def createGSTDataFile(sid, symbol, data):
     sdf["p"] = "none"
 
     # create import function
-    sdf.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv", index=False)
+    sdf.to_csv(
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv",
+        index=False)

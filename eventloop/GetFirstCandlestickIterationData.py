@@ -43,14 +43,14 @@ def getFirstCandlestickIterationData(r, fileName, lock=""):
     def getCandleFirstDataC(uid):
         global objOneX, objTwoX, dfc, i
         b = dfc["token"][uid]
-        b = dfc["symbol"][uid]
+        a = dfc["symbol"][uid]
         if uid < i - 3:
             try:
-                data = getHistoricDataForPastTenCandles(objOneX, "2023-10-20", str(b))[0]
+                data = getHistoricDataForPastTenCandles(objOneX, "2023-10-20", str(b))
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForPastTenCandles(objOneX, "2023-10-20", str(b))[0]
+                    data = getHistoricDataForPastTenCandles(objOneX, "2023-10-20", str(b))
                 except:
                     data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
@@ -59,18 +59,18 @@ def getFirstCandlestickIterationData(r, fileName, lock=""):
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
         else:
             try:
-                data = getHistoricDataForPastTenCandles(objTwoX, "2023-10-20", str(b))[0]
+                data = getHistoricDataForPastTenCandles(objTwoX, "2023-10-20", str(b))
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForPastTenCandles(objTwoX, "2023-10-20", str(b))[0]
+                    data = getHistoricDataForPastTenCandles(objTwoX, "2023-10-20", str(b))
                 except:
                     data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
-        createGSTDataFile(uid+1, b, data)
+        createGSTDataFile(uid+1, a, data)
 
     # main loop for thread
     for i in range(6, r + 6, 6):
@@ -82,7 +82,7 @@ def getFirstCandlestickIterationData(r, fileName, lock=""):
         if timeDiff > 0:
             time.sleep(timeDiff)
 
-        print(f"The execution time is {time.time() - startTime}")
+    print(f"The execution time is {time.time() - startTime}")
 
 
 getFirstCandlestickIterationData(300, "")
