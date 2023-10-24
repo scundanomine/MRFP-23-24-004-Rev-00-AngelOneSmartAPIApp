@@ -7,7 +7,7 @@ def getHistoricDataForPastTenCandles(obj, date, token):
             "symboltoken": token,
             "interval": "ONE_MINUTE",
             "fromdate": f"{date} 09:15",
-            "todate": f"{date} 09:29"
+            "todate": f"{date} 09:24"
         }
         candleStickData = obj.getCandleData(historicParam)
     except Exception as e:

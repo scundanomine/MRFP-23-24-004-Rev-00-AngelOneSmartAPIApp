@@ -17,13 +17,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\eventloop\LiveCandleData.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\1_RELIANCE-EQ.csv">
           <value>
             <Attribute>

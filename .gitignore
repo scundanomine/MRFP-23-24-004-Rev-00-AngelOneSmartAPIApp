@@ -10,6 +10,7 @@ used/
 # Distribution / packaging
 .Python
 AngelOneSmartAPIApp/AccessToken
+candlewisedata/
 build/
 develop-eggs/
 dist/
