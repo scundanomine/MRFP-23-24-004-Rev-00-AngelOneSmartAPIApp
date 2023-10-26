@@ -11,16 +11,18 @@ from concurrent.futures import ThreadPoolExecutor
 sdf = pd.DataFrame()
 
 
-def getCandlestickGSTData():
+def getCandlestickGSTData(gdf, atrS):
     global sdf
 
     # get DataFrame
-    sdf = pd.DataFrame(getCandleStickData())
+    # sdf = pd.DataFrame(getCandleStickData())
+    sdf = gdf
     startTime = time.time()
 
     # get atr
-    atr = round(calculationForATR(sdf), 2)
-    print(atr)
+    # atr = round(calculationForATR(sdf), 2)
+    # print(atr)
+    atr = atrS
 
     # rename ohlc
     sdf.rename(columns={0: "time", 1: "O", 2: "H", 3: "L", 4: "C", 5: "V"}, inplace=True)
