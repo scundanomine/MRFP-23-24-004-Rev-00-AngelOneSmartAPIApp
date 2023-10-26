@@ -1,14 +1,14 @@
-from GetCandlestickDf import *
+# from GetCandlestickDf import *
 
 
-def getROCInPTM():
+def getROCInPTM(df):
     # get data
-    df = getCandlestickDf()
+    # df = getCandlestickDf()
 
     # get Roc value
     roc = (df["C"][9] - df["C"][0]) / df["C"][0] * 10000
-    roc = round(roc, 2)
+    # roc = round(roc, 2)
     return roc
 
 
-print(getROCInPTM())
+# print(getROCInPTM())

@@ -171,6 +171,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\used\kotak-neo-api-main\neo_api_client\api\nse_fo.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

@@ -11,19 +11,20 @@ df = []
 def calculationForATR(sdf):
     global df
     df = sdf
+
     # print(df)
     # startTime = time.time()
 
     def getTR(r):
         try:
             global df
-            avg = (df[1][r] + df[4][r]) / 2
+            avg = (df["O"][r] + df["C"][r]) / 2
             if r == 0:
-                tr = df[2][r] - df[3][r]
+                tr = df["H"][r] - df["L"][r]
             else:
-                a = df[2][r] - df[3][r]
-                b = abs(df[2][r] - df[4][r - 1])
-                c = abs(df[3][r] - df[4][r - 1])
+                a = df["H"][r] - df["L"][r]
+                b = abs(df["H"][r] - df["C"][r - 1])
+                c = abs(df["L"][r] - df["C"][r - 1])
                 lst = [a, b, c]
                 tr = max(lst)
             # print(f"for given r:{r}, tr is {tr}")
@@ -37,7 +38,9 @@ def calculationForATR(sdf):
         # print(lt)
         results = executor.map(getTR, lt)
         atr = mean(results)
+        atrPercentile = atr*100/df["C"][9]
     # print(f"time of execution is {time.time() - startTime}")
-    return atr
+    # return round(atr, 2), round(atrPercentile, 3)
+    return atr, atrPercentile
 
 # print(calculationForATR())
