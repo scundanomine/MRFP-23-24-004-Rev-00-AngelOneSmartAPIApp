@@ -7,13 +7,13 @@ atrVL = 0
 vdf = pd.DataFrame()
 
 
-def getVolumeCandleSize():
+def getVolumeCandleSize(df):
     global atrVL, vdf
     # get ATR
-    atrVL = getATRForVolume()
+    atrVL = df["atrV"][9]
 
     # get df
-    vdf = getCandlestickTenMinuteData()
+    vdf = df
 
     def getIndividualVolumeCandlestickSize(r):
         global atrVL, vdf
@@ -38,10 +38,12 @@ def getVolumeCandleSize():
         lt = list(range(10))
         executor.map(getIndividualVolumeCandlestickSize, lt)
 
-    print(vdf)
+    return vdf
+
+    # print(vdf)
 
     # save data
-    saveCandlestickTenMinuteData(vdf)
+    # saveCandlestickTenMinuteData(vdf)
 
 
-getVolumeCandleSize()
+# getVolumeCandleSize()

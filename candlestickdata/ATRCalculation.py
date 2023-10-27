@@ -18,7 +18,7 @@ def calculationForATR(sdf):
     def getTR(r):
         try:
             global df
-            avg = (df["O"][r] + df["C"][r]) / 2
+            # avg = (df["O"][r] + df["C"][r]) / 2
             if r == 0:
                 tr = df["H"][r] - df["L"][r]
             else:
@@ -28,6 +28,7 @@ def calculationForATR(sdf):
                 lst = [a, b, c]
                 tr = max(lst)
             # print(f"for given r:{r}, tr is {tr}")
+
             # return tr/avg*100
             return tr
         except:

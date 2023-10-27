@@ -1,9 +1,12 @@
-import pandas as pd
-import time
+from candlestickdata.GetBearishReversalCandlestickPattern import getBearishReversalCandlestickPattern
+from candlestickdata.GetBullishReversalCandlestickPattern import getBullishReversalCandlestickPattern
 from eventloop.QueueOperation import *
 from candlestickdata.ATRCalculation import calculationForATR
 from indicators.GetROCInPTM import getROCInPTM
 from indicators.GetRSIValue import getRSIValue
+from candlestickdata.GetGSTData import getCandlestickGSTData
+from candlestickvolume.GetATRForVolume import getATRForVolume
+from candlestickvolume.GetVolumeCandleSize import getVolumeCandleSize
 
 
 def getCandlesticksProperties(sid, symbol, data):
@@ -13,7 +16,8 @@ def getCandlesticksProperties(sid, symbol, data):
 
     # atr calculation
     atr, atrPer = calculationForATR(gdf)
-    gdf.loc[9, 'atr'] = atrPer
+    # gdf.loc[9, 'atr'] = atr
+    gdf['atr'] = atr
 
     # Roc calculation part per 10 minute,
     # 100 ptm is equivalent to 1% change in one minute. And it will be negative when price decreases.
@@ -24,7 +28,21 @@ def getCandlesticksProperties(sid, symbol, data):
     rsi = getRSIValue(gdf)
     gdf.loc[9, 'rsi'] = rsi
 
+    # calculation for volume Atr
+    atrV = getATRForVolume(gdf)
+    gdf['atrV'] = atrV
+
+    # calculation for volume size
+    gdf = getVolumeCandleSize(gdf)
+
     # gst calculation
+    gdf = getCandlestickGSTData(gdf)
+
+    # get bullish reversal pattern
+    gdf = getBullishReversalCandlestickPattern(gdf)
+
+    # get bearish reversal pattern
+    gdf = getBearishReversalCandlestickPattern(gdf)
 
     # setter function
     gdf.to_csv(

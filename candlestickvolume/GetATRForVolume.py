@@ -1,20 +1,13 @@
-from commonudm.GetCandlestickTenMinuteData import *
-from statistics import mean
-import pandas as pd
 
-
-def getATRForVolume():
+def getATRForVolume(cdf):
     # get df
-    df = getCandlestickTenMinuteData()
+    df = cdf
 
     # ATR for volume
     atrV = df['V'].sum()/10
 
     # data in the df
-    df['atrV'] = atrV
-    # print(df)
-    # load data in the .csv
-    saveCandlestickTenMinuteData(df)
+    # df['atrV'] = atrV
 
     return atrV
 
