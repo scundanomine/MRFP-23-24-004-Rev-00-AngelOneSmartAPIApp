@@ -1,7 +1,9 @@
 from candlestickdata.GetBearishReversalCandlestickPattern import getBearishReversalCandlestickPattern
 from candlestickdata.GetBullishReversalCandlestickPattern import getBullishReversalCandlestickPattern
+from candlestickdataallitr.AllItrATRCalculation import calculationAllItrForATR
 from eventloop.QueueOperation import *
 from candlestickdata.ATRCalculation import calculationForATR
+from indicators.GetAllItrRSIValue import getAllItrRSIValue
 from indicators.GetROCInPTM import getROCInPTM
 from indicators.GetRSIValue import getRSIValue
 from candlestickdata.GetGSTData import getCandlestickGSTData
@@ -9,15 +11,16 @@ from candlestickvolume.GetATRForVolume import getATRForVolume
 from candlestickvolume.GetVolumeCandleSize import getVolumeCandleSize
 
 
-def getCandlesticksProperties(sid, symbol, data):
+def getAllItrCandlesticksProperties(sid, symbol, data):
     startTime = time.time()
+
     # get df (getter function)
     gdf = queueOperation(sid, symbol, data)
 
     # atr calculation
-    atr, atrPer = calculationForATR(gdf)
-    # gdf.loc[9, 'atr'] = atr
-    gdf['atr'] = atr
+    atr, atrPer = calculationAllItrForATR(gdf)
+    gdf.loc[9, 'atr'] = atr
+    gdf.loc[9, 'atrPer'] = atr
 
     # Roc calculation part per 10 minute,
     # 100 ptm is equivalent to 1% change in one minute. And it will be negative when price decreases.
@@ -25,7 +28,7 @@ def getCandlesticksProperties(sid, symbol, data):
     gdf.loc[9, 'roc'] = roc
 
     # rsi calculation
-    rsi = getRSIValue(gdf)
+    rsi = getAllItrRSIValue(gdf)
     gdf.loc[9, 'rsi'] = rsi
 
     # calculation for volume Atr
@@ -56,6 +59,6 @@ def getCandlesticksProperties(sid, symbol, data):
 
 
 for i in range(1):
-    getCandlesticksProperties(1, "RELIANCE-EQ",
+    getAllItrCandlesticksProperties(1, "RELIANCE-EQ",
                               {0: "2023-10-20T09:25:00+05:30", 1: 23010.65, 2: 2312.25, 3: 2309.75, 4: 2311.95,
                                5: 25800})

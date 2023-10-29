@@ -16,7 +16,7 @@ def createGSTDataFile(sid, symbol, data):
     sdf.rename(columns={0: "time", 1: "O", 2: "H", 3: "L", 4: "C", 5: "V"}, inplace=True)
 
     # add required columns
-    new_cols = ['atr', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'rsi']
+    new_cols = ['atr', 'atrPer', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'um', 'dm', 'rsi']
     cols_to_add = [col for col in new_cols if col not in sdf.columns]
     sdf.loc[:, cols_to_add] = 0
     sdf["atr"] = 0
@@ -24,6 +24,8 @@ def createGSTDataFile(sid, symbol, data):
     sdf["berRP"] = "none"
     sdf["roc"] = 0
     sdf["rsi"] = 0
+    sdf["um"] = 0
+    sdf["dm"] = 0
 
     # create import function
     sdf.to_csv(

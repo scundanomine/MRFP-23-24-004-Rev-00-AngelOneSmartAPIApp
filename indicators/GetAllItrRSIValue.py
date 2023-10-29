@@ -1,30 +1,23 @@
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 
-
 cdf = pd.DataFrame()
 
 
-def getRSIValue(df):
+def getAllItrRSIValue(df):
     global cdf
 
     # get df
     cdf = df
+    r = 9
 
-    # function for um and dm
-    def getUmAndDm(r):
-        global cdf
-        change = cdf["C"][r] - cdf["C"][r - 1]
-        if change >= 0:
-            cdf.loc[r, "um"] = change
-            cdf.loc[r, "dm"] = 0
-        else:
-            cdf.loc[r, "um"] = 0
-            cdf.loc[r, "dm"] = abs(change)
-
-    with ThreadPoolExecutor() as executor:
-        lt = list(range(1, 10))
-        executor.map(getUmAndDm, lt)
+    change = cdf["C"][r] - cdf["C"][r - 1]
+    if change >= 0:
+        cdf.loc[r, "um"] = change
+        cdf.loc[r, "dm"] = 0
+    else:
+        cdf.loc[r, "um"] = 0
+        cdf.loc[r, "dm"] = abs(change)
 
     # calculate upward and downward avg
     umAvg = cdf["um"].sum() / 9
@@ -38,9 +31,8 @@ def getRSIValue(df):
         relStrength = 1000000
 
     rsi = 100 - 100 / (relStrength + 1)
-    cdf.loc[9, 'rsi'] = rsi
-    
+
     # return round(rsi, 2)
-    return cdf
+    return rsi
 
 # print(getRSIValue())
