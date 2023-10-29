@@ -1,6 +1,11 @@
 from candlestickdata.GetBearishReversalCandlestickPattern import getBearishReversalCandlestickPattern
 from candlestickdata.GetBullishReversalCandlestickPattern import getBullishReversalCandlestickPattern
 from candlestickdataallitr.AllItrATRCalculation import calculationAllItrForATR
+from candlestickdataallitr.GetAllItrBearishReversalCandlestickPattern import getAllItrBearishReversalCandlestickPattern
+from candlestickdataallitr.GetAllItrBullishReversalCandlestickPattern import getAllItrBullishReversalCandlestickPattern
+from candlestickdataallitr.GetAllItrGSTData import getAllItrCandlestickGSTData
+from candlestickvolume.GetAllItrATRForVolume import getAllItrATRForVolume
+from candlestickvolume.GetAllItrVolumeCandleSize import getAllItrVolumeCandleSize
 from eventloop.QueueOperation import *
 from candlestickdata.ATRCalculation import calculationForATR
 from indicators.GetAllItrRSIValue import getAllItrRSIValue
@@ -32,20 +37,20 @@ def getAllItrCandlesticksProperties(sid, symbol, data):
     gdf.loc[9, 'rsi'] = rsi
 
     # calculation for volume Atr
-    atrV = getATRForVolume(gdf)
+    atrV = getAllItrATRForVolume(gdf)
     gdf['atrV'] = atrV
 
     # calculation for volume size
-    gdf = getVolumeCandleSize(gdf)
+    gdf = getAllItrVolumeCandleSize(gdf)
 
     # gst calculation
-    gdf = getCandlestickGSTData(gdf)
+    gdf = getAllItrCandlestickGSTData(gdf)
 
     # get bullish reversal pattern
-    gdf = getBullishReversalCandlestickPattern(gdf)
+    gdf = getAllItrBullishReversalCandlestickPattern(gdf)
 
     # get bearish reversal pattern
-    gdf = getBearishReversalCandlestickPattern(gdf)
+    gdf = getAllItrBearishReversalCandlestickPattern(gdf)
 
     # setter function
     gdf.to_csv(

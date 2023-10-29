@@ -1,15 +1,7 @@
-
-def getATRForVolume(cdf):
-    # get df
-    df = cdf
-
+def getAllItrATRForVolume(cdf):
     # ATR for volume
-    atrV = df['V'].sum()/10
-
-    # data in the df
-    # df['atrV'] = atrV
+    atrV = (cdf['atrV'][8] * 9 + cdf['atrV'][9]) / 10
 
     return atrV
-
 
 # getATRForVolume()
