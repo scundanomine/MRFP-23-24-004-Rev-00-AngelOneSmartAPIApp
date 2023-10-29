@@ -38,7 +38,7 @@ def getAllItrCandlesticksProperties(sid, symbol, data):
 
     # calculation for volume Atr
     atrV = getAllItrATRForVolume(gdf)
-    gdf['atrV'] = atrV
+    gdf.loc[9, 'atrV'] = atrV
 
     # calculation for volume size
     gdf = getAllItrVolumeCandleSize(gdf)
