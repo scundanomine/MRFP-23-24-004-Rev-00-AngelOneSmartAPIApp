@@ -15,7 +15,7 @@ exchange = "NSE"
 stt = 0
 
 
-def getCandlestickDataWithMultiProcessing(r, fileName, lock=""):
+def getAllItrCandlestickData(r, fileName, lock="", refDate=""):
     startTime = time.time()
     global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
@@ -104,4 +104,4 @@ def getCandlestickDataWithMultiProcessing(r, fileName, lock=""):
         # break
 
 
-getCandlestickDataWithMultiProcessing(300, "")
+# getAllItrCandlestickData(300, "")

@@ -15,7 +15,7 @@ exchange = "NSE"
 stt = 0
 
 
-def getFirstCandlestickIterationData(r, fileName, lock=""):
+def getFirstItrCandlestickData(r, fileName, lock="", refDate=""):
     startTime = time.time()
     global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
@@ -85,4 +85,4 @@ def getFirstCandlestickIterationData(r, fileName, lock=""):
     print(f"The execution time is {time.time() - startTime}")
 
 
-getFirstCandlestickIterationData(300, "")
+# getFirstItrCandlestickData(300, "")

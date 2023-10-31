@@ -1,6 +1,6 @@
 from concurrent.futures import ProcessPoolExecutor
 import time
-from eventloop.GetCandleDataWithMultiProcessing import *
+from eventloop.GetAllItrCandlestickData import *
 
 
 def processForCandleStick(r):
