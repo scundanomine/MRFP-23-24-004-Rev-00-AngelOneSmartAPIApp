@@ -17,7 +17,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\12_LICI-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\13_LT-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\17_MARUTI-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -129,6 +143,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\3_HDFCBANK-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\4_ICICIBANK-EQ.csv">
           <value>
             <Attribute>
@@ -150,7 +171,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\eventloop\mat.csv">
+        <entry key="\eventloop\eventstate\candlewisedata\80_TATAPOWER-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

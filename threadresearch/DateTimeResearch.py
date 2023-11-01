@@ -9,17 +9,20 @@ import time
 # dTime = currentDate-date
 # print(date + dTime)
 
-strDate = "30 Oct 2023  09:24:00.000"
+strDate = "30 Oct 2023  15:24:00.000"
 refDate = datetime.datetime.strptime(strDate, "%d %b %Y %H:%M:%S.%f")
 currentDate = datetime.datetime.now()
 print(refDate)
 c = datetime.datetime.now() - refDate
-k = datetime.datetime.now() - c
+# k = datetime.datetime.now() - c
 
+pastDate = datetime.datetime.now() - c
+newDateF = pastDate.strftime("%Y-%m-%dT%H:%M:00+05:30")
+print(newDateF)
 # z = 0
 # while z < 5:
 #     lst = str(datetime.datetime.now() - c).split('.')[0]
-#     mlst = lst.replace(" ", "T")
-#     print(mlst)
+#     mLst = lst.replace(" ", "T")
+#     print(mLst)
 #     time.sleep(1)
 #     z = z + 1

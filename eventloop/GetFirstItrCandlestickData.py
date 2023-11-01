@@ -15,7 +15,7 @@ exchange = "NSE"
 stt = 0
 
 
-def getFirstItrCandlestickData(r, fileName, lock="", refDate=""):
+def getFirstItrCandlestickData(r, fileName, lock="", c=""):
     startTime = time.time()
     global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
@@ -46,11 +46,11 @@ def getFirstItrCandlestickData(r, fileName, lock="", refDate=""):
         a = dfc["symbol"][uid]
         if uid < i - 3:
             try:
-                data = getHistoricDataForPastTenCandles(objOneX, "2023-10-20", str(b))
+                data = getHistoricDataForPastTenCandles(objOneX, c, str(b))
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForPastTenCandles(objOneX, "2023-10-20", str(b))
+                    data = getHistoricDataForPastTenCandles(objOneX, c, str(b))
                 except:
                     data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
@@ -59,11 +59,11 @@ def getFirstItrCandlestickData(r, fileName, lock="", refDate=""):
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
         else:
             try:
-                data = getHistoricDataForPastTenCandles(objTwoX, "2023-10-20", str(b))
+                data = getHistoricDataForPastTenCandles(objTwoX, c, str(b))
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForPastTenCandles(objTwoX, "2023-10-20", str(b))
+                    data = getHistoricDataForPastTenCandles(objTwoX, c, str(b))
                 except:
                     data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
