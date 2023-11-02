@@ -4,6 +4,7 @@ from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from AngelOneSmartAPIApp.HistoricDataForPastTenCandles import *
 from eventloop.CreateGSTDataFile import *
+from eventloop.GetFirstItrCandlesticksProperties import getFirstItrCandlesticksProperties
 
 dfc = pd.DataFrame()
 m = 500
@@ -71,6 +72,7 @@ def getFirstItrCandlestickData(r, fileName, lock="", c=""):
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
         createGSTDataFile(uid+1, a, data)
+        getFirstItrCandlesticksProperties(uid+1, a)
 
     # main loop for thread
     for i in range(6, r + 6, 6):

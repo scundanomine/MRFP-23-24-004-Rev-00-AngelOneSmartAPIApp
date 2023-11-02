@@ -20,7 +20,7 @@ client = NeoAPI(consumer_key="smVW_wd_DPf_XXERIrU27B7cZ8Aa", consumer_secret="D5
 client.login(mobilenumber="+917982161429", password="System@2021")
 
 # Complete login and generate session token
-client.session_2fa(OTP=input("Enter otp:"))
+client.session_2fa(OTP="881340")
 
 # getting master list
 nseUrl = client.scrip_master(exchange_segment="NSE")

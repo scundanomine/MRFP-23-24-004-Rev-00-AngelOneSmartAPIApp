@@ -4,6 +4,7 @@ import pandas as pd
 
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
+from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
 
 dfc = pd.DataFrame()
 m = 500
@@ -15,7 +16,7 @@ exchange = "NSE"
 stt = 0
 
 
-def getAllItrCandlestickData(r, fileName, lock="", refDate=""):
+def getAllItrCandlestickData(r, fileName, lock="", c=""):
     startTime = time.time()
     global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
@@ -52,31 +53,33 @@ def getAllItrCandlestickData(r, fileName, lock="", refDate=""):
     def getCandleDataC(uid):
         global objOneX, objTwoX, dfc, i
         b = dfc["token"][uid]
+        a = dfc["symbol"][uid]
         if uid < i - 3:
             try:
-                data = getHistoricDataForOneDay(objOneX, "2023-10-20", str(b))[0]
+                data = getHistoricDataForOneDay(objOneX, c, str(b))[0]
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForOneDay(objOneX, "2023-10-20", str(b))[0]
+                    data = getHistoricDataForOneDay(objOneX, c, str(b))[0]
                 except:
                     data = {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
         else:
             try:
-                data = getHistoricDataForOneDay(objTwoX, "2023-10-20", str(b))[0]
+                data = getHistoricDataForOneDay(objTwoX, c, str(b))[0]
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForOneDay(objTwoX, "2023-10-20", str(b))[0]
+                    data = getHistoricDataForOneDay(objTwoX, c, str(b))[0]
                 except:
                     data = {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
         # dfc.loc[uid, "ltp"] = ltp['data']['ltp']
+        getAllItrCandlesticksProperties(uid+1, a, data)
         return data
 
     # main loop for thread
     ctrA = 0
     # while 300 - (time.time() - startTime) > 0:
-    while ctrA < 1:
+    while ctrA < 5:
         ds = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv")
         ctr = 6
         for i in range(6, r + 6, 6):

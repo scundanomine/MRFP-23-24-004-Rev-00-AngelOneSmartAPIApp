@@ -7,4 +7,4 @@ import datetime
 c = getRefDateConstant("30 Oct 2023  09:24:00.000")
 
 getFirstItrCandlestickData(300, "", "", c)
-# getAllItrCandlestickData(300, "", "", c)
+getAllItrCandlestickData(300, "", "", c)

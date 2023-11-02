@@ -185,7 +185,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\neoapi\nse_cm.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\threadresearch\mat.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\used\kotak-neo-api-main\neo_api_client\api\nse_cm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
