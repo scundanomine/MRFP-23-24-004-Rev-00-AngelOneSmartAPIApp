@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\LiveCandleData.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\12_LICI-EQ.csv">
           <value>
             <Attribute>
@@ -185,7 +192,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\neoapi\nse_cm.csv">
+        <entry key="\hotmech\HotMechLst.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

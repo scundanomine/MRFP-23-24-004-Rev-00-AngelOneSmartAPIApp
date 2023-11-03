@@ -29,15 +29,13 @@ def getRSIValue(df):
     # calculate upward and downward avg
     umAvg = cdf["um"].sum() / 9
     dmAvg = cdf["dm"].sum() / 9
-    try:
-        if umAvg == 0 and dmAvg == 0:
-            relStrength = 1
-        else:
-            relStrength = umAvg / dmAvg
-    except:
-        relStrength = 1000000
 
-    rsi = 100 - 100 / (relStrength + 1)
+    # rsi = 100 - 100 / (relStrength + 1)
+    if umAvg == 0 and dmAvg == 0:
+        rsi = 50
+    else:
+        rsi = (umAvg / (umAvg + dmAvg)) * 100
+
     cdf.loc[9, 'rsi'] = rsi
     
     # return round(rsi, 2)

@@ -1,5 +1,3 @@
-import time
-import pandas as pd
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from AngelOneSmartAPIApp.HistoricDataForPastTenCandles import *

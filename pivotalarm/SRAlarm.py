@@ -1,9 +1,6 @@
-import pandas as pd
-import xlwings as xw
 from GetSAndR import *
 from AngelOneSmartAPIApp.GetAccessToken import *
 from pivotalarm.GetLtpP import *
-from pivotalarm.LoadRFT import *
 from pivotalarm.SaveSRN import *
 import time
 
@@ -39,7 +36,7 @@ def pivotAlarm():
         # print(srN)
         # srN = readSRN()
         # nifty 200 SR loop
-        for index, rows in srN.iterrows():
+        for rows in srN:
             uid = rows[0]
             if rows[5] > 0:
                 srN.loc[uid - 1, 5] = alarmExp * 60 - ((time.time() - start_time) - rows[6])
