@@ -22,12 +22,26 @@ def getKotakNeoApiAccessToken():
     client.session_2fa(OTP="881340")
 
     # getting master list
-    # nseUrl = client.scrip_master(exchange_segment="NSE")
-    # print(nseUrl)
+    nseUrl = client.scrip_master(exchange_segment="NSE")
+    print(nseUrl)
+
     # getting quote
-    instrument_tokens = [{"instrument_token": "2885", "exchange_segment": "nse_cm"}]
-    client.quotes(instrument_tokens=instrument_tokens, quote_type="")
-    # print(data)
+    inst_tokens = [{"instrument_token": "11536", "exchange_segment": "nse_cm"},
+                   {"instrument_token": "1594", "exchange_segment": "nse_cm"},
+                   {"instrument_token": "11915", "exchange_segment": "nse_cm"},
+                   {"instrument_token": "13245", "exchange_segment": "nse_cm"}]
+
+    # try:
+    #     # get LTP and Market Depth Data
+    #     client.quotes(instrument_tokens=inst_tokens, quote_type="ltp", isIndex=False)
+    # except Exception as e:
+    #     print("Exception when calling get Quote api->quotes: %s\n" % e)
+
+    try:
+        # Get live feed data
+        client.subscribe(instrument_tokens=inst_tokens)
+    except Exception as e:
+        print("Exception while connection to socket->socket: %s\n" % e)
     # return client
 
 

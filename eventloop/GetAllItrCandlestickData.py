@@ -1,6 +1,7 @@
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
+from pivotalarm.GetSAndR import getSRData
 
 dfc = pd.DataFrame()
 m = 500
@@ -20,12 +21,16 @@ def getAllItrCandlestickData(r, fileName, lock="", c=""):
     # ds[:] = 0
     # ds.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv", index=False)
 
+    # sr data
+    srVar = getSRData()
+
     # data instance for excel
     wb = xw.Book(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
 
     # getting big dataframe
     dtc = wb.sheets("Sheet3")
+
     # creating session one
     while True:
         try:
@@ -50,6 +55,7 @@ def getAllItrCandlestickData(r, fileName, lock="", c=""):
         global objOneX, objTwoX, dfc, i
         b = dfc["token"][uid]
         a = dfc["symbol"][uid]
+
         if uid < i - 3:
             try:
                 data = getHistoricDataForOneDay(objOneX, c, str(b))[0]
