@@ -25,8 +25,9 @@ def getKotakNeoApiAccessToken():
     # nseUrl = client.scrip_master(exchange_segment="NSE")
     # print(nseUrl)
     # getting quote
-    data = client.quotes(instrument_tokens=["2885"], quote_type="LTP")
-    print(data)
+    instrument_tokens = [{"instrument_token": "2885", "exchange_segment": "nse_cm"}]
+    client.quotes(instrument_tokens=instrument_tokens, quote_type="")
+    # print(data)
     # return client
 
 

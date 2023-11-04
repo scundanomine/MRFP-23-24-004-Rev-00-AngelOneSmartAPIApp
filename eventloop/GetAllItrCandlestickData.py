@@ -16,9 +16,9 @@ def getAllItrCandlestickData(r, fileName, lock="", c=""):
     startTime = time.time()
     global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
-    ds = pd.DataFrame(index=list(range(r)), columns=['id', "O", "H", "L", "C", "V"])
-    ds[:] = 0
-    ds.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv", index=False)
+    # ds = pd.DataFrame(index=list(range(r)), columns=['id', "O", "H", "L", "C", "V"])
+    # ds[:] = 0
+    # ds.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv", index=False)
 
     # data instance for excel
     wb = xw.Book(
