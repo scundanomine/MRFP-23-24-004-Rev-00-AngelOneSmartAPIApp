@@ -34,4 +34,4 @@ def getSRData():
     return varSR
 
 
-print(getSRData())
+# print(getSRData())

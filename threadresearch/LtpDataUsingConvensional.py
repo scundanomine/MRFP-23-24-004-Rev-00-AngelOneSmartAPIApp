@@ -1,8 +1,5 @@
-from pivotalarm.GetSAndR import *
-import time
+from traditionalpivotalarm.GetSAndR import *
 from AngelOneSmartAPIApp.GetAccessToken import *
-from concurrent.futures import ThreadPoolExecutor
-from concurrent.futures import wait
 
 
 def getLtpFromConventional():

@@ -1,7 +1,7 @@
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
-from pivotalarm.GetSAndR import getSRData
+from traditionalpivotalarm.GetSAndR import getSRData
 
 dfc = pd.DataFrame()
 m = 500

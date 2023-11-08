@@ -1,4 +1,4 @@
-from GetSAndR import *
+from traditionalpivotalarm.GetSAndR import *
 from AngelOneSmartAPIApp.GetAccessToken import *
 from pivotalarm.GetLtpP import *
 from pivotalarm.SaveSRN import *

@@ -1,7 +1,4 @@
-from pivotalarm.GetSAndR import *
-import time
-from AngelOneSmartAPIApp.GetAccessToken import *
-from concurrent.futures import ThreadPoolExecutor
+from traditionalpivotalarm.GetSAndR import *
 from AngelOneSmartAPIApp.test import *
 
 objOneX = []

@@ -31,11 +31,11 @@ def getKotakNeoApiAccessToken():
                    {"instrument_token": "11915", "exchange_segment": "nse_cm"},
                    {"instrument_token": "13245", "exchange_segment": "nse_cm"}]
 
-    try:
-        # get LTP and Market Depth Data
-        client.quotes(instrument_tokens=inst_tokens, quote_type="ltp", isIndex=False)
-    except Exception as e:
-        print("Exception when calling get Quote api->quotes: %s\n" % e)
+    # try:
+    #     # get LTP and Market Depth Data
+    #     client.quotes(instrument_tokens=inst_tokens, quote_type="ltp", isIndex=False)
+    # except Exception as e:
+    #     print("Exception when calling get Quote api->quotes: %s\n" % e)
 
     # try:
     #     # Get live feed data
