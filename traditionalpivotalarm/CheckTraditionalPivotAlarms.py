@@ -1,23 +1,25 @@
 import time
-
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
-
 from commonudm.GetSymbolAndToken import getSymbolAndToken
+from traditionalpivotalarm.GetSAndR import getSRData
+from traditionalpivotalarm.TraditionalPivotAlarm import traditionalPivotAlarm
 
 
 def checkTraditionalPivotAlarms(niftySize=300):
     startTime = time.time()
+
     # get token and symbol
     dst = getSymbolAndToken()
 
-    # provision of dcs
-    dcs = pd.DataFrame(index=list(range(niftySize)),
-                       columns=['id', "O", "H", "L", "C", "V", "alarmTimer", "refT", "srT", "srV"])
-    dcs[:] = 0
-    dcs.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
-        index=False)
+    # get sr data and sr list
+    varSR = getSRData()
+    srLst = varSR.to_dict('records')
+
+    # dcs and dcs list
+    dcs = pd.read_csv(
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv")
+    dcsLst = dcs.to_dict('records')
 
     # define sub function
     def getDataAndCheckAlarm(uid):
@@ -36,14 +38,18 @@ def checkTraditionalPivotAlarms(niftySize=300):
             # rename ohlc
             df.rename(columns={0: "time", 1: "O", 2: "H", 3: "L", 4: "C", 5: "V"}, inplace=True)
         try:
-            return df.to_dict('records')[9]
+            recordedData = df.to_dict('records')[9]
         except Exception as e:
             print(f"given exception for {uid + 1} is {e}")
-            return {"time": 0, "O": 0, "H": 0, "L": 0, "C": 0, "V": 0}
+            recordedData = {"time": 0, "O": 0, "H": 0, "L": 0, "C": 0, "V": 0}
+        alarmTimer, refT, srType, srValue = traditionalPivotAlarm(srLst[uid], dcsLst[uid], recordedData['C'])
+        recordedData.update(
+            {"alarmTimer": alarmTimer, "refT": refT, "srT": srType, "srV": srValue})
+        return recordedData
 
     with ThreadPoolExecutor() as executor:
         ltc = list(range(niftySize))
-        results = executor.map(getPreviousData, ltc)
+        results = executor.map(getDataAndCheckAlarm, ltc)
         ck = 0
         for result in results:
             dcs.loc[ck, "id"] = ck + 1
@@ -52,14 +58,20 @@ def checkTraditionalPivotAlarms(niftySize=300):
             dcs.loc[ck, "L"] = result["L"]
             dcs.loc[ck, "C"] = result["C"]
             dcs.loc[ck, "V"] = result["V"]
+            dcs.loc[ck, "alarmTimer"] = result["alarmTimer"]
+            dcs.loc[ck, "refT"] = result["refT"]
+            dcs.loc[ck, "srT"] = result["srT"]
+            dcs.loc[ck, "srV"] = result["srV"]
             ck = ck + 1
     dcs.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",
         index=False)
     print(dcs)
     print(f"execution time is {time.time() - startTime}")
 
 
+for k in range(100):
+    checkTraditionalPivotAlarms()
 # k = 0
 # while k < 60:
 #     getPreviousDataForPivotAlarm()

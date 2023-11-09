@@ -16,7 +16,7 @@ def getPreviousDataForPivotAlarm(niftySize=300):
                        columns=['id', "O", "H", "L", "C", "V", "alarmTimer", "refT", "srT", "srV"])
     dcs[:] = 0
     dcs.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",
         index=False)
 
     # define sub function
@@ -54,12 +54,13 @@ def getPreviousDataForPivotAlarm(niftySize=300):
             dcs.loc[ck, "V"] = result["V"]
             ck = ck + 1
     dcs.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",
         index=False)
     print(dcs)
     print(f"execution time is {time.time() - startTime}")
 
 
+getPreviousDataForPivotAlarm()
 # k = 0
 # while k < 60:
 #     getPreviousDataForPivotAlarm()

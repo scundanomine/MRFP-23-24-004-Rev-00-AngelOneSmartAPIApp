@@ -10,7 +10,7 @@ n = 0
 obj = []
 
 
-def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, objC=0):
+def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, refDate, objC=0):
     global df, n, obj
     startTime = time.time()
 
@@ -44,13 +44,19 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, objC=0):
             return
         else:
             # get past data
-            data = getHistoricDataForOneDay(obj, "2023-10-19", str(df["token"][r]))[0]
+            data = getHistoricDataForOneDay(obj, refDate, str(df["token"][r]))[0]
             # print(data)
             # df.loc[r, "ltp"] = data["ltp"]
             opn = data[1]
             high = data[2]
             low = data[3]
             close = data[4]
+
+            if opn is None:
+                opn = 0
+                high = 0
+                low = 0
+                close = 0
 
             # setting ohlc data
             df.loc[r, "O"] = opn
@@ -86,4 +92,4 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, objC=0):
     print(f"execution time is {time.time() - startTime}")
 
 
-# getTraditionalPivotsForSpecificNiftyFile("nifty500", "502")
+getTraditionalPivotsForSpecificNiftyFile("nifty500", "502", "2023-10-30")

@@ -12,12 +12,19 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
     # Area width calculation (adt)
     width = 0.04
     pivot = srVar[7]
-    adt = pivot * width / 100
+    try:
+        adt = pivot * width / 100
+    except Exception as e:
+        print(f"given pivot exception is {e}")
+        for j in range(1, 14):
+            srVar[j] = 0
+        pivot = srVar[7]
+        adt = pivot * width / 100
     
     refT = dsVar['refT']
     alarmTimer = dsVar['alarmTimer']
     srType = dsVar["srT"]
-    srValue = dsVar["srValue"]
+    srValue = dsVar["srV"]
 
     # condition for alarm timer and ltp data
     if alarmTimer > 0:
@@ -36,7 +43,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
         alarmTimer = 0
         srType = "None"
         srValue = 0
-        for i in range(1, 14):
+        for i in range(1, 13):
             # print(srVar[i])
             diffCOne = srVar[i] - ltpC
             diffPOne = srVar[i] - ltpP

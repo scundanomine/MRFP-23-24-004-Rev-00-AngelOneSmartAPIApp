@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\141_PERSISTENT-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\17_MARUTI-EQ.csv">
           <value>
             <Attribute>
@@ -214,6 +221,13 @@
           </value>
         </entry>
         <entry key="\threadresearch\mat.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\traditionalpivotalarm\pivotstate\LiveCandleData.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
