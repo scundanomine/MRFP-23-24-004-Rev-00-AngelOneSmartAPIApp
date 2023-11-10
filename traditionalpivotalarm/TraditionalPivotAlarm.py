@@ -25,6 +25,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
     alarmTimer = dsVar['alarmTimer']
     srType = dsVar["srT"]
     srValue = dsVar["srV"]
+    nSR = dsVar["nSR"]
 
     # condition for alarm timer and ltp data
     if alarmTimer > 0:
@@ -36,8 +37,9 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
         alarmTimer = 0
         srType = "None"
         srValue = 0
+        nSR = 0
 
-    # condition for checking pivot alarm
+        # condition for checking pivot alarm
     else:
         refT = 0
         alarmTimer = 0
@@ -59,6 +61,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 refT = time.time()
                 alarmTimer = alarmExp * 60
                 srValue = srVar[i]
+                nSR = srVar[i]
                 if ltpC > pivot:
                     srType = "R"
                 else:
@@ -70,6 +73,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 refT = time.time()
                 alarmTimer = alarmExp * 60
                 srValue = srVar[i+1]
+                nSR = srVar[i+1]
                 if ltpC > pivot:
                     srType = "R"
                 else:
@@ -78,6 +82,10 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
 
             # condition for no crossing
             elif (diffCOne < 0 and diffPOne < 0) and (diffCTwo > 0 and diffPTwo > 0):
+                if abs(diffCOne) >= abs(diffCTwo):
+                    nSR = srVar[i+1]
+                else:
+                    nSR = srVar[i]
                 break
 
             # condition for left crossing
@@ -85,6 +93,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 refT = time.time()
                 alarmTimer = alarmExp * 60
                 srValue = srVar[i + 1]
+                nSR = srVar[i + 1]
                 srType = "S"
                 break
 
@@ -93,6 +102,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 refT = time.time()
                 alarmTimer = alarmExp * 60
                 srValue = srVar[i]
+                nSR = srVar[i]
                 srType = "R"
                 break
 
@@ -101,6 +111,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 refT = time.time()
                 alarmTimer = alarmExp * 60
                 srValue = srVar[i]
+                nSR = srVar[i]
                 if ltpC > pivot:
                     srType = "R"
                 else:
@@ -112,6 +123,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 refT = time.time()
                 alarmTimer = alarmExp * 60
                 srValue = srVar[i + 1]
+                nSR = srVar[i + 1]
                 if ltpC > pivot:
                     srType = "R"
                 else:
@@ -124,6 +136,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 alarmTimer = 0
                 srType = "None"
                 srValue = 0
+                nSR = 0
                 break
 
-    return alarmTimer, refT, srType, srValue
+    return alarmTimer, refT, srType, srValue, nSR
