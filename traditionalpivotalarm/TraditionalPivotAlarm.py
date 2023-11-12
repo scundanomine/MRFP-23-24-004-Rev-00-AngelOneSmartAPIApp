@@ -1,8 +1,13 @@
 import time
 
+from traditionalpivotalarm.getGainOrLoss import getGainOrLoss
+
 
 def traditionalPivotAlarm(srVar, dsVar, ltpC):
     # start_time = time.time()
+
+    # calculation for Gain or loss
+    gl = getGainOrLoss(ltpC, srVar[1])
 
     # alarm expiry in minutes
     alarmExp = 30
@@ -11,14 +16,14 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
 
     # Area width calculation (adt)
     width = 0.04
-    pivot = srVar[7]
+    pivot = srVar[8]
     try:
         adt = pivot * width / 100
     except Exception as e:
         print(f"given pivot exception is {e}")
-        for j in range(1, 14):
+        for j in range(2, 15):
             srVar[j] = 0
-        pivot = srVar[7]
+        pivot = srVar[8]
         adt = pivot * width / 100
     
     refT = dsVar['refT']
@@ -45,7 +50,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
         alarmTimer = 0
         srType = "None"
         srValue = 0
-        for i in range(1, 13):
+        for i in range(2, 14):
             # print(srVar[i])
             diffCOne = srVar[i] - ltpC
             diffPOne = srVar[i] - ltpP
@@ -139,4 +144,4 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 nSR = 0
                 break
 
-    return alarmTimer, refT, srType, srValue, nSR
+    return alarmTimer, refT, srType, srValue, nSR, gl

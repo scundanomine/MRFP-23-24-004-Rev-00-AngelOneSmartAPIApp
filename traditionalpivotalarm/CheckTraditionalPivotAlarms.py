@@ -42,9 +42,9 @@ def checkTraditionalPivotAlarms(niftySize=300):
         except Exception as e:
             print(f"given exception for {uid + 1} is {e}")
             recordedData = {"time": 0, "O": 0, "H": 0, "L": 0, "C": 0, "V": 0}
-        alarmTimer, refT, srType, srValue, nSR = traditionalPivotAlarm(srLst[uid], dcsLst[uid], recordedData['C'])
+        alarmTimer, refT, srType, srValue, nSR, gl = traditionalPivotAlarm(srLst[uid], dcsLst[uid], recordedData['C'])
         recordedData.update(
-            {"alarmTimer": alarmTimer, "refT": refT, "srT": srType, "srV": srValue, "nSR": nSR})
+            {"alarmTimer": alarmTimer, "refT": refT, "srT": srType, "srV": srValue, "nSR": nSR, "GL": gl})
         return recordedData
 
     with ThreadPoolExecutor() as executor:
@@ -63,6 +63,7 @@ def checkTraditionalPivotAlarms(niftySize=300):
             dcs.loc[ck, "srT"] = result["srT"]
             dcs.loc[ck, "srV"] = result["srV"]
             dcs.loc[ck, "nSR"] = result["nSR"]
+            dcs.loc[ck, "GL"] = result["GL"]
             ck = ck + 1
     dcs.to_csv(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",
@@ -71,7 +72,7 @@ def checkTraditionalPivotAlarms(niftySize=300):
     print(f"execution time is {time.time() - startTime}")
 
 
-for k in range(100):
+for k in range(1):
     checkTraditionalPivotAlarms()
 # k = 0
 # while k < 60:

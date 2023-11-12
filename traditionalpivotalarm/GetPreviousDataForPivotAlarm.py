@@ -13,7 +13,7 @@ def getPreviousDataForPivotAlarm(niftySize=300):
 
     # provision of dcs
     dcs = pd.DataFrame(index=list(range(niftySize)),
-                       columns=['id', "O", "H", "L", "C", "V", "alarmTimer", "refT", "srT", "srV", "nSR"])
+                       columns=['id', "O", "H", "L", "C", "V", "alarmTimer", "refT", "srT", "srV", "nSR", "GL"])
     dcs[:] = 0
     dcs.to_csv(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",

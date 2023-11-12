@@ -17,7 +17,7 @@ def getUniversalList(niftySize=300):
     # dcs and dcs list
     dcs = pd.read_csv(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv")
-    dcs = dcs.loc[:, ['alarmTimer', 'srT', 'srV', 'nSR']]
+    dcs = dcs.loc[:, ['alarmTimer', 'srT', 'srV', 'nSR', 'GL']]
     # print(dcs)
 
     # creation of df three
