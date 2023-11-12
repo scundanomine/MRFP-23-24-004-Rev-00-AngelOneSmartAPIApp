@@ -4,6 +4,7 @@ import xlwings as xw
 from concurrent.futures import ThreadPoolExecutor
 from AngelOneSmartAPIApp.GetLiveData import *
 from AngelOneSmartAPIApp.HistoricDataForOneDay import *
+from commonudm.SetNiftyDetailedListWithPivots import setNiftyDetailedListWithPivot
 
 df = pd.DataFrame()
 n = 0
@@ -89,6 +90,7 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, refDate, obj
     df = df.drop(columns=["symbol", "token"])
     print(df)
     dt.range(f"g1:u{upperBound}").options(pd.DataFrame, index=False).value = df
+    setNiftyDetailedListWithPivot()
     print(f"execution time is {time.time() - startTime}")
 
 

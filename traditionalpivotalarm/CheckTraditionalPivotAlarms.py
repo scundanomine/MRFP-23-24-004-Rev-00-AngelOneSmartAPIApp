@@ -62,7 +62,7 @@ def checkTraditionalPivotAlarms(niftySize=300):
             dcs.loc[ck, "refT"] = result["refT"]
             dcs.loc[ck, "srT"] = result["srT"]
             dcs.loc[ck, "srV"] = result["srV"]
-            dcs.loc[ck, "nSR"] = result["nsR"]
+            dcs.loc[ck, "nSR"] = result["nSR"]
             ck = ck + 1
     dcs.to_csv(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",
