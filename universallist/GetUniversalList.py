@@ -2,7 +2,7 @@ import time
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 from commonudm.GetNiftyDetailedListWithPivots import getNiftyDetailedListWithPivots
-from universalanticipatedorderlist.CondenseGSTData import condenseGSTData
+from universallist.CondenseGSTData import condenseGSTData
 
 
 def getUniversalList(niftySize=300):
