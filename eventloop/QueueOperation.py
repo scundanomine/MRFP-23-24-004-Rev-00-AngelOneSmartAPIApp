@@ -1,5 +1,4 @@
 import pandas as pd
-import time
 
 
 def queueOperation(sid, symbol, data):

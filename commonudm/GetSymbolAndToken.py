@@ -1,5 +1,4 @@
 import pandas as pd
-import xlwings as xw
 
 
 def getSymbolAndToken():

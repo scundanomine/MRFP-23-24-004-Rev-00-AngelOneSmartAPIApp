@@ -1,5 +1,4 @@
 import pandas as pd
-from concurrent.futures import ThreadPoolExecutor
 
 cdf = pd.DataFrame()
 

@@ -10,6 +10,7 @@ def getRSIValue(df):
 
     # get df
     cdf = df
+    cdf["rsi"] = 50
 
     # function for um and dm
     def getUmAndDm(r):

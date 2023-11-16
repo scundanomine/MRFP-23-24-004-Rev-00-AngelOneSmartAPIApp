@@ -1,13 +1,13 @@
 import pandas as pd
 import xlwings as xw
 import time
-from AIlist.GetterAIStateList import getterAIStateList
-from AIlist.GetterAndSetterAIList import getterAIList
+from entrytriggeredlist.GetterAIStateList import getterAIStateList
+from entrytriggeredlist.GetterAndSetterAIList import getterAIList
 from universallist.GetterUniversalList import getterUniversalList
 from concurrent.futures import ThreadPoolExecutor
 
 
-def getAIList(niftySize=300):
+def getEntryTriggeredList(niftySize=300):
     startTime = time.time()
 
     # get current AI list
@@ -24,14 +24,15 @@ def getAIList(niftySize=300):
     # print(cUDf)
 
     # updation of AI list
-    def updateAIList(r):
+    def updateETList(r):
         uid = aiDf["id"][r]
-        aiDf.iloc[r] = uDf.iloc[uid+1]
+        aiDf.iloc[r] = uDf.iloc[uid-1]
+
     with ThreadPoolExecutor() as executor:
         ltc = list(range(len(aiDf)))
-        executor.map(updateAIList, ltc)
+        executor.map(updateETList, ltc)
 
     print(f"execution time is {time.time() - startTime}")
 
 
-getAIList()
+getEntryTriggeredList()

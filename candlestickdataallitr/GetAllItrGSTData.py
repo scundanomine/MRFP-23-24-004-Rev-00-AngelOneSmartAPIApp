@@ -1,8 +1,6 @@
-from candlestickdata.ATRCalculation import *
 from candlestickdata.GetCandleStickGender import *
 from candlestickdata.GetCandlestickSize import *
 from candlestickdata.GetCandlestickType import *
-from concurrent.futures import ThreadPoolExecutor
 
 
 def getAllItrCandlestickGSTData(gdf):

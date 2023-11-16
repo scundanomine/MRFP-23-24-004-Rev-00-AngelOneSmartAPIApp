@@ -22,7 +22,7 @@ def getUniversalList(niftySize=300):
 
     # creation of df three
     dfThree = pd.DataFrame(
-        columns=['CC', 'V', 'atr', 'atrPer', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'rsi'])
+        columns=['CC', 'V', 'atr', 'atrPer', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'rsi', 'rsi0', 'rsi1', 'rsi2', 'roc0'])
 
     # define sub function
     def getULData(uid):
@@ -44,12 +44,12 @@ def getUniversalList(niftySize=300):
 
     # save the list
     dfU.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universalanticipatedorderlist\\liststate\\UniversalList.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
         index=False)
     print(dfU)
 
     print(f"execution time is {time.time() - startTime}")
 
 
-for k in range(1):
-    getUniversalList()
+# for k in range(1):
+getUniversalList()

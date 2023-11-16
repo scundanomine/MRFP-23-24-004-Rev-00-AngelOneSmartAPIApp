@@ -15,8 +15,12 @@ def condenseGSTData(uid, symbol):
                 df['atrV'][9],
                 f"0:{df['vs'][9]}, 1:{df['vs'][8]}, 2:{df['vs'][7]}",
                 f"0:{df['roc'][9]}, 1:{df['roc'][8]}, 2:{df['roc'][7]}",
-                f"0:{df['rsi'][9]}, 1:{df['rsi'][8]}, 2:{df['rsi'][7]}"]
+                f"0:{df['rsi'][9]}, 1:{df['rsi'][8]}, 2:{df['rsi'][7]}",
+                df['rsi'][9],
+                df['rsi'][8],
+                df['rsi'][7],
+                df['roc'][9]]
     except Exception as e:
         print(f"exception while getting the ul is {e}")
-        data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     return data

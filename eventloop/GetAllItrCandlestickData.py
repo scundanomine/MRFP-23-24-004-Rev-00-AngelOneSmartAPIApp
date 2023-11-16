@@ -1,7 +1,9 @@
+from AngelOneSmartAPIApp.HistoricDataForOneDay import getHistoricDataForOneDay
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
 from traditionalpivotalarm.GetSAndR import getSRData
+from concurrent.futures import ThreadPoolExecutor
 
 dfc = pd.DataFrame()
 m = 500
@@ -17,10 +19,6 @@ def getAllItrCandlestickData(r, fileName, lock="", c=""):
     startTime = time.time()
     global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
-    # ds = pd.DataFrame(index=list(range(r)), columns=['id', "O", "H", "L", "C", "V"])
-    # ds[:] = 0
-    # ds.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv", index=False)
-
     # sr data
     srVar = getSRData()
 

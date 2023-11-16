@@ -3,6 +3,7 @@ from AngelOneSmartAPIApp.test import *
 from AngelOneSmartAPIApp.HistoricDataForPastTenCandles import *
 from eventloop.CreateGSTDataFile import *
 from eventloop.GetFirstItrCandlesticksProperties import getFirstItrCandlesticksProperties
+from concurrent.futures import ThreadPoolExecutor
 
 dfc = pd.DataFrame()
 m = 500
@@ -85,4 +86,4 @@ def getFirstItrCandlestickData(r, fileName, lock="", c=""):
     print(f"The execution time is {time.time() - startTime}")
 
 
-# getFirstItrCandlestickData(300, "")
+# getFirstItrCandlestickData(300, "", "", "30 Oct 2023  09:35:00.000")

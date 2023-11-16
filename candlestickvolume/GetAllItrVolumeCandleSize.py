@@ -1,9 +1,3 @@
-from commonudm.GetCandlestickTenMinuteData import *
-from candlestickvolume.GetATRForVolume import *
-import pandas as pd
-from concurrent.futures import ThreadPoolExecutor
-
-
 def getAllItrVolumeCandleSize(df):
     # get ATR
     atrVL = df["atrV"][9]

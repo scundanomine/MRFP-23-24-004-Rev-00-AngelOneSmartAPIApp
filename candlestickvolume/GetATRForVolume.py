@@ -1,4 +1,3 @@
-
 def getATRForVolume(cdf):
     # get df
     df = cdf

@@ -1,12 +1,12 @@
 import pandas as pd
-from AIlist.GetterAIStateList import getterAIStateList
+from entrytriggeredlist.GetterAIStateList import getterAIStateList
 
 
 def clearPreviousAIList(niftySize):
     while True:
         try:
             sDf = pd.read_csv(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AIlist\\AIstateE:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AIlist\\AIstate\\AIStateList.csv")
+                "/entrytriggeredlist\\AIstateE:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AIlist\\AIstate\\AIStateList.csv")
             # deletion of All rows
             sDf = sDf.drop(labels=range(niftySize), axis=0)
             sDf.to_csv(

@@ -1,5 +1,3 @@
-from candlestickdata.GetBearishReversalCandlestickPattern import getBearishReversalCandlestickPattern
-from candlestickdata.GetBullishReversalCandlestickPattern import getBullishReversalCandlestickPattern
 from candlestickdataallitr.AllItrATRCalculation import calculationAllItrForATR
 from candlestickdataallitr.GetAllItrBearishReversalCandlestickPattern import getAllItrBearishReversalCandlestickPattern
 from candlestickdataallitr.GetAllItrBullishReversalCandlestickPattern import getAllItrBullishReversalCandlestickPattern
@@ -7,13 +5,8 @@ from candlestickdataallitr.GetAllItrGSTData import getAllItrCandlestickGSTData
 from candlestickvolume.GetAllItrATRForVolume import getAllItrATRForVolume
 from candlestickvolume.GetAllItrVolumeCandleSize import getAllItrVolumeCandleSize
 from eventloop.QueueOperation import *
-from candlestickdata.ATRCalculation import calculationForATR
 from indicators.GetAllItrRSIValue import getAllItrRSIValue
 from indicators.GetROCInPTM import getROCInPTM
-from indicators.GetRSIValue import getRSIValue
-from candlestickdata.GetGSTData import getCandlestickGSTData
-from candlestickvolume.GetATRForVolume import getATRForVolume
-from candlestickvolume.GetVolumeCandleSize import getVolumeCandleSize
 
 
 def getAllItrCandlesticksProperties(sid, symbol, data):

@@ -1,6 +1,3 @@
-import time
-import pandas as pd
-import xlwings as xw
 from concurrent.futures import ThreadPoolExecutor
 from AngelOneSmartAPIApp.GetLiveData import *
 from AngelOneSmartAPIApp.HistoricDataForOneDay import *
@@ -94,4 +91,4 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, refDate, obj
     print(f"execution time is {time.time() - startTime}")
 
 
-getTraditionalPivotsForSpecificNiftyFile("nifty500", "502", "2023-10-30")
+# getTraditionalPivotsForSpecificNiftyFile("nifty500", "502", "2023-10-30")

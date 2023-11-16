@@ -1,11 +1,3 @@
-import time
-import pandas as pd
-from concurrent.futures import ThreadPoolExecutor
-from candlestickdata.CandleStickData import *
-import math
-from statistics import mean
-
-
 def calculationAllItrForATR(sdf):
     # get previous Atr
     prvAtr = sdf['atr'][8]
