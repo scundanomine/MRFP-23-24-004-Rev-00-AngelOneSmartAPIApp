@@ -46,7 +46,7 @@ def getUniversalList(niftySize=300):
     dfU.to_csv(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
         index=False)
-    print(dfU)
+    # print(dfU)
 
     print(f"execution time is {time.time() - startTime}")
 
