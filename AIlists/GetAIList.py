@@ -21,12 +21,12 @@ def getAIList(niftySize=300):
     getSupportAIList()
 
     # function for R AI list
-    def getReactionAIList():
+    def getResistanceAIList():
         dfR = uDf.loc[(uDf['srT'] == "R")]
-        setterAIList(dfR, "ReactionAIList")
+        setterAIList(dfR, "ResistanceAIList")
         # print(dfR)
 
-    getReactionAIList()
+    getResistanceAIList()
 
     # function for Buyer Rsi list
     def getBuyerRSIAIList():

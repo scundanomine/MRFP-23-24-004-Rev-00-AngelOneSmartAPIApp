@@ -1,6 +1,5 @@
 from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from logzero import logger
-
 from AngelOneSmartAPIApp.test import getAccessTokenOne
 
 objOneX, accessTokenOneX = getAccessTokenOne("h7mCIfdW", "J52460798", "4235", "4AGGACU2HEUMO2T2UV5YZHNG7M")

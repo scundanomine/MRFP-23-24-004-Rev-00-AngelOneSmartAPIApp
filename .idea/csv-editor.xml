@@ -73,7 +73,42 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\entrytriggeredlist\entrytriggeredstate\BlackListET.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\LiveCandleData.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\106_CUMMINSIND-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\10_KOTAKBANK-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\115_PAGEIND-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\120_PAYTM-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -171,6 +206,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\24_WIPRO-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\258_JSL-EQ.csv">
           <value>
             <Attribute>
@@ -241,7 +283,35 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\35_COALINDIA-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\39_SIEMENS-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\3_HDFCBANK-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\40_SBILIFE-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\44_TECHM-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -255,7 +325,28 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\50_ATGL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\5_HINDUNILVR-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\63_HAVELLS-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\6_INFY-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -276,6 +367,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\85_UPL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\87_ICICIGI-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\99_HEROMOTOCO-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\9_BHARTIARTL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\filters\filter_state\filter.csv">
           <value>
             <Attribute>
@@ -284,6 +403,13 @@
           </value>
         </entry>
         <entry key="\hotmech\HotMechLst.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\orderlist\olstate\OrderList.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

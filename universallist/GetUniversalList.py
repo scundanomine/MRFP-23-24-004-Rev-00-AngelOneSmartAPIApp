@@ -22,7 +22,8 @@ def getUniversalList(niftySize=300):
 
     # creation of df three
     dfThree = pd.DataFrame(
-        columns=['CC', 'V', 'atr', 'atrPer', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'rsi', 'rsi0', 'rsi1', 'rsi2', 'roc0'])
+        columns=['CC1', 'CC2', 'V', 'atr', 'atrPer', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'rsi',
+                 'rsi0', 'rsi1', 'rsi2', 'roc0'])
 
     # define sub function
     def getULData(uid):
@@ -41,6 +42,12 @@ def getUniversalList(niftySize=300):
     # join of three df
     dfm = pd.merge(ndf, dfThree, left_index=True, right_index=True, how='outer')
     dfU = pd.merge(dfm, dcs, left_index=True, right_index=True, how='outer')
+
+    # setting order type and it value can be buy or sell or null
+    dfU['ot'] = ""
+
+    # setting order characteristics and its value depends on the type of entry triggered
+    dfU["oc"] = ""
 
     # save the list
     dfU.to_csv(

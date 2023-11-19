@@ -6,7 +6,7 @@ def condenseGSTData(uid, symbol):
         df = pd.read_csv(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{uid + 1}_{symbol}.csv")
 
-        data = [df['C'][9], df['V'][9], df['atr'][9], df['atrPer'][9],
+        data = [df['C'][8], df['C'][9], df['V'][9], df['atr'][9], df['atrPer'][9],
                 f"{df['g'][9]}, {df['g'][8]}, {df['g'][7]}",
                 f"{df['s'][9]}, {df['s'][8]}, {df['s'][7]}",
                 f"{df['t'][9]}, {df['t'][8]}, {df['t'][7]}",
@@ -22,5 +22,5 @@ def condenseGSTData(uid, symbol):
                 df['roc'][9]]
     except Exception as e:
         print(f"exception while getting the ul is {e}")
-        data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     return data
