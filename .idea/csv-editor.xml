@@ -24,13 +24,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\AIlists\AIstate\ReactionAIList.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\AIlists\AIstate\SellerRSIAIList.csv">
           <value>
             <Attribute>
@@ -424,6 +417,13 @@
           </value>
         </entry>
         <entry key="\traditionalpivotalarm\pivotstate\LiveCandleData.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\universallist\liststate\UniversalList.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

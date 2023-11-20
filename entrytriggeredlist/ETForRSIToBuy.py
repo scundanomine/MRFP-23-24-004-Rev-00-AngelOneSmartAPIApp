@@ -1,15 +1,14 @@
 import time
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.BlackListET import getterBlackListET
-from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
 from orderlist.GetterOrderList import getterOrderList
 
 
-def entryTriggeredForSupportPivot(niftySize=300):
+def entryTriggeredForRSIToBuy(niftySize=300):
     startTime = time.time()
 
     # get current resistance AI list
-    rdf = getterAIList("SupportAIList")
+    rdf = getterAIList("BuyerRSIAIList")
     print(rdf)
 
     # getter ET black list
@@ -28,25 +27,15 @@ def entryTriggeredForSupportPivot(niftySize=300):
         else:
             cOne = row['CC1']
             cTwo = row['CC2']
-            rV = row['srV']
             atr = row['atr']
-            # condition for breakout or sell
-            if cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25*atr and row['rsi'] <= 40:
+            # condition for buy
+            if row['rsi0'] >= 70 and row['rsi0'] >= row['rsi1'] and (cTwo - cOne) >= 0.2*atr and row['roc0'] >= 15:
                 # update the order type and upend the order list
-                row["ot"] = "sell"
-                row['oc'] = "EntryTriggeredDueToSupportPivot"
+                row["ot"] = "buy"
+                row['oc'] = "EntryTriggeredDueToRSIDivergenceForBuy"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
                 bLDf.loc[uid+1, 'bFlag'] = True
-
-            # condition for sell
-            elif cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and checkBullishReversalPattern(row["bulRP"]):
-                # update the order type and upend the order list
-                row["ot"] = "buy"
-                row['oc'] = "EntryTriggeredDueToSupportPivot"
-                oLDf.loc[len(oLDf)] = row
-                # update the black list
-                bLDf.loc[uid + 1, 'bFlag'] = True
 
             # condition for no buy or sale
             else:
@@ -61,4 +50,4 @@ def entryTriggeredForSupportPivot(niftySize=300):
     print(f"execution time is {time.time() - startTime}")
 
 
-entryTriggeredForSupportPivot()
+entryTriggeredForRSIToBuy()

@@ -1,15 +1,15 @@
 import time
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.BlackListET import getterBlackListET
-from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
+from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
 from orderlist.GetterOrderList import getterOrderList
 
 
-def entryTriggeredForSupportPivot(niftySize=300):
+def entryTriggeredForBearishReversalPatternForSell(niftySize=300):
     startTime = time.time()
 
     # get current resistance AI list
-    rdf = getterAIList("SupportAIList")
+    rdf = getterAIList("BearishReversalAIList")
     print(rdf)
 
     # getter ET black list
@@ -28,22 +28,13 @@ def entryTriggeredForSupportPivot(niftySize=300):
         else:
             cOne = row['CC1']
             cTwo = row['CC2']
-            rV = row['srV']
             atr = row['atr']
-            # condition for breakout or sell
-            if cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25*atr and row['rsi'] <= 40:
-                # update the order type and upend the order list
-                row["ot"] = "sell"
-                row['oc'] = "EntryTriggeredDueToSupportPivot"
-                oLDf.loc[len(oLDf)] = row
-                # update the black list
-                bLDf.loc[uid+1, 'bFlag'] = True
 
             # condition for sell
-            elif cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and checkBullishReversalPattern(row["bulRP"]):
+            if (cTwo - cOne) <= -0.25*atr and checkBearishReversalPattern(row["berRP"]):
                 # update the order type and upend the order list
-                row["ot"] = "buy"
-                row['oc'] = "EntryTriggeredDueToSupportPivot"
+                row["ot"] = "sell"
+                row['oc'] = "EntryTriggeredDueToBearishReversalPatternToSell"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
                 bLDf.loc[uid + 1, 'bFlag'] = True
@@ -61,4 +52,4 @@ def entryTriggeredForSupportPivot(niftySize=300):
     print(f"execution time is {time.time() - startTime}")
 
 
-entryTriggeredForSupportPivot()
+entryTriggeredForBearishReversalPatternForSell()
