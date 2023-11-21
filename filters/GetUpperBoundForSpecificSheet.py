@@ -15,7 +15,7 @@ def getUpperBoundForSpecificSheet(sheetName, ect=2):
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
     dt = wb.sheets(sheetName)
     dataList = dt.range(f"a{ect}:a503").value
-    print(dataList)
+    # print(dataList)
     # magic no.
     n = len(dataList)
     mn = math.floor(pow(len(dataList), 0.5))
@@ -41,9 +41,9 @@ def getUpperBoundForSpecificSheet(sheetName, ect=2):
             if result != 0:
                 upperBound = result
                 break
-    # print(f"time of execution is {time.time() - startTime}")
+    print(f"time of execution is {time.time() - startTime}")
 
     return upperBound
 
 
-# print(getUpperBoundForSpecificSheet("nifty500", 5))
+print(getUpperBoundForSpecificSheet("BlackList"))

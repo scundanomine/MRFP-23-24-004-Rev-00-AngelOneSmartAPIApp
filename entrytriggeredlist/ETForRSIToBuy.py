@@ -1,6 +1,6 @@
 import time
 from AIlists.GetterAIList import getterAIList
-from entrytriggeredlist.BlackListET import getterBlackListET
+from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from orderlist.GetterOrderList import getterOrderList
 
 
@@ -19,7 +19,7 @@ def entryTriggeredForRSIToBuy(niftySize=300):
     oLDf = getterOrderList()
     print(oLDf)
 
-    for row in rdf:
+    for index, row in rdf.iterrows():
         uid = row['id']
         # condition of black listed
         if uid in bLDf['id']:

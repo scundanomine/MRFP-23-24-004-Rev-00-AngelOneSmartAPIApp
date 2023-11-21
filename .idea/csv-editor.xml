@@ -402,6 +402,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\neoapi\neoapistate\nse_cm.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\orderlist\olstate\OrderList.csv">
           <value>
             <Attribute>
