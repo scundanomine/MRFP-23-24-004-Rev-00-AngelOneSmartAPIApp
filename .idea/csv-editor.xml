@@ -66,7 +66,28 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\entry\entrystate\BlackListEL.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\entry\entrystate\EntryList.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\entrytriggeredlist\entrytriggeredstate\BlackListET.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\entrytriggeredlist\entrytriggeredstate\EntryTriggeredList.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -403,13 +424,6 @@
           </value>
         </entry>
         <entry key="\neoapi\neoapistate\nse_cm.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\orderlist\olstate\OrderList.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

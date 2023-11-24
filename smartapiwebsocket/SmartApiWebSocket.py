@@ -1,8 +1,14 @@
 from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from logzero import logger
 from AngelOneSmartAPIApp.test import getAccessTokenOne
+from commonudm.GetSymbolAndToken import getSymbolAndToken
+from smartapiwebsocket.InsertTick import insertTick
 from smartapiwebsocket.config import LIVE_FEED_JSON
-import datetime
+import threading
+
+tDf = getSymbolAndToken()
+tDf['token'] = tDf['token'].astype("str")
+tokenLst = tDf['token'].tolist()
 
 objOneX, accessTokenOneX = getAccessTokenOne("h7mCIfdW", "J52460798", "4235", "4AGGACU2HEUMO2T2UV5YZHNG7M")
 
@@ -16,13 +22,7 @@ mode = 2
 token_list = [
     {
         "exchangeType": 1,
-        "tokens": ["2885",
-                   "11536",
-                   "1333",
-                   "4963",
-                   "1394",
-                   "1594",
-                   "1660"]
+        "tokens": tokenLst
     }
 ]
 sws = SmartWebSocketV2(AUTH_TOKEN, API_KEY, CLIENT_CODE, FEED_TOKEN)
@@ -30,10 +30,13 @@ sws = SmartWebSocketV2(AUTH_TOKEN, API_KEY, CLIENT_CODE, FEED_TOKEN)
 
 def on_data(wsapp, message):
     # logger.info("Ticks: {}".format(message))
-    LIVE_FEED_JSON[message['token']] = {'time': datetime.datetime.fromtimestamp(message['exchange_timestamp']/1000).isoformat(), 'token': message['token'],
-                                        'ltp': message['last_traded_price'] / 100,
-                                        'volume': message['volume_trade_for_the_day']}
-    print(LIVE_FEED_JSON)
+    try:
+        # LIVE_FEED_JSON[message['token']] = {'time': datetime.datetime.fromtimestamp(message['exchange_timestamp']/1000).isoformat(), 'token': message['token'], 'ltp': message['last_traded_price'] / 100, 'volume': message['volume_trade_for_the_day']}
+        # print(LIVE_FEED_JSON)
+        insertTick(message)
+    except Exception as e:
+        print(e)
+    # print(LIVE_FEED_JSON)
     # close_connection()
 
 
@@ -60,4 +63,8 @@ sws.on_data = on_data
 sws.on_error = on_error
 sws.on_close = on_close
 
-sws.connect()
+threading.Thread(target=sws.connect).start()
+print("control release")
+print(LIVE_FEED_JSON)
+
+

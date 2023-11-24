@@ -9,22 +9,22 @@ from entrytriggeredlist.ETForTopLoserToSell import entryTriggeredForTopLoserToSe
 from entrytriggeredlist.GetBlackListForET import getBlackListForET
 
 
-def getOrderList():
+def getEntryTriggeredList():
     # get black list for ET
     getBlackListForET()
 
-    # OL due support and resistance
+    # EL due support and resistance
     entryTriggeredForResistancePivot()
     entryTriggeredForSupportPivot()
 
-    # OL due to top gainer and loser
+    # EL due to top gainer and loser
     entryTriggeredForTopGainerToBuy()
     entryTriggeredForTopLoserToSell()
 
-    # OL due RSI
+    # EL due RSI
     entryTriggeredForRSIToBuy()
     entryTriggeredForRSIToSell()
 
-    # OL due to reversal pattern
+    # EL due to reversal pattern
     entryTriggeredForBearishReversalPatternForSell()
     entryTriggeredForBullishReversalPatternForBuy()

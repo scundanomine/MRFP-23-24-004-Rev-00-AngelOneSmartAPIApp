@@ -104,7 +104,7 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
                 time.sleep(timeDiff)
             # dtc.range(f"g{i-6+2}:k{i + 2}").options(pd.DataFrame, index=False, header=False).value = ds[i-6:i]
             ds.to_csv(
-                f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData{ctrA}.csv",
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
                 index=False)
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")

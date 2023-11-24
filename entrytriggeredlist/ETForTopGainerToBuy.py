@@ -1,7 +1,7 @@
 import time
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
-from orderlist.GetterOrderList import getterOrderList
+from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 
 
 def entryTriggeredForTopGainerToBuy(niftySize=300):
@@ -15,14 +15,14 @@ def entryTriggeredForTopGainerToBuy(niftySize=300):
     bLDf = getterBlackListET()
     print(bLDf)
 
-    # getter order list
-    oLDf = getterOrderList()
+    # getter Entry Triggered list
+    oLDf = getterEntryTriggeredList()
     print(oLDf)
 
     for index, row in rdf.iterrows():
         uid = row['id']
         # condition of black listed
-        if uid in bLDf['id']:
+        if bLDf['bFlag'][uid-1]:
             continue
         else:
             cOne = row['CC1']
@@ -44,8 +44,8 @@ def entryTriggeredForTopGainerToBuy(niftySize=300):
     # setter for ET black list
     bLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
 
-    # setter for Order list black list
-    oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\orderlist\\olstate\\OrderList.csv", index=False)
+    # setter for Entry Triggered list
+    oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
 
     print(f"execution time is {time.time() - startTime}")
 
