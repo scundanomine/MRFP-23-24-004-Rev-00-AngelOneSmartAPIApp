@@ -3,6 +3,9 @@ from entry.GetterEntryList import getterEntryList
 from entry.LongPositionCalculator import longPositionCalculator
 from entry.ShortPositionCalculator import shortPositionCalculator
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
+import datetime
+from margin.GetterAvailableMargin import getterAvailableMargin
+from margin.SetterAvailableMargin import setterAvailableMargin
 
 
 def getEntryList():
@@ -17,23 +20,30 @@ def getEntryList():
 
     for index, row in eTDf.iterrows():
         uid = row['id']
+        ltp = row['CC2']
+        atr = row['atr']
+        margin = 5
         if eCBLDf['eCBFlag'][uid-1]:
             continue
         else:
             if row['ot'] == 'buy':
-                q, sl, target = longPositionCalculator(row['CC2'], row['atr'], 500, 1.2, 50000, 5, 1.5)
+                q, sl, target = longPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
             else:
-                q, sl, target = shortPositionCalculator(row['CC2'], row['atr'], 500, 1.2, 50000, 5, 1.5)
-            upList = [uid, row['CC2'], 1.01*row['CC2'], q, sl, target]
-            eTDf.loc[len(eTDf)] = upList
-            eCBLDf['eCBFlag'][uid - 1] = True
-
+                q, sl, target = shortPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
+            # calculation for margin required
+            mr = 1.01*ltp*q/margin
+            maDf = getterAvailableMargin()
+            ma = maDf['margin'][0]
+            if mr <= ma:
+                upList = [uid, ltp, 1.01*ltp, q, sl, target, mr, 'open', 'open', '', datetime.datetime.now()]
+                eLDf.loc[len(eLDf)] = upList
+                eCBLDf['eCBFlag'][uid - 1] = True
+                maDf.loc[0, 'margin'] = ma - mr
+                setterAvailableMargin(maDf)
+            else:
+                pass
     # setter for ET black list
     eCBLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
 
     # setter for Entry Triggered list
-    eTDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
-
-
-
-
+    eLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv", index=False)
