@@ -66,6 +66,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\entry\entrystate\ECBList.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\entry\entrystate\EntryList.csv">
           <value>
             <Attribute>
@@ -424,6 +431,13 @@
           </value>
         </entry>
         <entry key="\neoapi\neoapistate\nse_cm.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\position\positionstate\PositionList.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
