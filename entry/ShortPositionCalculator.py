@@ -6,9 +6,9 @@ def shortPositionCalculator(ltp, atr, mpl=500, rrr=1.2, lot=50000, margin=5, atr
     nOne = mpl / (atrF * atr)
     nTwo = margin * lot / ltp
     if nOne >= nTwo:
-        q = math.floor(nTwo)
+        q = -math.floor(nTwo)
     else:
-        q = math.floor(nOne)
+        q = -math.floor(nOne)
 
     # calculation for sl and target
     sl = ltp + atrF * atr

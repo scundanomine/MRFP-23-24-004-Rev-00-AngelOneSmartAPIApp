@@ -32,7 +32,7 @@ def getEntryList():
             else:
                 q, sl, target = shortPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
             # calculation for margin required
-            mr = 1.01*ltp*q/margin
+            mr = abs(1.01*ltp*q/margin)
             maDf = getterAvailableMargin()
             ma = maDf['margin'][0]
             if mr <= ma:

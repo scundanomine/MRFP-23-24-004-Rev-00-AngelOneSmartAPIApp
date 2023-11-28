@@ -1,9 +1,14 @@
 import time
 from entry.GetterECBList import getterECBList
 from entry.GetterEntryList import getterEntryList
+from entry.SetterECBList import setterECBList
+from entry.SetterEntryList import setterEntryList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
+from entrytriggeredlist.SetterBlackListET import setterBlackListET
+from entrytriggeredlist.SetterEntryTriggeredList import setterEntryTriggeredList
 from position.GetterPositionList import getterPositionList
+from position.SetterPositionList import setterPositionList
 
 
 def getPosition():
@@ -14,7 +19,7 @@ def getPosition():
     eTBDf = getterBlackListET()
 
     # getter Entry list
-    eELDf = getterEntryList()
+    eLDf = getterEntryList()
 
     # getter Entry calculation black list
     eCBDf = getterECBList()
@@ -22,7 +27,7 @@ def getPosition():
     # getter position list
     pLDf = getterPositionList()
 
-    dfItr = eELDf
+    dfItr = eLDf
 
     for index, row in dfItr.iterrows():
         uid = row["id"]
@@ -41,12 +46,12 @@ def getPosition():
                 # upend the list
                 pLDf.iLoc[len(pLDf)] = row
                 # remove specific row from Entry list
-                eELDf.drop(index)
+                eLDf.drop(index)
             elif ltp <= (sl + lo) / 2 or time.time() - refTime >= 600:
                 row['po'] = 'cancel'
                 row['sl'] = 'cancel'
                 # remove specific row from Entry list
-                eELDf.drop(index)
+                eLDf.drop(index)
                 # reset of black list
                 eTBDf.loc[uid-1, "bFlag"] = False
                 eCBDf.loc[uid-1, "bELFlag"] = False
@@ -64,12 +69,12 @@ def getPosition():
                 # upend the list
                 pLDf.iLoc[len(pLDf)] = row
                 # remove specific row from Entry list
-                eELDf.drop(index)
+                eLDf.drop(index)
             elif ltp >= (sl + lo) / 2 or time.time() - refTime >= 600:
                 row['po'] = 'cancel'
                 row['sl'] = 'cancel'
                 # remove specific row from Entry list
-                eELDf.drop(index)
+                eLDf.drop(index)
                 # reset of black list
                 eTBDf.loc[uid-1, "bFlag"] = False
                 eCBDf.loc[uid-1, "bELFlag"] = False
@@ -79,3 +84,16 @@ def getPosition():
                 pass
 
     # setter for eTDf
+    setterEntryTriggeredList(eTDf)
+
+    # setter for eTBDf
+    setterBlackListET(eTBDf)
+
+    # setter for eLDf
+    setterEntryList(eLDf)
+
+    # setter for eCBDf
+    setterECBList(eCBDf)
+
+    # setter for pLDf
+    setterPositionList(pLDf)
