@@ -2,7 +2,6 @@ from AngelOneSmartAPIApp.HistoricDataForOneDay import getHistoricDataForOneDay
 from commonudm.GetReferenceDateConstant import getRefDateConstant
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
-from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
 from traditionalpivotalarm.GetSAndR import getSRData
 from concurrent.futures import ThreadPoolExecutor
 
@@ -82,7 +81,7 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
     # while 300 - (time.time() - startTime) > 0:
     while ctrA < 3:
         ds = pd.read_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv")
+            "/eventloop/eventstate/LiveCandleData.csv")
         ctr = 6
         for i in range(6, r + 6, 6):
             stt = time.time()
@@ -102,15 +101,15 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
             timeDiff = 1 - (time.time() - stt)
             if timeDiff > 0:
                 time.sleep(timeDiff)
-            # dtc.range(f"g{i-6+2}:k{i + 2}").options(pd.DataFrame, index=False, header=False).value = ds[i-6:i]
-            ds.to_csv(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
-                index=False)
+            dtc.range(f"g{i-6+2}:k{i + 2}").options(pd.DataFrame, index=False, header=False).value = ds[i-6:i]
+        ds.to_csv(
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
+            index=False)
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")
         # break
 
 
 # calculation for reference time
-c = getRefDateConstant("30 Oct 2023  09:35:00.000")
+c = getRefDateConstant("30 Nov 2023  09:15:00.000")
 getTestCandlestickData(300, "", "", c)

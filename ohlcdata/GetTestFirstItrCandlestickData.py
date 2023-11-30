@@ -2,7 +2,6 @@ from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from AngelOneSmartAPIApp.HistoricDataForPastTenCandles import *
 from eventloop.CreateGSTDataFile import *
-from eventloop.GetFirstItrCandlesticksProperties import getFirstItrCandlesticksProperties
 from concurrent.futures import ThreadPoolExecutor
 
 # dfc = pd.DataFrame()
