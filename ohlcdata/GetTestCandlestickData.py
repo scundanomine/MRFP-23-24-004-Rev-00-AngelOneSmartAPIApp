@@ -1,7 +1,12 @@
-from AngelOneSmartAPIApp.HistoricDataForOneDay import getHistoricDataForOneDay
+from AngelOneSmartAPIApp.HistoricDataForPastAndFutureCandles import getHistoricDataForPastAndFutureCandles
 from commonudm.GetReferenceDateConstant import getRefDateConstant
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
+from ohlcdata.GetterFDS import getterFDS
+from ohlcdata.GetterPDS import getterPDS
+from ohlcdata.ProcessPastAndFutureCandlesData import processPastAndFutureCandlesData
+from ohlcdata.SetterFDS import setterFDS
+from ohlcdata.SetterPDS import setterPDS
 from traditionalpivotalarm.GetSAndR import getSRData
 from concurrent.futures import ThreadPoolExecutor
 
@@ -53,35 +58,38 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
         global objOneX, objTwoX, dfc, i
         b = dfc["token"][uid]
         a = dfc["symbol"][uid]
-
+        flagZero = False
         if uid < i - 3:
             try:
-                data = getHistoricDataForOneDay(objOneX, c, str(b))[0]
+                data, rfDate = getHistoricDataForPastAndFutureCandles(objOneX, c, str(b))
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForOneDay(objOneX, c, str(b))[0]
+                    data, rfDate = getHistoricDataForPastAndFutureCandles(objOneX, c, str(b))
                 except:
-                    data = {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
+                    rfDate = datetime.datetime.now() - c
+                    flagZero = True
         else:
             try:
-                data = getHistoricDataForOneDay(objTwoX, c, str(b))[0]
+                data, rfDate = getHistoricDataForPastAndFutureCandles(objTwoX, c, str(b))
             except:
                 time.sleep(1)
                 try:
-                    data = getHistoricDataForOneDay(objTwoX, c, str(b))[0]
+                    data, rfDate = getHistoricDataForPastAndFutureCandles(objTwoX, c, str(b))
                 except:
-                    data = {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
-        # dfc.loc[uid, "ltp"] = ltp['data']['ltp']
-        # getAllItrCandlesticksProperties(uid + 1, a, data)
-        return data
+                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
+                    rfDate = datetime.datetime.now() - c
+                    flagZero = True
+        tDf = processPastAndFutureCandlesData(rfDate, flagZero, data)
+        return tDf
 
     # main loop for thread
     ctrA = 0
     # while 300 - (time.time() - startTime) > 0:
     while ctrA < 3:
-        ds = pd.read_csv(
-            "/eventloop/eventstate/LiveCandleData.csv")
+        pds = getterPDS()
+        fds = getterFDS()
         ctr = 6
         for i in range(6, r + 6, 6):
             stt = time.time()
@@ -90,21 +98,15 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
                 results = executor.map(getCandleDataC, ltc)
                 ck = ctr - 6
                 for result in results:
-                    ds.loc[ck, "id"] = ck + 1
-                    ds.loc[ck, "O"] = result[1]
-                    ds.loc[ck, "H"] = result[2]
-                    ds.loc[ck, "L"] = result[3]
-                    ds.loc[ck, "C"] = result[4]
-                    ds.loc[ck, "V"] = result[5]
+                    pds.iloc[ck] = result.iloc[0]
+                    fds.iloc[ck] = result.iloc[1]
                     ck = ck + 1
             ctr = ctr + 6
             timeDiff = 1 - (time.time() - stt)
             if timeDiff > 0:
                 time.sleep(timeDiff)
-            dtc.range(f"g{i-6+2}:k{i + 2}").options(pd.DataFrame, index=False, header=False).value = ds[i-6:i]
-        ds.to_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv",
-            index=False)
+            setterFDS(fds)
+            setterPDS(pds)
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")
         # break

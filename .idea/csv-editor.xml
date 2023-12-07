@@ -437,6 +437,153 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ohlcdata\ohlcstate\futureohlcdatafile\fds.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pastohlcdatafile\pds.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\12_LICI-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\1_RELIANCE-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\22_NESTLEIND-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\250_LAURUSLABS-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\252_AJANTPHARM-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\256_JBCHEPHARM-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\259_IRB-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\272_ISEC-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\279_BLUESTARCO-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\284_NAM-INDIA-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\287_AAVAS-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\292_SUVENPHAR-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\294_RHIM-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\297_AETHER-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\2_TCS-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\300_HAPPSTMNDS-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\33_ADANIGREEN-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\53_HAL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\60_DRREDDY-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\portfolio\portfoliostate\portfolio.csv">
           <value>
             <Attribute>

@@ -52,13 +52,3 @@ def getFirstItrCandlesticksProperties(sid, symbol):
         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv",
         index=False)
 
-    # print(gdf)
-    # print(atr)
-    # print(atrPer)
-    # print(f"The execution time is {time.time() - startTime}")
-
-
-# for i in range(1):
-#     getFirstItrCandlesticksProperties(1, "RELIANCE-EQ",
-#                               {0: "2023-10-20T09:25:00+05:30", 1: 23010.65, 2: 2312.25, 3: 2309.75, 4: 2311.95,
-#                                5: 25800})

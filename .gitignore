@@ -8,6 +8,7 @@ __pycache__/
 AngelOneSmartAPIApp/login_credentials.txt
 used/
 neoapistate/
+pasttenohlcdatafiles/
 # Distribution / packaging
 .Python
 AngelOneSmartAPIApp/AccessToken
