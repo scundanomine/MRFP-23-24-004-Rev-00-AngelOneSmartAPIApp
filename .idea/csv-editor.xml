@@ -59,7 +59,35 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\commonudm\resource\ExitTime.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\commonudm\resource\NiftyDetailedListWithPivots.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\commonudm\resource\RefTime.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\commonudm\resource\SymbolAndToken.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\commonudm\resource\TimeDelta.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -101,6 +129,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\100_INDHOTEL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\106_CUMMINSIND-EQ.csv">
           <value>
             <Attribute>
@@ -115,7 +150,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\111_YESBANK-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\115_PAGEIND-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\119_NHPC-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -150,6 +199,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\164_LUPIN-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\17_MARUTI-EQ.csv">
           <value>
             <Attribute>
@@ -165,6 +221,13 @@
           </value>
         </entry>
         <entry key="\eventloop\eventstate\candlewisedata\208_SKFINDIA-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\20_DMART-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -297,6 +360,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\30_M&amp;M-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\35_COALINDIA-EQ.csv">
           <value>
             <Attribute>
@@ -367,6 +437,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\72_SBICARD-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\7_ITC-EQ.csv">
           <value>
             <Attribute>
@@ -409,6 +486,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\dummyDf.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\filters\filter_state\filter.csv">
           <value>
             <Attribute>
@@ -431,6 +515,13 @@
           </value>
         </entry>
         <entry key="\neoapi\neoapistate\nse_cm.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\niftytokens_cap_and_filters\ind_nifty500list.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

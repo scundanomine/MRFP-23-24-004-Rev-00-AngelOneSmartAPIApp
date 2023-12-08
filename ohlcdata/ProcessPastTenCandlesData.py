@@ -1,8 +1,6 @@
 import pandas as pd
 import datetime
 
-from commonudm.GetReferenceDateConstant import getRefDateConstant
-
 
 def processPastTenCandlesData(uid, a, rfTime, flagZero, df=pd.DataFrame(columns=list(range(6)), index=list(range(10)))):
     if len(df) == 10 and flagZero is False:

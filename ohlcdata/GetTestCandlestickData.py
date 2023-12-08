@@ -1,5 +1,6 @@
 from AngelOneSmartAPIApp.HistoricDataForPastAndFutureCandles import getHistoricDataForPastAndFutureCandles
-from commonudm.GetReferenceDateConstant import getRefDateConstant
+from commonudm.GetterExitTime import getterExitTime
+from commonudm.GetterTimeDelta import getterTimeDelta
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from ohlcdata.GetterFDS import getterFDS
@@ -7,32 +8,12 @@ from ohlcdata.GetterPDS import getterPDS
 from ohlcdata.ProcessPastAndFutureCandlesData import processPastAndFutureCandlesData
 from ohlcdata.SetterFDS import setterFDS
 from ohlcdata.SetterPDS import setterPDS
-from traditionalpivotalarm.GetSAndR import getSRData
 from concurrent.futures import ThreadPoolExecutor
 
-dfc = pd.DataFrame()
-m = 500
-p = 60
-i = 0
-objOneX = []
-objTwoX = []
-exchange = "NSE"
-stt = 0
 
-
-def getTestCandlestickData(r, fileName, lock="", c=""):
+def getTestCandlestickData(r=300, lock=""):
     startTime = time.time()
-    global objOneX, objTwoX, dfc, p, i, stt
     dfc = getSymbolAndToken()
-    # sr data
-    srVar = getSRData()
-
-    # data instance for excel
-    wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
-
-    # getting big dataframe
-    dtc = wb.sheets("Sheet3")
 
     # creating session one
     while True:
@@ -55,9 +36,7 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
             time.sleep(1)
 
     def getCandleDataC(uid):
-        global objOneX, objTwoX, dfc, i
         b = dfc["token"][uid]
-        a = dfc["symbol"][uid]
         flagZero = False
         if uid < i - 3:
             try:
@@ -87,7 +66,10 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
     # main loop for thread
     ctrA = 0
     # while 300 - (time.time() - startTime) > 0:
-    while ctrA < 3:
+    cv = getterTimeDelta()
+    exitTime = getterExitTime()
+    while datetime.datetime.now() - cv < exitTime:
+        c = getterTimeDelta()
         pds = getterPDS()
         fds = getterFDS()
         ctr = 6
@@ -109,9 +91,6 @@ def getTestCandlestickData(r, fileName, lock="", c=""):
             setterPDS(pds)
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")
-        # break
 
 
-# calculation for reference time
-c = getRefDateConstant("30 Nov 2023  09:15:00.000")
-getTestCandlestickData(300, "", "", c)
+# getTestCandlestickData(300, "")

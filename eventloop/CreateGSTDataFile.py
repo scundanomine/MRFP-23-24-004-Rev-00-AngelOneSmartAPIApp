@@ -1,19 +1,15 @@
 import pandas as pd
 import time
 
+from ohlcdata.GetterPastTenCandleDF import getterPastTenCandleDf
 
-def createGSTDataFile(sid, symbol, data):
+
+def createGSTDataFile(sid, symbol):
     # get df
-    sdf = pd.DataFrame(data)
-
-    # making entry for missing rows
-    if len(sdf) < 10:
-        k = ["", 0, 0, 0, 0, 0]
-        for i in range(10 - len(sdf)):
-            sdf.loc[len(sdf.index)] = k
+    sdf = getterPastTenCandleDf(sid, symbol)
 
     # rename ohlc
-    sdf.rename(columns={0: "time", 1: "O", 2: "H", 3: "L", 4: "C", 5: "V"}, inplace=True)
+    sdf.rename(columns={'0': "time", '1': "O", '2': "H", '3': "L", '4': "C", '5': "V"}, inplace=True)
 
     # add required columns
     new_cols = ['atr', 'atrPer', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'um', 'dm', 'rsi']
@@ -23,7 +19,7 @@ def createGSTDataFile(sid, symbol, data):
     sdf["bulRP"] = "none"
     sdf["berRP"] = "none"
     sdf["roc"] = 0
-    sdf["rsi"] = 0
+    sdf["rsi"] = 50
     sdf["um"] = 0
     sdf["dm"] = 0
 

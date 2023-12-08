@@ -1,6 +1,4 @@
-import pandas as pd
-
-from commonudm.GetReferenceDateConstant import getRefDateConstant
+from commonudm.GetterTimeDelta import getterTimeDelta
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from AngelOneSmartAPIApp.HistoricDataForPastTenCandles import *
@@ -11,10 +9,10 @@ import datetime
 from ohlcdata.ProcessPastTenCandlesData import processPastTenCandlesData
 
 
-def getFirstItrCandlestickData(r, fileName, lock="", c=""):
+def getTestFirstItrCandlestickData(r, lock=""):
     startTime = time.time()
     dfc = getSymbolAndToken()
-
+    c = getterTimeDelta()
     # creating session one
     while True:
         try:
@@ -88,5 +86,5 @@ def getFirstItrCandlestickData(r, fileName, lock="", c=""):
     print(f"The execution time is {time.time() - startTime}")
 
 
-c = getRefDateConstant("30 Oct 2023  09:35:00.000")
-getFirstItrCandlestickData(300, "", "", c)
+# c = getRefDateConstant("30 Oct 2023  09:35:00.000")
+# getTestFirstItrCandlestickData(300, "", "", c)

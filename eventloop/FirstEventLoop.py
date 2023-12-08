@@ -1,4 +1,4 @@
-from commonudm.GetReferenceDateConstant import getRefDateConstant
+from commonudm.SetterReferenceDateConstant import getRefDateConstant
 from eventloop.GetAllItrCandlestickData import getAllItrCandlestickData
 from eventloop.GetFirstItrCandlestickData import getFirstItrCandlestickData
 import datetime
