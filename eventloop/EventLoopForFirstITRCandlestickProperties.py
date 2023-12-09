@@ -1,18 +1,13 @@
-from commonudm.GetSymbolAndToken import getSymbolAndToken
+from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTokenList
 from eventloop.CreateGSTDataFile import createGSTDataFile
 import time
 from eventloop.GetFirstItrCandlesticksProperties import getFirstItrCandlesticksProperties
 
 
-def eventLoopForFirstITRCandlestickProperties(n=300):
+def eventLoopForFirstITRCandlestickProperties():
     startTime = time.time()
     # get the id and symbol df
-    gDf = getSymbolAndToken()
-    # delete all row except n and column except few
-    dfSize = len(gDf)
-    gDf = gDf.drop(labels=range(n, dfSize), axis=0)
-    gDf = gDf.loc[:, ['id', 'symbol']]
-    # print(gDf)
+    gDf = getterRequiredSymbolAndTokenList()
 
     # iterate gDf
     for index, row in gDf.iterrows():

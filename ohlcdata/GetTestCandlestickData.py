@@ -1,7 +1,7 @@
 from AngelOneSmartAPIApp.HistoricDataForPastAndFutureCandles import getHistoricDataForPastAndFutureCandles
+from commonudm.GetSymbolAndToken import getSymbolAndToken
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
-from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from ohlcdata.GetterFDS import getterFDS
 from ohlcdata.GetterPDS import getterPDS
@@ -9,11 +9,11 @@ from ohlcdata.ProcessPastAndFutureCandlesData import processPastAndFutureCandles
 from ohlcdata.SetterFDS import setterFDS
 from ohlcdata.SetterPDS import setterPDS
 from concurrent.futures import ThreadPoolExecutor
+import multiprocessing
 
 
-def getTestCandlestickData(r=300, lock=""):
+def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
     startTime = time.time()
-    dfc = getSymbolAndToken()
 
     # creating session one
     while True:
@@ -65,13 +65,17 @@ def getTestCandlestickData(r=300, lock=""):
 
     # main loop for thread
     ctrA = 0
-    # while 300 - (time.time() - startTime) > 0:
+    lock.acquire()
     cv = getterTimeDelta()
     exitTime = getterExitTime()
+    lock.release()
     while datetime.datetime.now() - cv < exitTime:
+        lock.acquire()
+        dfc = getSymbolAndToken()
         c = getterTimeDelta()
         pds = getterPDS()
         fds = getterFDS()
+        lock.release()
         ctr = 6
         for i in range(6, r + 6, 6):
             stt = time.time()
@@ -87,8 +91,10 @@ def getTestCandlestickData(r=300, lock=""):
             timeDiff = 1 - (time.time() - stt)
             if timeDiff > 0:
                 time.sleep(timeDiff)
+            lock.acquire()
             setterFDS(fds)
             setterPDS(pds)
+            lock.release()
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")
 

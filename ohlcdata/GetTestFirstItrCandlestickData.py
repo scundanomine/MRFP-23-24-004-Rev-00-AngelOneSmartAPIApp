@@ -1,5 +1,5 @@
+from commonudm.GetSymbolAndToken import getSymbolAndToken
 from commonudm.GetterTimeDelta import getterTimeDelta
-from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from AngelOneSmartAPIApp.HistoricDataForPastTenCandles import *
 from eventloop.CreateGSTDataFile import *
@@ -9,7 +9,8 @@ import datetime
 from ohlcdata.ProcessPastTenCandlesData import processPastTenCandlesData
 
 
-def getTestFirstItrCandlestickData(r, lock=""):
+def getTestFirstItrCandlestickData(r):
+    print("Process for past 10 candles data started")
     startTime = time.time()
     dfc = getSymbolAndToken()
     c = getterTimeDelta()
@@ -87,4 +88,4 @@ def getTestFirstItrCandlestickData(r, lock=""):
 
 
 # c = getRefDateConstant("30 Oct 2023  09:35:00.000")
-# getTestFirstItrCandlestickData(300, "", "", c)
+# getTestFirstItrCandlestickData(60)

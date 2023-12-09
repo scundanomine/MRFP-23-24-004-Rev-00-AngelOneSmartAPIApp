@@ -72,9 +72,6 @@ def checkTraditionalPivotAlarms(niftySize=300):
     print(f"execution time is {time.time() - startTime}")
 
 
-for k in range(1):
-    checkTraditionalPivotAlarms()
-# k = 0
-# while k < 60:
-#     getPreviousDataForPivotAlarm()
-#     k = k + 1
+# for k in range(1):
+    # checkTraditionalPivotAlarms()
+

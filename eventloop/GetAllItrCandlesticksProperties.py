@@ -7,13 +7,14 @@ from candlestickvolume.GetAllItrVolumeCandleSize import getAllItrVolumeCandleSiz
 from eventloop.QueueOperation import *
 from indicators.GetAllItrRSIValue import getAllItrRSIValue
 from indicators.GetROCInPTM import getROCInPTM
+import multiprocessing
 
 
-def getAllItrCandlesticksProperties(sid, symbol, data):
+def getAllItrCandlesticksProperties(sid, symbol, data, lock=multiprocessing.Lock()):
     # startTime = time.time()
 
     # get df (getter function)
-    gdf = queueOperation(sid, symbol, data)
+    gdf = queueOperation(sid, symbol, data, lock)
 
     # atr calculation
     atr, atrPer = calculationAllItrForATR(gdf)
@@ -46,17 +47,9 @@ def getAllItrCandlesticksProperties(sid, symbol, data):
     gdf = getAllItrBearishReversalCandlestickPattern(gdf)
 
     # setter function
+    lock.acquire()
     gdf.to_csv(
         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv",
         index=False)
+    lock.release()
 
-    # print(gdf)
-    # print(atr)
-    # print(atrPer)
-    # print(f"The execution time is {time.time() - startTime}")
-
-
-# for i in range(1):
-#     getAllItrCandlesticksProperties(1, "RELIANCE-EQ",
-#                               {0: "2023-10-20T09:25:00+05:30", 1: 23010.65, 2: 2312.25, 3: 2309.75, 4: 2311.95,
-#                                5: 25800})

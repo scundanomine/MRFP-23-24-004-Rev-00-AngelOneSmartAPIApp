@@ -1,37 +1,48 @@
+import datetime
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
-from commonudm.GetSymbolAndToken import getSymbolAndToken
 import time
+from commonudm.GetterExitTime import getterExitTime
+from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTokenList
+from commonudm.GetterTimeDelta import getterTimeDelta
 from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
 from ohlcdata.GetterPDS import getterPDS
+import multiprocessing
 
 
-def eventLoopForAllITRCandlestickProperties(n=300):
+def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock()):
     startTime = time.time()
-    # get the id and symbol df
-    gDf = getSymbolAndToken()
-    # delete all row except n and column except few
-    dfSize = len(gDf)
-    gDf = gDf.drop(labels=range(n, dfSize), axis=0)
-    gDf = gDf.loc[:, ['id', 'symbol']]
-    # print(gDf)
-    # getter past candle data
-    pDs = getterPDS()
-    lPDs = pDs.values.tolist()
+    ctrA = 0
+    lock.acquire()
+    cv = getterTimeDelta()
+    exitTime = getterExitTime()
+    lock.release()
+    while datetime.datetime.now() - cv < exitTime:
+        # get the id and symbol df
+        lock.acquire()
+        gDf = getterRequiredSymbolAndTokenList()
 
-    # iterate gDf
-    for index, row in gDf.iterrows():
-        uid = row['id']
-        symbol = row['symbol']
-        psTime = getterSpecificCandleData(uid, symbol).loc[9, 'time']
-        data = lPDs[uid-1]
-        fsTime = data[0]
-        if psTime == fsTime:
-            continue
-        else:
-            # calculation for candle properties
-            getAllItrCandlesticksProperties(uid, symbol, data)
+        # getter past candle data
+        pDs = getterPDS()
+        lock.release()
+        lPDs = pDs.values.tolist()
 
-    # print(f"the of execution is {time.time() - startTime}")
+        # iterate gDf
+        for index, row in gDf.iterrows():
+            uid = row['id']
+            symbol = row['symbol']
+            lock.acquire()
+            psTime = getterSpecificCandleData(uid, symbol).loc[9, 'time']
+            lock.release()
+            data = lPDs[uid - 1]
+            fsTime = data[0]
+            if psTime == fsTime:
+                continue
+            else:
+                # calculation for candle properties
+                getAllItrCandlesticksProperties(uid, symbol, data, lock)
+        ctrA = ctrA + 1
+        print(f"{ctrA} execution time for All Itr candle properties is {time.time() - startTime}")
+        time.sleep(5)
 
 
 # eventLoopForAllITRCandlestickProperties()

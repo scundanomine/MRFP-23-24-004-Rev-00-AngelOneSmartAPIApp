@@ -1,11 +1,12 @@
 import pandas as pd
 
 
-def queueOperation(sid, symbol, data):
+def queueOperation(sid, symbol, data, lock):
     # get df (getter function)
+    lock.acquire()
     gdf = pd.read_csv(
         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv")
-
+    lock.release()
     # queue operation
     gdf.drop(0, axis=0, inplace=True)
     gdf.index = list(range(9))
