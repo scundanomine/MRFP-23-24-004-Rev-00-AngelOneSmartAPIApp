@@ -13,8 +13,11 @@ def processPastAndFutureCandlesData(rfTime, flagZero, data):
         for i in range(2):
             newDateF = rfTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
             dfOne.loc[i, 0] = newDateF
-            if len(df.loc[(df[0] == newDateF)]) != 0:
-                dfOne.iloc[i] = df.loc[(df[0] == newDateF)]
-            rfTime = rfTime + delta
+            try:
+                if len(df.loc[(df[0] == newDateF)]) != 0:
+                    dfOne.iloc[i] = df.loc[(df[0] == newDateF)]
+                rfTime = rfTime + delta
+            except Exception as e:
+                print(f"Exception while processPastAndFutureCandlesData is {e}")
         return dfOne
 

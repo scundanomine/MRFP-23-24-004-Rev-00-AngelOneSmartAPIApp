@@ -2,7 +2,7 @@ import time
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 from commonudm.GetSymbolAndToken import getSymbolAndToken
-from traditionalpivotalarm.GetSAndR import getSRData
+from traditionalpivotalarm.SetterSRData import getSRData
 from traditionalpivotalarm.TraditionalPivotAlarm import traditionalPivotAlarm
 
 

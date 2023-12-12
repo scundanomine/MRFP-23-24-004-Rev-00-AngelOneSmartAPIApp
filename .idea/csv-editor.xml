@@ -1039,6 +1039,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\traditionalpivotalarm\pivotstate\SRData.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\universallist\liststate\UniversalList.csv">
           <value>
             <Attribute>

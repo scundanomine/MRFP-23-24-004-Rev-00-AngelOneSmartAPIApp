@@ -2,7 +2,7 @@ from AngelOneSmartAPIApp.HistoricDataForOneDay import getHistoricDataForOneDay
 from commonudm.GetSymbolAndToken import *
 from AngelOneSmartAPIApp.test import *
 from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
-from traditionalpivotalarm.GetSAndR import getSRData
+from traditionalpivotalarm.SetterSRData import getSRData
 from concurrent.futures import ThreadPoolExecutor
 
 dfc = pd.DataFrame()

@@ -3,8 +3,7 @@ import time
 from traditionalpivotalarm.getGainOrLoss import getGainOrLoss
 
 
-def traditionalPivotAlarm(srVar, dsVar, ltpC):
-    # start_time = time.time()
+def traditionalPivotAlarm(srVar, dsVar, ltpC, tradedTime):
 
     # calculation for Gain or loss
     gl = getGainOrLoss(ltpC, srVar[1])
@@ -31,6 +30,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
     srType = dsVar["srT"]
     srValue = dsVar["srV"]
     nSR = dsVar["nSR"]
+    prevTime = tradedTime
 
     # condition for alarm timer and ltp data
     if alarmTimer > 0:
@@ -144,4 +144,4 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC):
                 nSR = 0
                 break
 
-    return alarmTimer, refT, srType, srValue, nSR, gl
+    return prevTime, alarmTimer, refT, srType, srValue, nSR, gl

@@ -69,7 +69,8 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
     cv = getterTimeDelta()
     exitTime = getterExitTime()
     lock.release()
-    while datetime.datetime.now() - cv < exitTime:
+    # while datetime.datetime.now() - cv < exitTime:
+    while ctrA < 1:
         lock.acquire()
         dfc = getSymbolAndToken()
         c = getterTimeDelta()
@@ -99,4 +100,4 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
         print(f"{ctrA} execution time is {time.time() - startTime}")
 
 
-# getTestCandlestickData(300, "")
+getTestCandlestickData(60)

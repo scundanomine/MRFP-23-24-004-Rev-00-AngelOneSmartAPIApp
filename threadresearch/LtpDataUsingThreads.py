@@ -1,4 +1,4 @@
-from traditionalpivotalarm.GetSAndR import *
+from traditionalpivotalarm.SetterSRData import *
 from AngelOneSmartAPIApp.test import *
 
 obj = []

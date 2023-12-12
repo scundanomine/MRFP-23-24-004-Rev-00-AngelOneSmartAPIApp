@@ -1,6 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from AngelOneSmartAPIApp.GetLiveData import *
-from AngelOneSmartAPIApp.HistoricDataForOneDay import *
+from AngelOneSmartAPIApp.HistoricDataForOneDayForTraditionalPivot import historicDataForOneDayForTraditionalPivot
 from commonudm.SetNiftyDetailedListWithPivots import setNiftyDetailedListWithPivot
 
 df = pd.DataFrame()
@@ -42,7 +42,7 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, refDate, obj
             return
         else:
             # get past data
-            data = getHistoricDataForOneDay(obj, refDate, str(df["token"][r]))[0]
+            data = historicDataForOneDayForTraditionalPivot(obj, refDate, str(df["token"][r]))[0]
             # print(data)
             # df.loc[r, "ltp"] = data["ltp"]
             opn = data[1]
@@ -91,4 +91,4 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, refDate, obj
     print(f"execution time is {time.time() - startTime}")
 
 
-# getTraditionalPivotsForSpecificNiftyFile("nifty500", "502", "2023-10-30")
+getTraditionalPivotsForSpecificNiftyFile("nifty500", "502", "2023-12-06")

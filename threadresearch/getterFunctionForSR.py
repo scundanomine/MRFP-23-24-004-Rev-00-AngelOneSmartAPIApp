@@ -1,4 +1,4 @@
-from traditionalpivotalarm.GetSAndR import getSRData
+from traditionalpivotalarm.SetterSRData import getSRData
 
 kdf = getSRData()
 

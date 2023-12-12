@@ -11,8 +11,10 @@ from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirs
 from ohlcdata.GetTestCandlestickData import getTestCandlestickData
 from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
 import time
-
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
+from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import checkTraditionalPivotAlarmsWithoutThreading
+from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
+from traditionalpivotalarm.SetterSRData import setterSRData
 
 
 # function for PivotAlarm
@@ -27,8 +29,11 @@ def candlesPropertiesAllITREvent(lock):
     # getAccessTokenWithThread(200, "ltpTwo.csv", lock)
 
 
-def ltpDataEventThree(lock):
+def pivotAlarmEvent(lock):
     print("Multiprocess three has been started")
+    setterSRData()
+    setterPrePivotData()
+    checkTraditionalPivotAlarmsWithoutThreading(lock)
     # getLtpFromThread(objE)
     # getAccessTokenWithThread(300, "ltpThree.csv", lock)
 
@@ -77,11 +82,16 @@ def eventLoop():
         # starting second process of getting present candles data property
         pTwo = multiprocessing.Process(target=candlesPropertiesAllITREvent, args=[lock])
 
+        # starting Third process of getting pivot alarm
+        pThree = multiprocessing.Process(target=pivotAlarmEvent, args=[lock])
+
         pOne.start()
         pTwo.start()
+        pThree.start()
 
         pOne.join()
         pTwo.join()
+        pThree.join()
 
         print("Multiprocess have been finished")
         print(f"execution time is {time.time() - startTime}")

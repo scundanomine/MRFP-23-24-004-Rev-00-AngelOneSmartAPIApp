@@ -1,14 +1,15 @@
 import pandas as pd
 import xlwings as xw
+from commonudm.GetterStockQtn import getterStockQtn
 
 
-def getSRData():
+def setterSRData():
     # getting data from the sheet
     wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
     dt = wb.sheets("nifty500")
-
+    n = getterStockQtn()
     # creating the df
-    varSR = pd.DataFrame(dt.range("a1:u501").value)
+    varSR = pd.DataFrame(dt.range(f"a1:u{n+1}").value)
     varSR.columns = varSR.iloc[0]
     varSR = varSR[1:]
     # above means it will only take columns from 1 to m
@@ -25,13 +26,12 @@ def getSRData():
     varSR.insert(14, "bigM", 200000)
 
     varSR["id"] = varSR["id"].astype("int64")
-    # varSR["token"] = varSR["token"].astype("int64")
-    # varSR = varSR.drop(columns=['symbol', 'token'])
 
     # rename the column
     varSR.columns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    varSR.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\SRData.csv", index=False)
 
     return varSR
 
 
-# print(getSRData())
+# print(setterSRData())
