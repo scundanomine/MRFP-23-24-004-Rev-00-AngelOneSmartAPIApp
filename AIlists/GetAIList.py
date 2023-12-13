@@ -1,7 +1,4 @@
-import pandas as pd
-import threading
 import time
-import xlwings as xw
 from AIlists.SetterAIList import setterAIList
 from universallist.GetterUniversalList import getterUniversalList
 
