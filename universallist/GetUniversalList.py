@@ -1,7 +1,7 @@
 import time
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
-from commonudm.GetNiftyDetailedListWithPivots import getNiftyDetailedListWithPivots
+from commonudm.GetterNiftyDetailedListWithPivots import getNiftyDetailedListWithPivots
 from universallist.CondenseGSTData import condenseGSTData
 
 

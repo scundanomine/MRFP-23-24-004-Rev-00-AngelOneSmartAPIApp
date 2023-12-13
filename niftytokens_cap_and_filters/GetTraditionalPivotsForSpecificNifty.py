@@ -1,7 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from AngelOneSmartAPIApp.GetLiveData import *
 from AngelOneSmartAPIApp.HistoricDataForOneDayForTraditionalPivot import historicDataForOneDayForTraditionalPivot
-from commonudm.SetNiftyDetailedListWithPivots import setNiftyDetailedListWithPivot
+from commonudm.SetterNiftyDetailedListWithPivots import setNiftyDetailedListWithPivot
 
 df = pd.DataFrame()
 n = 0

@@ -4,6 +4,7 @@ from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterPreStockQtn import getterPreStockQtn
 from commonudm.GetterPreTimeDelta import getterPreTimeDelta
 from commonudm.GetterStockQtn import getterStockQtn
+from commonudm.SetterNiftyDetailedListWithPivots import setterNiftyDetailedListWithPivot
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
 from commonudm.SetterRequiredSymbolAndTokenList import setterRequiredSymbolAndTokenList
 from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITRCandlestickProperties
@@ -15,6 +16,8 @@ from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import checkTraditionalPivotAlarmsWithoutThreading
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
 from traditionalpivotalarm.SetterSRData import setterSRData
+from universallist.GetUniversalListWithoutThreading import getUniversalListWithoutThreading
+from universallist.SetterDfThree import setterDfThree
 
 
 # function for PivotAlarm
@@ -34,14 +37,13 @@ def pivotAlarmEvent(lock):
     setterSRData()
     setterPrePivotData()
     checkTraditionalPivotAlarmsWithoutThreading(lock)
-    # getLtpFromThread(objE)
-    # getAccessTokenWithThread(300, "ltpThree.csv", lock)
 
 
-def readRecordEventFour(lock):
+def universalListEvent(lock):
     print("Multiprocess four has been started")
-    # getLtpFromThread(objE)
-    # getAccessTokenWithThread(400, "ltpFour.csv", lock)
+    setterDfThree()
+    setterNiftyDetailedListWithPivot()
+    getUniversalListWithoutThreading(lock)
 
 
 def readRecordEventFive(lock):
@@ -85,13 +87,18 @@ def eventLoop():
         # starting Third process of getting pivot alarm
         pThree = multiprocessing.Process(target=pivotAlarmEvent, args=[lock])
 
+        # starting Fourth process of getting Universal list
+        pFour = multiprocessing.Process(target=universalListEvent, args=[lock])
+
         pOne.start()
         pTwo.start()
         pThree.start()
+        pFour.start()
 
         pOne.join()
         pTwo.join()
         pThree.join()
+        pFour.join()
 
         print("Multiprocess have been finished")
         print(f"execution time is {time.time() - startTime}")

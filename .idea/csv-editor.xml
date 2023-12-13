@@ -1046,6 +1046,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\universallist\liststate\DfThree.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\universallist\liststate\UniversalList.csv">
           <value>
             <Attribute>
