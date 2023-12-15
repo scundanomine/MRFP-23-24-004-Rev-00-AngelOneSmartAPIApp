@@ -5,20 +5,20 @@ from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalP
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 
 
-def entryTriggeredForSupportPivot(niftySize=300):
+def entryTriggeredForSupportPivot(lock):
     startTime = time.time()
 
     # get current resistance AI list
-    rdf = getterAIList("SupportAIList")
-    print(rdf)
+    rdf = getterAIList("SupportAIList", lock)
+    # print(rdf)
 
     # getter ET black list
-    bLDf = getterBlackListET()
-    print(bLDf)
+    bLDf = getterBlackListET(lock)
+    # print(bLDf)
 
     # getter Entry Triggered list
-    oLDf = getterEntryTriggeredList()
-    print(oLDf)
+    oLDf = getterEntryTriggeredList(lock)
+    # print(oLDf)
 
     for index, row in rdf.iterrows():
         uid = row['id']
@@ -39,7 +39,7 @@ def entryTriggeredForSupportPivot(niftySize=300):
                 # update the black list
                 bLDf.loc[uid+1, 'bFlag'] = True
 
-            # condition for sell
+            # condition for buy
             elif cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and checkBullishReversalPattern(row["bulRP"]):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
@@ -53,12 +53,13 @@ def entryTriggeredForSupportPivot(niftySize=300):
                 pass
 
     # setter for ET black list
+    lock.acquire()
     bLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
 
     # setter for Entry Triggered list
     oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
-
+    lock.release()
     print(f"execution time is {time.time() - startTime}")
 
 
-entryTriggeredForSupportPivot()
+# entryTriggeredForSupportPivot()

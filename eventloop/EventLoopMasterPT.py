@@ -9,12 +9,17 @@ from commonudm.GetterStockQtn import getterStockQtn
 from commonudm.SetterNiftyDetailedListWithPivots import setterNiftyDetailedListWithPivot
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
 from commonudm.SetterRequiredSymbolAndTokenList import setterRequiredSymbolAndTokenList
+from entry.GetEntryList import getEntryList
+from entrytriggeredlist.GetEntryTriggeredList import getEntryTriggeredList
+from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
 from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITRCandlestickProperties
 from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirstITRCandlestickProperties
+from exit.TakeExit import takeExit
 from ohlcdata.GetTestCandlestickData import getTestCandlestickData
 from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
 import time
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
+from position.GetPosition import getPosition
 from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
     checkTraditionalPivotAlarmsWithoutThreading
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
@@ -56,22 +61,22 @@ def aIListEvent(lock):
 
 def eTListEvent(lock):
     print("Multiprocess six has been started")
-    getAIListWithoutUdf(lock)
+    getEntryTriggeredList(lock)
 
 
 def eLListEvent(lock):
     print("Multiprocess seven has been started")
-    getAIListWithoutUdf(lock)
+    getEntryList(lock)
 
 
 def positionListEvent(lock):
     print("Multiprocess eight has been started")
-    getAIListWithoutUdf(lock)
+    getPosition(lock)
 
 
 def exitEvent(lock):
     print("Multiprocess nine has been started")
-    getAIListWithoutUdf(lock)
+    takeExit(lock)
 
 
 def rREvent(lock):
@@ -103,6 +108,9 @@ def eventLoop():
 
         setterInitialPdsAndFds()
 
+        # setter prerequisite black list for et
+        getterPreBlackListForET()
+
         lock = multiprocessing.Lock()
 
         # starting first process of getting current and future candle data
@@ -120,18 +128,18 @@ def eventLoop():
         # starting Fifth process of getting AI list
         pFive = multiprocessing.Process(target=aIListEvent, args=[lock])
 
-        # # starting sixth process of getting Entry triggered list
-        # pSix = multiprocessing.Process(target=eTListEvent, args=[n, lock])
-        #
-        # # starting seventh process of getting entry list
-        # pSeven = multiprocessing.Process(target=eLListEvent, args=[lock])
-        #
-        # # starting eighth process of getting position
-        # pEight = multiprocessing.Process(target=positionListEvent, args=[lock])
-        #
-        # # starting ninth process of getting Exit
-        # pNine = multiprocessing.Process(target=exitEvent, args=[lock])
-        #
+        # starting sixth process of getting Entry triggered list
+        pSix = multiprocessing.Process(target=eTListEvent, args=[n, lock])
+
+        # starting seventh process of getting entry list
+        pSeven = multiprocessing.Process(target=eLListEvent, args=[lock])
+
+        # starting eighth process of getting position
+        pEight = multiprocessing.Process(target=positionListEvent, args=[lock])
+
+        # starting ninth process of getting Exit
+        pNine = multiprocessing.Process(target=exitEvent, args=[lock])
+
         # # starting tenth process of getting RR
         # pTen = multiprocessing.Process(target=rREvent, args=[lock])
 
@@ -140,10 +148,10 @@ def eventLoop():
         pThree.start()
         pFour.start()
         pFive.start()
-        # pSix.start()
-        # pSeven.start()
-        # pEight.start()
-        # pNine.start()
+        pSix.start()
+        pSeven.start()
+        pEight.start()
+        pNine.start()
         # pTen.start()
 
         pOne.join()
@@ -151,10 +159,10 @@ def eventLoop():
         pThree.join()
         pFour.join()
         pFive.join()
-        # pSix.join()
-        # pSeven.join()
-        # pEight.join()
-        # pNine.join()
+        pSix.join()
+        pSeven.join()
+        pEight.join()
+        pNine.join()
         # pTen.join()
 
         print("Multiprocess have been finished")

@@ -5,20 +5,20 @@ from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalP
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 
 
-def entryTriggeredForResistancePivot(niftySize=300):
+def entryTriggeredForResistancePivot(lock):
     startTime = time.time()
 
     # get current resistance AI list
-    rdf = getterAIList("ResistanceAIList")
-    print(rdf)
+    rdf = getterAIList("ResistanceAIList", lock)
+    # print(rdf)
 
     # getter ET black list
-    bLDf = getterBlackListET()
-    print(bLDf)
+    bLDf = getterBlackListET(lock)
+    # print(bLDf)
 
     # getter Entry Triggered list
-    oLDf = getterEntryTriggeredList()
-    print(oLDf)
+    oLDf = getterEntryTriggeredList(lock)
+    # print(oLDf)
 
     for index, row in rdf.iterrows():
         uid = row['id']
@@ -53,12 +53,14 @@ def entryTriggeredForResistancePivot(niftySize=300):
                 pass
 
     # setter for ET black list
+    lock.acquire()
     bLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
 
     # setter for Entry Triggered list
     oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
+    lock.release()
 
     print(f"execution time is {time.time() - startTime}")
 
 
-entryTriggeredForResistancePivot()
+# entryTriggeredForResistancePivot()

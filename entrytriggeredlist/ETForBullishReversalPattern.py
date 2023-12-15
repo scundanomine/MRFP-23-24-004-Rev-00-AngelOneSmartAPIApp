@@ -5,20 +5,20 @@ from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalP
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 
 
-def entryTriggeredForBullishReversalPatternForBuy(niftySize=300):
+def entryTriggeredForBullishReversalPatternForBuy(lock):
     startTime = time.time()
 
     # get current resistance AI list
-    rdf = getterAIList("BullishReversalAIList")
-    print(rdf)
+    rdf = getterAIList("BullishReversalAIList", lock)
+    # print(rdf)
 
     # getter ET black list
     bLDf = getterBlackListET()
-    print(bLDf)
+    # print(bLDf)
 
     # getter Entry Triggered list
     oLDf = getterEntryTriggeredList()
-    print(oLDf)
+    # print(oLDf)
 
     for index, row in rdf.iterrows():
         uid = row['id']
@@ -44,12 +44,13 @@ def entryTriggeredForBullishReversalPatternForBuy(niftySize=300):
                 pass
 
     # setter for ET black list
+    lock.acquire()
     bLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
 
     # setter for Entry Triggered list
     oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
-
+    lock.release()
     print(f"execution time is {time.time() - startTime}")
 
 
-entryTriggeredForBullishReversalPatternForBuy()
+# entryTriggeredForBullishReversalPatternForBuy()

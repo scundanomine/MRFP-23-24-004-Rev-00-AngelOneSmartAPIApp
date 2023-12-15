@@ -2,13 +2,15 @@ import pandas as pd
 import xlwings as xw
 
 
-def getterPositionList():
+def getterPositionList(lock):
     # getting data from the sheet
     wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
     dt = wb.sheets("Position")
     try:
+        lock.aquire()
         dfC = pd.read_csv(
             "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv")
+        lock.release()
         n = len(dfC)
         df = pd.DataFrame(dt.range(f"a1:r{n+2}").value)
         df.columns = df.iloc[0]
@@ -21,9 +23,11 @@ def getterPositionList():
         # gol is gain or loss, tOEP is reference time of entry placed, tOP is time of position taken and tOEx is time of exit
         df = pd.DataFrame(columns=["id", "ot", "ltp", "lp", "q", "sl", "target", "mr", "po", "slo", "to", "gol", "tOEP", "tOP", "tOEx", 'ltpP', 'eFlag', 'rFlag'])
         dt.range(f"a1:r1").options(pd.DataFrame, index=False).value = df
+        lock.aquire()
         df.to_csv(
             "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv",
             index=False)
+        lock.release()
     return df
 
 

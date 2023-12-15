@@ -1,27 +1,22 @@
 import xlwings as xw
-import time
 import pandas as pd
+from commonudm.GetterStockQtn import getterStockQtn
+import time
 
 
-def getCustomDfBlackListET(sheetName, ect=2):
-    # startT = time.time()
+def getCustomDfBlackListET(lock):
+    # startTime = time.time()
     wb = xw.Book(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
-    dt = wb.sheets(sheetName)
-    dataList = dt.range(f"a{ect}:a50").value
+    dt = wb.sheets("BlackList")
+    lock.acquire()
+    n = getterStockQtn()
+    lock.release()
 
-    upperBound = 0
-    ctr = 2
-    for result in dataList:
-        if result is None:
-            upperBound = ctr - 1
-            break
-        ctr = ctr + 1
-
-    df = pd.DataFrame(dt.range(f"a{ect}:b{upperBound}").value, columns=["id", 'bFlag'])
+    df = pd.DataFrame(dt.range(f"a{2}:b{n+1}").value, columns=["id", 'bFlag'])
     df["id"] = df["id"].astype("int64")
-    # print(f"time of execution is {time.time() - startTime}")
+    # print(f"execution time for getting CustomDfBlackListET {time.time()-startTime}")
     return df
 
 
-# print(getCustomDfBlackListET("BlackList"))
+# getCustomDfBlackListET()
