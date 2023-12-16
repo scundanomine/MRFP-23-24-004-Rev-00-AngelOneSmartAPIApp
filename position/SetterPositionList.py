@@ -10,12 +10,12 @@ def setterPositionList(df=pd.DataFrame(), lock=multiprocessing.Lock()):
 
     n = len(df)
     # clear the sheet
-    lock.aquire()
+    lock.acquire()
     dt.range(f"a2:r{n + 40}").clear_contents()
     lock.release()
 
     # show the list on excell
-    lock.aquire()
+    lock.acquire()
     dt.range(f"a1:r{n+1}").options(pd.DataFrame, index=False).value = df
 
     df.to_csv(

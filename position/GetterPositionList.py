@@ -7,7 +7,7 @@ def getterPositionList(lock):
     wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
     dt = wb.sheets("Position")
     try:
-        lock.aquire()
+        lock.acquire()
         dfC = pd.read_csv(
             "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv")
         lock.release()
@@ -23,7 +23,7 @@ def getterPositionList(lock):
         # gol is gain or loss, tOEP is reference time of entry placed, tOP is time of position taken and tOEx is time of exit
         df = pd.DataFrame(columns=["id", "ot", "ltp", "lp", "q", "sl", "target", "mr", "po", "slo", "to", "gol", "tOEP", "tOP", "tOEx", 'ltpP', 'eFlag', 'rFlag'])
         dt.range(f"a1:r1").options(pd.DataFrame, index=False).value = df
-        lock.aquire()
+        lock.acquire()
         df.to_csv(
             "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv",
             index=False)

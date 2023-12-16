@@ -38,7 +38,7 @@ def getUniversalListWithoutThreading(lock=multiprocessing.Lock()):
         for index, row in ndf.iterrows():
             uid = row['id']
             symbol = row['symbol']
-            result = condenseGSTData(uid, symbol)
+            result = condenseGSTData(uid, symbol, lock)
             dfThree.loc[index] = result
 
         # join of three df

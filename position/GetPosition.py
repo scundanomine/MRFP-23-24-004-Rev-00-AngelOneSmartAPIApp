@@ -8,6 +8,7 @@ from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 from entrytriggeredlist.SetterBlackListET import setterBlackListET
 from entrytriggeredlist.SetterEntryTriggeredList import setterEntryTriggeredList
+from ohlcdata.GetFutureLTP import getFutureLTP
 from position.GetterPositionList import getterPositionList
 from position.SetterPositionList import setterPositionList
 import time
@@ -43,7 +44,7 @@ def getPosition(lock=multiprocessing.Lock()):
         for index, row in dfItr.iterrows():
             uid = row["id"]
             ot = row["ot"]
-            ltp = row["CC2"]
+            ltp = getFutureLTP(uid, ot, lock)
             lo = row['lo']
             sl = row['sl']
             refTime = row["tOEP"]

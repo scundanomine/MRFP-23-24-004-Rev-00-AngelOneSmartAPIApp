@@ -11,6 +11,8 @@ from margin.SetterAvailableMargin import setterAvailableMargin
 import time
 import multiprocessing
 
+from ohlcdata.GetFutureLTP import getFutureLTP
+
 
 def getEntryList(lock=multiprocessing.Lock()):
     startTime = time.time()
@@ -31,10 +33,10 @@ def getEntryList(lock=multiprocessing.Lock()):
 
         for index, row in eTDf.iterrows():
             uid = row['id']
-            ltp = row['CC2']
             atr = row['atr']
             margin = 5
             ot = row['ot']
+            ltp = getFutureLTP(uid, ot, lock)
             if eCBLDf['eCBFlag'][uid-1]:
                 continue
             else:

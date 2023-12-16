@@ -13,6 +13,7 @@ def setterNiftyDetailedListWithPivot(sheetName="nifty500"):
     df.columns = df.iloc[0]
     df = df[1:]
     df["id"] = df["id"].astype("int64")
+    df["token"] = df["token"].astype("int64")
     df.index = list(range(n))
     df = df.loc[:, ['id', 'sector', 'symbol', 'token', 'C']]
     df.rename(columns={'C': 'PC'}, inplace=True)
@@ -22,4 +23,4 @@ def setterNiftyDetailedListWithPivot(sheetName="nifty500"):
     return df
 
 
-# setterNiftyDetailedListWithPivot()
+setterNiftyDetailedListWithPivot()

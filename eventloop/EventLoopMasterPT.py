@@ -49,8 +49,8 @@ def pivotAlarmEvent(lock):
 
 def universalListEvent(lock):
     print("Multiprocess four has been started")
-    setterDfThree()
-    setterNiftyDetailedListWithPivot()
+    # setterDfThree()
+    # setterNiftyDetailedListWithPivot()
     getUniversalListWithoutThreading(lock)
 
 
@@ -89,16 +89,16 @@ def eventLoop():
     # four multiple process
     if __name__ == "__main__":
         # getter and setter Pre data
-        getterPreStockQtn()
+        # getterPreStockQtn()
         n = getterStockQtn()
-        getterPreExitTime()
+        # getterPreExitTime()
         getterPreReferenceTime()
         # setter reference time for trading
         setterReferenceDateConstant()
         getterPreTimeDelta()
 
         # setter required symbol and token list
-        setterRequiredSymbolAndTokenList()
+        # setterRequiredSymbolAndTokenList()
 
         # getting past 10 candles data
         getTestFirstItrCandlestickData(n)

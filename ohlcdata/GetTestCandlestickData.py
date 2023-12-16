@@ -4,9 +4,11 @@ from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from AngelOneSmartAPIApp.test import *
 from ohlcdata.GetterFDS import getterFDS
+from ohlcdata.GetterFFDS import getterFFDS
 from ohlcdata.GetterPDS import getterPDS
 from ohlcdata.ProcessPastAndFutureCandlesData import processPastAndFutureCandlesData
 from ohlcdata.SetterFDS import setterFDS
+from ohlcdata.SetterFFDS import setterFFDS
 from ohlcdata.SetterPDS import setterPDS
 from concurrent.futures import ThreadPoolExecutor
 import multiprocessing
@@ -46,7 +48,7 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
                 try:
                     data, rfDate = getHistoricDataForPastAndFutureCandles(objOneX, c, str(b))
                 except:
-                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
+                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
                     rfDate = datetime.datetime.now() - c
                     flagZero = True
         else:
@@ -57,7 +59,7 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
                 try:
                     data, rfDate = getHistoricDataForPastAndFutureCandles(objTwoX, c, str(b))
                 except:
-                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
+                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
                     rfDate = datetime.datetime.now() - c
                     flagZero = True
         tDf = processPastAndFutureCandlesData(rfDate, flagZero, data)
@@ -69,13 +71,13 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
     cv = getterTimeDelta()
     exitTime = getterExitTime()
     lock.release()
-    # while datetime.datetime.now() - cv < exitTime:
-    while ctrA < 1:
+    while datetime.datetime.now() - cv < exitTime:
         lock.acquire()
         dfc = getSymbolAndToken()
         c = getterTimeDelta()
         pds = getterPDS()
         fds = getterFDS()
+        fFds = getterFFDS()
         lock.release()
         ctr = 6
         for i in range(6, r + 6, 6):
@@ -87,6 +89,7 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
                 for result in results:
                     pds.iloc[ck] = result.iloc[0]
                     fds.iloc[ck] = result.iloc[1]
+                    fFds.iloc[ck] = result.iloc[2]
                     ck = ck + 1
             ctr = ctr + 6
             timeDiff = 1 - (time.time() - stt)
@@ -95,9 +98,10 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
             lock.acquire()
             setterFDS(fds)
             setterPDS(pds)
+            setterFFDS(fFds)
             lock.release()
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")
 
 
-getTestCandlestickData(60)
+# getTestCandlestickData(60)

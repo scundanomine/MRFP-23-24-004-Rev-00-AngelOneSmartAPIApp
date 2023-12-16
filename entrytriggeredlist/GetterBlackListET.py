@@ -5,7 +5,7 @@ from entrytriggeredlist.GetCustomDfBlackListET import getCustomDfBlackListET
 
 def getterBlackListET(lock):
     try:
-        lock.aquire()
+        lock.acquire()
         df = pd.read_csv(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv")
         lock.release()

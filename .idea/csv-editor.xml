@@ -871,6 +871,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ohlcdata\ohlcstate\futureohlcdatafile\ffds.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\ohlcdata\ohlcstate\pastohlcdatafile\pds.csv">
           <value>
             <Attribute>
@@ -991,6 +998,13 @@
           </value>
         </entry>
         <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\33_ADANIGREEN-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\37_HINDZINC-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

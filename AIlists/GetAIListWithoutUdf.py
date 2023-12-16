@@ -28,12 +28,12 @@ def getAIListWithoutUdf(lock=multiprocessing.Lock()):
         # print(dfR)
     
         # function for Buyer Rsi list
-        dfBRsi = uDf.loc[((uDf['rsi0'] >= 99) | (uDf['rsi1'] >= 99) | (uDf['rsi2'] >= 99)) & (uDf['roc0'] >= 9000)]
+        dfBRsi = uDf.loc[((uDf['rsi0'] >= 70) | (uDf['rsi1'] >= 70) | (uDf['rsi2'] >= 70)) & (uDf['roc0'] >= 10)]
         setterAIList(lock, dfBRsi, "BuyerRSIAIList")
         # print(dfBRsi)
     
         # function for seller Rsi list
-        dfSRsi = uDf.loc[((uDf['rsi0'] <= 1) | (uDf['rsi1'] <= 1) | (uDf['rsi2'] <= 1)) & (uDf['roc0'] <= -9000)]
+        dfSRsi = uDf.loc[((uDf['rsi0'] <= 30) | (uDf['rsi1'] <= 30) | (uDf['rsi2'] <= 30)) & (uDf['roc0'] <= -10)]
         setterAIList(lock, dfSRsi, "SellerRSIAIList")
         # print(dfSRsi)
     

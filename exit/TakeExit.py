@@ -7,6 +7,7 @@ from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 from entrytriggeredlist.SetterBlackListET import setterBlackListET
 from entrytriggeredlist.SetterEntryTriggeredList import setterEntryTriggeredList
+from ohlcdata.GetFutureLTP import getFutureLTP
 from portfolio.GetterPortfolio import getterPortfolio
 from portfolio.SetterPortfolio import setterPortfolio
 from position.GetterPositionList import getterPositionList
@@ -43,7 +44,7 @@ def takeExit(lock=multiprocessing.Lock()):
         for index, row in dfItr.iterrows():
             uid = row["id"]
             ot = row["ot"]
-            ltp = row["CC2"]
+            ltp = getFutureLTP(uid, ot, lock)
             lo = row['lo']
             sl = row['sl']
             target = row['target']
