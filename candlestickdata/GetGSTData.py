@@ -21,7 +21,7 @@ def getCandlestickGSTData(gdf):
         clsL = sdf["C"][r]
         atrL = sdf["atr"][r]
 
-        # calculation for gender
+        # calculation for gender and gender can green, red and gap
         g = getCandleStickGender(opnL, clsL)
 
         # calculation for size

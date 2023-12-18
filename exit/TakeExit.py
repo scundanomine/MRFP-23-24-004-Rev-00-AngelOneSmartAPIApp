@@ -1,4 +1,6 @@
 import time
+
+from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetterECBList import getterECBList
@@ -43,30 +45,40 @@ def takeExit(lock=multiprocessing.Lock()):
 
         for index, row in dfItr.iterrows():
             uid = row["id"]
+            symbol = row['symbol']
+            # getting candle sticks properties
+            cdf = getterSpecificCandleData(uid, symbol)
             ot = row["ot"]
             ltp = getFutureLTP(uid, ot, lock)
-            lo = row['lo']
+            lp = row['lp']
             sl = row['sl']
             target = row['target']
             refTime = row["tOP"]
             q = row['q']
-            rowC = eTDf.loc[(eTDf['id'] == uid)]
-            rsi = rowC['rsi0']
-            rsiP = rowC['rsi1']
-            roc = rowC['roc0']
+            rowC = cdf.iloc[9]
+            rowCC = cdf.iloc[8]
+            rsi = rowC['rsi']
+            rsiP = rowCC['rsi']
+            roc = rowC['roc']
             atr = rowC['atr']
             ltpP = row["ltpP"]
             i = eTDf[(eTDf.id == uid)].index
             dx = ltp - ltpP
             # calculation for gain or loss
-            pLDf.loc[index, 'gol'] = q * (ltp - lo)
+            pLDf.loc[index, 'gol'] = q * (ltp - lp)
 
             # calculation for portfolio
-            pfDf.loc[0, 'portfolio'] = pfDf["portfolio"][0] + q * (ltp - lo)
+            pfDf.loc[0, 'portfolio'] = pfDf["portfolio"][0] + q * (ltp - lp)
 
             # setter for portfolio
             setterPortfolio(pfDf)
-
+            if ltp == 0 and time.time() - refTime >= 1800:
+                eTDf.drop(i)
+                pLDf.drop(index)
+                eTBDf.loc[uid - 1, "bFlag"] = False
+                eCBDf.loc[uid - 1, "bELFlag"] = False
+            elif ltp == 0:
+                continue
             # exit condition for buy
             if ot is "buy":
                 # condition for Trailing stop loss
@@ -84,7 +96,7 @@ def takeExit(lock=multiprocessing.Lock()):
                     eTBDf.loc[uid - 1, "bFlag"] = False
                     eCBDf.loc[uid - 1, "bELFlag"] = False
                 # condition for riding
-                elif ltp - lo >= 0.8 * (target - lo) and (rsi >= 70 and rsi >= rsiP):
+                elif ltp - lp >= 0.8 * (target - lp) and (rsi >= 70 and rsi >= rsiP):
                     pLDf.loc[index, 'sl'] = sl + dx
                     pLDf.loc[index, 'target'] = target + dx
                     pLDf.loc[index, 'rFlag'] = False
@@ -105,7 +117,7 @@ def takeExit(lock=multiprocessing.Lock()):
                     eTBDf.loc[uid - 1, "bFlag"] = False
                     eCBDf.loc[uid - 1, "bELFlag"] = False
                 # condition for riding
-                elif ltp - lo <= 0.8 * (target - lo) and (rsi <= 30 and rsi <= rsiP):
+                elif ltp - lp <= 0.8 * (target - lp) and (rsi <= 30 and rsi <= rsiP):
                     pLDf.loc[index, 'sl'] = sl - dx
                     pLDf.loc[index, 'target'] = target - dx
                     pLDf.loc[index, 'rFlag'] = False

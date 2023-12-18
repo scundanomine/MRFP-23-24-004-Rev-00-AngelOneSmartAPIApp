@@ -33,11 +33,14 @@ def getEntryList(lock=multiprocessing.Lock()):
 
         for index, row in eTDf.iterrows():
             uid = row['id']
+            sector = row['sector']
+            symbol = row['symbol']
+            token = row['token']
             atr = row['atr']
             margin = 5
             ot = row['ot']
             ltp = getFutureLTP(uid, ot, lock)
-            if eCBLDf['eCBFlag'][uid-1]:
+            if eCBLDf['eCBFlag'][uid-1] or ltp == 0:
                 continue
             else:
                 if ot == 'buy':
@@ -49,7 +52,7 @@ def getEntryList(lock=multiprocessing.Lock()):
                 maDf = getterAvailableMargin()
                 ma = maDf['margin'][0]
                 if mr <= ma:
-                    upList = [uid, ot, ltp, 1.01*ltp, q, sl, target, mr, 'open', 'open', '', datetime.datetime.now()]
+                    upList = [uid, sector, symbol, token, ot, ltp, 1.01*ltp, q, sl, target, mr, 'open', 'open', '', datetime.datetime.now()]
                     eLDf.loc[len(eLDf)] = upList
                     eCBLDf['eCBFlag'][uid - 1] = True
                     maDf.loc[0, 'margin'] = ma - mr
@@ -60,7 +63,7 @@ def getEntryList(lock=multiprocessing.Lock()):
         # setter for ET black list
         eCBLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
 
-        # setter for Entry Triggered list
+        # setter for Entry list
         eLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv", index=False)
         lock.release()
         ctrA = ctrA + 1

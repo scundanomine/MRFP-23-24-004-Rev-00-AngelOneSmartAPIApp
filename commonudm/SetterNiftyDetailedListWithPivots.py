@@ -16,6 +16,7 @@ def setterNiftyDetailedListWithPivot(sheetName="nifty500"):
     df["token"] = df["token"].astype("int64")
     df.index = list(range(n))
     df = df.loc[:, ['id', 'sector', 'symbol', 'token', 'C']]
+    # here PC is previous intraday close price
     df.rename(columns={'C': 'PC'}, inplace=True)
     df.to_csv(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\NiftyDetailedListWithPivots.csv",

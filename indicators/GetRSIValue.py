@@ -15,7 +15,10 @@ def getRSIValue(df):
     # function for um and dm
     def getUmAndDm(r):
         global cdf
-        change = cdf["C"][r] - cdf["C"][r - 1]
+        if cdf["C"][r - 1] == 0:
+            change = cdf["C"][r] - cdf["O"][r]
+        else:
+            change = cdf["C"][r] - cdf["C"][r - 1]
         if change >= 0:
             cdf.loc[r, "um"] = change
             cdf.loc[r, "dm"] = 0

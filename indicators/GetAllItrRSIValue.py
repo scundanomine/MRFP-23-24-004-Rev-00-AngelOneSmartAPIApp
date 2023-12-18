@@ -9,8 +9,10 @@ def getAllItrRSIValue(df):
     # get df
     cdf = df
     r = 9
-
-    change = cdf["C"][r] - cdf["C"][r - 1]
+    if cdf["C"][r - 1] == 0:
+        change = cdf["C"][r] - cdf["O"][r]
+    else:
+        change = cdf["C"][r] - cdf["C"][r - 1]
     if change >= 0:
         cdf.loc[r, "um"] = change
         cdf.loc[r, "dm"] = 0

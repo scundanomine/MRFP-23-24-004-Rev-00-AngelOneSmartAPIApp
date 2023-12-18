@@ -15,8 +15,12 @@ def calculationForATR(sdf):
                 tr = df["H"][r] - df["L"][r]
             else:
                 a = df["H"][r] - df["L"][r]
-                b = abs(df["H"][r] - df["C"][r - 1])
-                c = abs(df["L"][r] - df["C"][r - 1])
+                if df["C"][r - 1] == 0:
+                    b = 0
+                    c = 0
+                else:
+                    b = abs(df["H"][r] - df["C"][r - 1])
+                    c = abs(df["L"][r] - df["C"][r - 1])
                 lst = [a, b, c]
                 tr = max(lst)
             return tr
