@@ -4,7 +4,7 @@ import xlwings as xw
 
 def getterPreMargin():
     # getting data from the sheet
-    wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
+    wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
     # MAndP is margin and portfolio list
     dt = wb.sheets("MAndP")
 
@@ -18,4 +18,4 @@ def getterPreMargin():
     return marDf
 
 
-getterPreMargin()
+# getterPreMargin()

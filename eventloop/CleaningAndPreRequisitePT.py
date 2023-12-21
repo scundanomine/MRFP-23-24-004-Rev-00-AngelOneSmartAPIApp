@@ -1,3 +1,5 @@
+import time
+
 from AIlists.CleaningAndSettingAIList import cleaningAndSettingAIList
 from candlestickdata.CleaningAndSettingGSTDataFiles import cleaningAndSettingGSTDataFiles
 from commonudm.GetterPreExitTime import getterPreExitTime
@@ -20,6 +22,7 @@ from universallist.SetterDfThree import setterDfThree
 
 
 def cleaningAndPreRequisitePT():
+    # startTime = time.time()
     # getter and setter Pre data
     getterPreStockQtn()
 
@@ -66,6 +69,7 @@ def cleaningAndPreRequisitePT():
     # cleaning the setting the portfolio and margin
     getterPrePortfolio()
     getterPreMargin()
+    # print(f"execution time for cleaning is {time.time() - startTime}")
 
 
-cleaningAndPreRequisitePT()
+# cleaningAndPreRequisitePT()

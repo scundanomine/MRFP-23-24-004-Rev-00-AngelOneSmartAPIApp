@@ -14,4 +14,4 @@ def cleaningAndSettingPastTenCandleData():
             index=False)
 
 
-cleaningAndSettingPastTenCandleData()
+# cleaningAndSettingPastTenCandleData()

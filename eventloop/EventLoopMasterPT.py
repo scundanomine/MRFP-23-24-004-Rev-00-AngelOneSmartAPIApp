@@ -12,6 +12,7 @@ from commonudm.SetterRequiredSymbolAndTokenList import setterRequiredSymbolAndTo
 from entry.GetEntryList import getEntryList
 from entrytriggeredlist.GetEntryTriggeredList import getEntryTriggeredList
 from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
+from eventloop.CleaningAndPreRequisitePT import cleaningAndPreRequisitePT
 from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITRCandlestickProperties
 from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirstITRCandlestickProperties
 from exit.TakeExit import takeExit
@@ -84,89 +85,92 @@ def rREvent(lock):
     getAIListWithoutUdf(lock)
 
 
-def eventLoop():
+# def eventLoop():
+# four multiple process
+if __name__ == "__main__":
     startTime = time.time()
-    # four multiple process
-    if __name__ == "__main__":
-        # getter and setter Pre data
-        # getterPreStockQtn()
-        n = getterStockQtn()
-        # getterPreExitTime()
-        getterPreReferenceTime()
-        # setter reference time for trading
-        setterReferenceDateConstant()
-        getterPreTimeDelta()
+    print("running for first time")
+    # cleaning and setting prerequisite data
+    cleaningAndPreRequisitePT()
+    # getter and setter Pre data
+    # getterPreStockQtn()
+    m = getterStockQtn()
+    # getterPreExitTime()
+    getterPreReferenceTime()
+    # setter reference time for trading
+    setterReferenceDateConstant()
+    getterPreTimeDelta()
 
-        # setter required symbol and token list
-        # setterRequiredSymbolAndTokenList()
+    # setter required symbol and token list
+    # setterRequiredSymbolAndTokenList()
 
-        # getting past 10 candles data
-        getTestFirstItrCandlestickData(n)
+    # getting past 10 candles data
+    getTestFirstItrCandlestickData(m)
 
-        # getting past 10 candles properties
-        eventLoopForFirstITRCandlestickProperties()
+    # getting past 10 candles properties
+    eventLoopForFirstITRCandlestickProperties()
 
-        setterInitialPdsAndFds()
+    setterInitialPdsAndFds()
 
-        # setter prerequisite black list for et
-        getterPreBlackListForET()
+    # setter prerequisite black list for et
+    getterPreBlackListForET()
 
-        lock = multiprocessing.Lock()
+    lockA = multiprocessing.Lock()
 
-        # starting first process of getting current and future candle data
-        pOne = multiprocessing.Process(target=candlesDataAllITREvent, args=[n, lock])
+    # starting first process of getting current and future candle data
+    pOne = multiprocessing.Process(target=candlesDataAllITREvent, args=[m, lockA])
 
-        # starting second process of getting present candles data property
-        pTwo = multiprocessing.Process(target=candlesPropertiesAllITREvent, args=[lock])
+    # starting second process of getting present candles data property
+    pTwo = multiprocessing.Process(target=candlesPropertiesAllITREvent, args=[lockA])
 
-        # starting Third process of getting pivot alarm
-        pThree = multiprocessing.Process(target=pivotAlarmEvent, args=[lock])
+    # starting Third process of getting pivot alarm
+    pThree = multiprocessing.Process(target=pivotAlarmEvent, args=[lockA])
 
-        # starting Fourth process of getting Universal list
-        pFour = multiprocessing.Process(target=universalListEvent, args=[lock])
+    # starting Fourth process of getting Universal list
+    pFour = multiprocessing.Process(target=universalListEvent, args=[lockA])
 
-        # starting Fifth process of getting AI list
-        pFive = multiprocessing.Process(target=aIListEvent, args=[lock])
+    # starting Fifth process of getting AI list
+    pFive = multiprocessing.Process(target=aIListEvent, args=[lockA])
 
-        # starting sixth process of getting Entry triggered list
-        pSix = multiprocessing.Process(target=eTListEvent, args=[n, lock])
+    # starting sixth process of getting Entry triggered list
+    pSix = multiprocessing.Process(target=eTListEvent, args=[m, lockA])
 
-        # starting seventh process of getting entry list
-        pSeven = multiprocessing.Process(target=eLListEvent, args=[lock])
+    # starting seventh process of getting entry list
+    pSeven = multiprocessing.Process(target=eLListEvent, args=[lockA])
 
-        # starting eighth process of getting position
-        pEight = multiprocessing.Process(target=positionListEvent, args=[lock])
+    # starting eighth process of getting position
+    pEight = multiprocessing.Process(target=positionListEvent, args=[lockA])
 
-        # starting ninth process of getting Exit
-        pNine = multiprocessing.Process(target=exitEvent, args=[lock])
+    # starting ninth process of getting Exit
+    pNine = multiprocessing.Process(target=exitEvent, args=[lockA])
 
-        # # starting tenth process of getting RR
-        # pTen = multiprocessing.Process(target=rREvent, args=[lock])
+    # # starting tenth process of getting RR
+    # pTen = multiprocessing.Process(target=rREvent, args=[lock])
 
-        pOne.start()
-        pTwo.start()
-        pThree.start()
-        pFour.start()
-        pFive.start()
-        pSix.start()
-        pSeven.start()
-        pEight.start()
-        pNine.start()
-        # pTen.start()
+    pOne.start()
+    pTwo.start()
+    pThree.start()
+    pFour.start()
+    # pFive.start()
+    # pSix.start()
+    # pSeven.start()
+    # pEight.start()
+    # pNine.start()
+    # pTen.start()
 
-        pOne.join()
-        pTwo.join()
-        pThree.join()
-        pFour.join()
-        pFive.join()
-        pSix.join()
-        pSeven.join()
-        pEight.join()
-        pNine.join()
-        # pTen.join()
+    pOne.join()
+    pTwo.join()
+    pThree.join()
+    pFour.join()
+    # pFive.join()
+    # pSix.join()
+    # pSeven.join()
+    # pEight.join()
+    # pNine.join()
+    # pTen.join()
 
-        print("Multiprocess have been finished")
-        print(f"execution time is {time.time() - startTime}")
+    print("Multiprocess have been finished")
+    print(f"execution time is {time.time() - startTime}")
 
 
-eventLoop()
+# eventLoop()

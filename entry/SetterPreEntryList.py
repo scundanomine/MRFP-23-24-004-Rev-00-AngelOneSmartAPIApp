@@ -15,4 +15,4 @@ def setterPreEntryList(lock=multiprocessing.Lock()):
     return df
 
 
-setterPreEntryList()
+# setterPreEntryList()

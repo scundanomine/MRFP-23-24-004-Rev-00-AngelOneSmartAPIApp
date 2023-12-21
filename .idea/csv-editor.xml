@@ -759,6 +759,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\65_INDIGO-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\6_INFY-EQ.csv">
           <value>
             <Attribute>
@@ -892,6 +899,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\17_MARUTI-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\1_RELIANCE-EQ.csv">
           <value>
             <Attribute>
@@ -942,6 +956,13 @@
           </value>
         </entry>
         <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\279_BLUESTARCO-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\27_NTPC-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -1011,6 +1032,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\3_HDFCBANK-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\53_HAL-EQ.csv">
           <value>
             <Attribute>
@@ -1019,6 +1047,20 @@
           </value>
         </entry>
         <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\60_DRREDDY-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\61_DIVISLAB-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ohlcdata\ohlcstate\pasttenohlcdatafiles\8_SBIN-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

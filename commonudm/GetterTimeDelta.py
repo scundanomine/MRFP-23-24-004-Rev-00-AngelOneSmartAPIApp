@@ -14,4 +14,5 @@ def getterTimeDelta():
     c = pd.to_timedelta(df['timeDelta'][0])
     return c
 
-# print(getterAvailableMargin())
+
+# print(getterTimeDelta())

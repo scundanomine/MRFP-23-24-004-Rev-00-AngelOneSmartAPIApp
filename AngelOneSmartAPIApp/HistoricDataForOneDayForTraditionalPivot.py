@@ -9,7 +9,7 @@ def historicDataForOneDayForTraditionalPivot(obj, refDate, token):
             "exchange": "NSE",
             "symboltoken": token,
             "interval": "ONE_DAY",
-            "fromdate": f"{refDate} 09:15",
+            "fromdate": f"{refDate} 00:00",
             "todate": f"{refDate} 15:30"
         }
         candleStickData = obj.getCandleData(historicParam)

@@ -62,7 +62,7 @@ def getPosition(lock=multiprocessing.Lock()):
                 eTDf.drop(i)
             elif ltp == 0:
                 continue
-            elif ot is "buy":
+            elif ot == "buy":
                 if ltp >= lp:
                     print(f"entry is place for {uid}")
                     row['po'] = 'executed'

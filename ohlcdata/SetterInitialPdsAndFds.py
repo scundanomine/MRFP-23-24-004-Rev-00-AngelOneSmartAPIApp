@@ -26,4 +26,4 @@ def setterInitialPdsAndFds():
     setterFFDS(fFds)
 
 
-setterInitialPdsAndFds()
+# setterInitialPdsAndFds()

@@ -4,7 +4,7 @@ import xlwings as xw
 
 def getterPreReferenceTime():
     # getting data from the sheet
-    wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
+    wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
     # MAndP is margin and portfolio list
     dt = wb.sheets("MAndP")
 
@@ -16,3 +16,6 @@ def getterPreReferenceTime():
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\RefTime.csv",
         index=False)
     return marDf
+
+
+# getterPreReferenceTime()

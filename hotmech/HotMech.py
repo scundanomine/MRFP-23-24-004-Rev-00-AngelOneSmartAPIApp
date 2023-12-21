@@ -30,7 +30,7 @@ def hotMech(uid, desc, symbol, sector, token, ltp, rft, typ):
                index=False)
 
     # loading the excel
-    wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
+    wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
     dt = wb.sheets("Vitals")
     dt.range("a5:i105").options(pd.DataFrame, index=False).value = htR
     print("--- %s seconds ---" % (time.time() - start_time))

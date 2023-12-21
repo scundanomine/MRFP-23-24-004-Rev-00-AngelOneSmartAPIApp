@@ -5,7 +5,7 @@ import time
 
 
 start_time = time.time()
-wb = xw.Book("../AngelOneSmartAPIApp/TA_Python.xlsm")
+wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
 dt = wb.sheets("Exchange")
 
 reqD = getPivot()

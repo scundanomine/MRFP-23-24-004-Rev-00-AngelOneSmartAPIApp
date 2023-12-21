@@ -24,4 +24,4 @@ def setterNiftyDetailedListWithPivot(sheetName="nifty500"):
     return df
 
 
-setterNiftyDetailedListWithPivot()
+# setterNiftyDetailedListWithPivot()
