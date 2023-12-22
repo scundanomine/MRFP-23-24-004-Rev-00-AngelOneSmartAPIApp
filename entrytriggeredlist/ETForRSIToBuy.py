@@ -5,7 +5,7 @@ from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 
 
 def entryTriggeredForRSIToBuy(lock):
-    startTime = time.time()
+    # startTime = time.time()
 
     # get current resistance AI list
     rdf = getterAIList("BuyerRSIAIList", lock)
@@ -48,7 +48,7 @@ def entryTriggeredForRSIToBuy(lock):
     # setter for Entry Triggered list
     oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
     lock.release()
-    print(f"execution time is {time.time() - startTime}")
+    # print(f"execution time is {time.time() - startTime}")
 
 
 # entryTriggeredForRSIToBuy()

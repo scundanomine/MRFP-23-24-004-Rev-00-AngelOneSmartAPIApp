@@ -133,7 +133,7 @@ if __name__ == "__main__":
     pFive = multiprocessing.Process(target=aIListEvent, args=[lockA])
 
     # starting sixth process of getting Entry triggered list
-    pSix = multiprocessing.Process(target=eTListEvent, args=[m, lockA])
+    pSix = multiprocessing.Process(target=eTListEvent, args=[lockA])
 
     # starting seventh process of getting entry list
     pSeven = multiprocessing.Process(target=eLListEvent, args=[lockA])
@@ -151,8 +151,8 @@ if __name__ == "__main__":
     pTwo.start()
     pThree.start()
     pFour.start()
-    # pFive.start()
-    # pSix.start()
+    pFive.start()
+    pSix.start()
     # pSeven.start()
     # pEight.start()
     # pNine.start()
@@ -162,8 +162,8 @@ if __name__ == "__main__":
     pTwo.join()
     pThree.join()
     pFour.join()
-    # pFive.join()
-    # pSix.join()
+    pFive.join()
+    pSix.join()
     # pSeven.join()
     # pEight.join()
     # pNine.join()

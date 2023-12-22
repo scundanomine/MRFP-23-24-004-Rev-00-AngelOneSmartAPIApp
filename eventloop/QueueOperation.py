@@ -11,6 +11,8 @@ def queueOperation(sid, symbol, data, lock):
     gdf.drop(0, axis=0, inplace=True)
     gdf.index = list(range(9))
     gdf.loc[len(gdf.index)] = 0
+    gdf.loc[9, 'bulRP'] = 'none'
+    gdf.loc[9, 'berRP'] = 'none'
     lid = 9
     gdf.loc[lid, "time"] = data[0]
     gdf.loc[lid, "O"] = data[1]

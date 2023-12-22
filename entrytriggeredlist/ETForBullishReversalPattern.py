@@ -6,18 +6,18 @@ from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 
 
 def entryTriggeredForBullishReversalPatternForBuy(lock):
-    startTime = time.time()
+    # startTime = time.time()
 
     # get current resistance AI list
     rdf = getterAIList("BullishReversalAIList", lock)
     # print(rdf)
 
     # getter ET black list
-    bLDf = getterBlackListET()
+    bLDf = getterBlackListET(lock)
     # print(bLDf)
 
     # getter Entry Triggered list
-    oLDf = getterEntryTriggeredList()
+    oLDf = getterEntryTriggeredList(lock)
     # print(oLDf)
 
     for index, row in rdf.iterrows():
@@ -50,7 +50,7 @@ def entryTriggeredForBullishReversalPatternForBuy(lock):
     # setter for Entry Triggered list
     oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
     lock.release()
-    print(f"execution time is {time.time() - startTime}")
+    # print(f"execution time is {time.time() - startTime}")
 
 
 # entryTriggeredForBullishReversalPatternForBuy()

@@ -9,7 +9,7 @@ def cleaningAndSettingETList(lock=multiprocessing.Lock()):
 
     # function for S AI list
     dfS = uDf.loc[(uDf['srT'] == "P")]
-    setterEntryTriggeredList(dfS)
+    setterEntryTriggeredList(dfS, lock)
 
 
 # cleaningAndSettingETList()

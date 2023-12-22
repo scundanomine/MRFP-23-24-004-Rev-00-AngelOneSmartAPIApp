@@ -598,6 +598,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\37_HINDZINC-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\38_PIDILITIND-EQ.csv">
           <value>
             <Attribute>
@@ -633,6 +640,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\42_BAJAJ-AUTO-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\43_GRASIM-EQ.csv">
           <value>
             <Attribute>
@@ -647,6 +661,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\45_HDFCLIFE-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\46_BRITANNIA-EQ.csv">
           <value>
             <Attribute>
@@ -655,6 +676,13 @@
           </value>
         </entry>
         <entry key="\eventloop\eventstate\candlewisedata\47_VEDL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\48_GODREJCP-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -690,6 +718,13 @@
           </value>
         </entry>
         <entry key="\eventloop\eventstate\candlewisedata\52_ADANIENSOL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\53_HAL-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

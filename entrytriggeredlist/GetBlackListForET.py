@@ -18,6 +18,6 @@ def getBlackListForET(lock):
         index=False)
     lock.release()
 
-    print(bLDf)
+    # print(bLDf)
 
 # getBlackListForET()

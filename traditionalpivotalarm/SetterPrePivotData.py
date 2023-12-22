@@ -11,6 +11,7 @@ def setterPrePivotData():
     gDf = getterRequiredSymbolAndTokenList()
     pivDf = pd.DataFrame(columns=['id', 'prevT', 'C', 'alarmTimer', 'refT', 'srT', 'srV', 'nSR', 'GL'], index=list(range(n)))
     pivDf[:] = 0
+    pivDf["srT"] = "none"
     pivDf['id'] = list(range(1, n + 1))
     for index, row in gDf.iterrows():
         uid = row['id']

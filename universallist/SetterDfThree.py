@@ -9,6 +9,10 @@ def setterDfThree():
         columns=['CC1', 'CC2', 'V', 'atr', 'atrPer', 'g', 's', 't', 'bulRP', 'berRP', 'atrV', 'vs', 'roc', 'rsi',
                  'rsi0', 'rsi1', 'rsi2', 'roc0'], index=list(range(n)))
     dfThree[:] = 0
+    dfThree['g'] = "none"
+    dfThree['s'] = "none"
+    dfThree['t'] = "none"
+    dfThree['vs'] = "none"
     dfThree['rsi'] = 50
     dfThree['bulRP'] = "none"
     dfThree['berRP'] = "none"
