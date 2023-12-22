@@ -35,7 +35,7 @@ def entryTriggeredForTopLoserToSell(lock):
                 row['oc'] = "EntryTriggeredDueToTopLoserForSell"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid+1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = True
 
             # condition for no buy or sale
             else:

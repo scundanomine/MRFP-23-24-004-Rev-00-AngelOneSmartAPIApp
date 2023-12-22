@@ -2,9 +2,10 @@ import time
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
+import multiprocessing
 
 
-def entryTriggeredForTopGainerToBuy(lock):
+def entryTriggeredForTopGainerToBuy(lock=multiprocessing.Lock()):
     # startTime = time.time()
 
     # get current resistance AI list
@@ -35,7 +36,7 @@ def entryTriggeredForTopGainerToBuy(lock):
                 row['oc'] = "EntryTriggeredDueToTopGainerForBuy"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid+1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = True
 
             # condition for no buy or sale
             else:

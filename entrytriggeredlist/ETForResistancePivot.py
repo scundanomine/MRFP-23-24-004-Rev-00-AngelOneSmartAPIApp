@@ -3,9 +3,10 @@ from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
+import multiprocessing
 
 
-def entryTriggeredForResistancePivot(lock):
+def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
     # startTime = time.time()
 
     # get current resistance AI list
@@ -31,13 +32,13 @@ def entryTriggeredForResistancePivot(lock):
             rV = row['srV']
             atr = row['atr']
             # condition for buy
-            if cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and row['rsi'] >= 60:
+            if cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and row['rsi0'] >= 60:
                 # update the order type and upend the order list
                 row["ot"] = "buy"
                 row['oc'] = "EntryTriggeredDueToResistancePivot"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid+1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = True
 
             # condition for sell
             elif cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25*atr and checkBearishReversalPattern(row["berRP"]):
@@ -46,7 +47,7 @@ def entryTriggeredForResistancePivot(lock):
                 row['oc'] = "EntryTriggeredDueToResistancePivot"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid + 1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = True
 
             # condition for no buy or sale
             else:

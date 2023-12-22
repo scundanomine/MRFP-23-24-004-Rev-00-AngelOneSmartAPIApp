@@ -43,3 +43,6 @@ def getEntryTriggeredList(lock=multiprocessing.Lock()):
         ctrA = ctrA + 1
         print(f"{ctrA} execution time for getting entry triggered list is {time.time() - startTime}")
         time.sleep(5)
+
+
+getEntryTriggeredList()

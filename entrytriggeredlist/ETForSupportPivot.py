@@ -3,9 +3,10 @@ from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
+import multiprocessing
 
 
-def entryTriggeredForSupportPivot(lock):
+def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
     # startTime = time.time()
 
     # get current resistance AI list
@@ -31,13 +32,13 @@ def entryTriggeredForSupportPivot(lock):
             rV = row['srV']
             atr = row['atr']
             # condition for breakout or sell
-            if cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25*atr and row['rsi'] <= 40:
+            if cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25*atr and row['rsi0'] <= 40:
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "EntryTriggeredDueToSupportPivot"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid+1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = True
 
             # condition for buy
             elif cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and checkBullishReversalPattern(row["bulRP"]):
@@ -46,7 +47,7 @@ def entryTriggeredForSupportPivot(lock):
                 row['oc'] = "EntryTriggeredDueToSupportPivot"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid + 1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = True
 
             # condition for no buy or sale
             else:

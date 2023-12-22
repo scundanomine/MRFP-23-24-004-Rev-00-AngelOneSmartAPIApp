@@ -41,9 +41,6 @@ def cleaningAndPreRequisitePT():
     # cleaning and setting past pds and fds and fFds
     setterInitialPdsAndFds()
 
-    # setter prerequisite black list for et
-    getterPreBlackListForET()
-
     # setter pre pivot data
     setterSRData()
     setterPrePivotData()
@@ -57,6 +54,7 @@ def cleaningAndPreRequisitePT():
     cleaningAndSettingAIList()
 
     # cleaning the setting the Entry Triggered list
+    getterPreBlackListForET()
     cleaningAndSettingETList()
 
     # cleaning the setting the Entry list

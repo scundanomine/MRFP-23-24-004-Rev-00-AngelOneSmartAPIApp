@@ -20,4 +20,4 @@ def getCustomDfBlackListET(lock=multiprocessing.Lock()):
     return df
 
 
-# getCustomDfBlackListET()
+# print(getCustomDfBlackListET())
