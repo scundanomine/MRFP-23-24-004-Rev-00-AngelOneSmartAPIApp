@@ -56,7 +56,7 @@ def getPosition(lock=multiprocessing.Lock()):
                 # remove specific row from Entry list
                 eLDf.drop(index)
                 # reset of black list
-                eTBDf.loc[uid - 1, "bFlag"] = False
+                eTBDf.loc[uid - 1, "bFlag"] = 0
                 eCBDf.loc[uid - 1, "bELFlag"] = False
                 # removal of specific row from ET list
                 eTDf.drop(i)
@@ -77,7 +77,7 @@ def getPosition(lock=multiprocessing.Lock()):
                     # remove specific row from Entry list
                     eLDf.drop(index)
                     # reset of black list
-                    eTBDf.loc[uid - 1, "bFlag"] = False
+                    eTBDf.loc[uid - 1, "bFlag"] = 0
                     eCBDf.loc[uid - 1, "bELFlag"] = False
                     # removal of specific row from ET list
                     eTDf.drop(i)
@@ -100,7 +100,7 @@ def getPosition(lock=multiprocessing.Lock()):
                     # remove specific row from Entry list
                     eLDf.drop(index)
                     # reset of black list
-                    eTBDf.loc[uid - 1, "bFlag"] = False
+                    eTBDf.loc[uid - 1, "bFlag"] = 0
                     eCBDf.loc[uid - 1, "bELFlag"] = False
                     # removal of specific row from ET list
                     eTDf.drop(i)

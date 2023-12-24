@@ -23,7 +23,7 @@ def entryTriggeredForBearishReversalPatternForSell(lock):
     for index, row in rdf.iterrows():
         uid = row['id']
         # condition of black listed
-        if bLDf['bFlag'][uid-1]:
+        if bLDf['bFlag'][uid-1] == 1:
             continue
         else:
             cOne = row['CC1']
@@ -37,7 +37,7 @@ def entryTriggeredForBearishReversalPatternForSell(lock):
                 row['oc'] = "EntryTriggeredDueToBearishReversalPatternToSell"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid-1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = 1
 
             # condition for no buy or sale
             else:

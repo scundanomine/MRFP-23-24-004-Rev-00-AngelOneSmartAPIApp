@@ -24,7 +24,7 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
     for index, row in rdf.iterrows():
         uid = row['id']
         # condition of black listed
-        if bLDf['bFlag'][uid-1]:
+        if bLDf['bFlag'][uid-1] == 1:
             continue
         else:
             cOne = row['CC1']
@@ -38,7 +38,7 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
                 row['oc'] = "EntryTriggeredDueToSupportPivot"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid-1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = 1
 
             # condition for buy
             elif cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and checkBullishReversalPattern(row["bulRP"]):
@@ -47,7 +47,7 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
                 row['oc'] = "EntryTriggeredDueToSupportPivot"
                 oLDf.loc[len(oLDf)] = row
                 # update the black list
-                bLDf.loc[uid-1, 'bFlag'] = True
+                bLDf.loc[uid-1, 'bFlag'] = 1
 
             # condition for no buy or sale
             else:

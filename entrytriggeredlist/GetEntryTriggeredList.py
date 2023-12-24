@@ -45,4 +45,4 @@ def getEntryTriggeredList(lock=multiprocessing.Lock()):
         time.sleep(5)
 
 
-getEntryTriggeredList()
+# getEntryTriggeredList()

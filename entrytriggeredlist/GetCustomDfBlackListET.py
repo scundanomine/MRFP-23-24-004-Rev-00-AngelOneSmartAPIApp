@@ -16,6 +16,7 @@ def getCustomDfBlackListET(lock=multiprocessing.Lock()):
 
     df = pd.DataFrame(dt.range(f"a{2}:b{n+1}").value, columns=["id", 'bFlag'])
     df["id"] = df["id"].astype("int64")
+    df["bFlag"] = df["bFlag"].astype("int64")
     # print(f"execution time for getting CustomDfBlackListET {time.time()-startTime}")
     return df
 

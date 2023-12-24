@@ -75,7 +75,7 @@ def takeExit(lock=multiprocessing.Lock()):
             if ltp == 0 and time.time() - refTime >= 1800:
                 eTDf.drop(i)
                 pLDf.drop(index)
-                eTBDf.loc[uid - 1, "bFlag"] = False
+                eTBDf.loc[uid - 1, "bFlag"] = 0
                 eCBDf.loc[uid - 1, "bELFlag"] = False
             elif ltp == 0:
                 continue
@@ -93,7 +93,7 @@ def takeExit(lock=multiprocessing.Lock()):
                 elif ltp >= target or time.time() - refTime >= 1800 or row['eFlag']:
                     eTDf.drop(i)
                     pLDf.drop(index)
-                    eTBDf.loc[uid - 1, "bFlag"] = False
+                    eTBDf.loc[uid - 1, "bFlag"] = 0
                     eCBDf.loc[uid - 1, "bELFlag"] = False
                 # condition for riding
                 elif ltp - lp >= 0.8 * (target - lp) and (rsi >= 70 and rsi >= rsiP):
@@ -114,7 +114,7 @@ def takeExit(lock=multiprocessing.Lock()):
                 elif ltp <= target or time.time() - refTime >= 1800 or row['eFlag']:
                     eTDf.drop(i)
                     pLDf.drop(index)
-                    eTBDf.loc[uid - 1, "bFlag"] = False
+                    eTBDf.loc[uid - 1, "bFlag"] = 0
                     eCBDf.loc[uid - 1, "bELFlag"] = False
                 # condition for riding
                 elif ltp - lp <= 0.8 * (target - lp) and (rsi <= 30 and rsi <= rsiP):

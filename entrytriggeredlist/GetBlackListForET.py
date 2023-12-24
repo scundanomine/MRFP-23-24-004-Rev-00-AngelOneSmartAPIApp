@@ -11,7 +11,7 @@ def getBlackListForET(lock=multiprocessing.Lock()):
     bLDf = getterBlackListET(lock)
 
     for index, row in df.iterrows():
-        if row["bFlag"]:
+        if row["bFlag"] == 1:
             bLDf.loc[index, 'bFlag'] = row['bFlag']
     lock.acquire()
     bLDf.to_csv(

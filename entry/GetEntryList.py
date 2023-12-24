@@ -60,11 +60,11 @@ def getEntryList(lock=multiprocessing.Lock()):
                 else:
                     pass
         lock.acquire()
-        # setter for ET black list
-        eCBLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
+        # setter for getter Entry calculated and entry happened black list
+        eCBLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv", index=False)
 
         # setter for Entry list
-        eLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv", index=False)
+        eLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\EntryList.csv", index=False)
         lock.release()
         ctrA = ctrA + 1
         print(f"{ctrA} execution time for getting entry triggered list is {time.time() - startTime}")
