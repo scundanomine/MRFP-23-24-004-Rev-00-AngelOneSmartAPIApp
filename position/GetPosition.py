@@ -1,18 +1,16 @@
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
-from entry.GetterECBList import getterECBList
+from entry.GetterDropAndSetterEntryList import getterDropAndSetterEntryList
 from entry.GetterEntryList import getterEntryList
-from entry.SetterECBList import setterECBList
-from entry.SetterEntryList import setterEntryList
-from entrytriggeredlist.GetterBlackListET import getterBlackListET
+from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
+from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
-from entrytriggeredlist.SetterBlackListET import setterBlackListET
-from entrytriggeredlist.SetterEntryTriggeredList import setterEntryTriggeredList
+from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 from margin.GetterAvailableMargin import getterAvailableMargin
+from margin.GetterDebitAndSetterAvailableMargin import getterDebitAndSetterAvailableMargin
 from margin.SetterAvailableMargin import setterAvailableMargin
 from ohlcdata.GetFutureLTP import getFutureLTP
-from position.GetterPositionList import getterPositionList
-from position.SetterPositionList import setterPositionList
+from position.GetterAppendAndSetterPositionList import getterAppendAndSetterPositionList
 import time
 import datetime
 import multiprocessing
@@ -29,17 +27,8 @@ def getPosition(lock=multiprocessing.Lock()):
         # getter ET list
         eTDf = getterEntryTriggeredList(lock)
 
-        # getter ET black list
-        eTBDf = getterBlackListET(lock)
-
         # getter Entry list
         eLDf = getterEntryList(lock)
-
-        # getter Entry calculation black list
-        eCBDf = getterECBList(lock)
-
-        # getter position list
-        pLDf = getterPositionList(lock)
 
         dfItr = eLDf
 
@@ -50,21 +39,23 @@ def getPosition(lock=multiprocessing.Lock()):
             lp = row['lp']
             sl = row['sl']
             refTime = row["tOEP"]
-            i = eTDf[(eTDf.id == uid)].index
             maDf = getterAvailableMargin()
             ma = maDf['margin'][0]
             mr = row['mr']
             # condition for long position
+            # condition for pre exit
             if ltp == 0 and time.time() - refTime >= 300:
                 row['po'] = 'cancel'
                 row['sl'] = 'cancel'
+                lock.acquire()
                 # remove specific row from Entry list
-                eLDf = eLDf.drop(index)
+                getterDropAndSetterEntryList(uid)
                 # reset of black list
-                eTBDf.loc[uid - 1, "bFlag"] = 0
-                eCBDf.loc[uid - 1, "eCBFlag"] = False
+                getterUpdateAndSetterBlackListET(uid, 0)
+                getterUpdateAndSetterECBList(uid, False)
                 # removal of specific row from ET list
-                eTDf = eTDf.drop(i)
+                getterDropAndSetterEntryTriggeredList(uid)
+                lock.release()
             elif ltp == 0:
                 continue
             elif ot == "buy":
@@ -73,24 +64,26 @@ def getPosition(lock=multiprocessing.Lock()):
                         print(f"entry is place for {uid}")
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
-                        # upend the list
-                        pLDf.loc[len(pLDf)] = row
+                        lock.acquire()
+                        # upend the position list
+                        getterAppendAndSetterPositionList(row)
                         # remove specific row from Entry list
-                        eLDf = eLDf.drop(index)
-                        maDf.loc[0, 'margin'] = ma - mr
-                        setterAvailableMargin(maDf, lock)
+                        getterDropAndSetterEntryList(uid)
+                        # margin debit
+                        getterDebitAndSetterAvailableMargin(mr)
+                        lock.release()
                 elif ltp <= (sl + lp) / 2 or time.time() - refTime >= 300:
                     row['po'] = 'cancel'
                     row['sl'] = 'cancel'
+                    lock.acquire()
                     # remove specific row from Entry list
-                    eLDf = eLDf.drop(index)
+                    getterDropAndSetterEntryList(uid)
                     # reset of black list
-                    eTBDf.loc[uid - 1, "bFlag"] = 0
-                    eCBDf.loc[uid - 1, "eCBFlag"] = False
+                    getterUpdateAndSetterBlackListET(uid, 0)
+                    getterUpdateAndSetterECBList(uid, False)
                     # removal of specific row from ET list
-                    eTDf = eTDf.drop(i)
-                else:
-                    pass
+                    getterDropAndSetterEntryTriggeredList(uid)
+                    lock.release()
 
             # condition for short position
             else:
@@ -99,41 +92,28 @@ def getPosition(lock=multiprocessing.Lock()):
                         print(f"entry is place for {uid}")
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
-                        # upend the list
-                        pLDf.loc[len(pLDf)] = row
+                        lock.acquire()
+                        # upend the position list
+                        getterAppendAndSetterPositionList(row)
                         # remove specific row from Entry list
-                        eLDf = eLDf.drop(index)
-                        maDf.loc[0, 'margin'] = ma - mr
-                        setterAvailableMargin(maDf, lock)
+                        getterDropAndSetterEntryList(uid)
+                        # margin debit
+                        getterDebitAndSetterAvailableMargin(mr)
+                        lock.release()
                 elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 300:
                     row['po'] = 'cancel'
                     row['sl'] = 'cancel'
+                    lock.acquire()
                     # remove specific row from Entry list
-                    eLDf = eLDf.drop(index)
+                    getterDropAndSetterEntryList(uid)
                     # reset of black list
-                    eTBDf.loc[uid - 1, "bFlag"] = 0
-                    eCBDf.loc[uid - 1, "eCBFlag"] = False
+                    getterUpdateAndSetterBlackListET(uid, 0)
+                    getterUpdateAndSetterECBList(uid, False)
                     # removal of specific row from ET list
-                    eTDf = eTDf.drop(i)
-                else:
-                    pass
-
-        # setter for eTDf
-        setterEntryTriggeredList(eTDf, lock)
-
-        # setter for eTBDf
-        setterBlackListET(eTBDf, lock)
-
-        # setter for eLDf
-        setterEntryList(eLDf, lock)
-
-        # setter for eCBDf
-        setterECBList(eCBDf, lock)
-
-        # setter for pLDf
-        setterPositionList(pLDf, lock)
+                    getterDropAndSetterEntryTriggeredList(uid)
+                    lock.release()
         ctrA = ctrA + 1
-        print(f"{ctrA} execution time for getting position list is {time.time() - startTime}")
+        print(f"{ctrA} execution time for getting position list (PL) is {time.time() - startTime}")
         time.sleep(0.5)
 
 

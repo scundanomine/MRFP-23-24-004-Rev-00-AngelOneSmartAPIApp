@@ -1,7 +1,8 @@
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
+from entry.GetterAppendAndSetterEntryList import getterAppendAndSetterEntryList
 from entry.GetterECBList import getterECBList
-from entry.GetterEntryList import getterEntryList
+from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
 from entry.LongPositionCalculator import longPositionCalculator
 from entry.ShortPositionCalculator import shortPositionCalculator
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
@@ -19,9 +20,6 @@ def getEntryList(lock=multiprocessing.Lock()):
     exitTime = getterExitTime()
     lock.release()
     while datetime.datetime.now() - cv < exitTime:
-        # Getter for entry list
-        eLDf = getterEntryList(lock)
-
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList(lock)
 
@@ -48,20 +46,10 @@ def getEntryList(lock=multiprocessing.Lock()):
                 mr = abs(1.01 * ltp * q / margin)
                 upList = [uid, sector, symbol, token, ot, ltp, 1.01 * ltp, q, sl, target, mr, 'open', 'open', '', 0,
                           time.time(), '', '', ltp, False, False]
-                eLDf.loc[len(eLDf)] = upList
-                eCBLDf.loc[uid - 1, 'eCBFlag'] = True
-
-        lock.acquire()
-        # setter for getter Entry calculated and entry happened black list
-        eCBLDf.to_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv",
-            index=False)
-
-        # setter for Entry list
-        eLDf.to_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\EntryList.csv",
-            index=False)
-        lock.release()
+                lock.acquire()
+                getterAppendAndSetterEntryList(upList)
+                getterUpdateAndSetterECBList(uid, True)
+                lock.release()
         ctrA = ctrA + 1
         print(f"{ctrA} execution time for getting Entry List (EL) is {time.time() - startTime}")
         time.sleep(5)

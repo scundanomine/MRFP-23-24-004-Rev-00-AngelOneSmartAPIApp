@@ -1,8 +1,8 @@
-import time
 from AIlists.GetterAIList import getterAIList
+from entrytriggeredlist.GetterAppendAndSetterEntryTriggeredList import getterAppendAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
-from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 import multiprocessing
+from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
 def entryTriggeredForTopGainerToBuy(lock=multiprocessing.Lock()):
@@ -15,10 +15,6 @@ def entryTriggeredForTopGainerToBuy(lock=multiprocessing.Lock()):
     # getter ET black list
     bLDf = getterBlackListET(lock)
     # print(bLDf)
-
-    # getter Entry Triggered list
-    oLDf = getterEntryTriggeredList(lock)
-    # print(oLDf)
 
     for index, row in rdf.iterrows():
         uid = row['id']
@@ -34,22 +30,11 @@ def entryTriggeredForTopGainerToBuy(lock=multiprocessing.Lock()):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
                 row['oc'] = "EntryTriggeredDueToTopGainerForBuy"
-                oLDf.loc[len(oLDf)] = row
+                lock.acquire()
+                getterAppendAndSetterEntryTriggeredList(row)
                 # update the black list
-                bLDf.loc[uid-1, 'bFlag'] = 1
-
-            # condition for no buy or sale
-            else:
-                pass
-
-    # setter for ET black list
-    lock.acquire()
-    bLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
-
-    # setter for Entry Triggered list
-    oLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\EntryTriggeredList.csv", index=False)
-    lock.release()
-    # print(f"execution time is {time.time() - startTime}")
+                getterUpdateAndSetterBlackListET(uid, 1)
+                lock.release()
 
 
 # entryTriggeredForTopGainerToBuy()
