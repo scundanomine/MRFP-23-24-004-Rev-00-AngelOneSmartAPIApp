@@ -6,11 +6,8 @@ from entry.LongPositionCalculator import longPositionCalculator
 from entry.ShortPositionCalculator import shortPositionCalculator
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 import datetime
-from margin.GetterAvailableMargin import getterAvailableMargin
-from margin.SetterAvailableMargin import setterAvailableMargin
 import time
 import multiprocessing
-
 from ohlcdata.GetFutureLTP import getFutureLTP
 
 
@@ -40,7 +37,7 @@ def getEntryList(lock=multiprocessing.Lock()):
             margin = 5
             ot = row['ot']
             ltp = getFutureLTP(uid, ot, lock)
-            if eCBLDf['eCBFlag'][uid-1] or ltp == 0:
+            if eCBLDf.loc[uid - 1, 'eCBFlag'] or ltp == 0:
                 continue
             else:
                 if ot == 'buy':
@@ -48,24 +45,26 @@ def getEntryList(lock=multiprocessing.Lock()):
                 else:
                     q, sl, target = shortPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
                 # calculation for margin required
-                mr = abs(1.01*ltp*q/margin)
-                maDf = getterAvailableMargin()
-                ma = maDf['margin'][0]
-                if mr <= ma:
-                    upList = [uid, sector, symbol, token, ot, ltp, 1.01*ltp, q, sl, target, mr, 'open', 'open', '', datetime.datetime.now()]
-                    eLDf.loc[len(eLDf)] = upList
-                    eCBLDf['eCBFlag'][uid - 1] = True
-                    maDf.loc[0, 'margin'] = ma - mr
-                    setterAvailableMargin(maDf)
-                else:
-                    pass
+                mr = abs(1.01 * ltp * q / margin)
+                upList = [uid, sector, symbol, token, ot, ltp, 1.01 * ltp, q, sl, target, mr, 'open', 'open', '', 0,
+                          time.time(), '', '', ltp, False, False]
+                eLDf.loc[len(eLDf)] = upList
+                eCBLDf.loc[uid - 1, 'eCBFlag'] = True
+
         lock.acquire()
         # setter for getter Entry calculated and entry happened black list
-        eCBLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv", index=False)
+        eCBLDf.to_csv(
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv",
+            index=False)
 
         # setter for Entry list
-        eLDf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\EntryList.csv", index=False)
+        eLDf.to_csv(
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\EntryList.csv",
+            index=False)
         lock.release()
         ctrA = ctrA + 1
-        print(f"{ctrA} execution time for getting entry triggered list is {time.time() - startTime}")
+        print(f"{ctrA} execution time for getting Entry List (EL) is {time.time() - startTime}")
         time.sleep(5)
+
+
+# getEntryList()

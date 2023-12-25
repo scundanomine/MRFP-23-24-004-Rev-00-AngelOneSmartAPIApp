@@ -8,6 +8,8 @@ from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
 from entrytriggeredlist.SetterBlackListET import setterBlackListET
 from entrytriggeredlist.SetterEntryTriggeredList import setterEntryTriggeredList
+from margin.GetterAvailableMargin import getterAvailableMargin
+from margin.SetterAvailableMargin import setterAvailableMargin
 from ohlcdata.GetFutureLTP import getFutureLTP
 from position.GetterPositionList import getterPositionList
 from position.SetterPositionList import setterPositionList
@@ -49,61 +51,70 @@ def getPosition(lock=multiprocessing.Lock()):
             sl = row['sl']
             refTime = row["tOEP"]
             i = eTDf[(eTDf.id == uid)].index
+            maDf = getterAvailableMargin()
+            ma = maDf['margin'][0]
+            mr = row['mr']
             # condition for long position
             if ltp == 0 and time.time() - refTime >= 300:
                 row['po'] = 'cancel'
                 row['sl'] = 'cancel'
                 # remove specific row from Entry list
-                eLDf.drop(index)
+                eLDf = eLDf.drop(index)
                 # reset of black list
                 eTBDf.loc[uid - 1, "bFlag"] = 0
-                eCBDf.loc[uid - 1, "bELFlag"] = False
+                eCBDf.loc[uid - 1, "eCBFlag"] = False
                 # removal of specific row from ET list
-                eTDf.drop(i)
+                eTDf = eTDf.drop(i)
             elif ltp == 0:
                 continue
             elif ot == "buy":
                 if ltp >= lp:
-                    print(f"entry is place for {uid}")
-                    row['po'] = 'executed'
-                    row['tOP'] = time.time()
-                    # upend the list
-                    pLDf.iLoc[len(pLDf)] = row
-                    # remove specific row from Entry list
-                    eLDf.drop(index)
+                    if mr <= ma:
+                        print(f"entry is place for {uid}")
+                        row['po'] = 'executed'
+                        row['tOP'] = time.time()
+                        # upend the list
+                        pLDf.loc[len(pLDf)] = row
+                        # remove specific row from Entry list
+                        eLDf = eLDf.drop(index)
+                        maDf.loc[0, 'margin'] = ma - mr
+                        setterAvailableMargin(maDf, lock)
                 elif ltp <= (sl + lp) / 2 or time.time() - refTime >= 300:
                     row['po'] = 'cancel'
                     row['sl'] = 'cancel'
                     # remove specific row from Entry list
-                    eLDf.drop(index)
+                    eLDf = eLDf.drop(index)
                     # reset of black list
                     eTBDf.loc[uid - 1, "bFlag"] = 0
-                    eCBDf.loc[uid - 1, "bELFlag"] = False
+                    eCBDf.loc[uid - 1, "eCBFlag"] = False
                     # removal of specific row from ET list
-                    eTDf.drop(i)
+                    eTDf = eTDf.drop(i)
                 else:
                     pass
 
             # condition for short position
             else:
                 if ltp <= lp:
-                    print(f"entry is place for {uid}")
-                    row['po'] = 'executed'
-                    row['tOP'] = time.time()
-                    # upend the list
-                    pLDf.iLoc[len(pLDf)] = row
-                    # remove specific row from Entry list
-                    eLDf.drop(index)
-                elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 600:
+                    if mr <= ma:
+                        print(f"entry is place for {uid}")
+                        row['po'] = 'executed'
+                        row['tOP'] = time.time()
+                        # upend the list
+                        pLDf.loc[len(pLDf)] = row
+                        # remove specific row from Entry list
+                        eLDf = eLDf.drop(index)
+                        maDf.loc[0, 'margin'] = ma - mr
+                        setterAvailableMargin(maDf, lock)
+                elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 300:
                     row['po'] = 'cancel'
                     row['sl'] = 'cancel'
                     # remove specific row from Entry list
-                    eLDf.drop(index)
+                    eLDf = eLDf.drop(index)
                     # reset of black list
                     eTBDf.loc[uid - 1, "bFlag"] = 0
-                    eCBDf.loc[uid - 1, "bELFlag"] = False
+                    eCBDf.loc[uid - 1, "eCBFlag"] = False
                     # removal of specific row from ET list
-                    eTDf.drop(i)
+                    eTDf = eTDf.drop(i)
                 else:
                     pass
 
@@ -124,3 +135,6 @@ def getPosition(lock=multiprocessing.Lock()):
         ctrA = ctrA + 1
         print(f"{ctrA} execution time for getting position list is {time.time() - startTime}")
         time.sleep(0.5)
+
+
+# getPosition()

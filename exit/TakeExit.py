@@ -80,7 +80,7 @@ def takeExit(lock=multiprocessing.Lock()):
             elif ltp == 0:
                 continue
             # exit condition for buy
-            if ot is "buy":
+            if ot == "buy":
                 # condition for Trailing stop loss
                 if row["rFlag"]:
                     if dx > 0:

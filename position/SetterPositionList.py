@@ -11,7 +11,12 @@ def setterPositionList(df=pd.DataFrame(), lock=multiprocessing.Lock()):
     n = len(df)
     # clear the sheet
     lock.acquire()
-    dt.range(f"a2:u{n + 40}").clear_contents()
+    while True:
+        try:
+            dt.range(f"a2:u{n + 40}").clear_contents()
+            break
+        except Exception as e:
+            print(f"Exception while clearing content on position is {e}")
     lock.release()
 
     # show the list on excell
