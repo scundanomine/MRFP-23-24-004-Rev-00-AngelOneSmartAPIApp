@@ -37,7 +37,7 @@ def takeExit(lock=multiprocessing.Lock()):
             # getting candle sticks properties
             cdf = getterSpecificCandleData(uid, symbol, lock)
             ot = row["ot"]
-            ltp = getFutureLTP(uid, ot, lock)
+            ltp = getFutureLTP(uid, lock)
             lp = row['lp']
             sl = row['sl']
             target = row['target']
@@ -55,7 +55,7 @@ def takeExit(lock=multiprocessing.Lock()):
             row['gol'] = q * (ltp - lp)
 
             # calculation for portfolio
-            pfDf.loc[0, 'portfolio'] = pfDf["portfolio"][0] + q * (ltp - lp)
+            pfDf.loc[0, 'portfolio'] = pfDf["portfolio"][0] + row['gol']
 
             # setter for portfolio
             setterPortfolio(pfDf)
@@ -73,17 +73,17 @@ def takeExit(lock=multiprocessing.Lock()):
             elif ltp == 0:
                 continue
             # exit condition for buy
-            if ot == "buy":
+            elif ot == "buy":
                 # condition for Trailing stop loss
-                if row["rFlag"]:
+                if row["rFlag"] == 1:
                     if dx > 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
                     elif ltp >= target or (rsi <= 50 and rsi <= rsiP):
-                        row['eFlag'] = True
-                        row['rFlag'] = False
+                        row['eFlag'] = 1
+                        row['rFlag'] = 0
                 # condition for exit
-                elif ltp >= target or time.time() - refTime >= 1800 or row['eFlag']:
+                elif ltp >= target or time.time() - refTime >= 1800 or row['eFlag'] == 1:
                     lock.acquire()
                     # remove specific row from Entry list
                     getterDropAndSetterPositionList(uid)
@@ -97,17 +97,17 @@ def takeExit(lock=multiprocessing.Lock()):
                 elif ltp - lp >= 0.8 * (target - lp) and (rsi >= 70 and rsi >= rsiP):
                     row['sl'] = sl + dx
                     row['target'] = target + dx
-                    row['rFlag'] = False
+                    row['rFlag'] = 1
             # exit condition for sell
             else:
                 # condition for Trailing stop loss
-                if row["rFlag"]:
+                if row["rFlag"] == 1:
                     if dx < 0:
                         row['sl'] = sl - dx
                         row['target'] = target - dx
                     elif ltp <= target or (rsi >= 50 and rsi >= rsiP):
-                        row['eFlag'] = True
-                        row['rFlag'] = False
+                        row['eFlag'] = 1
+                        row['rFlag'] = 0
                 # condition for exit
                 elif ltp <= target or time.time() - refTime >= 1800 or row['eFlag']:
                     lock.acquire()
@@ -123,11 +123,14 @@ def takeExit(lock=multiprocessing.Lock()):
                 elif ltp - lp <= 0.8 * (target - lp) and (rsi <= 30 and rsi <= rsiP):
                     row['sl'] = sl - dx
                     row['target'] = target - dx
-                    row['rFlag'] = False
+                    row['rFlag'] = 0
             lock.acquire()
             getterUpdateAndSetterPositionList(uid, row)
             lock.release()
 
         ctrA = ctrA + 1
-        print(f"{ctrA} execution time for getting Exit Position is {time.time() - startTime}")
+        print(f"{ctrA} execution time for getting Exit Position (EP) is {time.time() - startTime}")
         time.sleep(0.5)
+
+
+takeExit()

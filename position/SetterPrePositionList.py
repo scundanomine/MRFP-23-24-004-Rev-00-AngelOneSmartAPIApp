@@ -20,7 +20,7 @@ def setterPrePositionList(lock=multiprocessing.Lock()):
     n = len(df)
     # clear the sheet
     lock.acquire()
-    dt.range(f"a2:r{n + 100}").clear_contents()
+    dt.range(f"a2:u{n + 100}").clear_contents()
     lock.release()
     return df
 

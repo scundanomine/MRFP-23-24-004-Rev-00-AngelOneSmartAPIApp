@@ -5,7 +5,7 @@ from ohlcdata.GetterFDS import getterFDS
 from ohlcdata.GetterFFDS import getterFFDS
 
 
-def getFutureLTP(uid, ot, lock=multiprocessing.Lock()):
+def getFutureLTP(uid, lock=multiprocessing.Lock()):
     # getter fds and fFds
     lock.acquire()
     fds = getterFDS()
@@ -38,7 +38,7 @@ def getFutureLTP(uid, ot, lock=multiprocessing.Lock()):
     ts = int(curTime.strftime("%S"))
 
     # final condition for getting ltp
-    if ot == 'buy':
+    if op <= c:
         if ts <= 20:
             ltp = op + (lo - op) / 20 * ts
         elif ts <= 40:

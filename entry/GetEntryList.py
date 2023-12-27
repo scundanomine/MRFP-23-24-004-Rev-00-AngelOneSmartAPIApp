@@ -34,17 +34,19 @@ def getEntryList(lock=multiprocessing.Lock()):
             atr = row['atr']
             margin = 5
             ot = row['ot']
-            ltp = getFutureLTP(uid, ot, lock)
+            ltp = getFutureLTP(uid, lock)
             if eCBLDf.loc[uid - 1, 'eCBFlag'] or ltp == 0:
                 continue
             else:
                 if ot == 'buy':
                     q, sl, target = longPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
+                    lp = 1.00025 * ltp
                 else:
                     q, sl, target = shortPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
+                    lp = 0.99975 * ltp
                 # calculation for margin required
                 mr = abs(1.01 * ltp * q / margin)
-                upList = [uid, sector, symbol, token, ot, ltp, 1.01 * ltp, q, sl, target, mr, 'open', 'open', '', 0,
+                upList = [uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0,
                           time.time(), '', '', ltp, False, False]
                 lock.acquire()
                 getterAppendAndSetterEntryList(upList)

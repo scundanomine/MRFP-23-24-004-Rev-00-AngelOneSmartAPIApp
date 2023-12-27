@@ -1,40 +1,17 @@
 import pandas as pd
-import xlwings as xw
 import multiprocessing
+from position.SetterPrePositionList import setterPrePositionList
 
 
 def getterPositionList(lock=multiprocessing.Lock()):
-    # getting data from the sheet
-    wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
-    dt = wb.sheets("Position")
     try:
         lock.acquire()
-        dfC = pd.read_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv")
+        df = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv")
         lock.release()
-        n = len(dfC)
-        df = pd.DataFrame(dt.range(f"a1:u{n+2}").value)
-        df.columns = df.iloc[0]
-        df = df[1:]
-
-        # setting index
-        idx = list(range(len(df)))
-        df = df.set_index(pd.Index(idx))
-        df = df.drop(labels=[n], axis=0)
-        df["id"] = df["id"].astype("int64")
     except Exception as e:
-        print(f"The exception while getter position is {e}")
-        # top is time of order placed, po is primary order, sl is stop loss order and to is target order and their values are open, executed, canceled or none.
-        # mr is margin required, lp is limit price, q is the quantity, sl is the stop loss
-        # gol is gain or loss, tOEP is reference time of entry placed, tOP is time of position taken and tOEx is time of exit
-        df = pd.DataFrame(columns=['id', 'sector', 'symbol', 'token', "ot", "ltp", "lp", "q", "sl", "target", "mr", "po", "slo", "to", "gol", "tOEP", "tOP", "tOEx", 'ltpP', 'eFlag', 'rFlag'])
-        dt.range(f"a1:u1").options(pd.DataFrame, index=False).value = df
-        lock.acquire()
-        df.to_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv",
-            index=False)
-        lock.release()
+        print(f"The exception while getter Position list is {e}")
+        df = setterPrePositionList(lock)
     return df
 
 
-# print(getterPositionList())
+# getterEntryList()
