@@ -21,6 +21,7 @@ from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickDa
 import time
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from position.GetPosition import getPosition
+from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
 from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
     checkTraditionalPivotAlarmsWithoutThreading
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
@@ -80,8 +81,13 @@ def exitEvent(lock):
     takeExit(lock)
 
 
-def rREvent(lock):
+def PPMEvent(lock):
     print("Multiprocess ten has been started")
+    getPositionPortfolioAndMarginDisplay(lock)
+
+
+def rREvent(lock):
+    print("Multiprocess eleven has been started")
     getAIListWithoutUdf(lock)
 
 
@@ -144,8 +150,8 @@ if __name__ == "__main__":
     # starting ninth process of getting Exit
     pNine = multiprocessing.Process(target=exitEvent, args=[lockA])
 
-    # # starting tenth process of getting RR
-    # pTen = multiprocessing.Process(target=rREvent, args=[lock])
+    # starting tenth process of getting RR
+    pTen = multiprocessing.Process(target=PPMEvent, args=[lockA])
 
     pOne.start()
     pTwo.start()
@@ -155,8 +161,8 @@ if __name__ == "__main__":
     pSix.start()
     pSeven.start()
     pEight.start()
-    # pNine.start()
-    # pTen.start()
+    pNine.start()
+    pTen.start()
 
     pOne.join()
     pTwo.join()
@@ -166,11 +172,10 @@ if __name__ == "__main__":
     pSix.join()
     pSeven.join()
     pEight.join()
-    # pNine.join()
-    # pTen.join()
+    pNine.join()
+    pTen.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTime}")
-
 
 # eventLoop()

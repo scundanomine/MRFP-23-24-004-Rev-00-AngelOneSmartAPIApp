@@ -1,5 +1,5 @@
 import pandas as pd
 
-a = False
-if not a:
-    print('wow')
+df = pd.DataFrame([[1, 2, 3], [4, 5, 6], [8, 4, 3]])
+print(df[1].sum())
+

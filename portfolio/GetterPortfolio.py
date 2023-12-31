@@ -1,5 +1,5 @@
 import pandas as pd
-from portfolio.GetterPrePortfolio import getterPrePortfolio
+from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
 
 
 def getterPortfolio():
@@ -9,7 +9,7 @@ def getterPortfolio():
     except Exception as e:
         print(f"The exception while getter portfolio is {e}")
         # top is time of order placed, po is primary order, sl is stop loss order and to is target order and their values are open, executed, canceled or none.
-        df = getterPrePortfolio()
+        df = getterPreFixedPortfolio()
     # return df['margin'][0]
     return df
 

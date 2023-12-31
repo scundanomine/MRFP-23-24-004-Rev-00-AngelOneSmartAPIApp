@@ -1,15 +1,17 @@
 import pandas as pd
 
-from entrytriggeredlist.GetCustomDfBlackListET import getCustomDfBlackListET
 
-
-def getterUpdateAndSetterECBList(uid, value):
+def getterUpdateAndSetterFixedPortfolio(gol, lock):
     try:
+        lock.acquire()
         df = pd.read_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv")
-        df.loc[uid - 1, 'eCBFlag'] = value
-        df.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ECBList.csv", index=False)
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\portfolio\\portfoliostate\\FixedPortfolio.csv")
+        lock.release()
+        df.loc[0, 'portfolio'] = df.loc[0, 'portfolio'] + gol
+        lock.acquire()
+        df.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\portfolio\\portfoliostate\\FixedPortfolio.csv", index=False)
+        lock.release()
     except Exception as e:
-        print(f"The exception while getter, update and setter ECB list is {e}")
+        print(f"The exception while getterUpdateAndSetterFixedPortfolio is {e}")
 
 

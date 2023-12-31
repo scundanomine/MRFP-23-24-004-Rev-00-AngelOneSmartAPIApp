@@ -34,8 +34,6 @@ def getPosition(lock=multiprocessing.Lock()):
             lp = row['lp']
             sl = row['sl']
             refTime = row["tOEP"]
-            maDf = getterAvailableMargin()
-            ma = maDf['margin'][0]
             mr = row['mr']
             # condition for long position
             # condition for pre exit
@@ -55,18 +53,21 @@ def getPosition(lock=multiprocessing.Lock()):
                 continue
             elif ot == "buy":
                 if ltp >= lp:
+                    maDf = getterAvailableMargin()
+                    ma = maDf['margin'][0]
                     if mr <= ma:
-                        print(f"entry is place for {uid}")
+                        print(f"Entry is place for buy order for {uid} hurray!!!!!!")
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
+                        row['gol'] = 0
                         lock.acquire()
                         # upend the position list
                         getterAppendAndSetterPositionList(row)
                         # remove specific row from Entry list
                         getterDropAndSetterEntryList(uid)
                         # margin debit
-                        getterDebitAndSetterAvailableMargin(mr)
                         lock.release()
+                        getterDebitAndSetterAvailableMargin(mr, lock)
                 # elif ltp <= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp <= sl or time.time() - refTime >= 1200:
                     row['po'] = 'cancel'
@@ -86,18 +87,21 @@ def getPosition(lock=multiprocessing.Lock()):
             # condition for short position
             else:
                 if ltp <= lp:
+                    maDf = getterAvailableMargin()
+                    ma = maDf['margin'][0]
                     if mr <= ma:
-                        print(f"entry is place for {uid}")
+                        print(f"Entry is place for sell order for {uid} hurray!!!!!!")
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
+                        row['gol'] = 0
                         lock.acquire()
                         # upend the position list
                         getterAppendAndSetterPositionList(row)
                         # remove specific row from Entry list
                         getterDropAndSetterEntryList(uid)
                         # margin debit
-                        getterDebitAndSetterAvailableMargin(mr)
                         lock.release()
+                        getterDebitAndSetterAvailableMargin(mr, lock)
                 # elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp >= sl or time.time() - refTime >= 1200:
                     row['po'] = 'cancel'

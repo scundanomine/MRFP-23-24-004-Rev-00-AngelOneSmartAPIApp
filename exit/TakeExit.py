@@ -5,9 +5,11 @@ from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
 from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
+from exit.GetExitInputs import getExitInputs
+from exit.GetterUpdateAndSetterExitInputs import getterUpdateAndSetterExitInputs
+from margin.GetterCreditAndSetterAvailableMargin import getterCreditAndSetterAvailableMargin
 from ohlcdata.GetFutureLTP import getFutureLTP
-from portfolio.GetterPortfolio import getterPortfolio
-from portfolio.SetterPortfolio import setterPortfolio
+from portfolio.GetterUpdateAndSetterFixedPortfolio import getterUpdateAndSetterFixedPortfolio
 from position.GetterDropAndSetterPositionList import getterDropAndSetterPositionList
 from position.GetterPositionList import getterPositionList
 from position.GetterUpdateAndSetterPositionList import getterUpdateAndSetterPositionList
@@ -26,18 +28,18 @@ def takeExit(lock=multiprocessing.Lock()):
         # getter position list
         pLDf = getterPositionList(lock)
 
-        # getter portfolio
-        pfDf = getterPortfolio()
-
         dfItr = pLDf
+
+        eIDf = getExitInputs(lock)
 
         for index, row in dfItr.iterrows():
             uid = row["id"]
             symbol = row['symbol']
+            row['rFlag'] = eIDf.loc[uid - 1, 'rFlag']
+            row['eFlag'] = eIDf.loc[uid - 1, 'eFlag']
             # getting candle sticks properties
             cdf = getterSpecificCandleData(uid, symbol, lock)
             ot = row["ot"]
-            ltp = getFutureLTP(uid, lock)
             lp = row['lp']
             sl = row['sl']
             target = row['target']
@@ -47,18 +49,20 @@ def takeExit(lock=multiprocessing.Lock()):
             rowCC = cdf.iloc[8]
             rsi = rowC['rsi']
             rsiP = rowCC['rsi']
+            mr = row['mr']
             # roc = rowC['roc']
             # atr = rowC['atr']
             ltpP = row["ltpP"]
-            dx = ltp - ltpP
-            # calculation for gain or loss why?
-            row['gol'] = q * (ltp - lp)
+            ltp = getFutureLTP(uid, lock)
+            if ltp != 0:
+                row['ltp'] = ltp
+                dx = ltp - ltpP
+                # calculation for gain or loss why?
+                row['gol'] = q * (ltp - lp)
+                getterUpdateAndSetterPositionList(uid, row, lock)
+            else:
+                dx = 0
 
-            # calculation for portfolio
-            pfDf.loc[0, 'portfolio'] = pfDf["portfolio"][0] + row['gol']
-
-            # setter for portfolio
-            setterPortfolio(pfDf)
             # condition for post exit
             if ltp == 0 and time.time() - refTime >= 1800:
                 lock.acquire()
@@ -70,6 +74,11 @@ def takeExit(lock=multiprocessing.Lock()):
                 # removal of specific row from ET list
                 getterDropAndSetterEntryTriggeredList(uid)
                 lock.release()
+                getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
+                getterCreditAndSetterAvailableMargin(mr, lock)
+                getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                print(f"Exit happened for {uid} boom!!!!!")
+                continue
             elif ltp == 0:
                 continue
             # exit condition for buy
@@ -93,11 +102,17 @@ def takeExit(lock=multiprocessing.Lock()):
                     # removal of specific row from ET list
                     getterDropAndSetterEntryTriggeredList(uid)
                     lock.release()
+                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
+                    getterCreditAndSetterAvailableMargin(mr, lock)
+                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} boom!!!!!")
+                    continue
                 # condition for riding
                 elif ltp - lp >= 0.8 * (target - lp) and (rsi >= 70 and rsi >= rsiP):
                     row['sl'] = sl + dx
                     row['target'] = target + dx
                     row['rFlag'] = 1
+                    getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
             # exit condition for sell
             else:
                 # condition for Trailing stop loss
@@ -108,6 +123,7 @@ def takeExit(lock=multiprocessing.Lock()):
                     elif ltp <= target or (rsi >= 50 and rsi >= rsiP):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
+                        getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
                 # condition for exit
                 elif ltp <= target or time.time() - refTime >= 1800 or row['eFlag']:
                     lock.acquire()
@@ -119,18 +135,22 @@ def takeExit(lock=multiprocessing.Lock()):
                     # removal of specific row from ET list
                     getterDropAndSetterEntryTriggeredList(uid)
                     lock.release()
+                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
+                    getterCreditAndSetterAvailableMargin(mr, lock)
+                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    print(f"Exit happened for sell order {uid} boom!!!!!")
+                    continue
                 # condition for riding
                 elif ltp - lp <= 0.8 * (target - lp) and (rsi <= 30 and rsi <= rsiP):
                     row['sl'] = sl - dx
                     row['target'] = target - dx
                     row['rFlag'] = 0
-            lock.acquire()
-            getterUpdateAndSetterPositionList(uid, row)
-            lock.release()
+                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
+            getterUpdateAndSetterPositionList(uid, row, lock)
 
         ctrA = ctrA + 1
         print(f"{ctrA} execution time for getting Exit Position (EP) is {time.time() - startTime}")
-        time.sleep(0.5)
+        # time.sleep(0.5)
 
 
-takeExit()
+# takeExit()

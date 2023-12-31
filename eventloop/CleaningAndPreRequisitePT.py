@@ -10,10 +10,11 @@ from entry.SetterPreECBList import setterPreECBList
 from entry.SetterPreEntryList import setterPreEntryList
 from entrytriggeredlist.CleaningAndSettingETList import cleaningAndSettingETList
 from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
+from exit.SetterPreExitInputs import setterPreExitInputs
 from margin.GetterPreMargin import getterPreMargin
 from ohlcdata.CleaningAndSettingPastTenCandleData import cleaningAndSettingPastTenCandleData
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
-from portfolio.GetterPrePortfolio import getterPrePortfolio
+from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
 from position.SetterPrePositionList import setterPrePositionList
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
 from traditionalpivotalarm.SetterSRData import setterSRData
@@ -64,8 +65,11 @@ def cleaningAndPreRequisitePT():
     # cleaning the setting the position list
     setterPrePositionList()
 
+    # setter pre exit inputs
+    setterPreExitInputs()
+
     # cleaning the setting the portfolio and margin
-    getterPrePortfolio()
+    getterPreFixedPortfolio()
     getterPreMargin()
     # print(f"execution time for cleaning is {time.time() - startTime}")
 

@@ -1109,6 +1109,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\pivotalarm\srn.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\portfolio\portfoliostate\FixedPortfolio.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\portfolio\portfoliostate\portfolio.csv">
           <value>
             <Attribute>

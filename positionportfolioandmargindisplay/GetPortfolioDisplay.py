@@ -1,10 +1,13 @@
 import xlwings as xw
 import pandas as pd
-from margin.GetterAvailableMargin import getterAvailableMargin
+from portfolio.GetterFixedPortfolio import getterFixedPortfolio
+from position.GetterPositionList import getterPositionList
 
 
-def getMarginDisplay(lock):
-    df = getterAvailableMargin(lock)
+def getPortfolioDisplay(lock):
+    df = getterFixedPortfolio(lock)
+    pLDf = getterPositionList(lock)
+    df.loc[0, 'portfolio'] = df.loc[0, 'portfolio'] + pLDf['gol'].sum()
     while True:
         try:
             wb = xw.Book(
@@ -12,7 +15,7 @@ def getMarginDisplay(lock):
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
             # creating the df
-            dt.range("a2:a3").options(pd.DataFrame, index=False).value = df
+            dt.range("c2:c3").options(pd.DataFrame, index=False).value = df
             break
         except Exception as e:
-            print(f"Exception while getMarginDisplay is {e}")
+            print(f"Exception while getPortfolioDisplay is {e}")
