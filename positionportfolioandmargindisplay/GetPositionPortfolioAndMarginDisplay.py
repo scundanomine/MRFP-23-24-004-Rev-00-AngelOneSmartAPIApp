@@ -29,6 +29,10 @@ def getPositionPortfolioAndMarginDisplay(lock=multiprocessing.Lock()):
 
         ctrA = ctrA + 1
         if ctrA == 10:
-            print(f"execution time for getting Position, Portfolio And Margin Display (PPM) is {time.time() - startTime}")
+            print(
+                f"execution time for getting Position, Portfolio And Margin Display (PPM) is {time.time() - startTime}")
             ctrA = 0
-        time.sleep(0.001)
+        time.sleep(1)
+
+
+# getPositionPortfolioAndMarginDisplay()

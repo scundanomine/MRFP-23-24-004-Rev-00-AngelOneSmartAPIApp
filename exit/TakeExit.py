@@ -149,7 +149,9 @@ def takeExit(lock=multiprocessing.Lock()):
             getterUpdateAndSetterPositionList(uid, row, lock)
 
         ctrA = ctrA + 1
-        print(f"{ctrA} execution time for getting Exit Position (EP) is {time.time() - startTime}")
+        if ctrA == 100:
+            print(f"{ctrA} execution time for getting Exit Position (EP) is {time.time() - startTime}")
+            ctrA = 0
         # time.sleep(0.5)
 
 

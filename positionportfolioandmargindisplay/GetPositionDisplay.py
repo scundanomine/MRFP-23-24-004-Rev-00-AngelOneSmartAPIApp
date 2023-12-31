@@ -14,6 +14,7 @@ def getPositionDisplay(lock=multiprocessing.Lock()):
             dfC = pd.read_csv(
                 "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv")
             lock.release()
+            dfCL = dfC.values.tolist()
             m = len(dfC)
             i = 6
             for index, row in dfC.iterrows():
@@ -29,19 +30,19 @@ def getPositionDisplay(lock=multiprocessing.Lock()):
                     lock.release()
                 elif uidEx is None:
                     lock.acquire()
-                    dt.range(f"a{i}:u{i}").value = row
-                    dt.range(f"a{i+1}:u{i+4}").clear_contents()
+                    dt.range(f"a{i}:u{i}").value = dfCL[index]
+                    dt.range(f"a{i + 1}:u{i + 4}").clear_contents()
                     lock.release()
                 else:
                     lock.acquire()
                     dt.range(f"a6:u{6 + m + 4}").clear_contents()
                     dt.range(f"a5:u{5 + m + 1}").options(pd.DataFrame, index=False).value = dfC
-                    lock.acquire()
+                    lock.release()
                     break
                 i = i + 1
             break
         except Exception as e:
-            lock.release()
             print(f"The exception while getPositionDisplay is {e}")
+
 
 # getPositionDisplay()

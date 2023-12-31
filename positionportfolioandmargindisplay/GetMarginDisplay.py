@@ -12,7 +12,10 @@ def getMarginDisplay(lock):
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
             # creating the df
-            dt.range("a2:a3").options(pd.DataFrame, index=False).value = df
+            # dt.range("a1:a2").options(pd.DataFrame, index=False).value = df
+            lock.acquire()
+            dt['A2'].value = df.loc[0, 'margin']
+            lock.release()
             break
         except Exception as e:
             print(f"Exception while getMarginDisplay is {e}")

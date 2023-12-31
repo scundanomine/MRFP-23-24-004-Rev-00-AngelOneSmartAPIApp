@@ -7,7 +7,10 @@ from position.GetterPositionList import getterPositionList
 def getPortfolioDisplay(lock):
     df = getterFixedPortfolio(lock)
     pLDf = getterPositionList(lock)
-    df.loc[0, 'portfolio'] = df.loc[0, 'portfolio'] + pLDf['gol'].sum()
+    try:
+        df.loc[0, 'portfolio'] = df.loc[0, 'portfolio'] + pLDf['gol'].sum()
+    except:
+        return
     while True:
         try:
             wb = xw.Book(
@@ -15,7 +18,10 @@ def getPortfolioDisplay(lock):
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
             # creating the df
-            dt.range("c2:c3").options(pd.DataFrame, index=False).value = df
+            # dt.range("c1:c2").options(pd.DataFrame, index=False).value = df
+            lock.acquire()
+            dt['C2'].value = df.loc[0, 'portfolio']
+            lock.release()
             break
         except Exception as e:
             print(f"Exception while getPortfolioDisplay is {e}")

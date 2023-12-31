@@ -53,7 +53,7 @@ def getPosition(lock=multiprocessing.Lock()):
                 continue
             elif ot == "buy":
                 if ltp >= lp:
-                    maDf = getterAvailableMargin()
+                    maDf = getterAvailableMargin(lock)
                     ma = maDf['margin'][0]
                     if mr <= ma:
                         print(f"Entry is place for buy order for {uid} hurray!!!!!!")
@@ -87,7 +87,7 @@ def getPosition(lock=multiprocessing.Lock()):
             # condition for short position
             else:
                 if ltp <= lp:
-                    maDf = getterAvailableMargin()
+                    maDf = getterAvailableMargin(lock)
                     ma = maDf['margin'][0]
                     if mr <= ma:
                         print(f"Entry is place for sell order for {uid} hurray!!!!!!")
@@ -118,7 +118,9 @@ def getPosition(lock=multiprocessing.Lock()):
                 else:
                     pass
         ctrA = ctrA + 1
-        print(f"{ctrA} execution time for getting position list (PL) is {time.time() - startTime}")
+        if ctrA == 20:
+            print(f"Execution time for getting position list (PL) is {time.time() - startTime}")
+            ctrA = 0
         time.sleep(0.5)
 
 
