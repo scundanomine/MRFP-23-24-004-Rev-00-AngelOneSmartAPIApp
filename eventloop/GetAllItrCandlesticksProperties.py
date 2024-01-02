@@ -1,6 +1,8 @@
 from candlestickdataallitr.AllItrATRCalculation import calculationAllItrForATR
-from candlestickdataallitr.GetAllItrBearishReversalCandlestickPattern import getAllItrBearishReversalCandlestickPattern
-from candlestickdataallitr.GetAllItrBullishReversalCandlestickPattern import getAllItrBullishReversalCandlestickPattern
+from candlestickdataallitr.GetAllItrBearishReversalCandlestickPatternWithoutThreading import \
+    getAllItrBearishReversalCandlestickPatternWithoutThreading
+from candlestickdataallitr.GetAllItrBullishReversalCandlestickPatternWithoutThreading import \
+    getAllItrBullishReversalCandlestickPatternWithoutThreading
 from candlestickdataallitr.GetAllItrGSTData import getAllItrCandlestickGSTData
 from candlestickvolume.GetAllItrATRForVolume import getAllItrATRForVolume
 from candlestickvolume.GetAllItrVolumeCandleSize import getAllItrVolumeCandleSize
@@ -41,10 +43,10 @@ def getAllItrCandlesticksProperties(sid, symbol, data, lock=multiprocessing.Lock
     gdf = getAllItrCandlestickGSTData(gdf)
 
     # get bullish reversal pattern
-    gdf = getAllItrBullishReversalCandlestickPattern(gdf)
+    gdf = getAllItrBullishReversalCandlestickPatternWithoutThreading(gdf)
 
     # get bearish reversal pattern
-    gdf = getAllItrBearishReversalCandlestickPattern(gdf)
+    gdf = getAllItrBearishReversalCandlestickPatternWithoutThreading(gdf)
 
     # setter function
     lock.acquire()

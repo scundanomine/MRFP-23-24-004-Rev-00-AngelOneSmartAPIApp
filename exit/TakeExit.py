@@ -64,7 +64,7 @@ def takeExit(lock=multiprocessing.Lock()):
                 dx = 0
 
             # condition for post exit
-            if ltp == 0 and time.time() - refTime >= 1800:
+            if (ltp == 0 and time.time() - refTime >= 1800) or row['eFlag'] == 1:
                 lock.acquire()
                 # remove specific row from Entry list
                 getterDropAndSetterPositionList(uid)

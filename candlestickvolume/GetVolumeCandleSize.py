@@ -38,10 +38,5 @@ def getVolumeCandleSize(df):
 
     return vdf
 
-    # print(vdf)
-
-    # save data
-    # saveCandlestickTenMinuteData(vdf)
-
 
 # getVolumeCandleSize()

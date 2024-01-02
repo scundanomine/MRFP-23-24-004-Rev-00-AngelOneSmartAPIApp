@@ -1,13 +1,4 @@
-import pandas as pd
-
-cdf = pd.DataFrame()
-
-
-def getAllItrRSIValue(df):
-    global cdf
-
-    # get df
-    cdf = df
+def getAllItrRSIValue(cdf):
     r = 9
     if cdf["C"][r - 1] == 0:
         change = cdf["C"][r] - cdf["O"][r]
@@ -30,7 +21,7 @@ def getAllItrRSIValue(df):
     else:
         rsi = (umAvg / (umAvg + dmAvg)) * 100
 
-    cdf.loc[9, 'rsi'] = rsi
+    # cdf.loc[9, 'rsi'] = rsi
 
     # return round(rsi, 2)
     return rsi

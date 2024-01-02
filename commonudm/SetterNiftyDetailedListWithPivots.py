@@ -4,12 +4,17 @@ from commonudm.GetterStockQtn import getterStockQtn
 
 
 def setterNiftyDetailedListWithPivot(sheetName="nifty500"):
-    wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
-    n = getterStockQtn()
-    # getting dataframe
-    dt = wb.sheets(sheetName)
-    df = pd.DataFrame(dt.range(f"a1:u{n+1}").value)
+    while True:
+        try:
+            wb = xw.Book(
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+            n = getterStockQtn()
+            # getting dataframe
+            dt = wb.sheets(sheetName)
+            df = pd.DataFrame(dt.range(f"a1:u{n+1}").value)
+            break
+        except Exception as e:
+            print(f"Exception while getterPrePortfolio is {e}")
     df.columns = df.iloc[0]
     df = df[1:]
     df["id"] = df["id"].astype("int64")

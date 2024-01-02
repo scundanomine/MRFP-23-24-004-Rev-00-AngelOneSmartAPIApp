@@ -787,6 +787,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\61_DIVISLAB-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\63_HAVELLS-EQ.csv">
           <value>
             <Attribute>
@@ -1117,13 +1124,6 @@
           </value>
         </entry>
         <entry key="\portfolio\portfoliostate\FixedPortfolio.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\portfolio\portfoliostate\portfolio.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

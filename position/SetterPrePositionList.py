@@ -21,16 +21,21 @@ def setterPrePositionList(lock=multiprocessing.Lock()):
         index=False)
     lock.release()
     # getting data from the sheet
-    wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
-    dt = wb.sheets("Position")
+    while True:
+        try:
+            wb = xw.Book(
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+            dt = wb.sheets("Position")
 
-    lock.acquire()
-    dt.range(f"a1:u{n + 1}").clear_contents()
-    # clear the sheet
-    m = len(df)
-    dt.range(f"a1:u{m + 1}").options(pd.DataFrame, index=False).value = df
-    lock.release()
+            lock.acquire()
+            dt.range(f"a1:u{n + 1}").clear_contents()
+            # clear the sheet
+            m = len(df)
+            dt.range(f"a1:u{m + 1}").options(pd.DataFrame, index=False).value = df
+            lock.release()
+            break
+        except Exception as e:
+            print(f"Exception while setterPrePositionList is {e}")
     return df
 
 

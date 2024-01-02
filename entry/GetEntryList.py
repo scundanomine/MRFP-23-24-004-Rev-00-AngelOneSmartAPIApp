@@ -44,8 +44,10 @@ def getEntryList(lock=multiprocessing.Lock()):
                 else:
                     q, sl, target = shortPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
                     lp = 0.99975 * ltp
+
                 # calculation for margin required
-                mr = abs(1.01 * ltp * q / margin)
+                mr = abs(lp * q / margin)
+
                 upList = [uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0,
                           time.time(), '', '', ltp, False, False]
                 lock.acquire()

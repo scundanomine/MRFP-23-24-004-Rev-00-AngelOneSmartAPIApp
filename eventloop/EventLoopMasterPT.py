@@ -44,8 +44,8 @@ def candlesPropertiesAllITREvent(lock):
 
 def pivotAlarmEvent(lock):
     print("Multiprocess three has been started")
-    setterSRData()
-    setterPrePivotData()
+    # setterSRData()
+    # setterPrePivotData()
     checkTraditionalPivotAlarmsWithoutThreading(lock)
 
 
@@ -94,7 +94,7 @@ def rREvent(lock):
 # def eventLoop():
 # four multiple process
 if __name__ == "__main__":
-    startTime = time.time()
+    startTimeEventLoop = time.time()
     print("running for first time")
     # cleaning and setting prerequisite data
     cleaningAndPreRequisitePT()
@@ -153,29 +153,29 @@ if __name__ == "__main__":
     # starting tenth process of getting RR
     pTen = multiprocessing.Process(target=PPMEvent, args=[lockA])
 
-    pOne.start()
-    pTwo.start()
-    pThree.start()
-    pFour.start()
-    pFive.start()
-    pSix.start()
-    pSeven.start()
-    pEight.start()
-    pNine.start()
-    pTen.start()
+    # pOne.start()
+    # pTwo.start()
+    # pThree.start()
+    # pFour.start()
+    # pFive.start()
+    # pSix.start()
+    # pSeven.start()
+    # pEight.start()
+    # pNine.start()
+    # pTen.start()
 
-    pOne.join()
-    pTwo.join()
-    pThree.join()
-    pFour.join()
-    pFive.join()
-    pSix.join()
-    pSeven.join()
-    pEight.join()
-    pNine.join()
-    pTen.join()
+    # pOne.join()
+    # pTwo.join()
+    # pThree.join()
+    # pFour.join()
+    # pFive.join()
+    # pSix.join()
+    # pSeven.join()
+    # pEight.join()
+    # pNine.join()
+    # pTen.join()
 
     print("Multiprocess have been finished")
-    print(f"execution time is {time.time() - startTime}")
+    print(f"execution time is {time.time() - startTimeEventLoop}")
 
 # eventLoop()

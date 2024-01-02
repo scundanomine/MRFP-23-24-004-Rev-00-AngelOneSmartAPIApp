@@ -4,12 +4,17 @@ from commonudm.GetterStockQtn import getterStockQtn
 
 
 def setterSRData():
-    # getting data from the sheet
-    wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
-    dt = wb.sheets("nifty500")
-    n = getterStockQtn()
-    # creating the df
-    varSR = pd.DataFrame(dt.range(f"a1:u{n+1}").value)
+    while True:
+        try:
+            # getting data from the sheet
+            wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+            dt = wb.sheets("nifty500")
+            n = getterStockQtn()
+            # creating the df
+            varSR = pd.DataFrame(dt.range(f"a1:u{n+1}").value)
+            break
+        except Exception as e:
+            print(f"Exception while setterSRData is {e}")
     varSR.columns = varSR.iloc[0]
     varSR = varSR[1:]
     # above means it will only take columns from 1 to m

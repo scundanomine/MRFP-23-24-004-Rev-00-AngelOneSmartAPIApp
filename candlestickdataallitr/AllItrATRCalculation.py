@@ -10,11 +10,12 @@ def calculationAllItrForATR(sdf):
     lst = [a, b, c]
     tr = max(lst)
 
-    # atr calculation
-    atr = (prvAtr * 9 + tr) / 10
+    # atr calculation with EMA
+    # atr = (prvAtr * 9 + tr) / 10
+    atr = (tr - prvAtr)*2/11 + prvAtr
     # atrPer = atr * 100 / sdf["C"][9]
     # calculation for atr percentile
-    maxPrice = sdf["C"].max()
+    maxPrice = sdf.loc[9, "C"]
     if maxPrice != 0:
         atrPer = atr * 100 / maxPrice
     else:
