@@ -12,8 +12,8 @@ def getAllItrRSIValue(cdf):
         cdf.loc[r, "dm"] = abs(change)
 
     # calculate upward and downward avg
-    umAvg = cdf["um"].sum() / 9
-    dmAvg = cdf["dm"].sum() / 9
+    umAvg = cdf["um"].sum() / 10
+    dmAvg = cdf["dm"].sum() / 10
 
     # rsi = 100 - 100 / (relStrength + 1)
     if umAvg == 0 and dmAvg == 0:

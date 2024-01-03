@@ -49,7 +49,7 @@ def getEntryList(lock=multiprocessing.Lock()):
                 mr = abs(lp * q / margin)
 
                 upList = [uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0,
-                          time.time(), '', '', ltp, False, False]
+                          time.time(), '', '', ltp, 0, 0]
                 lock.acquire()
                 getterAppendAndSetterEntryList(upList)
                 getterUpdateAndSetterECBList(uid, True)

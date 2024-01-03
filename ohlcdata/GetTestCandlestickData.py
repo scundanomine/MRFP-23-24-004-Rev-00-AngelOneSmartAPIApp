@@ -66,7 +66,6 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
         return tDf
 
     # main loop for thread
-    ctrA = 0
     lock.acquire()
     cv = getterTimeDelta()
     exitTime = getterExitTime()
@@ -100,8 +99,7 @@ def getTestCandlestickData(r=300, lock=multiprocessing.Lock()):
             setterPDS(pds)
             setterFFDS(fFds)
             lock.release()
-        ctrA = ctrA + 1
-        print(f"{ctrA} execution time is {time.time() - startTime}")
+        print(f"Execution time for candlestick data (CD) is {time.time() - startTime}")
 
 
 # getTestCandlestickData(60)

@@ -153,8 +153,8 @@ if __name__ == "__main__":
     # starting tenth process of getting RR
     pTen = multiprocessing.Process(target=PPMEvent, args=[lockA])
 
-    # pOne.start()
-    # pTwo.start()
+    pOne.start()
+    pTwo.start()
     # pThree.start()
     # pFour.start()
     # pFive.start()
@@ -164,8 +164,8 @@ if __name__ == "__main__":
     # pNine.start()
     # pTen.start()
 
-    # pOne.join()
-    # pTwo.join()
+    pOne.join()
+    pTwo.join()
     # pThree.join()
     # pFour.join()
     # pFive.join()

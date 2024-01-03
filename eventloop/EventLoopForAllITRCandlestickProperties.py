@@ -11,7 +11,6 @@ import multiprocessing
 
 def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock()):
     startTime = time.time()
-    ctrA = 0
     lock.acquire()
     cv = getterTimeDelta()
     exitTime = getterExitTime()
@@ -40,9 +39,8 @@ def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock()):
             else:
                 # calculation for candle properties
                 getAllItrCandlesticksProperties(uid, symbol, data, lock)
-        ctrA = ctrA + 1
-        print(f"{ctrA} execution time for All Itr candle properties is {time.time() - startTime}")
+        print(f"Execution time for All Itr candle properties (CP) is {time.time() - startTime}")
         time.sleep(5)
 
 
-# eventLoopForAllITRCandlestickProperties()
+eventLoopForAllITRCandlestickProperties()

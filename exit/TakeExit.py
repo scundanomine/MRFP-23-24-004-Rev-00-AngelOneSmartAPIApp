@@ -74,7 +74,7 @@ def takeExit(lock=multiprocessing.Lock()):
                 # removal of specific row from ET list
                 getterDropAndSetterEntryTriggeredList(uid)
                 lock.release()
-                getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
+                getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                 getterCreditAndSetterAvailableMargin(mr, lock)
                 getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                 print(f"Exit happened for {uid} boom!!!!!")

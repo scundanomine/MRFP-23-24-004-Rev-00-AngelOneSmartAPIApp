@@ -5,7 +5,7 @@ def getCandlestickType(b, us, ls, size):
     if size == "zero":
         return "doji"
     # condition for marubozu
-    elif b >= 0.8 * r:
+    elif b >= 0.85 * r:
         return "marubozu"
     # condition for spn_top
     elif us >= 1.5 * b and ls >= 1.5 * b:

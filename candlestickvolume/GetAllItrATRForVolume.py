@@ -1,6 +1,8 @@
 def getAllItrATRForVolume(cdf):
     # ATR for volume
-    atrV = (cdf['atrV'][8] * 9 + cdf['atrV'][9]) / 10
+    pAtrV = cdf.loc[8, 'atrV']
+    v = cdf.loc[9, "V"]
+    atrV = (v - pAtrV)*2/11 + pAtrV
 
     return atrV
 
