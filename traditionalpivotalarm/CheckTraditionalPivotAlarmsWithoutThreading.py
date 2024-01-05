@@ -13,33 +13,31 @@ import datetime
 
 def checkTraditionalPivotAlarmsWithoutThreading(lock=multiprocessing.Lock()):
     startTime = time.time()
-    ctrA = 0
-    lock.acquire()
-    cv = getterTimeDelta()
-    exitTime = getterExitTime()
-    lock.release()
+    with lock:
+        cv = getterTimeDelta()
+        exitTime = getterExitTime()
+    
     while datetime.datetime.now() - cv < exitTime:
         # get token and symbol
-        lock.acquire()
-        dst = getterRequiredSymbolAndTokenList()
-        lock.release()
+        with lock:
+            dst = getterRequiredSymbolAndTokenList()
 
         # get sr data and sr list
-        lock.acquire()
-        varSR = getterSRData()
-        lock.release()
+        with lock:
+            varSR = getterSRData()
+        
         srLst = varSR.to_dict('records')
 
         # dcs and dcs list
-        lock.acquire()
-        pds = getterPDS()
-        lock.release()
+        with lock:
+            pds = getterPDS()
+        
         pdsLst = pds.to_dict('records')
 
         # getterPivotData
-        lock.acquire()
-        pivDf = getterPivotData()
-        lock.release()
+        with lock:
+            pivDf = getterPivotData()
+        
         dcsLst = pivDf.to_dict('records')
 
         for index, row in dst.iterrows():
@@ -53,11 +51,10 @@ def checkTraditionalPivotAlarmsWithoutThreading(lock=multiprocessing.Lock()):
                                                                                          recordedData['4'],
                                                                                          recordedData["0"])
             pivDf.loc[index] = [uid, prevTime, recordedData['4'], alarmTimer, refT, srType, srValue, nSR, gl]
-        lock.acquire()
-        setterPivotData(pivDf)
-        lock.release()
-        ctrA = ctrA + 1
-        print(f"{ctrA} execution time for Pivot alarm is {time.time() - startTime}")
+        with lock:
+            setterPivotData(pivDf)
+        
+        print(f"Execution time for Pivot alarm (TPA) is {time.time() - startTime}")
         time.sleep(5)
 
 

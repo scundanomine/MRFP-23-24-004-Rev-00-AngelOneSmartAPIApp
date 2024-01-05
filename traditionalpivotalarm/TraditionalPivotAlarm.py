@@ -9,7 +9,7 @@ def traditionalPivotAlarm(srVar, dsVar, ltpC, tradedTime):
     gl = getGainOrLoss(ltpC, srVar[1])
 
     # alarm expiry in minutes
-    alarmExp = 30
+    alarmExp = 10
 
     ltpP = dsVar["C"]
 

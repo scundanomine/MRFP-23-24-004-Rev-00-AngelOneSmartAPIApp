@@ -43,4 +43,4 @@ def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock()):
         time.sleep(5)
 
 
-eventLoopForAllITRCandlestickProperties()
+# eventLoopForAllITRCandlestickProperties()

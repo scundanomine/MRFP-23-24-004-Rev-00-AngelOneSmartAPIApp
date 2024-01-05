@@ -8,11 +8,9 @@ from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndS
 def entryTriggeredForBearishReversalPatternForSell(lock):
     # get current resistance AI list
     rdf = getterAIList("BearishReversalAIList", lock)
-    # print(rdf)
 
     # getter ET black list
     bLDf = getterBlackListET(lock)
-    # print(bLDf)
 
     for index, row in rdf.iterrows():
         uid = row['id']
@@ -29,11 +27,10 @@ def entryTriggeredForBearishReversalPatternForSell(lock):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "EntryTriggeredDueToBearishReversalPatternToSell"
-                lock.acquire()
-                getterAppendAndSetterEntryTriggeredList(row)
-                # update the black list
-                getterUpdateAndSetterBlackListET(uid, 1)
-                lock.release()
+                with lock:
+                    getterAppendAndSetterEntryTriggeredList(row)
+                    # update the black list
+                    getterUpdateAndSetterBlackListET(uid, 1)
 
 
 # entryTriggeredForBearishReversalPatternForSell()

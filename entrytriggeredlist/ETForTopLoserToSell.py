@@ -7,11 +7,9 @@ from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndS
 def entryTriggeredForTopLoserToSell(lock):
     # get current resistance AI list
     rdf = getterAIList("TopLoserAIList", lock)
-    # print(rdf)
 
     # getter ET black list
     bLDf = getterBlackListET(lock)
-    # print(bLDf)
 
     for index, row in rdf.iterrows():
         uid = row['id']
@@ -23,15 +21,14 @@ def entryTriggeredForTopLoserToSell(lock):
             cTwo = row['CC2']
             atr = row['atr']
             # condition for buy
-            if row['rsi0'] <= 30 and row['rsi0'] <= row['rsi1'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] <= -15:
+            if row['rsi0'] <= 30 and row['rsi0'] < row['rsi1'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] <= -10:
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "EntryTriggeredDueToTopLoserForSell"
-                lock.acquire()
-                getterAppendAndSetterEntryTriggeredList(row)
-                # update the black list
-                getterUpdateAndSetterBlackListET(uid, 1)
-                lock.release()
+                with lock:
+                    getterAppendAndSetterEntryTriggeredList(row)
+                    # update the black list
+                    getterUpdateAndSetterBlackListET(uid, 1)
 
 
 # entryTriggeredForTopLoserToSell()

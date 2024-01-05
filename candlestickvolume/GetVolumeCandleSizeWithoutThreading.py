@@ -1,25 +1,29 @@
-def getVolumeCandleSizeWithoutThreading(vdf):
+def getVolumeCandleSizeWithoutThreading(df):
     # get ATR
-    atrVL = vdf["atrV"][9]
-    for r, row in vdf.iterrows():
+    atrVL = df["atrV"][9]
+    for r, row in df.iterrows():
         if row["V"] <= 0.125 * atrVL:
-            vdf.loc[r, "vs"] = "zero"
+            df.loc[r, "vs"] = 0
+        elif row["V"] <= 0.25 * atrVL:
+            df.loc[r, "vs"] = 0.25
         elif row["V"] <= 0.5 * atrVL:
-            vdf.loc[r, "vs"] = "S"
-        elif row["V"] <= atrVL:
-            vdf.loc[r, "vs"] = "M"
+            df.loc[r, "vs"] = 0.5
+        elif row["V"] <= 0.75 * atrVL:
+            df.loc[r, "vs"] = 0.75
+        elif row["V"] <= 1 * atrVL:
+            df.loc[r, "vs"] = 1
+        elif row["V"] <= 1.5 * atrVL:
+            df.loc[r, "vs"] = 1.5
         elif row["V"] <= 2 * atrVL:
-            vdf.loc[r, "vs"] = "L"
+            df.loc[r, "vs"] = 2
         elif row["V"] <= 3 * atrVL:
-            vdf.loc[r, "vs"] = "XL"
+            df.loc[r, "vs"] = 3
         elif row["V"] <= 4 * atrVL:
-            vdf.loc[r, "vs"] = "2XL"
-        elif row["V"] <= 5 * atrVL:
-            vdf.loc[r, "vs"] = "3XL"
+            df.loc[r, "vs"] = 4
         else:
-            vdf.loc[r, "vs"] = "GIG"
+            df.loc[r, "vs"] = 5
 
-    return vdf
+    return df
 
 
 # getVolumeCandleSize()

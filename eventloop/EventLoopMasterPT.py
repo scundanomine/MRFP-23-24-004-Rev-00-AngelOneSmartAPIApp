@@ -45,7 +45,7 @@ def candlesPropertiesAllITREvent(lock):
 def pivotAlarmEvent(lock):
     print("Multiprocess three has been started")
     # setterSRData()
-    # setterPrePivotData()
+    setterPrePivotData()
     checkTraditionalPivotAlarmsWithoutThreading(lock)
 
 
@@ -155,10 +155,10 @@ if __name__ == "__main__":
 
     pOne.start()
     pTwo.start()
-    # pThree.start()
-    # pFour.start()
-    # pFive.start()
-    # pSix.start()
+    pThree.start()
+    pFour.start()
+    pFive.start()
+    pSix.start()
     # pSeven.start()
     # pEight.start()
     # pNine.start()
@@ -166,10 +166,10 @@ if __name__ == "__main__":
 
     pOne.join()
     pTwo.join()
-    # pThree.join()
-    # pFour.join()
-    # pFive.join()
-    # pSix.join()
+    pThree.join()
+    pFour.join()
+    pFive.join()
+    pSix.join()
     # pSeven.join()
     # pEight.join()
     # pNine.join()

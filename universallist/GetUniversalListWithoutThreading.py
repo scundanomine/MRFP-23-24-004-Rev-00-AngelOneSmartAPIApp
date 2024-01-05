@@ -12,22 +12,15 @@ import datetime
 
 def getUniversalListWithoutThreading(lock=multiprocessing.Lock()):
     startTime = time.time()
-    ctrA = 0
-    lock.acquire()
-    cv = getterTimeDelta()
-    exitTime = getterExitTime()
-    lock.release()
+    with lock:
+        cv = getterTimeDelta()
+        exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
-        # nifty detailed list
-        lock.acquire()
-        ndf = getterNiftyDetailedListWithPivots()
-        lock.release()
-        # print(ndf)
-
-        # dcs and dcs list
-        lock.acquire()
-        dcs = getterPivotData()
-        lock.release()
+        with lock:
+            # nifty detailed list
+            ndf = getterNiftyDetailedListWithPivots()
+            # dcs and dcs list
+            dcs = getterPivotData()
         dcs = dcs.loc[:, ['alarmTimer', 'srT', 'srV', 'nSR', 'GL']]
         # print(dcs)
 
@@ -57,8 +50,7 @@ def getUniversalListWithoutThreading(lock=multiprocessing.Lock()):
             "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
             index=False)
         lock.release()
-        ctrA = ctrA + 1
-        print(f"{ctrA} execution time for Universal list is {time.time() - startTime}")
+        print(f"Execution time for Universal list (UL) is {time.time() - startTime}")
         time.sleep(3.8)
 
 

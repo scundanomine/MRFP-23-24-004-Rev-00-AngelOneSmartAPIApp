@@ -16,7 +16,6 @@ import multiprocessing
 
 def getEntryTriggeredList(lock=multiprocessing.Lock()):
     startTime = time.time()
-    ctrA = 0
     lock.acquire()
     cv = getterTimeDelta()
     exitTime = getterExitTime()
@@ -40,8 +39,7 @@ def getEntryTriggeredList(lock=multiprocessing.Lock()):
         # EL due to reversal pattern
         entryTriggeredForBearishReversalPatternForSell(lock)
         entryTriggeredForBullishReversalPatternForBuy(lock)
-        ctrA = ctrA + 1
-        print(f"{ctrA} execution time for getting entry triggered list is {time.time() - startTime}")
+        print(f"Execution time for getting entry triggered list (ET) is {time.time() - startTime}")
         time.sleep(5)
 
 

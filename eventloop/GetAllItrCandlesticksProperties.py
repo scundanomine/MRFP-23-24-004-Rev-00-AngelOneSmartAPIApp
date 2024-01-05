@@ -21,7 +21,7 @@ def getAllItrCandlesticksProperties(sid, symbol, data, lock=multiprocessing.Lock
     # atr calculation
     atr, atrPer = calculationAllItrForATR(gdf)
     gdf.loc[9, 'atr'] = atr
-    gdf.loc[9, 'atrPer'] = atr
+    gdf.loc[9, 'atrPer'] = atrPer
 
     # Roc calculation part per 10 minute,
     # 100 ptm is equivalent to 1% change in one minute. And it will be negative when price decreases.
