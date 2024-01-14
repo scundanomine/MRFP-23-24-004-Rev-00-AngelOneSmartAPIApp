@@ -13,10 +13,9 @@ from positionportfolioandmargindisplay.GetPositionDisplay import getPositionDisp
 def getPositionPortfolioAndMarginDisplay(lock=multiprocessing.Lock()):
     startTime = time.time()
     ctrA = 0
-    lock.acquire()
-    cv = getterTimeDelta()
-    exitTime = getterExitTime()
-    lock.release()
+    with lock:
+        cv = getterTimeDelta()
+        exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter margin display
         getMarginDisplay(lock)
@@ -28,11 +27,11 @@ def getPositionPortfolioAndMarginDisplay(lock=multiprocessing.Lock()):
         getPositionDisplay(lock)
 
         ctrA = ctrA + 1
-        if ctrA == 10:
+        if ctrA == 2:
             print(
-                f"execution time for getting Position, Portfolio And Margin Display (PPM) is {time.time() - startTime}")
+                f"Execution time for getting Position, Portfolio And Margin Display (PPM) is {time.time() - startTime}")
             ctrA = 0
-        time.sleep(1)
+        time.sleep(4)
 
 
 # getPositionPortfolioAndMarginDisplay()

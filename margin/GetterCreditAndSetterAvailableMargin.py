@@ -12,7 +12,7 @@ def getterCreditAndSetterAvailableMargin(mr, lock=multiprocessing.Lock()):
                 "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\margin\\marginstate\\margin.csv",
                 index=False)
         except Exception as e:
-            print(f"The exception while getter, credit and setter available margin is {e}")
+            print(f"The exception while getterCreditAndSetterAvailableMargin is {e}")
 
 
 # getterCreditAndSetterAvailableMargin(50000)

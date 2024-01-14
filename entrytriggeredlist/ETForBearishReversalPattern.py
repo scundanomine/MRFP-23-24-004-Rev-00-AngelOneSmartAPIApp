@@ -20,10 +20,11 @@ def entryTriggeredForBearishReversalPatternForSell(lock):
         else:
             cOne = row['CC1']
             cTwo = row['CC2']
-            atr = row['atr']
+            # atr = row['atr']
+            rsi = row['rsi0']
 
             # condition for sell
-            if (cTwo - cOne) <= -0.25*atr and checkBearishReversalPattern(row["berRP"]):
+            if cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and rsi >= 70:
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "EntryTriggeredDueToBearishReversalPatternToSell"

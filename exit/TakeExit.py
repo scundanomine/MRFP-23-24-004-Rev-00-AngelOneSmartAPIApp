@@ -20,19 +20,15 @@ import multiprocessing
 def takeExit(lock=multiprocessing.Lock()):
     startTime = time.time()
     ctrA = 0
-    lock.acquire()
-    cv = getterTimeDelta()
-    exitTime = getterExitTime()
-    lock.release()
+    with lock:
+        cv = getterTimeDelta()
+        exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter position list
         pLDf = getterPositionList(lock)
 
-        dfItr = pLDf
-
-        eIDf = getExitInputs(lock)
-
-        for index, row in dfItr.iterrows():
+        for index, row in pLDf.iterrows():
+            eIDf = getExitInputs(lock)
             uid = row["id"]
             symbol = row['symbol']
             row['rFlag'] = eIDf.loc[uid - 1, 'rFlag']
@@ -47,6 +43,7 @@ def takeExit(lock=multiprocessing.Lock()):
             q = row['q']
             rowC = cdf.iloc[9]
             rowCC = cdf.iloc[8]
+            rowCCC = cdf.iloc[7]
             rsi = rowC['rsi']
             rsiP = rowCC['rsi']
             mr = row['mr']
@@ -64,16 +61,15 @@ def takeExit(lock=multiprocessing.Lock()):
                 dx = 0
 
             # condition for post exit
-            if (ltp == 0 and time.time() - refTime >= 1800) or row['eFlag'] == 1:
-                lock.acquire()
-                # remove specific row from Entry list
-                getterDropAndSetterPositionList(uid)
-                # reset of black list
-                getterUpdateAndSetterBlackListET(uid, 0)
-                getterUpdateAndSetterECBList(uid, False)
-                # removal of specific row from ET list
-                getterDropAndSetterEntryTriggeredList(uid)
-                lock.release()
+            if (ltp == 0 and time.time() - refTime >= 600) or row['eFlag'] == 1:
+                with lock:
+                    # remove specific row from Entry list
+                    getterDropAndSetterPositionList(uid)
+                    # reset of black list
+                    getterUpdateAndSetterBlackListET(uid, 0)
+                    getterUpdateAndSetterECBList(uid, 0)
+                    # removal of specific row from ET list
+                    getterDropAndSetterEntryTriggeredList(uid)
                 getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                 getterCreditAndSetterAvailableMargin(mr, lock)
                 getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
@@ -83,25 +79,40 @@ def takeExit(lock=multiprocessing.Lock()):
                 continue
             # exit condition for buy
             elif ot == "buy":
+                # condition for sl exit
+                if ltp <= sl:
+                    with lock:
+                        # remove specific row from Entry list
+                        getterDropAndSetterPositionList(uid)
+                        # reset of black list
+                        getterUpdateAndSetterBlackListET(uid, 0)
+                        getterUpdateAndSetterECBList(uid, 0)
+                        # removal of specific row from ET list
+                        getterDropAndSetterEntryTriggeredList(uid)
+                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
+                    getterCreditAndSetterAvailableMargin(mr, lock)
+                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} alas!!!!!")
+                    continue
                 # condition for Trailing stop loss
-                if row["rFlag"] == 1:
+                elif row["rFlag"] == 1:
                     if dx > 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
-                    elif ltp >= target or (rsi <= 50 and rsi <= rsiP):
+                    elif ltp <= lp + 0.7*(target-lp) or (rowC < rowCC < rowCCC):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
+                        getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
                 # condition for exit
-                elif ltp >= target or time.time() - refTime >= 1800 or row['eFlag'] == 1:
-                    lock.acquire()
-                    # remove specific row from Entry list
-                    getterDropAndSetterPositionList(uid)
-                    # reset of black list
-                    getterUpdateAndSetterBlackListET(uid, 0)
-                    getterUpdateAndSetterECBList(uid, False)
-                    # removal of specific row from ET list
-                    getterDropAndSetterEntryTriggeredList(uid)
-                    lock.release()
+                elif ltp >= target or ltp <= sl or time.time() - refTime >= 1200:
+                    with lock:
+                        # remove specific row from Entry list
+                        getterDropAndSetterPositionList(uid)
+                        # reset of black list
+                        getterUpdateAndSetterBlackListET(uid, 0)
+                        getterUpdateAndSetterECBList(uid, 0)
+                        # removal of specific row from ET list
+                        getterDropAndSetterEntryTriggeredList(uid)
                     getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
@@ -114,27 +125,41 @@ def takeExit(lock=multiprocessing.Lock()):
                     row['rFlag'] = 1
                     getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
             # exit condition for sell
-            else:
+            elif ot == "sell":
+                # condition for sl exit
+                if ltp >= sl:
+                    with lock:
+                        # remove specific row from Entry list
+                        getterDropAndSetterPositionList(uid)
+                        # reset of black list
+                        getterUpdateAndSetterBlackListET(uid, 0)
+                        getterUpdateAndSetterECBList(uid, 0)
+                        # removal of specific row from ET list
+                        getterDropAndSetterEntryTriggeredList(uid)
+                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
+                    getterCreditAndSetterAvailableMargin(mr, lock)
+                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    print(f"Exit happened for sell order {uid} alas!!!!!")
+                    continue
                 # condition for Trailing stop loss
-                if row["rFlag"] == 1:
+                elif row["rFlag"] == 1:
                     if dx < 0:
-                        row['sl'] = sl - dx
-                        row['target'] = target - dx
-                    elif ltp <= target or (rsi >= 50 and rsi >= rsiP):
+                        row['sl'] = sl + dx
+                        row['target'] = target + dx
+                    elif ltp >= lp - 0.7*(lp-target) or (rowC > rowCC > rowCCC):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
                         getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
                 # condition for exit
-                elif ltp <= target or time.time() - refTime >= 1800 or row['eFlag']:
-                    lock.acquire()
-                    # remove specific row from Entry list
-                    getterDropAndSetterPositionList(uid)
-                    # reset of black list
-                    getterUpdateAndSetterBlackListET(uid, 0)
-                    getterUpdateAndSetterECBList(uid, False)
-                    # removal of specific row from ET list
-                    getterDropAndSetterEntryTriggeredList(uid)
-                    lock.release()
+                elif ltp <= target or ltp >= sl or time.time() - refTime >= 1200:
+                    with lock:
+                        # remove specific row from Entry list
+                        getterDropAndSetterPositionList(uid)
+                        # reset of black list
+                        getterUpdateAndSetterBlackListET(uid, 0)
+                        getterUpdateAndSetterECBList(uid, 0)
+                        # removal of specific row from ET list
+                        getterDropAndSetterEntryTriggeredList(uid)
                     getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
@@ -144,13 +169,13 @@ def takeExit(lock=multiprocessing.Lock()):
                 elif ltp - lp <= 0.8 * (target - lp) and (rsi <= 30 and rsi <= rsiP):
                     row['sl'] = sl - dx
                     row['target'] = target - dx
-                    row['rFlag'] = 0
-                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
+                    row['rFlag'] = 1
+                    getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
             getterUpdateAndSetterPositionList(uid, row, lock)
 
         ctrA = ctrA + 1
-        if ctrA == 100:
-            print(f"{ctrA} execution time for getting Exit Position (EP) is {time.time() - startTime}")
+        if ctrA == 50:
+            print(f"Execution time for getting Exit Position (EP) is {time.time() - startTime}")
             ctrA = 0
         # time.sleep(0.5)
 

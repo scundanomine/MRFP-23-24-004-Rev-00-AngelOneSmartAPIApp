@@ -12,6 +12,7 @@ import datetime
 
 def getUniversalListWithoutThreading(lock=multiprocessing.Lock()):
     startTime = time.time()
+    ctrA = 0
     with lock:
         cv = getterTimeDelta()
         exitTime = getterExitTime()
@@ -45,13 +46,15 @@ def getUniversalListWithoutThreading(lock=multiprocessing.Lock()):
         dfU["oc"] = ""
 
         # save the list
-        lock.acquire()
-        dfU.to_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
-            index=False)
-        lock.release()
-        print(f"Execution time for Universal list (UL) is {time.time() - startTime}")
-        time.sleep(3.8)
+        with lock:
+            dfU.to_csv(
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
+                index=False)
+        ctrA = ctrA + 1
+        if ctrA == 10:
+            print(f"Execution time for Universal list (UL) is {time.time() - startTime}")
+            ctrA = 0
+        time.sleep(1)
 
 
 # getUniversalListWithoutThreading()

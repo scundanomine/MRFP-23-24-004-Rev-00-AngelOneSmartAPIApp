@@ -15,10 +15,9 @@ from ohlcdata.GetFutureLTP import getFutureLTP
 def getEntryList(lock=multiprocessing.Lock()):
     startTime = time.time()
     ctrA = 0
-    lock.acquire()
-    cv = getterTimeDelta()
-    exitTime = getterExitTime()
-    lock.release()
+    with lock:
+        cv = getterTimeDelta()
+        exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList(lock)
@@ -35,7 +34,7 @@ def getEntryList(lock=multiprocessing.Lock()):
             margin = 5
             ot = row['ot']
             ltp = getFutureLTP(uid, lock)
-            if eCBLDf.loc[uid - 1, 'eCBFlag'] or ltp == 0:
+            if eCBLDf.loc[uid - 1, 'eCBFlag'] == 1 or ltp == 0:
                 continue
             else:
                 if ot == 'buy':
@@ -49,14 +48,15 @@ def getEntryList(lock=multiprocessing.Lock()):
                 mr = abs(lp * q / margin)
 
                 upList = [uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0,
-                          time.time(), '', '', ltp, 0, 0]
-                lock.acquire()
-                getterAppendAndSetterEntryList(upList)
-                getterUpdateAndSetterECBList(uid, True)
-                lock.release()
+                          time.time(), '', '', ltp, 0, 0, row['oc']]
+                with lock:
+                    getterAppendAndSetterEntryList(upList)
+                    getterUpdateAndSetterECBList(uid, 1)
         ctrA = ctrA + 1
-        print(f"{ctrA} execution time for getting Entry List (EL) is {time.time() - startTime}")
-        time.sleep(5)
+        if ctrA == 10:
+            print(f"Execution time for getting Entry List (EL) is {time.time() - startTime}")
+            ctrA = 0
+        time.sleep(1)
 
 
 # getEntryList()

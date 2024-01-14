@@ -4,7 +4,6 @@ from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
 from commonudm.GetterPreExitTime import getterPreExitTime
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterPreStockQtn import getterPreStockQtn
-from commonudm.GetterPreTimeDelta import getterPreTimeDelta
 from commonudm.GetterStockQtn import getterStockQtn
 from commonudm.SetterNiftyDetailedListWithPivots import setterNiftyDetailedListWithPivot
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
@@ -105,7 +104,7 @@ if __name__ == "__main__":
     getterPreReferenceTime()
     # setter reference time for trading
     setterReferenceDateConstant()
-    getterPreTimeDelta()
+    # getterPreTimeDelta()
 
     # setter required symbol and token list
     # setterRequiredSymbolAndTokenList()
@@ -159,10 +158,10 @@ if __name__ == "__main__":
     pFour.start()
     pFive.start()
     pSix.start()
-    # pSeven.start()
-    # pEight.start()
-    # pNine.start()
-    # pTen.start()
+    pSeven.start()
+    pEight.start()
+    pNine.start()
+    pTen.start()
 
     pOne.join()
     pTwo.join()
@@ -170,10 +169,10 @@ if __name__ == "__main__":
     pFour.join()
     pFive.join()
     pSix.join()
-    # pSeven.join()
-    # pEight.join()
-    # pNine.join()
-    # pTen.join()
+    pSeven.join()
+    pEight.join()
+    pNine.join()
+    pTen.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")

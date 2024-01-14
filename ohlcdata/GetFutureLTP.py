@@ -7,11 +7,10 @@ from ohlcdata.GetterFFDS import getterFFDS
 
 def getFutureLTP(uid, lock=multiprocessing.Lock()):
     # getter fds and fFds
-    lock.acquire()
-    fds = getterFDS()
-    fFds = getterFFDS()
-    cv = getterTimeDelta()
-    lock.release()
+    with lock:
+        fds = getterFDS()
+        fFds = getterFFDS()
+        cv = getterTimeDelta()
 
     # getting required records
     recOne = fds.iloc[uid - 1]

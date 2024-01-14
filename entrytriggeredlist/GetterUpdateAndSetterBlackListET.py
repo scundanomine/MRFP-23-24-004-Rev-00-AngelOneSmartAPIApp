@@ -10,6 +10,6 @@ def getterUpdateAndSetterBlackListET(uid, value):
         df.loc[uid - 1, 'bFlag'] = value
         df.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entrytriggeredlist\\entrytriggeredstate\\BlackListET.csv", index=False)
     except Exception as e:
-        print(f"The exception while getter, update and setter ET black list is {e}")
+        print(f"The exception while getterUpdateAndSetterBlackListET is {e}")
 
 
