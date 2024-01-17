@@ -19,7 +19,7 @@ def getAccessTokenOne(apiKey, clientIdOne, passW, tok):
                            "feedToken": smartApi.getfeedToken(),
                            }
             break
-        except:
-            pass
+        except Exception as e:
+            print(f"Exception while getAccessTokenOne is {e}")
     print("boom!!!!")
     return smartApi, accessToken

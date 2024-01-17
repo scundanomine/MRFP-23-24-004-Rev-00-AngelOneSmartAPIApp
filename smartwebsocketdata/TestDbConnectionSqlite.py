@@ -8,6 +8,7 @@ def testDbConnection():
     db = sqlite3.connect('realtime.db', check_same_thread=False)
     c = db.cursor()
     tDf = getSymbolAndToken()
+    tDf = tDf.drop(labels=range(40, len(tDf)), axis=0)
     # print(tDf)
     for index, row in tDf.iterrows():
         c.execute(

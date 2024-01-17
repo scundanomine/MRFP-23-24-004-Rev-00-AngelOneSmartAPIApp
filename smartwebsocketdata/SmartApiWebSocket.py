@@ -2,10 +2,12 @@ from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from logzero import logger
 from AngelOneSmartAPIApp.test import getAccessTokenOne
 from commonudm.GetSymbolAndToken import getSymbolAndToken
-from smartapiwebsocket.InsertTick import insertTick
-from smartapiwebsocket.config import LIVE_FEED_JSON
+from smartwebsocketdata.InsertTick import insertTick
+from smartwebsocketdata.config import LIVE_FEED_JSON
 import threading
 import datetime
+
+from smartwebsocketdata.SetPartlyAndWholeCandleData import setPartlyAndWholeCandleData
 
 tDf = getSymbolAndToken()
 tDf['token'] = tDf['token'].astype("str")
@@ -32,9 +34,10 @@ sws = SmartWebSocketV2(AUTH_TOKEN, API_KEY, CLIENT_CODE, FEED_TOKEN)
 def on_data(wsapp, message):
     # logger.info("Ticks: {}".format(message))
     try:
-        LIVE_FEED_JSON[message['token']] = {'time': datetime.datetime.fromtimestamp(message['exchange_timestamp']/1000).isoformat(), 'token': message['token'], 'ltp': message['last_traded_price'] / 100, 'volume': message['volume_trade_for_the_day']}
-        print(LIVE_FEED_JSON)
+        # LIVE_FEED_JSON[message['token']] = {'time': datetime.datetime.fromtimestamp(message['exchange_timestamp']/1000).isoformat(), 'token': message['token'], 'ltp': message['last_traded_price'] / 100, 'volume': message['volume_trade_for_the_day']}
+        # print(LIVE_FEED_JSON)
         # insertTick(message)
+        setPartlyAndWholeCandleData(message)
     except Exception as e:
         print(e)
     # print(LIVE_FEED_JSON)

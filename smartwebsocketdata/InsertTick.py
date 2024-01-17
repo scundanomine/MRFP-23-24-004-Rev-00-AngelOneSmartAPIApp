@@ -17,7 +17,8 @@ def insertTick(msg):
         volume = msg['volume_trade_for_the_day']
         data = (time, cT, ltp, volume)
         token = msg['token']
-        c.execute(f"INSERT INTO `{token}`(time, cT, ltp, volume) VALUES{data};")
+        # c.execute(f"INSERT INTO `{token}`(time, cT, ltp, volume) VALUES{data};")
+        c.execute(f"INSERT INTO `{token}` VALUES(?, ?, ?, ?);", data)
         try:
             db.commit()
         except:

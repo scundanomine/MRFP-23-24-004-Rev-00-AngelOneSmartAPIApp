@@ -1179,6 +1179,48 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenlist\TokenList0.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenlist\TokenList1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisepartlycandledata\13.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisepartlycandledata\25.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisepartlycandledata\2885.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisewholecandledata\2885.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\threadresearch\mat.csv">
           <value>
             <Attribute>
