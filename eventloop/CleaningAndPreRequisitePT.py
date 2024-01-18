@@ -22,7 +22,7 @@ from universallist.CleaningAndSettingUniversalList import cleaningAndSettingUniv
 from universallist.SetterDfThree import setterDfThree
 
 
-def cleaningAndPreRequisitePT():
+def cleaningAndPreRequisitePT(isLive=False):
     # startTime = time.time()
     # getter and setter Pre data
     getterPreStockQtn()
@@ -40,7 +40,8 @@ def cleaningAndPreRequisitePT():
     cleaningAndSettingGSTDataFiles()
 
     # cleaning and setting past pds and fds and fFds
-    setterInitialPdsAndFds()
+    if not isLive:
+        setterInitialPdsAndFds()
 
     # setter pre pivot data
     setterSRData()

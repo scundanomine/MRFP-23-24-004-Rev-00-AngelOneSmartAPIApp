@@ -10,7 +10,7 @@ def getPreTokenWiseCandleData(n=500):
     tokList = df['token'].tolist()
     for i in range(n):
         token = tokList[i]
-        tdf = pd.DataFrame(columns=['time', 'open', 'high', 'low', 'close', 'volume', 'vi', 'vf'], index=[0])
+        tdf = pd.DataFrame(columns=list(range(8)), index=[0])
         tdf[:] = 0
         tdf.to_csv(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisepartlycandledata\\{token}.csv",

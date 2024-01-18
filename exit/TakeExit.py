@@ -16,8 +16,11 @@ from position.GetterUpdateAndSetterPositionList import getterUpdateAndSetterPosi
 import datetime
 import multiprocessing
 
+from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
+    getterSpecificTokenLivePartlyCandleDataFromWebSocket
 
-def takeExit(lock=multiprocessing.Lock()):
+
+def takeExit(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
     with lock:
@@ -29,6 +32,7 @@ def takeExit(lock=multiprocessing.Lock()):
 
         for index, row in pLDf.iterrows():
             eIDf = getExitInputs(lock)
+            token = row['token']
             uid = row["id"]
             symbol = row['symbol']
             row['rFlag'] = eIDf.loc[uid - 1, 'rFlag']
@@ -50,7 +54,10 @@ def takeExit(lock=multiprocessing.Lock()):
             # roc = rowC['roc']
             # atr = rowC['atr']
             ltpP = row["ltpP"]
-            ltp = getFutureLTP(uid, lock)
+            if isLive:
+                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token, lock).loc[0, '4']
+            else:
+                ltp = getFutureLTP(uid, lock)
             if ltp != 0:
                 row['ltp'] = ltp
                 dx = ltp - ltpP

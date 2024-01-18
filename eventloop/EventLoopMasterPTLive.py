@@ -12,7 +12,6 @@ from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITR
 from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirstITRCandlestickProperties
 from exit.TakeExit import takeExit
 from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
-from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
 from smartwebsocketdata.SmartApiWebSocketOne import smartApiWebSocketOne
@@ -35,7 +34,7 @@ def candlesDataAllITREventOneTwo(lock):
 
 def candlesPropertiesAllITREvent(lock):
     print("Multiprocess two has been started")
-    eventLoopForAllITRCandlestickProperties(lock)
+    eventLoopForAllITRCandlestickProperties(lock, True)
     # getAccessTokenWithThread(200, "ltpTwo.csv", lock)
 
 
@@ -43,7 +42,7 @@ def pivotAlarmEvent(lock):
     print("Multiprocess three has been started")
     # setterSRData()
     setterPrePivotData()
-    checkTraditionalPivotAlarmsWithoutThreading(lock)
+    checkTraditionalPivotAlarmsWithoutThreading(lock, True)
 
 
 def universalListEvent(lock):
@@ -65,17 +64,17 @@ def eTListEvent(lock):
 
 def eLListEvent(lock):
     print("Multiprocess seven has been started")
-    getEntryList(lock)
+    getEntryList(lock, True)
 
 
 def positionListEvent(lock):
     print("Multiprocess eight has been started")
-    getPosition(lock)
+    getPosition(lock, True)
 
 
 def exitEvent(lock):
     print("Multiprocess nine has been started")
-    takeExit(lock)
+    takeExit(lock, True)
 
 
 def PPMEvent(lock):
@@ -93,12 +92,14 @@ def rREvent(lock):
 if __name__ == "__main__":
     startTimeEventLoop = time.time()
     print("Running live for first time")
+
     # cleaning and setting prerequisite data
-    cleaningAndPreRequisitePT()
+    cleaningAndPreRequisitePT(True)
 
     # getter and setter Pre data
     m = getterStockQtn()
     getterPreReferenceTime()
+
     # setter reference time for trading
     setterReferenceDateConstant()
 
@@ -108,7 +109,7 @@ if __name__ == "__main__":
     # getting past 10 candles properties
     eventLoopForFirstITRCandlestickProperties()
 
-    setterInitialPdsAndFds()
+    # setterInitialPdsAndFds()
 
     # setter prerequisite black list for et
     getterPreBlackListForET()

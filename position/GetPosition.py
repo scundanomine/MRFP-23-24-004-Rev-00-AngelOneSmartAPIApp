@@ -13,8 +13,11 @@ import time
 import datetime
 import multiprocessing
 
+from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
+    getterSpecificTokenLivePartlyCandleDataFromWebSocket
 
-def getPosition(lock=multiprocessing.Lock()):
+
+def getPosition(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
     with lock:
@@ -27,7 +30,11 @@ def getPosition(lock=multiprocessing.Lock()):
         for index, row in eLDf.iterrows():
             uid = row["id"]
             ot = row["ot"]
-            ltp = getFutureLTP(uid, lock)
+            token = row['token']
+            if isLive:
+                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token, lock).loc[0, '4']
+            else:
+                ltp = getFutureLTP(uid, lock)
             lp = row['lp']
             sl = row['sl']
             refTime = row["tOEP"]

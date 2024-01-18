@@ -73,6 +73,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\commonudm\resource\LiveStatus.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\commonudm\resource\NiftyDetailedListWithPivots.csv">
           <value>
             <Attribute>
@@ -1208,6 +1215,13 @@
           </value>
         </entry>
         <entry key="\smartwebsocketdata\websocketstate\tokenwisepartlycandledata\2885.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisewholecandledata\25.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

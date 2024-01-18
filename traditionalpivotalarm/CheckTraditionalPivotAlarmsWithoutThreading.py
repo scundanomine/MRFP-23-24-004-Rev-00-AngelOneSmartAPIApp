@@ -3,6 +3,7 @@ from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTokenList
 from commonudm.GetterTimeDelta import getterTimeDelta
 from ohlcdata.GetterPDS import getterPDS
+from smartwebsocketdata.GetterSpecificTokenCandleDataFromWebSocket import getterSpecificTokenCandleDataFromWebSocket
 from traditionalpivotalarm.GetterPivotData import getterPivotData
 from traditionalpivotalarm.GetterSRData import getterSRData
 from traditionalpivotalarm.SetterPivotData import setterPivotData
@@ -11,7 +12,7 @@ import multiprocessing
 import datetime
 
 
-def checkTraditionalPivotAlarmsWithoutThreading(lock=multiprocessing.Lock()):
+def checkTraditionalPivotAlarmsWithoutThreading(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     with lock:
         cv = getterTimeDelta()
@@ -25,14 +26,16 @@ def checkTraditionalPivotAlarmsWithoutThreading(lock=multiprocessing.Lock()):
         # get sr data and sr list
         with lock:
             varSR = getterSRData()
-        
+
         srLst = varSR.to_dict('records')
 
         # dcs and dcs list
-        with lock:
-            pds = getterPDS()
-        
-        pdsLst = pds.to_dict('records')
+        if not isLive:
+            with lock:
+                pds = getterPDS()
+            pdsLst = pds.to_dict('records')
+        else:
+            pdsLst = []
 
         # getterPivotData
         with lock:
@@ -42,11 +45,17 @@ def checkTraditionalPivotAlarmsWithoutThreading(lock=multiprocessing.Lock()):
 
         for index, row in dst.iterrows():
             uid = row['id']
-            try:
-                recordedData = pdsLst[index]
-            except Exception as e:
-                print(f"exception while getting recordedData is {e}")
-                recordedData = {"0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0}
+            token = row['token']
+            if isLive:
+                sdf = getterSpecificTokenCandleDataFromWebSocket(token, lock)
+                sdf = sdf.drop(['6', '7'], axis=1)
+                recordedData = sdf.to_dict('records')[0]
+            else:
+                try:
+                    recordedData = pdsLst[index]
+                except Exception as e:
+                    print(f"exception while getting recordedData is {e}")
+                    recordedData = {"0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0}
             prevTime, alarmTimer, refT, srType, srValue, nSR, gl = traditionalPivotAlarm(srLst[index], dcsLst[index],
                                                                                          recordedData['4'],
                                                                                          recordedData["0"])

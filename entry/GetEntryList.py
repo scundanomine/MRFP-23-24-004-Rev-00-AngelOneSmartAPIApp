@@ -10,9 +10,11 @@ import datetime
 import time
 import multiprocessing
 from ohlcdata.GetFutureLTP import getFutureLTP
+from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
+    getterSpecificTokenLivePartlyCandleDataFromWebSocket
 
 
-def getEntryList(lock=multiprocessing.Lock()):
+def getEntryList(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
     with lock:
@@ -33,7 +35,10 @@ def getEntryList(lock=multiprocessing.Lock()):
             atr = row['atr']
             margin = 5
             ot = row['ot']
-            ltp = getFutureLTP(uid, lock)
+            if isLive:
+                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token, lock).loc[0, '4']
+            else:
+                ltp = getFutureLTP(uid, lock)
             if eCBLDf.loc[uid - 1, 'eCBFlag'] == 1 or ltp == 0:
                 continue
             else:
@@ -57,6 +62,5 @@ def getEntryList(lock=multiprocessing.Lock()):
             print(f"Execution time for getting Entry List (EL) is {time.time() - startTime}")
             ctrA = 0
         time.sleep(1)
-
 
 # getEntryList()
