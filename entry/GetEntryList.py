@@ -12,13 +12,17 @@ import multiprocessing
 from ohlcdata.GetFutureLTP import getFutureLTP
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
     getterSpecificTokenLivePartlyCandleDataFromWebSocket
+import pandas as pd
 
 
 def getEntryList(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
     with lock:
-        cv = getterTimeDelta()
+        if isLive:
+            cv = pd.to_timedelta(0)
+        else:
+            cv = getterTimeDelta()
         exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter Entry calculated and entry happened black list
@@ -52,8 +56,8 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                 # calculation for margin required
                 mr = abs(lp * q / margin)
 
-                upList = [uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0,
-                          time.time(), '', '', ltp, 0, 0, row['oc']]
+                upList = [0, uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0, 0, 0, row['oc'],
+                          time.time(), '', '', ltp]
                 with lock:
                     getterAppendAndSetterEntryList(upList)
                     getterUpdateAndSetterECBList(uid, 1)

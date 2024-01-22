@@ -6,12 +6,16 @@ from commonudm.GetterTimeDelta import getterTimeDelta
 from universallist.GetterUniversalList import getterUniversalList
 import multiprocessing
 import datetime
+import pandas as pd
 
 
-def getAIListWithoutUdf(lock=multiprocessing.Lock()):
+def getAIListWithoutUdf(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     lock.acquire()
-    cv = getterTimeDelta()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
+        cv = getterTimeDelta()
     exitTime = getterExitTime()
     lock.release()
     while datetime.datetime.now() - cv < exitTime:

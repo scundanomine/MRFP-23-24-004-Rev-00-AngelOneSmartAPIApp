@@ -1186,6 +1186,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\readandrecord\rrstate\PECBList.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\smartwebsocketdata\websocketstate\tokenlist\TokenList0.csv">
           <value>
             <Attribute>
@@ -1221,6 +1228,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisewholecandledata\13.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\smartwebsocketdata\websocketstate\tokenwisewholecandledata\25.csv">
           <value>
             <Attribute>
@@ -1236,6 +1250,13 @@
           </value>
         </entry>
         <entry key="\threadresearch\mat.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\threadresearch\mat2.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

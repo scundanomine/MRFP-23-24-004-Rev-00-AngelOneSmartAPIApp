@@ -15,7 +15,9 @@ from margin.GetterPreMargin import getterPreMargin
 from ohlcdata.CleaningAndSettingPastTenCandleData import cleaningAndSettingPastTenCandleData
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
+from position.GetterPrePositionId import getterPrePositionId
 from position.SetterPrePositionList import setterPrePositionList
+from readandrecord.SetterPrePECBListRR import setterPrePECBListRR
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
 from traditionalpivotalarm.SetterSRData import setterSRData
 from universallist.CleaningAndSettingUniversalList import cleaningAndSettingUniversalList
@@ -65,6 +67,7 @@ def cleaningAndPreRequisitePT(isLive=False):
 
     # cleaning the setting the position list
     setterPrePositionList()
+    getterPrePositionId()
 
     # setter pre exit inputs
     setterPreExitInputs()
@@ -72,6 +75,9 @@ def cleaningAndPreRequisitePT(isLive=False):
     # cleaning the setting the portfolio and margin
     getterPreFixedPortfolio()
     getterPreMargin()
+
+    # cleaning for RR
+    setterPrePECBListRR()
     # print(f"execution time for cleaning is {time.time() - startTime}")
 
 

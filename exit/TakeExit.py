@@ -16,6 +16,7 @@ from position.GetterUpdateAndSetterPositionList import getterUpdateAndSetterPosi
 import datetime
 import multiprocessing
 
+from readandrecord.SetExitDetailsAndCandles import setExitDetailsAndCandles
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
     getterSpecificTokenLivePartlyCandleDataFromWebSocket
 
@@ -35,6 +36,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             token = row['token']
             uid = row["id"]
             symbol = row['symbol']
+            pid = row['pid']
             row['rFlag'] = eIDf.loc[uid - 1, 'rFlag']
             row['eFlag'] = eIDf.loc[uid - 1, 'eFlag']
             # getting candle sticks properties
@@ -80,6 +82,8 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                 getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                 getterCreditAndSetterAvailableMargin(mr, lock)
                 getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                # read and record for exit
+                setExitDetailsAndCandles(pid, uid, symbol, row, lock)
                 print(f"Exit happened for {uid} boom!!!!!")
                 continue
             elif ltp == 0:
@@ -99,6 +103,8 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    # read and record for exit
+                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
                     print(f"Exit happened for buy order for {uid} alas!!!!!")
                     continue
                 # condition for Trailing stop loss
@@ -123,6 +129,8 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    # read and record for exit
+                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
                     print(f"Exit happened for buy order for {uid} boom!!!!!")
                     continue
                 # condition for riding
@@ -146,6 +154,8 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    # read and record for exit
+                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
                     print(f"Exit happened for sell order {uid} alas!!!!!")
                     continue
                 # condition for Trailing stop loss
@@ -170,6 +180,8 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
+                    # read and record for exit
+                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
                     print(f"Exit happened for sell order {uid} boom!!!!!")
                     continue
                 # condition for riding

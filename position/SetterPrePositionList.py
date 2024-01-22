@@ -12,8 +12,8 @@ def setterPrePositionList(lock=multiprocessing.Lock()):
     with lock:
         n = getterStockQtn()
     df = pd.DataFrame(
-        columns=['id', 'sector', 'symbol', 'token', "ot", "ltp", "lp", "q", "sl", "target", "mr", "po", "slo", "to",
-                 "gol", "tOEP", "tOP", "tOEx", 'ltpP', 'rFlag', 'eFlag', 'oc'])
+        columns=['pid', 'id', 'sector', 'symbol', 'token', "ot", "ltp", "lp", "q", "sl", "target", "mr", "po", "slo", "to",
+                 "gol", 'rFlag', 'eFlag', 'oc', "tOEP", "tOP", "tOEx", 'ltpP'])
     with lock:
         df.to_csv(
             "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv",
@@ -25,9 +25,9 @@ def setterPrePositionList(lock=multiprocessing.Lock()):
                 wb = xw.Book(
                     "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
                 dt = wb.sheets("MAndP")
-                dt.range(f"a5:v{n + 1}").clear_contents()
+                dt.range(f"a5:w{n + 1}").clear_contents()
                 # clear the sheet
-                dt.range(f"a5:v{n + 1}").options(pd.DataFrame, index=False).value = df
+                dt.range(f"a5:w{n + 1}").options(pd.DataFrame, index=False).value = df
             break
         except Exception as e:
             print(f"Exception while setterPrePositionList is {e}")

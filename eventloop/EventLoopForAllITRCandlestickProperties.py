@@ -7,6 +7,7 @@ from commonudm.GetterTimeDelta import getterTimeDelta
 from eventloop.GetAllItrCandlesticksProperties import getAllItrCandlesticksProperties
 from ohlcdata.GetterPDS import getterPDS
 import multiprocessing
+import pandas as pd
 
 from smartwebsocketdata.GetterSpecificTokenCandleDataFromWebSocket import getterSpecificTokenCandleDataFromWebSocket
 
@@ -14,7 +15,10 @@ from smartwebsocketdata.GetterSpecificTokenCandleDataFromWebSocket import getter
 def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     lock.acquire()
-    cv = getterTimeDelta()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
+        cv = getterTimeDelta()
     exitTime = getterExitTime()
     lock.release()
     while datetime.datetime.now() - cv < exitTime:

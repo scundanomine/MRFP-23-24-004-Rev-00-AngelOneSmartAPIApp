@@ -6,7 +6,7 @@ from smartwebsocketdata.SetPartlyAndWholeCandleData import setPartlyAndWholeCand
 import time
 
 
-def smartApiWebSocketOne():
+def smartApiWebSocketOne(lock):
     tokenLst = getterSpecificTokenListForWebSocket("TokenList0")
 
     # creating session one
@@ -36,7 +36,7 @@ def smartApiWebSocketOne():
 
     def on_data(wsapp, message):
         try:
-            setPartlyAndWholeCandleData(message)
+            setPartlyAndWholeCandleData(message, lock)
         except Exception as e:
             print(e)
 

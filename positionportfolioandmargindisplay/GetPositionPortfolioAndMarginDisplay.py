@@ -1,4 +1,3 @@
-import xlwings as xw
 import pandas as pd
 import multiprocessing
 import time
@@ -10,11 +9,14 @@ from positionportfolioandmargindisplay.GetPortfolioDisplay import getPortfolioDi
 from positionportfolioandmargindisplay.GetPositionDisplay import getPositionDisplay
 
 
-def getPositionPortfolioAndMarginDisplay(lock=multiprocessing.Lock()):
+def getPositionPortfolioAndMarginDisplay(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
     with lock:
-        cv = getterTimeDelta()
+        if isLive:
+            cv = pd.to_timedelta(0)
+        else:
+            cv = getterTimeDelta()
         exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter margin display

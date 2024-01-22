@@ -10,12 +10,16 @@ from traditionalpivotalarm.SetterPivotData import setterPivotData
 from traditionalpivotalarm.TraditionalPivotAlarm import traditionalPivotAlarm
 import multiprocessing
 import datetime
+import pandas as pd
 
 
 def checkTraditionalPivotAlarmsWithoutThreading(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     with lock:
-        cv = getterTimeDelta()
+        if isLive:
+            cv = pd.to_timedelta(0)
+        else:
+            cv = getterTimeDelta()
         exitTime = getterExitTime()
     
     while datetime.datetime.now() - cv < exitTime:

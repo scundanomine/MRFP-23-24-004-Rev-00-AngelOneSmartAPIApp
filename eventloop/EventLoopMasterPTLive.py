@@ -24,12 +24,12 @@ from universallist.GetUniversalListWithoutThreading import getUniversalListWitho
 
 def candlesDataAllITREventOneOne(lock):
     print("Multiprocess One of One has been started")
-    smartApiWebSocketOne()
+    smartApiWebSocketOne(lock)
 
 
 def candlesDataAllITREventOneTwo(lock):
     print("Multiprocess One of Two has been started")
-    smartApiWebSocketTwo()
+    smartApiWebSocketTwo(lock)
 
 
 def candlesPropertiesAllITREvent(lock):
@@ -49,17 +49,17 @@ def universalListEvent(lock):
     print("Multiprocess four has been started")
     # setterDfThree()
     # setterNiftyDetailedListWithPivot()
-    getUniversalListWithoutThreading(lock)
+    getUniversalListWithoutThreading(lock, True)
 
 
 def aIListEvent(lock):
     print("Multiprocess five has been started")
-    getAIListWithoutUdf(lock)
+    getAIListWithoutUdf(lock, True)
 
 
 def eTListEvent(lock):
     print("Multiprocess six has been started")
-    getEntryTriggeredList(lock)
+    getEntryTriggeredList(lock, True)
 
 
 def eLListEvent(lock):
@@ -79,7 +79,7 @@ def exitEvent(lock):
 
 def PPMEvent(lock):
     print("Multiprocess ten has been started")
-    getPositionPortfolioAndMarginDisplay(lock)
+    getPositionPortfolioAndMarginDisplay(lock, True)
 
 
 def rREvent(lock):
@@ -152,26 +152,26 @@ if __name__ == "__main__":
     pOneOne.start()
     pOneTwo.start()
     pTwo.start()
-    # pThree.start()
-    # pFour.start()
-    # pFive.start()
-    # pSix.start()
-    # pSeven.start()
-    # pEight.start()
-    # pNine.start()
-    # pTen.start()
+    pThree.start()
+    pFour.start()
+    pFive.start()
+    pSix.start()
+    pSeven.start()
+    pEight.start()
+    pNine.start()
+    pTen.start()
 
     pOneOne.join()
     pOneTwo.join()
     pTwo.join()
-    # pThree.join()
-    # pFour.join()
-    # pFive.join()
-    # pSix.join()
-    # pSeven.join()
-    # pEight.join()
-    # pNine.join()
-    # pTen.join()
+    pThree.join()
+    pFour.join()
+    pFive.join()
+    pSix.join()
+    pSeven.join()
+    pEight.join()
+    pNine.join()
+    pTen.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")

@@ -10,11 +10,14 @@ import multiprocessing
 import datetime
 
 
-def getUniversalListWithoutThreading(lock=multiprocessing.Lock()):
+def getUniversalListWithoutThreading(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
     with lock:
-        cv = getterTimeDelta()
+        if isLive:
+            cv = pd.to_timedelta(0)
+        else:
+            cv = getterTimeDelta()
         exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         with lock:
