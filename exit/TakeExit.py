@@ -15,18 +15,22 @@ from position.GetterPositionList import getterPositionList
 from position.GetterUpdateAndSetterPositionList import getterUpdateAndSetterPositionList
 import datetime
 import multiprocessing
-
 from readandrecord.SetExitDetailsAndCandles import setExitDetailsAndCandles
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
     getterSpecificTokenLivePartlyCandleDataFromWebSocket
+import pandas as pd
 
 
 def takeExit(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
-    with lock:
+    lock.acquire()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
         cv = getterTimeDelta()
-        exitTime = getterExitTime()
+    exitTime = getterExitTime()
+    lock.release()
     while datetime.datetime.now() - cv < exitTime:
         # getter position list
         pLDf = getterPositionList(lock)

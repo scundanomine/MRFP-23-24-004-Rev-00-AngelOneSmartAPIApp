@@ -1,5 +1,3 @@
-import time
-
 from AIlists.CleaningAndSettingAIList import cleaningAndSettingAIList
 from candlestickdata.CleaningAndSettingGSTDataFiles import cleaningAndSettingGSTDataFiles
 from commonudm.GetterPreExitTime import getterPreExitTime
@@ -17,6 +15,7 @@ from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
 from position.GetterPrePositionId import getterPrePositionId
 from position.SetterPrePositionList import setterPrePositionList
+from readandrecord.CleaningAllRecordsFromRR import cleaningAllRecordsFromRR
 from readandrecord.SetterPrePECBListRR import setterPrePECBListRR
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
 from traditionalpivotalarm.SetterSRData import setterSRData
@@ -24,7 +23,7 @@ from universallist.CleaningAndSettingUniversalList import cleaningAndSettingUniv
 from universallist.SetterDfThree import setterDfThree
 
 
-def cleaningAndPreRequisitePT(isLive=False):
+def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # startTime = time.time()
     # getter and setter Pre data
     getterPreStockQtn()
@@ -79,6 +78,7 @@ def cleaningAndPreRequisitePT(isLive=False):
     # cleaning for RR
     setterPrePECBListRR()
     # print(f"execution time for cleaning is {time.time() - startTime}")
+    cleaningAllRecordsFromRR(cleaningFlag)
 
 
 # cleaningAndPreRequisitePT()

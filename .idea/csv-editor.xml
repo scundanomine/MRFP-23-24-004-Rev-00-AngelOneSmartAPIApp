@@ -1207,6 +1207,55 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisefreshcandledata\13.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisefreshcandledata\1363.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisefreshcandledata\1394.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisefreshcandledata\157.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisefreshcandledata\1901.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisefreshcandledata\25.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\smartwebsocketdata\websocketstate\tokenwisefreshcandledata\2885.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\smartwebsocketdata\websocketstate\tokenwisepartlycandledata\13.csv">
           <value>
             <Attribute>

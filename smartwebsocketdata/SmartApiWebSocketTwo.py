@@ -1,9 +1,9 @@
+import time
 from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from logzero import logger
 from AngelOneSmartAPIApp.test import getAccessTokenOne
 from smartwebsocketdata.GetterSpecificTokenListForWebSocket import getterSpecificTokenListForWebSocket
-from smartwebsocketdata.SetPartlyAndWholeCandleDataTwo import setPartlyAndWholeCandleDataTwo
-import time
+from smartwebsocketdata.SetFreshCandleDataTwo import setFreshCandleDataTwo
 
 
 def smartApiWebSocketTwo(lock):
@@ -36,9 +36,9 @@ def smartApiWebSocketTwo(lock):
 
     def on_data(wsapp, message):
         try:
-            setPartlyAndWholeCandleDataTwo(message, lock)
-        except Exception as e:
-            print(e)
+            setFreshCandleDataTwo(message)
+        except Exception as eOne:
+            print(eOne)
 
     def on_open(wsapp):
         logger.info("on open")
