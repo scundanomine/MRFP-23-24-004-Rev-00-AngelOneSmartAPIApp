@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CompoundRunOne" type="CompoundRunConfigurationType">
+    <toRun name="CleaningAllFilesFromSpecificDirectory" type="PythonConfigurationType" />
+    <toRun name="MutexResearch" type="PythonConfigurationType" />
+    <toRun name="MutexResearchTwo" type="PythonConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

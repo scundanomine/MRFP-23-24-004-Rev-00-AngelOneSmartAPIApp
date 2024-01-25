@@ -1,29 +1,14 @@
 import multiprocessing
 import time
-from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
 from commonudm.GetterPreExitTime import getterPreExitTime
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterStockQtn import getterStockQtn
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
-from entry.GetEntryList import getEntryList
-from entrytriggeredlist.GetEntryTriggeredList import getEntryTriggeredList
-from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
-from eventloop.CleaningAndPreRequisitePT import cleaningAndPreRequisitePT
-from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITRCandlestickProperties
-from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirstITRCandlestickProperties
-from exit.TakeExit import takeExit
-from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
-from position.GetPosition import getPosition
-from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
 from smartwebsocketdata.CleaningAllCandlesDataFromWebSocket import cleaningAllCandlesDataFromWebSocket
 from smartwebsocketdata.GetPreTokenWiseCandleData import getPreTokenWiseCandleData
 from smartwebsocketdata.SetPartlyAndWholeCandleData import setPartlyAndWholeCandleData
 from smartwebsocketdata.SmartApiWebSocketOne import smartApiWebSocketOne
 from smartwebsocketdata.SmartApiWebSocketTwo import smartApiWebSocketTwo
-from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
-    checkTraditionalPivotAlarmsWithoutThreading
-from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
-from universallist.GetUniversalListWithoutThreading import getUniversalListWithoutThreading
 
 
 def candlesDataAllITREventOne(lock):
@@ -102,17 +87,17 @@ if __name__ == "__main__":
 
     pOne.start()
     pTwo.start()
-    # pThree.start()
-    # pFour.start()
-    # pFive.start()
-    # pSix.start()
+    pThree.start()
+    pFour.start()
+    pFive.start()
+    pSix.start()
 
     pOne.join()
     pTwo.join()
-    # pThree.join()
-    # pFour.join()
-    # pFive.join()
-    # pSix.join()
+    pThree.join()
+    pFour.join()
+    pFive.join()
+    pSix.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")
