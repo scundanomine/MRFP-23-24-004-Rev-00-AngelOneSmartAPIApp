@@ -14,3 +14,4 @@ def getterUpdateAndSetterPositionList(uid, row, lock):
                 index=False)
     except Exception as e:
         print(f"The exception while getterUpdateAndSetterPositionList is {e}")
+        getterUpdateAndSetterPositionList(uid, row, lock)

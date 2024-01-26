@@ -13,6 +13,7 @@ def getterCreditAndSetterAvailableMargin(mr, lock=multiprocessing.Lock()):
                 index=False)
         except Exception as e:
             print(f"The exception while getterCreditAndSetterAvailableMargin is {e}")
+            getterCreditAndSetterAvailableMargin(mr, lock)
 
 
 # getterCreditAndSetterAvailableMargin(50000)

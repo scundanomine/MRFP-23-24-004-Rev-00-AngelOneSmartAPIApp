@@ -1,14 +1,13 @@
-import multiprocessing
 from exit.GetCustomDfExitInputs import getCustomDfExitInputs
 from exit.GetterExitInputs import getterExitInputs
 
 
-def getExitInputs(lock=multiprocessing.Lock()):
+def getExitInputs():
     # get custom black list dataframe
-    df = getCustomDfExitInputs(lock)
+    df = getCustomDfExitInputs()
 
     # getter black list
-    eIDf = getterExitInputs(lock)
+    eIDf = getterExitInputs()
 
     for index, row in df.iterrows():
         if row["rFlag"] == 1 or row["eFlag"] == 1:

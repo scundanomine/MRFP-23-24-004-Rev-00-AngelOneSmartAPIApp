@@ -22,15 +22,14 @@ import pandas as pd
 def getPosition(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
-    with lock:
-        if isLive:
-            cv = pd.to_timedelta(0)
-        else:
-            cv = getterTimeDelta()
-        exitTime = getterExitTime()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
+        cv = getterTimeDelta()
+    exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter Entry list
-        eLDf = getterEntryList(lock)
+        eLDf = getterEntryList()
 
         for index, row in eLDf.iterrows():
             uid = row["id"]
@@ -38,9 +37,9 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
             symbol = row['symbol']
             token = row['token']
             if isLive:
-                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token, lock).loc[0, '4']
+                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).loc[0, '4']
             else:
-                ltp = getFutureLTP(uid, lock)
+                ltp = getFutureLTP(uid)
             lp = row['lp']
             sl = row['sl']
             refTime = row["tOEP"]
@@ -62,14 +61,13 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                 continue
             elif ot == "buy":
                 if ltp >= lp:
-                    maDf = getterAvailableMargin(lock)
+                    maDf = getterAvailableMargin()
                     ma = maDf['margin'][0]
                     if mr <= ma:
                         print(f"Entry is place for buy order for {uid} hurray!!!!!!")
 
                         # assigning pid
-                        with lock:
-                            row['pid'] = getterUpdateAndSetterPositionId(lock)
+                        row['pid'] = getterUpdateAndSetterPositionId(lock)
 
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
@@ -82,7 +80,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
                         # read and record
-                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, lock)
+                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row)
                 # elif ltp <= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp <= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'
@@ -99,14 +97,13 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
             # condition for short position
             elif ot == "sell":
                 if ltp <= lp:
-                    maDf = getterAvailableMargin(lock)
+                    maDf = getterAvailableMargin()
                     ma = maDf['margin'][0]
                     if mr <= ma:
                         print(f"Entry is place for sell order for {uid} hurray!!!!!!")
 
                         # assigning position id
-                        with lock:
-                            row['pid'] = getterUpdateAndSetterPositionId(lock)
+                        row['pid'] = getterUpdateAndSetterPositionId(lock)
 
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
@@ -119,7 +116,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
                         # read and record for position
-                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, lock)
+                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row)
                 # elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp >= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'

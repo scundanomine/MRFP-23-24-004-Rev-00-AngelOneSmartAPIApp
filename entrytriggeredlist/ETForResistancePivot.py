@@ -8,10 +8,10 @@ from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndS
 
 def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
     # get current resistance AI list
-    rdf = getterAIList("ResistanceAIList", lock)
+    rdf = getterAIList("ResistanceAIList")
 
     # getter ET black list
-    bLDf = getterBlackListET(lock)
+    bLDf = getterBlackListET()
 
     for index, row in rdf.iterrows():
         uid = row['id']
@@ -33,7 +33,7 @@ def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
                     # update the black list
                     getterUpdateAndSetterBlackListET(uid, 1)
 
-            # condition for sell
+            # condition for 'sell'
             elif cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25 * atr and checkBearishReversalPattern(
                     row["berRP"]):
                 # update the order type and upend the order list

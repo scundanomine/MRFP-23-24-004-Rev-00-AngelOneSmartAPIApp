@@ -1,16 +1,13 @@
 import pandas as pd
-import multiprocessing
 
 
-def getterSpecificCandleData(sid, symbol, lock=multiprocessing.Lock()):
+def getterSpecificCandleData(sid, symbol):
     try:
-        with lock:
-            gdf = pd.read_csv(
+        gdf = pd.read_csv(
                 f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv")
     except Exception as e:
         print(f"The exception while getterSpecificCandleData is {e}")
-        gdf = pd.DataFrame(columns=list(range(6)), index=list(range(10)))
-        gdf[:] = 0
+        gdf = getterSpecificCandleData(sid, symbol)
     return gdf
 
 

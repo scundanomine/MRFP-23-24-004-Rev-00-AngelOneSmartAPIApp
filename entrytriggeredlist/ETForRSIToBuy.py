@@ -6,10 +6,10 @@ from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndS
 
 def entryTriggeredForRSIToBuy(lock):
     # get current resistance AI list
-    rdf = getterAIList("BuyerRSIAIList", lock)
+    rdf = getterAIList("BuyerRSIAIList")
 
     # getter ET black list
-    bLDf = getterBlackListET(lock)
+    bLDf = getterBlackListET()
 
     for index, row in rdf.iterrows():
         uid = row['id']

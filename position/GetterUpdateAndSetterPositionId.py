@@ -1,5 +1,5 @@
-import pandas as pd
 import multiprocessing
+import pandas as pd
 
 
 def getterUpdateAndSetterPositionId(lock=multiprocessing.Lock()):
@@ -14,7 +14,7 @@ def getterUpdateAndSetterPositionId(lock=multiprocessing.Lock()):
                 index=False)
     except Exception as e:
         print(f"The exception while getterUpdateAndSetterPositionId is {e}")
-        sid = 0
+        sid = getterUpdateAndSetterPositionId(lock)
     return sid
 
 

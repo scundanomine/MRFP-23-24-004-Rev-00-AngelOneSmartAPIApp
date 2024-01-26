@@ -7,10 +7,10 @@ from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndS
 
 def entryTriggeredForTopGainerToBuy(lock=multiprocessing.Lock()):
     # get current resistance AI list
-    rdf = getterAIList("TopGainerList", lock)
+    rdf = getterAIList("TopGainerList")
 
     # getter ET black list
-    bLDf = getterBlackListET(lock)
+    bLDf = getterBlackListET()
 
     for index, row in rdf.iterrows():
         uid = row['id']

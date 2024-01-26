@@ -3,7 +3,7 @@ import xlwings as xw
 import multiprocessing
 
 
-def getterPreMargin(lock=multiprocessing.Lock()):
+def getterPreMargin():
     # getting data from the sheet
     while True:
         try:

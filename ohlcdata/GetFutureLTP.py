@@ -1,16 +1,14 @@
-import multiprocessing
 import datetime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from ohlcdata.GetterFDS import getterFDS
 from ohlcdata.GetterFFDS import getterFFDS
 
 
-def getFutureLTP(uid, lock=multiprocessing.Lock()):
+def getFutureLTP(uid):
     # getter fds and fFds
-    with lock:
-        fds = getterFDS()
-        fFds = getterFFDS()
-        cv = getterTimeDelta()
+    fds = getterFDS()
+    fFds = getterFFDS()
+    cv = getterTimeDelta()
 
     # getting required records
     recOne = fds.iloc[uid - 1]

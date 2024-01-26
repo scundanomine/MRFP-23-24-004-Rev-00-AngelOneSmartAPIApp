@@ -1,7 +1,6 @@
-import pandas as pd
-import multiprocessing
-import time
 import datetime
+import time
+import pandas as pd
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from positionportfolioandmargindisplay.GetMarginDisplay import getMarginDisplay
@@ -9,24 +8,23 @@ from positionportfolioandmargindisplay.GetPortfolioDisplay import getPortfolioDi
 from positionportfolioandmargindisplay.GetPositionDisplay import getPositionDisplay
 
 
-def getPositionPortfolioAndMarginDisplay(lock=multiprocessing.Lock(), isLive=False):
+def getPositionPortfolioAndMarginDisplay(isLive=False):
     startTime = time.time()
     ctrA = 0
-    with lock:
-        if isLive:
-            cv = pd.to_timedelta(0)
-        else:
-            cv = getterTimeDelta()
-        exitTime = getterExitTime()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
+        cv = getterTimeDelta()
+    exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter margin display
-        getMarginDisplay(lock)
+        getMarginDisplay()
 
         # getter portfolio display
-        getPortfolioDisplay(lock)
+        getPortfolioDisplay()
 
         # getter position display
-        getPositionDisplay(lock)
+        getPositionDisplay()
 
         ctrA = ctrA + 1
         if ctrA == 2:

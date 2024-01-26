@@ -8,10 +8,10 @@ import multiprocessing
 
 def entryTriggeredForBullishReversalPatternForBuy(lock=multiprocessing.Lock()):
     # get current resistance AI list
-    rdf = getterAIList("BullishReversalAIList", lock)
+    rdf = getterAIList("BullishReversalAIList")
 
     # getter ET black list
-    bLDf = getterBlackListET(lock)
+    bLDf = getterBlackListET()
 
     for index, row in rdf.iterrows():
         uid = row['id']

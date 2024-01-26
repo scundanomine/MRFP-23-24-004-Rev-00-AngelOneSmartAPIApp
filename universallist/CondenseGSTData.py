@@ -1,12 +1,11 @@
 import pandas as pd
 
+from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 
-def condenseGSTData(uid, symbol, lock):
+
+def condenseGSTData(uid, symbol):
     try:
-        lock.acquire()
-        df = pd.read_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{uid}_{symbol}.csv")
-        lock.release()
+        df = getterSpecificCandleData(uid, symbol)
         data = [df['C'][8], df['C'][9], df['V'][9], df['atr'][9], df['atrPer'][9],
                 f"{df['g'][9]}, {df['g'][8]}, {df['g'][7]}",
                 f"{df['s'][9]}, {df['s'][8]}, {df['s'][7]}",

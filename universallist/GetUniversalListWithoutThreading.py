@@ -1,3 +1,4 @@
+import datetime
 import time
 import pandas as pd
 from commonudm.GetterExitTime import getterExitTime
@@ -6,25 +7,21 @@ from commonudm.GetterTimeDelta import getterTimeDelta
 from traditionalpivotalarm.GetterPivotData import getterPivotData
 from universallist.CondenseGSTData import condenseGSTData
 from universallist.GetterDfThree import getterDfThree
-import multiprocessing
-import datetime
 
 
-def getUniversalListWithoutThreading(lock=multiprocessing.Lock(), isLive=False):
+def getUniversalListWithoutThreading(isLive=False):
     startTime = time.time()
     ctrA = 0
-    with lock:
-        if isLive:
-            cv = pd.to_timedelta(0)
-        else:
-            cv = getterTimeDelta()
-        exitTime = getterExitTime()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
+        cv = getterTimeDelta()
+    exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
-        with lock:
-            # nifty detailed list
-            ndf = getterNiftyDetailedListWithPivots()
-            # dcs and dcs list
-            dcs = getterPivotData()
+        # nifty detailed list
+        ndf = getterNiftyDetailedListWithPivots()
+        # dcs and dcs list
+        dcs = getterPivotData()
         dcs = dcs.loc[:, ['alarmTimer', 'srT', 'srV', 'nSR', 'GL']]
         # print(dcs)
 
@@ -35,7 +32,7 @@ def getUniversalListWithoutThreading(lock=multiprocessing.Lock(), isLive=False):
         for index, row in ndf.iterrows():
             uid = row['id']
             symbol = row['symbol']
-            result = condenseGSTData(uid, symbol, lock)
+            result = condenseGSTData(uid, symbol)
             dfThree.loc[index] = result
 
         # join of three df
@@ -49,8 +46,7 @@ def getUniversalListWithoutThreading(lock=multiprocessing.Lock(), isLive=False):
         dfU["oc"] = ""
 
         # save the list
-        with lock:
-            dfU.to_csv(
+        dfU.to_csv(
                 "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
                 index=False)
         ctrA = ctrA + 1

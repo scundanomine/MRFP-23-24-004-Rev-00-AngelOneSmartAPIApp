@@ -12,24 +12,20 @@ import pandas as pd
 from smartwebsocketdata.GetterSpecificTokenCandleDataFromWebSocket import getterSpecificTokenCandleDataFromWebSocket
 
 
-def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock(), isLive=False):
+def eventLoopForAllITRCandlestickProperties(isLive=False):
     startTime = time.time()
-    lock.acquire()
     if isLive:
         cv = pd.to_timedelta(0)
     else:
         cv = getterTimeDelta()
     exitTime = getterExitTime()
-    lock.release()
     while datetime.datetime.now() - cv < exitTime:
         # get the id and symbol df
-        with lock:
-            gDf = getterRequiredSymbolAndTokenList()
+        gDf = getterRequiredSymbolAndTokenList()
 
         # getter past candle data
         if not isLive:
-            with lock:
-                pDs = getterPDS()
+            pDs = getterPDS()
             lPDs = pDs.values.tolist()
         else:
             lPDs = [0, 0, 0, 0, 0, 0]
@@ -39,10 +35,9 @@ def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock(), isLive=
             uid = row['id']
             symbol = row['symbol']
             token = row['token']
-            with lock:
-                psTime = getterSpecificCandleData(uid, symbol).loc[9, 'time']
+            psTime = getterSpecificCandleData(uid, symbol).loc[9, 'time']
             if isLive:
-                sdf = getterSpecificTokenCandleDataFromWebSocket(token, lock)
+                sdf = getterSpecificTokenCandleDataFromWebSocket(token)
                 data = sdf.values.tolist()[0][:6]
             else:
                 data = lPDs[uid - 1]
@@ -51,7 +46,7 @@ def eventLoopForAllITRCandlestickProperties(lock=multiprocessing.Lock(), isLive=
                 continue
             else:
                 # calculation for candle properties
-                getAllItrCandlesticksProperties(uid, symbol, data, lock)
+                getAllItrCandlesticksProperties(uid, symbol, data)
         print(f"Execution time for All Itr candle properties (CP) is {time.time() - startTime}")
         time.sleep(5)
 

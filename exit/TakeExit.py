@@ -24,19 +24,17 @@ import pandas as pd
 def takeExit(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
-    lock.acquire()
     if isLive:
         cv = pd.to_timedelta(0)
     else:
         cv = getterTimeDelta()
     exitTime = getterExitTime()
-    lock.release()
     while datetime.datetime.now() - cv < exitTime:
         # getter position list
-        pLDf = getterPositionList(lock)
+        pLDf = getterPositionList()
 
         for index, row in pLDf.iterrows():
-            eIDf = getExitInputs(lock)
+            eIDf = getExitInputs()
             token = row['token']
             uid = row["id"]
             symbol = row['symbol']
@@ -44,7 +42,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             row['rFlag'] = eIDf.loc[uid - 1, 'rFlag']
             row['eFlag'] = eIDf.loc[uid - 1, 'eFlag']
             # getting candle sticks properties
-            cdf = getterSpecificCandleData(uid, symbol, lock)
+            cdf = getterSpecificCandleData(uid, symbol)
             ot = row["ot"]
             lp = row['lp']
             sl = row['sl']
@@ -61,9 +59,9 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             # atr = rowC['atr']
             ltpP = row["ltpP"]
             if isLive:
-                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token, lock).loc[0, '4']
+                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).loc[0, '4']
             else:
-                ltp = getFutureLTP(uid, lock)
+                ltp = getFutureLTP(uid)
             if ltp != 0:
                 row['ltp'] = ltp
                 dx = ltp - ltpP
@@ -87,7 +85,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                 getterCreditAndSetterAvailableMargin(mr, lock)
                 getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                 # read and record for exit
-                setExitDetailsAndCandles(pid, uid, symbol, row, lock)
+                setExitDetailsAndCandles(pid, uid, symbol, row)
                 print(f"Exit happened for {uid} boom!!!!!")
                 continue
             elif ltp == 0:
@@ -108,7 +106,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
+                    setExitDetailsAndCandles(pid, uid, symbol, row)
                     print(f"Exit happened for buy order for {uid} alas!!!!!")
                     continue
                 # condition for Trailing stop loss
@@ -134,7 +132,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
+                    setExitDetailsAndCandles(pid, uid, symbol, row)
                     print(f"Exit happened for buy order for {uid} boom!!!!!")
                     continue
                 # condition for riding
@@ -159,7 +157,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
+                    setExitDetailsAndCandles(pid, uid, symbol, row)
                     print(f"Exit happened for sell order {uid} alas!!!!!")
                     continue
                 # condition for Trailing stop loss
@@ -185,7 +183,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, lock)
+                    setExitDetailsAndCandles(pid, uid, symbol, row)
                     print(f"Exit happened for sell order {uid} boom!!!!!")
                     continue
                 # condition for riding

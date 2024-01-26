@@ -1165,6 +1165,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\pivotalarm\pivot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\pivotalarm\referenceTimer.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\pivotalarm\srn.csv">
           <value>
             <Attribute>

@@ -18,18 +18,17 @@ import pandas as pd
 def getEntryList(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
-    with lock:
-        if isLive:
-            cv = pd.to_timedelta(0)
-        else:
-            cv = getterTimeDelta()
-        exitTime = getterExitTime()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
+        cv = getterTimeDelta()
+    exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getter Entry calculated and entry happened black list
-        eCBLDf = getterECBList(lock)
+        eCBLDf = getterECBList()
 
         # getter ET list
-        eTDf = getterEntryTriggeredList(lock)
+        eTDf = getterEntryTriggeredList()
 
         for index, row in eTDf.iterrows():
             uid = row['id']
@@ -40,9 +39,9 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
             margin = 5
             ot = row['ot']
             if isLive:
-                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token, lock).loc[0, '4']
+                ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).loc[0, '4']
             else:
-                ltp = getFutureLTP(uid, lock)
+                ltp = getFutureLTP(uid)
             if eCBLDf.loc[uid - 1, 'eCBFlag'] == 1 or ltp == 0:
                 continue
             else:

@@ -1,13 +1,9 @@
 import multiprocessing
-
+import time
 from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
-from commonudm.GetterPreExitTime import getterPreExitTime
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
-from commonudm.GetterPreStockQtn import getterPreStockQtn
 from commonudm.GetterStockQtn import getterStockQtn
-from commonudm.SetterNiftyDetailedListWithPivots import setterNiftyDetailedListWithPivot
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
-from commonudm.SetterRequiredSymbolAndTokenList import setterRequiredSymbolAndTokenList
 from entry.GetEntryList import getEntryList
 from entrytriggeredlist.GetEntryTriggeredList import getEntryTriggeredList
 from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
@@ -17,47 +13,44 @@ from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirs
 from exit.TakeExit import takeExit
 from ohlcdata.GetTestCandlestickData import getTestCandlestickData
 from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
-import time
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
 from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
     checkTraditionalPivotAlarmsWithoutThreading
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
-from traditionalpivotalarm.SetterSRData import setterSRData
 from universallist.GetUniversalListWithoutThreading import getUniversalListWithoutThreading
-from universallist.SetterDfThree import setterDfThree
 
 
 # function for PivotAlarm
-def candlesDataAllITREvent(n, lock):
+def candlesDataAllITREvent(n):
     print("Multiprocess One has been started")
-    getTestCandlestickData(n, lock)
+    getTestCandlestickData(n)
 
 
-def candlesPropertiesAllITREvent(lock):
+def candlesPropertiesAllITREvent():
     print("Multiprocess two has been started")
-    eventLoopForAllITRCandlestickProperties(lock)
+    eventLoopForAllITRCandlestickProperties()
     # getAccessTokenWithThread(200, "ltpTwo.csv", lock)
 
 
-def pivotAlarmEvent(lock):
+def pivotAlarmEvent():
     print("Multiprocess three has been started")
     # setterSRData()
     setterPrePivotData()
-    checkTraditionalPivotAlarmsWithoutThreading(lock)
+    checkTraditionalPivotAlarmsWithoutThreading()
 
 
-def universalListEvent(lock):
+def universalListEvent():
     print("Multiprocess four has been started")
     # setterDfThree()
     # setterNiftyDetailedListWithPivot()
-    getUniversalListWithoutThreading(lock)
+    getUniversalListWithoutThreading()
 
 
-def aIListEvent(lock):
+def aIListEvent():
     print("Multiprocess five has been started")
-    getAIListWithoutUdf(lock)
+    getAIListWithoutUdf()
 
 
 def eTListEvent(lock):
@@ -80,14 +73,14 @@ def exitEvent(lock):
     takeExit(lock)
 
 
-def PPMEvent(lock):
+def PPMEvent():
     print("Multiprocess ten has been started")
-    getPositionPortfolioAndMarginDisplay(lock)
+    getPositionPortfolioAndMarginDisplay()
 
 
 def rREvent(lock):
     print("Multiprocess eleven has been started")
-    getAIListWithoutUdf(lock)
+    getAIListWithoutUdf()
 
 
 # def eventLoop():
@@ -123,19 +116,19 @@ if __name__ == "__main__":
     lockA = multiprocessing.Lock()
 
     # starting first process of getting current and future candle data
-    pOne = multiprocessing.Process(target=candlesDataAllITREvent, args=[m, lockA])
+    pOne = multiprocessing.Process(target=candlesDataAllITREvent, args=[m])
 
     # starting second process of getting present candles data property
-    pTwo = multiprocessing.Process(target=candlesPropertiesAllITREvent, args=[lockA])
+    pTwo = multiprocessing.Process(target=candlesPropertiesAllITREvent, args=[])
 
     # starting Third process of getting pivot alarm
-    pThree = multiprocessing.Process(target=pivotAlarmEvent, args=[lockA])
+    pThree = multiprocessing.Process(target=pivotAlarmEvent, args=[])
 
     # starting Fourth process of getting Universal list
-    pFour = multiprocessing.Process(target=universalListEvent, args=[lockA])
+    pFour = multiprocessing.Process(target=universalListEvent, args=[])
 
     # starting Fifth process of getting AI list
-    pFive = multiprocessing.Process(target=aIListEvent, args=[lockA])
+    pFive = multiprocessing.Process(target=aIListEvent, args=[])
 
     # starting sixth process of getting Entry triggered list
     pSix = multiprocessing.Process(target=eTListEvent, args=[lockA])
@@ -150,7 +143,7 @@ if __name__ == "__main__":
     pNine = multiprocessing.Process(target=exitEvent, args=[lockA])
 
     # starting tenth process of getting RR
-    pTen = multiprocessing.Process(target=PPMEvent, args=[lockA])
+    pTen = multiprocessing.Process(target=PPMEvent, args=[])
 
     pOne.start()
     pTwo.start()

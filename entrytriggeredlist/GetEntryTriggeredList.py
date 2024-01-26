@@ -18,13 +18,11 @@ import pandas as pd
 def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
     startTime = time.time()
     ctrA = 0
-    lock.acquire()
     if isLive:
         cv = pd.to_timedelta(0)
     else:
         cv = getterTimeDelta()
     exitTime = getterExitTime()
-    lock.release()
     while datetime.datetime.now() - cv < exitTime:
         # get black list for ET
         getBlackListForET(lock)

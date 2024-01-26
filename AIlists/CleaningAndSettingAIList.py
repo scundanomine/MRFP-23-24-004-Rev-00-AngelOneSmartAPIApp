@@ -8,14 +8,14 @@ def cleaningAndSettingAIList(lock=multiprocessing.Lock()):
 
     # function for S AI list
     dfS = uDf.loc[(uDf['srT'] == "P")]
-    setterAIList(lock, dfS, "SupportAIList")
-    setterAIList(lock, dfS, "ResistanceAIList")
-    setterAIList(lock, dfS, "BuyerRSIAIList")
-    setterAIList(lock, dfS, "SellerRSIAIList")
-    setterAIList(lock, dfS, "BullishReversalAIList")
-    setterAIList(lock, dfS, "BearishReversalAIList")
-    setterAIList(lock, dfS, "TopGainerList")
-    setterAIList(lock, dfS, "TopLoserAIList")
+    setterAIList(dfS, "SupportAIList")
+    setterAIList(dfS, "ResistanceAIList")
+    setterAIList(dfS, "BuyerRSIAIList")
+    setterAIList(dfS, "SellerRSIAIList")
+    setterAIList(dfS, "BullishReversalAIList")
+    setterAIList(dfS, "BearishReversalAIList")
+    setterAIList(dfS, "TopGainerList")
+    setterAIList(dfS, "TopLoserAIList")
 
 
 # cleaningAndSettingAIList()

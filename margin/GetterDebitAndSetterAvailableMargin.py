@@ -12,3 +12,4 @@ def getterDebitAndSetterAvailableMargin(mr, lock):
                 index=False)
         except Exception as e:
             print(f"The exception while getterDebitAndSetterAvailableMargin is {e}")
+            getterDebitAndSetterAvailableMargin(mr, lock)
