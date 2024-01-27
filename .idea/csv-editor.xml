@@ -941,13 +941,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\hotmech\HotMechLst.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\margin\marginstate\margin.csv">
           <value>
             <Attribute>
@@ -1165,27 +1158,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\pivotalarm\pivot.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\pivotalarm\referenceTimer.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\pivotalarm\srn.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\portfolio\portfoliostate\FixedPortfolio.csv">
           <value>
             <Attribute>
@@ -1201,6 +1173,27 @@
           </value>
         </entry>
         <entry key="\readandrecord\rrstate\PECBList.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\readandrecord\rrstate\exitcandles\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\readandrecord\rrstate\exitdetails\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\readandrecord\rrstate\positiondetails\1.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

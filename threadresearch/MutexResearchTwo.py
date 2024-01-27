@@ -5,46 +5,46 @@ import pandas as pd
 
 def processOne(lock, startTime):
     # print("Multiprocess one has been started")
-    for i in range(60):
-        # with lock:
-        time.sleep(1)
-        # print('I have waited for process one!!!!!!!!!')
-        # df = pd.DataFrame([[0, 0, 0], [0, 0, 0]])
-        # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv', index=False)
-        df = pd.read_csv(
-            "/threadresearch/mat5.csv")
-        print(f"time of execution for processOne!!!!!!!!! is {time.time() - startTime}")
+    for i in range(6):
+        with lock:
+            time.sleep(10)
+            # print('I have waited for process one!!!!!!!!!')
+            # df = pd.DataFrame([[0, 0, 0], [0, 0, 0]])
+            # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv', index=False)
+            df = pd.read_csv(
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
+            print(f"time of execution for processOne!!!!!!!!! is {time.time() - startTime}")
 
 
 def processTwo(lock, startTime):
     # print("Multiprocess two has been started")
-    for i in range(60):
-        # with lock:
-        time.sleep(1)
-        # print('I have waited for process two@@@@@@@@@@@@@@@@')
-        df = pd.read_csv(
-            "/threadresearch/mat5.csv")
-        # while True:
-        #     try:
-        #         df = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
-        #         break
-        #     except Exception as e:
-        #         print(f"Exception while getting df is +++++++++++++++++++++++++++++++++++ {e}")
-        print(f"time of execution for processTwo@@@@@@@ is {time.time()-startTime}")
+    for i in range(12):
+        with lock:
+            time.sleep(5)
+            # print('I have waited for process two@@@@@@@@@@@@@@@@')
+            df = pd.read_csv(
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
+            # while True:
+            #     try:
+            #         df = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
+            #         break
+            #     except Exception as e:
+            #         print(f"Exception while getting df is +++++++++++++++++++++++++++++++++++ {e}")
+            print(f"time of execution for processTwo@@@@@@@ is {time.time()-startTime}")
 
 
 def processThree(lock, startTime):
     # print("Multiprocess three has been started")
     for i in range(60):
-        # with lock:
-        time.sleep(1)
-        # print('I have waited for process three############')
-        df = pd.read_csv(
-            "/threadresearch/mat5.csv")
-        # df = pd.DataFrame([[2, 2, 2], [2, 2, 2]])
-        # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv',
-        #           index=False)
-        print(f"time of execution for processThree######## is {time.time() - startTime}")
+        with lock:
+            time.sleep(1)
+            # print('I have waited for process three############')
+            df = pd.read_csv(
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
+            # df = pd.DataFrame([[2, 2, 2], [2, 2, 2]])
+            # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv',
+            #           index=False)
+            print(f"time of execution for processThree######## is {time.time() - startTime}")
 
 
 # four multiple process

@@ -1,7 +1,4 @@
 import pandas as pd
-import multiprocessing
-
-from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTokenList
 
 
 def setterPrePECBListRR():

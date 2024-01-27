@@ -80,7 +80,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
                         # read and record
-                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row)
+                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv)
                 # elif ltp <= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp <= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'
@@ -116,7 +116,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
                         # read and record for position
-                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row)
+                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv)
                 # elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp >= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'

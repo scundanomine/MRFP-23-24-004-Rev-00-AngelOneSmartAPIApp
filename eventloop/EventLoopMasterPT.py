@@ -16,6 +16,7 @@ from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickDa
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
+from readandrecord.GetRecords import getRecords
 from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
     checkTraditionalPivotAlarmsWithoutThreading
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
@@ -78,9 +79,9 @@ def PPMEvent():
     getPositionPortfolioAndMarginDisplay()
 
 
-def rREvent(lock):
+def rREvent():
     print("Multiprocess eleven has been started")
-    getAIListWithoutUdf()
+    getRecords()
 
 
 # def eventLoop():
@@ -145,6 +146,9 @@ if __name__ == "__main__":
     # starting tenth process of getting RR
     pTen = multiprocessing.Process(target=PPMEvent, args=[])
 
+    # starting tenth process of position, portfolio and margin display
+    pEleven = multiprocessing.Process(target=rREvent, args=[])
+
     pOne.start()
     pTwo.start()
     pThree.start()
@@ -155,6 +159,7 @@ if __name__ == "__main__":
     pEight.start()
     pNine.start()
     pTen.start()
+    pEleven.start()
 
     pOne.join()
     pTwo.join()
@@ -166,6 +171,7 @@ if __name__ == "__main__":
     pEight.join()
     pNine.join()
     pTen.join()
+    pEleven.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")

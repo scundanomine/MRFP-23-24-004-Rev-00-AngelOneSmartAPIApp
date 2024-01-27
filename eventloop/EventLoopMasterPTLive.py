@@ -14,8 +14,7 @@ from exit.TakeExit import takeExit
 from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
-from smartwebsocketdata.SmartApiWebSocketOne import smartApiWebSocketOne
-from smartwebsocketdata.SmartApiWebSocketTwo import smartApiWebSocketTwo
+from readandrecord.GetRecords import getRecords
 from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
     checkTraditionalPivotAlarmsWithoutThreading
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
@@ -25,7 +24,6 @@ from universallist.GetUniversalListWithoutThreading import getUniversalListWitho
 def candlesPropertiesAllITREvent():
     print("Multiprocess two has been started")
     eventLoopForAllITRCandlestickProperties(True)
-    # getAccessTokenWithThread(200, "ltpTwo.csv", lock)
 
 
 def pivotAlarmEvent():
@@ -67,14 +65,14 @@ def exitEvent(lock):
     takeExit(lock, True)
 
 
-def PPMEvent(lock):
+def PPMEvent():
     print("Multiprocess ten has been started")
     getPositionPortfolioAndMarginDisplay(True)
 
 
 def rREvent(lock):
     print("Multiprocess eleven has been started")
-    getAIListWithoutUdf()
+    getRecords()
 
 
 # def eventLoop():
@@ -130,8 +128,11 @@ if __name__ == "__main__":
     # starting ninth process of getting Exit
     pNine = multiprocessing.Process(target=exitEvent, args=[lockA])
 
-    # starting tenth process of getting RR
-    pTen = multiprocessing.Process(target=PPMEvent, args=[lockA])
+    # starting tenth process of position, portfolio and margin display
+    pTen = multiprocessing.Process(target=PPMEvent, args=[])
+
+    # starting tenth process of position, portfolio and margin display
+    pEleven = multiprocessing.Process(target=rREvent, args=[])
 
     pTwo.start()
     pThree.start()
@@ -142,6 +143,7 @@ if __name__ == "__main__":
     pEight.start()
     pNine.start()
     pTen.start()
+    pEleven.start()
 
     pTwo.join()
     pThree.join()
@@ -152,6 +154,7 @@ if __name__ == "__main__":
     pEight.join()
     pNine.join()
     pTen.join()
+    pEleven.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")

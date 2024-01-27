@@ -12,7 +12,7 @@ def processOne(lock, startTime):
         # df = pd.DataFrame([[0, 0, 0], [0, 0, 0]])
         # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv', index=False)
         df = pd.read_csv(
-            "/threadresearch/mat5.csv")
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
         print(f"time of execution for processOne!!!!!!!!! is {time.time() - startTime}")
 
 
@@ -23,7 +23,7 @@ def processTwo(lock, startTime):
         time.sleep(1)
         # print('I have waited for process two@@@@@@@@@@@@@@@@')
         df = pd.read_csv(
-            "/threadresearch/mat5.csv")
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
         # while True:
         #     try:
         #         df = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
@@ -40,7 +40,7 @@ def processThree(lock, startTime):
         time.sleep(1)
         # print('I have waited for process three############')
         df = pd.read_csv(
-            "/threadresearch/mat5.csv")
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
         # df = pd.DataFrame([[2, 2, 2], [2, 2, 2]])
         # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv',
         #           index=False)
