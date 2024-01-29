@@ -12,6 +12,7 @@ from exit.SetterPreExitInputs import setterPreExitInputs
 from margin.GetterPreMargin import getterPreMargin
 from ohlcdata.CleaningAndSettingPastTenCandleData import cleaningAndSettingPastTenCandleData
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
+from ohlcdata.SetterPrePdsFdsAndFfdsList import setterPrePdsFdsAndFfdsList
 from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
 from position.GetterPrePositionId import getterPrePositionId
 from position.SetterPrePositionList import setterPrePositionList
@@ -42,7 +43,7 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
 
     # cleaning and setting past pds and fds and fFds
     if not isLive:
-        setterInitialPdsAndFds()
+        setterPrePdsFdsAndFfdsList()
 
     # setter pre pivot data
     setterSRData()
