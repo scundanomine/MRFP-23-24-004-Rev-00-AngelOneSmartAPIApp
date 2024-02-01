@@ -13,4 +13,4 @@ def getterCandleDataForForSpecificPidAndDate(pid, date, folderName="positioncand
     return srLst
 
 
-print(getterCandleDataForForSpecificPidAndDate(6, "2024-01-25"))
+# print(getterCandleDataForForSpecificPidAndDate(6, "2024-01-25"))

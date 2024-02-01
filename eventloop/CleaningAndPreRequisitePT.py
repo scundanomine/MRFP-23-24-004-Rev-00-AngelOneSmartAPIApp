@@ -79,7 +79,6 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # cleaning for RR
     setterPrePECBListRR()
     # print(f"execution time for cleaning is {time.time() - startTime}")
-    cleaningAllRecordsFromRR(cleaningFlag)
 
 
 # cleaningAndPreRequisitePT()

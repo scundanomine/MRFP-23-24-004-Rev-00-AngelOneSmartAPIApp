@@ -4,6 +4,7 @@ from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterStockQtn import getterStockQtn
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
+from commonudm.SetterReportDateForRR import setterReportDateForRR
 from entry.GetEntryList import getEntryList
 from entrytriggeredlist.GetEntryTriggeredList import getEntryTriggeredList
 from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
@@ -16,6 +17,8 @@ from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickDa
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
+from readandrecord.CleaningAllRecordsFromRR import cleaningAllRecordsFromRR
+from readandrecord.CreateRRDirectoriesIfNotExist import createRRDirectoriesIfNotExist
 from readandrecord.GetRecords import getRecords
 from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
     checkTraditionalPivotAlarmsWithoutThreading
@@ -100,8 +103,10 @@ if __name__ == "__main__":
     setterReferenceDateConstant()
     # getterPreTimeDelta()
 
-    # setter required symbol and token list
-    # setterRequiredSymbolAndTokenList()
+    # setter report date and required data for rr
+    setterReportDateForRR()
+    createRRDirectoriesIfNotExist()
+    cleaningAllRecordsFromRR()
 
     # getting past 10 candles data
     getTestFirstItrCandlestickData(m)

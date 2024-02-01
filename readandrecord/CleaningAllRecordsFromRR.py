@@ -1,20 +1,24 @@
 from commonudm.CleaningAllFilesFromSpecificDirectory import cleaningAllFilesFromSpecificDirectory
+from commonudm.GetterReportDateForRR import getterReportDateForRR
+from position.GetterPositionId import getterPositionId
 
 
-def cleaningAllRecordsFromRR(cleaningFlag=False):
-    if cleaningFlag:
+def cleaningAllRecordsFromRR():
+    reportDate = getterReportDateForRR()
+    pid = getterPositionId()
+    if pid == 0:
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\exitcandles")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitcandles")
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\exitdetails")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitdetails")
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\exitplots")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitplots")
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\positioncandles")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positioncandles")
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\positiondetails")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positiondetails")
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\positionplots")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionplots")
 
 
-# cleaningAllRecordsFromRR(True)
+# cleaningAllRecordsFromRR()

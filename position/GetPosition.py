@@ -1,4 +1,5 @@
 from commonudm.GetterExitTime import getterExitTime
+from commonudm.GetterReportDateForRR import getterReportDateForRR
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetterDropAndSetterEntryList import getterDropAndSetterEntryList
 from entry.GetterEntryList import getterEntryList
@@ -27,6 +28,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
     else:
         cv = getterTimeDelta()
     exitTime = getterExitTime()
+    reportDate = getterReportDateForRR()
     while datetime.datetime.now() - cv < exitTime:
         # getter Entry list
         eLDf = getterEntryList()
@@ -80,7 +82,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
                         # read and record
-                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv)
+                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv, reportDate)
                 # elif ltp <= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp <= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'
@@ -116,7 +118,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
                         # read and record for position
-                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv)
+                        setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv, reportDate)
                 # elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 1200:
                 elif ltp >= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'

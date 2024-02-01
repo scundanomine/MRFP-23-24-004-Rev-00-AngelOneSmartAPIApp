@@ -16,6 +16,101 @@
 </head>
 <body>
     <h1 class="text-center text-primary">Stipe Foro Details for {{pid}} on {{reportDate}}</h1>
+    <br> <br>
+    <div class="container-fluid">
+        <h4 class="text-secondary">Position Details</h4>
+        <table class="table table-bordered table-sm">
+            <!--population of table header-->
+            <tr>
+                {% for key, values in reportData.positionDetail.items %}
+                <th>{{key}}</th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for key, values in reportData.positionDetail.items %}
+                <td>{{values}}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+<br>
+    <div class="container-fluid">
+        <h4 class="text-secondary">Position Candles</h4>
+        <table class="table table-bordered table-sm">
+            <!--population of table header-->
+            <tr>
+                {% for dataOne in reportData.positionCandles %}
+                {% if forloop.counter == 1 %}
+                {% for key, values in dataOne.items %}
+                <th>{{key}}</th>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% for dataOne in reportData.positionCandles %}
+            <tr>
+                {% for key, values in dataOne.items %}
+                <td>{{values}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+<br>
+    <div class="container-fluid">
+        <h4 class="text-secondary">Position Plots</h4>
+        <img src="/media/{{reportData.positionPlotUrl}}" alt="">
+    </div>
+    <br>
+    <hr style="width: 100%; color: darkgray; height: 1px; background-color:darkgray;" />
+<div class="container-fluid">
+        <h4 class="text-secondary">Exit Details</h4>
+        <table class="table table-bordered table-sm">
+            <!--population of table header-->
+            <tr>
+                {% for key, values in reportData.exitDetail.items %}
+                <th>{{key}}</th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for key, values in reportData.exitDetail.items %}
+                <td>{{values}}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+<br>
+    <div class="container-fluid">
+        <h4 class="text-secondary">Exit Candles</h4>
+        <table class="table table-bordered table-sm">
+            <!--population of table header-->
+            <tr>
+                {% for dataOne in reportData.exitCandles %}
+                {% if forloop.counter == 1 %}
+                {% for key, values in dataOne.items %}
+                <th>{{key}}</th>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% for dataOne in reportData.exitCandles %}
+            <tr>
+                {% for key, values in dataOne.items %}
+                <td>{{values}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+<br>
+    <div class="container-fluid">
+        <h4 class="text-secondary">Exit Plots</h4>
+        <img src="/media/{{reportData.exitPlotUrl}}" alt="">
+    </div>
 
 </body>
 </html>

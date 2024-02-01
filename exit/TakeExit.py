@@ -1,6 +1,7 @@
 import time
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
+from commonudm.GetterReportDateForRR import getterReportDateForRR
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
 from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
@@ -29,6 +30,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
     else:
         cv = getterTimeDelta()
     exitTime = getterExitTime()
+    reportDate = getterReportDateForRR()
     while datetime.datetime.now() - cv < exitTime:
         # getter position list
         pLDf = getterPositionList()
@@ -85,7 +87,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                 getterCreditAndSetterAvailableMargin(mr, lock)
                 getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                 # read and record for exit
-                setExitDetailsAndCandles(pid, uid, symbol, row, cv)
+                setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
                 print(f"Exit happened for {uid} boom!!!!!")
                 continue
             elif ltp == 0:
@@ -106,7 +108,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv)
+                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
                     print(f"Exit happened for buy order for {uid} alas!!!!!")
                     continue
                 # condition for Trailing stop loss
@@ -132,7 +134,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv)
+                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
                     print(f"Exit happened for buy order for {uid} boom!!!!!")
                     continue
                 # condition for riding
@@ -157,7 +159,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv)
+                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
                     print(f"Exit happened for sell order {uid} alas!!!!!")
                     continue
                 # condition for Trailing stop loss
@@ -183,7 +185,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterCreditAndSetterAvailableMargin(mr, lock)
                     getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
                     # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv)
+                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
                     print(f"Exit happened for sell order {uid} boom!!!!!")
                     continue
                 # condition for riding

@@ -1,10 +1,13 @@
 import mplfinance as mpf
+
+from commonudm.GetterReportDateForRR import getterReportDateForRR
 from readandrecord.GetterDfFromSpecificRRState import getterDfFromSpecificRRState
 from readandrecord.GetterPECBListRR import getterPECBListRR
 from readandrecord.ProcessDfForMplFinance import processDfForMplFinance
 
 
 def generatorExitCandlePlotFileRR():
+    reportDate = getterReportDateForRR()
     # getter position chart black list
     pEDf = getterPECBListRR()
     for index, row in pEDf.iterrows():
@@ -20,7 +23,7 @@ def generatorExitCandlePlotFileRR():
                 # pCDf = getterSpecificCandleData(1, "RELIANCE-EQ")
                 pcDf = processDfForMplFinance(pCDf)
                 # process position candle for specific pid
-                filePath = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\exitplots\\{pid}.png"
+                filePath = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitplots\\{pid}.png"
                 mpf.plot(pcDf, type='candle', style='yahoo', savefig=filePath)
                 pEDf.loc[index, 'flagCE'] = 1
     pEDf.to_csv(

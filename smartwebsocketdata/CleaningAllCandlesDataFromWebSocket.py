@@ -11,4 +11,4 @@ def cleaningAllCandlesDataFromWebSocket(cleaningFlag=False):
             "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisewholecandledata")
 
 
-# cleaningAllRecordsFromRR(True)
+# cleaningAllRecordsFromRR()
