@@ -1,6 +1,6 @@
-import pandas as pd
-from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 import datetime
+import pandas as pd
+from pastthirtycandles.GetterSpecificPastThirtyCandlesData import getterSpecificPastThirtyCandlesData
 
 
 def setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate):
@@ -10,5 +10,5 @@ def setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate):
     dq.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitdetails\\{pid}.csv", index=False)
 
     # setting position candles
-    df = getterSpecificCandleData(uid, symbol)
+    df = getterSpecificPastThirtyCandlesData(uid, symbol)
     df.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitcandles\\{pid}.csv", index=False)

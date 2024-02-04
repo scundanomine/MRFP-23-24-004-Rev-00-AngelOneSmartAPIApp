@@ -68,7 +68,16 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                 row['ltp'] = ltp
                 dx = ltp - ltpP
                 # calculation for gain or loss why?
-                row['gol'] = q * (ltp - lp)
+                if ot == 'buy':
+                    if ltp <= sl:
+                        row['gol'] = q * (sl - lp)
+                    else:
+                        row['gol'] = q * (ltp - lp)
+                else:
+                    if ltp >= sl:
+                        row['gol'] = q * (sl - lp)
+                    else:
+                        row['gol'] = q * (ltp - lp)
                 getterUpdateAndSetterPositionList(uid, row, lock)
             else:
                 dx = 0
@@ -116,7 +125,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     if dx > 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
-                    elif ltp <= lp + 0.7*(target-lp) or (rowC < rowCC < rowCCC):
+                    elif ltp <= lp + 0.7 * (target - lp) or (rowC < rowCC < rowCCC):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
                         getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
@@ -167,7 +176,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     if dx < 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
-                    elif ltp >= lp - 0.7*(lp-target) or (rowC > rowCC > rowCCC):
+                    elif ltp >= lp - 0.7 * (lp - target) or (rowC > rowCC > rowCCC):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
                         getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
@@ -201,6 +210,5 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             print(f"Execution time for getting Exit Position (EP) is {time.time() - startTime}")
             ctrA = 0
         # time.sleep(0.5)
-
 
 # takeExit()

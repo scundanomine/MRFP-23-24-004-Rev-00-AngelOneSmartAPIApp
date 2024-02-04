@@ -13,6 +13,7 @@ from margin.GetterPreMargin import getterPreMargin
 from ohlcdata.CleaningAndSettingPastTenCandleData import cleaningAndSettingPastTenCandleData
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from ohlcdata.SetterPrePdsFdsAndFfdsList import setterPrePdsFdsAndFfdsList
+from pastthirtycandles.SetterDfOneForPastThirtyCandles import setterDfOneForPastThirtyCandles
 from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
 from position.GetterPrePositionId import getterPrePositionId
 from position.SetterPrePositionList import setterPrePositionList
@@ -79,6 +80,9 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # cleaning for RR
     setterPrePECBListRR()
     # print(f"execution time for cleaning is {time.time() - startTime}")
+
+    # cleaning and setter for past thirty candles
+    setterDfOneForPastThirtyCandles()
 
 
 # cleaningAndPreRequisitePT()

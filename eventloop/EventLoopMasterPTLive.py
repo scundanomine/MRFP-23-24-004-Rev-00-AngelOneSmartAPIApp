@@ -13,6 +13,8 @@ from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITR
 from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirstITRCandlestickProperties
 from exit.TakeExit import takeExit
 from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
+from pastthirtycandles.GetPastThirtyCandles import getPastThirtyCandles
+from pastthirtycandles.GetPrePastThirtyCandle import getPrePastThirtyCandle
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
 from readandrecord.CleaningAllRecordsFromRR import cleaningAllRecordsFromRR
@@ -78,6 +80,11 @@ def rREvent(lock):
     getRecords()
 
 
+def rPastThirtyCandles():
+    print("Multiprocess twelve has been started")
+    getPastThirtyCandles()
+
+
 # def eventLoop():
 # four multiple process
 if __name__ == "__main__":
@@ -104,6 +111,9 @@ if __name__ == "__main__":
 
     # getting past 10 candles properties
     eventLoopForFirstITRCandlestickProperties()
+
+    # setter pre past 30 candles data
+    getPrePastThirtyCandle()
 
     # setterInitialPdsAndFds()
 
@@ -142,6 +152,9 @@ if __name__ == "__main__":
     # starting tenth process of position, portfolio and margin display
     pEleven = multiprocessing.Process(target=rREvent, args=[])
 
+    # starting 12th process of position, portfolio and margin display
+    pTwelve = multiprocessing.Process(target=rPastThirtyCandles, args=[])
+
     pTwo.start()
     pThree.start()
     pFour.start()
@@ -152,6 +165,7 @@ if __name__ == "__main__":
     pNine.start()
     pTen.start()
     pEleven.start()
+    pTwelve.start()
 
     pTwo.join()
     pThree.join()
@@ -163,6 +177,7 @@ if __name__ == "__main__":
     pNine.join()
     pTen.join()
     pEleven.join()
+    pTwelve.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")
