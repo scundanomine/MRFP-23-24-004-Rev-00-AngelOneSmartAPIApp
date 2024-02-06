@@ -49,11 +49,13 @@
                 {% endfor %}
             </tr>
             {% for dataOne in reportData.positionCandles %}
+            {% if forloop.counter > 19 %}
             <tr>
                 {% for key, values in dataOne.items %}
                 <td>{{values}}</td>
                 {% endfor %}
             </tr>
+            {% endif %}
             {% endfor %}
         </table>
     </div>
@@ -97,11 +99,13 @@
                 {% endfor %}
             </tr>
             {% for dataOne in reportData.exitCandles %}
+            {% if forloop.counter > 19 %}
             <tr>
                 {% for key, values in dataOne.items %}
                 <td>{{values}}</td>
                 {% endfor %}
             </tr>
+            {% endif %}
             {% endfor %}
         </table>
     </div>

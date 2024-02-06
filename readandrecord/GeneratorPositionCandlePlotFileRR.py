@@ -31,4 +31,4 @@ def generatorPositionCandlePlotFileRR():
         index=False)
 
 
-# generatorPositionCandlePlotFileRR()
+generatorPositionCandlePlotFileRR()

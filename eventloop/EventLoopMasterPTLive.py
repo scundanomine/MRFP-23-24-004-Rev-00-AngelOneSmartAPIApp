@@ -75,14 +75,14 @@ def PPMEvent():
     getPositionPortfolioAndMarginDisplay(True)
 
 
-def rREvent(lock):
+def rREvent():
     print("Multiprocess eleven has been started")
     getRecords()
 
 
 def rPastThirtyCandles():
     print("Multiprocess twelve has been started")
-    getPastThirtyCandles()
+    getPastThirtyCandles(True)
 
 
 # def eventLoop():
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     cleaningAllRecordsFromRR()
 
     # getting past 10 candles data
-    getTestFirstItrCandlestickData(m)
+    getTestFirstItrCandlestickData(m, True)
 
     # getting past 10 candles properties
     eventLoopForFirstITRCandlestickProperties()

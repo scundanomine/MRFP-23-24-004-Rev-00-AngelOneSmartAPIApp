@@ -13,11 +13,14 @@ def processDfForMplFinance(df=pd.DataFrame()):
     }
     df.rename(columns=dicT, inplace=True)
     for index, row in df.iterrows():
-        time = row['time']
-        time = time[:16]
-        time = time.replace('T', ' ')
-        refDate = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M")
-        df.loc[index, 'time'] = refDate
+        if row['time'] == '0':
+            df = df.drop(index, axis=0)
+        else:
+            time = row['time']
+            time = time[:16]
+            time = time.replace('T', ' ')
+            refDate = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M")
+            df.loc[index, 'time'] = refDate
     df = df.set_index('time')
     return df
 

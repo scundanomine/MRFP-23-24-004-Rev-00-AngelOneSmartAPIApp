@@ -9,10 +9,14 @@ import datetime
 from ohlcdata.ProcessPastTenCandlesData import processPastTenCandlesData
 
 
-def getTestFirstItrCandlestickData(r):
+def getTestFirstItrCandlestickData(r, isLive=False):
     print("Process for past 10 candles data started")
     startTime = time.time()
     dfc = getSymbolAndToken()
+    if isLive:
+        cv = pd.to_timedelta(0)
+    else:
+        cv = getterTimeDelta()
     c = getterTimeDelta()
     # creating session one
     while True:

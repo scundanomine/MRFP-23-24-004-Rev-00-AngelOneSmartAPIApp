@@ -91,4 +91,4 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, refDate, obj
     print(f"execution time is {time.time() - startTime}")
 
 
-getTraditionalPivotsForSpecificNiftyFile("nifty500", "124", "2024-01-24")
+getTraditionalPivotsForSpecificNiftyFile("nifty500", "124", "2024-02-05")

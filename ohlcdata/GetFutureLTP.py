@@ -52,4 +52,4 @@ def getFutureLTP(uid):
     return ltp
 
 
-# getFutureLTP(2, "buy")
+getFutureLTP(67)
