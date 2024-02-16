@@ -11,6 +11,8 @@
     <!--<link rel="stylesheet" href="/static/css/bootstrap.css">-->
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <title>Details For {{pid}} on {{reportDate}}</title>
 </head>
@@ -35,9 +37,9 @@
     </div>
 
 <br>
-    <div class="container-fluid">
+    <div  class="container-fluid">
         <h4 class="text-secondary">Position Candles</h4>
-        <table class="table table-bordered table-sm">
+        <table id="tbl1" class="table table-bordered table-sm">
             <!--population of table header-->
             <tr>
                 {% for dataOne in reportData.positionCandles %}
@@ -63,7 +65,7 @@
 <br>
     <div class="container-fluid">
         <h4 class="text-secondary">Position Plots</h4>
-        <img src="/media/{{reportData.positionPlotUrl}}" alt="">
+        <img class="grayscale" src="/media/{{reportData.positionPlotUrl}}" alt="">
     </div>
     <br>
     <hr style="width: 100%; color: darkgray; height: 1px; background-color:darkgray;" />
@@ -113,7 +115,7 @@
 <br>
     <div class="container-fluid">
         <h4 class="text-secondary">Exit Plots</h4>
-        <img src="/media/{{reportData.exitPlotUrl}}" alt="">
+        <img class="grayscale" src="/media/{{reportData.exitPlotUrl}}" alt="">
     </div>
 
 </body>

@@ -16,7 +16,7 @@ def getBullishReversalCandlestickPatternWithoutThreading(tdf):
                     # condition for Bullish Engulfing Pattern
                 elif tdf.loc[r-1, "O"] < tdf.loc[r, "C"] and tdf.loc[r-1, "C"] - tdf.loc[r, "O"] <= tdf.loc[r, "atr"]:
                     tdf.loc[r, "bulRP"] = "Bullish_Engulfing"
-            elif r != 9 and  tdf.loc[r+1, 's'] >= 0.5:
+            elif r != 9 and tdf.loc[r+1, 's'] >= 0.5:
                 if tdf.loc[r - 1, "g"] == "red" and tdf.loc[r, "t"] == "doji" and tdf.loc[r + 1, "g"] == "green":
                     tdf.loc[r, "bulRP"] = "morning_star"
     return tdf

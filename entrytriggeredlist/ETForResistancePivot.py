@@ -1,4 +1,5 @@
 from AIlists.GetterAIList import getterAIList
+from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
 from entrytriggeredlist.GetterAppendAndSetterEntryTriggeredList import getterAppendAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
@@ -24,10 +25,10 @@ def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
             rV = row['srV']
             atr = row['atr']
             # condition for buy
-            if cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25 * atr and row['rsi0'] >= 60:
+            if cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25 * atr and row['rsi0'] >= 60 and not (checkBearishReversalPattern(row["berRPC"])):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
-                row['oc'] = "EntryTriggeredDueToResistancePivot"
+                row['oc'] = "ETFResistancePivotToBuy"
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list
@@ -35,10 +36,10 @@ def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
 
             # condition for 'sell'
             elif cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25 * atr and checkBearishReversalPattern(
-                    row["berRP"]):
+                    row["berRP"] and not checkBullishReversalPattern(row["bulRPC"])):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
-                row['oc'] = "EntryTriggeredDueToResistancePivot"
+                row['oc'] = "ETFResistancePivotToSell"
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list

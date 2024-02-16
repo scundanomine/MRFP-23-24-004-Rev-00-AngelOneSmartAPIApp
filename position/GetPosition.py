@@ -9,6 +9,7 @@ from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndS
 from margin.GetterAvailableMargin import getterAvailableMargin
 from margin.GetterDebitAndSetterAvailableMargin import getterDebitAndSetterAvailableMargin
 from ohlcdata.GetFutureLTP import getFutureLTP
+from portfolio.GetterUpdateAndSetterFixedPortfolioWithExpenses import getterUpdateAndSetterFixedPortfolioWithExpenses
 from position.GetterAppendAndSetterPositionList import getterAppendAndSetterPositionList
 import time
 import datetime
@@ -81,6 +82,8 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                             getterDropAndSetterEntryList(uid)
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
+                        # fixed portfolio update
+                        getterUpdateAndSetterFixedPortfolioWithExpenses(mr, lock)
                         # read and record
                         setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv, reportDate)
                 # elif ltp <= (sl + lp) / 2 or time.time() - refTime >= 1200:
@@ -117,6 +120,8 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                             getterDropAndSetterEntryList(uid)
                         # margin debit
                         getterDebitAndSetterAvailableMargin(mr, lock)
+                        # fixed portfolio update
+                        getterUpdateAndSetterFixedPortfolioWithExpenses(mr, lock)
                         # read and record for position
                         setPositionDetailsAndCandles(row['pid'], uid, symbol, row, cv, reportDate)
                 # elif ltp >= (sl + lp) / 2 or time.time() - refTime >= 1200:

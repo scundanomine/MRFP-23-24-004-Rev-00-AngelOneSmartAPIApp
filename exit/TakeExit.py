@@ -1,25 +1,21 @@
+import datetime
+import multiprocessing
 import time
+import pandas as pd
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
 from commonudm.GetterTimeDelta import getterTimeDelta
-from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
-from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
-from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
+from exit.CheckBearishReversalPatternForExit import checkBearishReversalPatternForExit
+from exit.CheckBullishReversalPatternForExit import checkBullishReversalPatternForExit
+from exit.ExitUdf import exitUDf
 from exit.GetExitInputs import getExitInputs
 from exit.GetterUpdateAndSetterExitInputs import getterUpdateAndSetterExitInputs
-from margin.GetterCreditAndSetterAvailableMargin import getterCreditAndSetterAvailableMargin
 from ohlcdata.GetFutureLTP import getFutureLTP
-from portfolio.GetterUpdateAndSetterFixedPortfolio import getterUpdateAndSetterFixedPortfolio
-from position.GetterDropAndSetterPositionList import getterDropAndSetterPositionList
 from position.GetterPositionList import getterPositionList
 from position.GetterUpdateAndSetterPositionList import getterUpdateAndSetterPositionList
-import datetime
-import multiprocessing
-from readandrecord.SetExitDetailsAndCandles import setExitDetailsAndCandles
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
     getterSpecificTokenLivePartlyCandleDataFromWebSocket
-import pandas as pd
 
 
 def takeExit(lock=multiprocessing.Lock(), isLive=False):
@@ -84,19 +80,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
 
             # condition for post exit
             if (ltp == 0 and time.time() - refTime >= 600) or row['eFlag'] == 1:
-                with lock:
-                    # remove specific row from Entry list
-                    getterDropAndSetterPositionList(uid)
-                    # reset of black list
-                    getterUpdateAndSetterBlackListET(uid, 0)
-                    getterUpdateAndSetterECBList(uid, 0)
-                    # removal of specific row from ET list
-                    getterDropAndSetterEntryTriggeredList(uid)
-                getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
-                getterCreditAndSetterAvailableMargin(mr, lock)
-                getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
-                # read and record for exit
-                setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
+                exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                 print(f"Exit happened for {uid} boom!!!!!")
                 continue
             elif ltp == 0:
@@ -105,45 +89,37 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             elif ot == "buy":
                 # condition for sl exit
                 if ltp <= sl:
-                    with lock:
-                        # remove specific row from Entry list
-                        getterDropAndSetterPositionList(uid)
-                        # reset of black list
-                        getterUpdateAndSetterBlackListET(uid, 0)
-                        getterUpdateAndSetterECBList(uid, 0)
-                        # removal of specific row from ET list
-                        getterDropAndSetterEntryTriggeredList(uid)
-                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
-                    getterCreditAndSetterAvailableMargin(mr, lock)
-                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
-                    # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} alas!!!!!")
+                    continue
+                elif rowC["g"] == 'red' and rowC['s'] >= 2:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
+                elif rowC["g"] == 'red' and rowC['s'] >= 1 and rowCC["g"] == 'red' and rowCC['s'] >= 1:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
+                elif checkBearishReversalPatternForExit(rowCC["berRP"]) and rowC["g"] == 'red' and rowC["C"] <= rowCC["C"]:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
+                elif rowC["g"] == 'red' and rowCC["g"] == 'red' and rowCCC["g"] == 'red' and rowC["C"] <= rowCC["C"] <= rowCCC["C"]:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
                 # condition for Trailing stop loss
                 elif row["rFlag"] == 1:
                     if dx > 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
-                    elif ltp <= lp + 0.7 * (target - lp) or (rowC < rowCC < rowCCC):
+                    elif ltp <= lp + 0.5 * (target - lp):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
                         getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
                 # condition for exit
-                elif ltp >= target or ltp <= sl or time.time() - refTime >= 1200:
-                    with lock:
-                        # remove specific row from Entry list
-                        getterDropAndSetterPositionList(uid)
-                        # reset of black list
-                        getterUpdateAndSetterBlackListET(uid, 0)
-                        getterUpdateAndSetterECBList(uid, 0)
-                        # removal of specific row from ET list
-                        getterDropAndSetterEntryTriggeredList(uid)
-                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
-                    getterCreditAndSetterAvailableMargin(mr, lock)
-                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
-                    # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
+                elif ltp >= target and time.time() - refTime >= 7200:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} boom!!!!!")
                     continue
                 # condition for riding
@@ -156,45 +132,37 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             elif ot == "sell":
                 # condition for sl exit
                 if ltp >= sl:
-                    with lock:
-                        # remove specific row from Entry list
-                        getterDropAndSetterPositionList(uid)
-                        # reset of black list
-                        getterUpdateAndSetterBlackListET(uid, 0)
-                        getterUpdateAndSetterECBList(uid, 0)
-                        # removal of specific row from ET list
-                        getterDropAndSetterEntryTriggeredList(uid)
-                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
-                    getterCreditAndSetterAvailableMargin(mr, lock)
-                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
-                    # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for sell order {uid} alas!!!!!")
+                    continue
+                elif rowC["g"] == 'green' and rowC['s'] >= 2:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for sell order for {uid} wow!!!!!")
+                    continue
+                elif rowC["g"] == 'green' and rowC['s'] >= 1 and rowCC["g"] == 'green' and rowCC['s'] >= 1:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
+                elif checkBullishReversalPatternForExit(rowCC["bulRP"]) and rowC["g"] == 'green' and rowC["C"] >= rowCC["C"]:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
+                elif rowC["g"] == 'green' and rowCC["g"] == 'green' and rowCCC["g"] == 'green' and rowC["C"] >= rowCC["C"] >= rowCCC["C"]:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
                 # condition for Trailing stop loss
                 elif row["rFlag"] == 1:
                     if dx < 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
-                    elif ltp >= lp - 0.7 * (lp - target) or (rowC > rowCC > rowCCC):
+                    elif ltp >= lp - 0.5 * (lp - target):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
                         getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
                 # condition for exit
-                elif ltp <= target or ltp >= sl or time.time() - refTime >= 1200:
-                    with lock:
-                        # remove specific row from Entry list
-                        getterDropAndSetterPositionList(uid)
-                        # reset of black list
-                        getterUpdateAndSetterBlackListET(uid, 0)
-                        getterUpdateAndSetterECBList(uid, 0)
-                        # removal of specific row from ET list
-                        getterDropAndSetterEntryTriggeredList(uid)
-                    getterUpdateAndSetterExitInputs([uid, 0, 0], lock)
-                    getterCreditAndSetterAvailableMargin(mr, lock)
-                    getterUpdateAndSetterFixedPortfolio(row['gol'], lock)
-                    # read and record for exit
-                    setExitDetailsAndCandles(pid, uid, symbol, row, cv, reportDate)
+                elif ltp <= target or time.time() - refTime >= 7200:
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for sell order {uid} boom!!!!!")
                     continue
                 # condition for riding

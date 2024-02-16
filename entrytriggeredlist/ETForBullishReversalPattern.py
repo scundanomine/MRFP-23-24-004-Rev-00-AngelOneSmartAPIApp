@@ -1,4 +1,5 @@
 from AIlists.GetterAIList import getterAIList
+from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
 from entrytriggeredlist.GetterAppendAndSetterEntryTriggeredList import getterAppendAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
@@ -24,11 +25,11 @@ def entryTriggeredForBullishReversalPatternForBuy(lock=multiprocessing.Lock()):
             # atr = row['atr']
             rsi = row['rsi0']
 
-            # condition for sell
-            if cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and rsi <= 30:
+            # condition for buy
+            if cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and rsi <= 30 and not checkBearishReversalPattern(row["berRPC"]):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
-                row['oc'] = "EntryTriggeredDueToBullishReversalPatternToBuy"
+                row['oc'] = "ETFBullishReversalPatternToBuy"
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list

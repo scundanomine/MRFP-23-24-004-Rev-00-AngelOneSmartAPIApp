@@ -8,7 +8,7 @@ def getCandlestickType(b, us, ls, size):
     elif b >= 0.85 * r:
         return "marubozu"
     # condition for spn_top
-    elif us >= 1.5 * b and ls >= 1.5 * b:
+    elif us >= 0.35*r and ls >= 0.35*r:
         return "spn_top"
     # condition for hammer
     elif us <= 0.25 * r and b <= 0.25 * r:

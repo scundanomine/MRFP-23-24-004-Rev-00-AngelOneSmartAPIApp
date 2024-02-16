@@ -1,4 +1,5 @@
 from AIlists.GetterAIList import getterAIList
+from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
 from entrytriggeredlist.GetterAppendAndSetterEntryTriggeredList import getterAppendAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 import multiprocessing
@@ -22,10 +23,10 @@ def entryTriggeredForTopGainerToBuy(lock=multiprocessing.Lock()):
             cTwo = row['CC2']
             atr = row['atr']
             # condition for buy
-            if row['rsi0'] >= 70 and row['rsi0'] > row['rsi1'] and (cTwo - cOne) >= 0.2*atr and row['roc0'] >= 10:
+            if row['rsi0'] >= 70 and row['rsi0'] > row['rsi1'] and (cTwo - cOne) >= 0.2*atr and row['roc0'] >= 10 and not checkBearishReversalPattern(row["berRPC"]):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
-                row['oc'] = "EntryTriggeredDueToTopGainerForBuy"
+                row['oc'] = "ETFTopGainerForBuy"
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list
