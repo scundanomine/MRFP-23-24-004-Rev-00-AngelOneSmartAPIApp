@@ -13,7 +13,7 @@ def processDfForMplFinance(df=pd.DataFrame()):
     }
     df.rename(columns=dicT, inplace=True)
     for index, row in df.iterrows():
-        if row['time'] == '0':
+        if row['Open'] == 0:
             df = df.drop(index, axis=0)
         else:
             time = row['time']
