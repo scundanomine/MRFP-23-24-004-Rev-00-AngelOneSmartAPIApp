@@ -25,7 +25,7 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
             rV = row['srV']
             atr = row['atr']
             # condition for breakout or sell
-            if cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25*atr and row['rsi0'] <= 40 and not (checkBullishReversalPattern(row["bulRPC"])):
+            if cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25*atr and row['rsi0'] <= 40 and ("hammer" not in row["bulRPC"]):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFSupportPivotToSell"
@@ -35,7 +35,7 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
                     getterUpdateAndSetterBlackListET(uid, 1)
 
             # condition for buy
-            elif cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and checkBullishReversalPattern(row["bulRP"] and not (checkBearishReversalPattern(row["berRPC"]))):
+            elif cTwo >= rV and cOne >= rV and (cTwo - cOne) >= 0.25*atr and checkBullishReversalPattern(row["bulRP"]) and ("shooting_star" not in row["berRPC"]):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
                 row['oc'] = "ETFSupportPivotToBuy"

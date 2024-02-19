@@ -25,7 +25,7 @@ def entryTriggeredForBearishReversalPatternForSell(lock):
             rsi = row['rsi0']
 
             # condition for 'sell'
-            if cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and rsi >= 70 and not checkBullishReversalPattern(row["bulRPC"]):
+            if cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and rsi >= 70 and ("hammer" not in row["bulRPC"]):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFBearishReversalPatternToSell"

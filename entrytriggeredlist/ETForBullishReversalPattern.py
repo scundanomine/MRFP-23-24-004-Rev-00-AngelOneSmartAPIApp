@@ -26,7 +26,7 @@ def entryTriggeredForBullishReversalPatternForBuy(lock=multiprocessing.Lock()):
             rsi = row['rsi0']
 
             # condition for buy
-            if cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and rsi <= 30 and not checkBearishReversalPattern(row["berRPC"]):
+            if cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and rsi <= 30 and ("shooting_star" not in row["berRPC"]):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
                 row['oc'] = "ETFBullishReversalPatternToBuy"
