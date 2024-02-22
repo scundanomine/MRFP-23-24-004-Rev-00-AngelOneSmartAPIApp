@@ -59,4 +59,4 @@ def getUniversalList(niftySize=300):
 
 
 # for k in range(1):
-getUniversalList()
+# getUniversalList()

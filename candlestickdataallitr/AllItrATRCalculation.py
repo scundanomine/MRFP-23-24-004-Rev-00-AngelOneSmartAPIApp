@@ -3,23 +3,27 @@ def calculationAllItrForATR(sdf):
     prvAtr = sdf['atr'][8]
     r = 9
 
-    # ger last tr
-    a = sdf["H"][r] - sdf["L"][r]
-    b = abs(sdf["H"][r] - sdf["C"][r - 1])
-    c = abs(sdf["L"][r] - sdf["C"][r - 1])
-    lst = [a, b, c]
-    tr = max(lst)
+    if sdf.loc[r, 'C'] != 0:
+        # ger last tr
+        a = sdf["H"][r] - sdf["L"][r]
+        b = abs(sdf["H"][r] - sdf["C"][r - 1])
+        c = abs(sdf["L"][r] - sdf["C"][r - 1])
+        lst = [a, b, c]
+        tr = max(lst)
 
-    # atr calculation with EMA
-    # atr = (prvAtr * 9 + tr) / 10
-    atr = (tr - prvAtr)*2/11 + prvAtr
-    # atrPer = atr * 100 / sdf["C"][9]
-    # calculation for atr percentile
-    maxPrice = sdf.loc[9, "C"]
-    if maxPrice != 0:
-        atrPer = atr * 100 / maxPrice
+        # atr calculation with EMA
+        # atr = (prvAtr * 9 + tr) / 10
+        atr = (tr - prvAtr) * 2 / 11 + prvAtr
+        # atrPer = atr * 100 / sdf["C"][9]
+        # calculation for atr percentile
+        maxPrice = sdf.loc[9, "C"]
+        if maxPrice != 0:
+            atrPer = atr * 100 / maxPrice
+        else:
+            atrPer = 0
     else:
-        atrPer = 0
+        atr = prvAtr
+        atrPer = sdf.loc[8, 'atrPer']
 
     return atr, atrPer
 

@@ -26,4 +26,4 @@ def getterPrePositionId():
     return marDf
 
 
-# getterPrePositionId()
+# print(getterPrePositionId())

@@ -52,4 +52,4 @@ def getFutureLTP(uid):
     return ltp
 
 
-getFutureLTP(67)
+# getFutureLTP(67)

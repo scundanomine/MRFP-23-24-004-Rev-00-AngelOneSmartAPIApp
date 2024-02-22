@@ -55,6 +55,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             mr = row['mr']
             # roc = rowC['roc']
             # atr = rowC['atr']
+            row["ltpP"] = row["ltp"]
             ltpP = row["ltpP"]
             if isLive:
                 ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).loc[0, '4']
@@ -79,7 +80,8 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                 dx = 0
 
             # condition for post exit
-            if (ltp == 0 and time.time() - refTime >= 600) or row['eFlag'] == 1:
+            if (ltp == 0 and time.time() - refTime >= 7200) or row['eFlag'] == 1:
+                row['tOP'] = 'Z'
                 exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                 print(f"Exit happened for {uid} boom!!!!!")
                 continue
@@ -89,22 +91,27 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             elif ot == "buy":
                 # condition for sl exit
                 if ltp <= sl:
+                    row['tOP'] = 'a'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} alas!!!!!")
                     continue
-                elif rowC["g"] == 'red' and rowC['s'] >= 2:
-                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                    print(f"Exit happened for buy order for {uid} wow!!!!!")
-                    continue
-                elif rowC["g"] == 'red' and rowC['s'] >= 1 and rowCC["g"] == 'red' and rowCC['s'] >= 1:
-                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                    print(f"Exit happened for buy order for {uid} wow!!!!!")
-                    continue
-                elif checkBearishReversalPatternForExit(rowCC["berRP"]) and rowC["g"] == 'red' and rowC["C"] <= rowCC["C"]:
+                # elif rowC['C'] - ltp >= 1.5 * rowC['atr']:
+                #     row['tOP'] = 'b'
+                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                #     print(f"Exit happened for buy order for {uid} wow!!!!!")
+                #     continue
+                # elif rowC["g"] == 'red' and rowCC["g"] == 'red' and (rowC['s'] + rowCC['s']) >= 2:
+                #     row['tOP'] = 'c'
+                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                #     print(f"Exit happened for buy order for {uid} wow!!!!!")
+                #     continue
+                elif checkBearishReversalPatternForExit(rowC["berRP"]) and rowC['C'] - ltp >= 0.25 * rowC['atr']:
+                    row['tOP'] = 'd'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
                 elif rowC["g"] == 'red' and rowCC["g"] == 'red' and rowCCC["g"] == 'red' and rowC["C"] <= rowCC["C"] <= rowCCC["C"]:
+                    row['tOP'] = 'e'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
@@ -113,12 +120,15 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     if dx > 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
+                        getterUpdateAndSetterPositionList(uid, row, lock)
                     elif ltp <= lp + 0.5 * (target - lp):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
                         getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
+                        getterUpdateAndSetterPositionList(uid, row, lock)
                 # condition for exit
-                elif ltp >= target and time.time() - refTime >= 7200:
+                elif ltp >= target or time.time() - refTime >= 7200:
+                    row['tOP'] = 'f'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} boom!!!!!")
                     continue
@@ -128,26 +138,32 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     row['target'] = target + dx
                     row['rFlag'] = 1
                     getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
+                    getterUpdateAndSetterPositionList(uid, row, lock)
             # exit condition for sell
             elif ot == "sell":
                 # condition for sl exit
                 if ltp >= sl:
+                    row['tOP'] = 'A'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for sell order {uid} alas!!!!!")
                     continue
-                elif rowC["g"] == 'green' and rowC['s'] >= 2:
-                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                    print(f"Exit happened for sell order for {uid} wow!!!!!")
-                    continue
-                elif rowC["g"] == 'green' and rowC['s'] >= 1 and rowCC["g"] == 'green' and rowCC['s'] >= 1:
-                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                    print(f"Exit happened for buy order for {uid} wow!!!!!")
-                    continue
-                elif checkBullishReversalPatternForExit(rowCC["bulRP"]) and rowC["g"] == 'green' and rowC["C"] >= rowCC["C"]:
+                # elif ltp - rowC['C'] >= 1.5 * rowC['atr']:
+                #     row['tOP'] = 'B'
+                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                #     print(f"Exit happened for sell order for {uid} wow!!!!!")
+                #     continue
+                # elif rowC["g"] == 'green' and rowCC["g"] == 'green' and (rowC['s'] + rowCC['s']) >= 2:
+                #     row['tOP'] = 'C'
+                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                #     print(f"Exit happened for buy order for {uid} wow!!!!!")
+                #     continue
+                elif checkBullishReversalPatternForExit(rowC["bulRP"]) and ltp - rowC['C'] >= 0.25 * rowC['atr']:
+                    row['tOP'] = 'D'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
                 elif rowC["g"] == 'green' and rowCC["g"] == 'green' and rowCCC["g"] == 'green' and rowC["C"] >= rowCC["C"] >= rowCCC["C"]:
+                    row['tOP'] = 'E'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
@@ -156,12 +172,15 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     if dx < 0:
                         row['sl'] = sl + dx
                         row['target'] = target + dx
+                        getterUpdateAndSetterPositionList(uid, row, lock)
                     elif ltp >= lp - 0.5 * (lp - target):
                         row['eFlag'] = 1
                         row['rFlag'] = 0
                         getterUpdateAndSetterExitInputs([uid, 0, 1], lock)
+                        getterUpdateAndSetterPositionList(uid, row, lock)
                 # condition for exit
                 elif ltp <= target or time.time() - refTime >= 7200:
+                    row['tOP'] = 'F'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for sell order {uid} boom!!!!!")
                     continue
@@ -171,7 +190,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     row['target'] = target - dx
                     row['rFlag'] = 1
                     getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
-            getterUpdateAndSetterPositionList(uid, row, lock)
+                    getterUpdateAndSetterPositionList(uid, row, lock)
 
         ctrA = ctrA + 1
         if ctrA == 50:
