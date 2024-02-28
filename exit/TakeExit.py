@@ -115,6 +115,11 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
+                elif checkBearishReversalPatternForExit(rowCC["berRP"]) and rowCC['C'] - ltp >= 0.25 * rowC['atr']:
+                    row['tOP'] = 'g'
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
                 # condition for Trailing stop loss
                 elif row["rFlag"] == 1:
                     if dx > 0:
@@ -164,6 +169,11 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     continue
                 elif rowC["g"] == 'green' and rowCC["g"] == 'green' and rowCCC["g"] == 'green' and rowC["C"] >= rowCC["C"] >= rowCCC["C"]:
                     row['tOP'] = 'E'
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
+                elif checkBullishReversalPatternForExit(rowCC["bulRP"]) and ltp - rowCC['C'] >= 0.25 * rowC['atr']:
+                    row['tOP'] = 'G'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue

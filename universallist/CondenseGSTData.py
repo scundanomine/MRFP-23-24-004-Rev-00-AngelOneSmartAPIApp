@@ -7,11 +7,11 @@ def condenseGSTData(uid, symbol):
     try:
         df = getterSpecificCandleData(uid, symbol)
         data = [df['C'][8], df['C'][9], df['V'][9], df['atr'][9], df['atrPer'][9],
-                f"{df['g'][9]}, {df['g'][8]}, {df['g'][7]}",
+                df['g'][9],
                 f"{df['s'][9]}, {df['s'][8]}, {df['s'][7]}",
-                f"{df['t'][9]}, {df['t'][8]}, {df['t'][7]}",
-                f"{df['bulRP'][8]}, {df['bulRP'][7]}",
-                f"{df['berRP'][8]}, {df['berRP'][7]}",
+                f"{df['t'][9]}, {df['t'][8]}",
+                df['bulRP'][8],
+                df['berRP'][8],
                 df['atrV'][9],
                 f"{df['vs'][9]}, {df['vs'][8]}, {df['vs'][7]}",
                 f"{df['roc'][9]}, {df['roc'][8]}, {df['roc'][7]}",

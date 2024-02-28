@@ -169,7 +169,7 @@ if __name__ == "__main__":
 
     pOne.start()
     pTwo.start()
-    pThree.start()
+    # pThree.start()
     pFour.start()
     pFive.start()
     pSix.start()
@@ -182,7 +182,7 @@ if __name__ == "__main__":
 
     pOne.join()
     pTwo.join()
-    pThree.join()
+    # pThree.join()
     pFour.join()
     pFive.join()
     pSix.join()

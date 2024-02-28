@@ -13,10 +13,11 @@ def eventLoopForFirstITRCandlestickProperties():
     for index, row in gDf.iterrows():
         uid = row['id']
         symbol = row['symbol']
+        token = row['token']
         # initial file list
         createGSTDataFile(uid, symbol)
         # calculation for candle properties
-        getFirstItrCandlesticksProperties(uid, symbol)
+        getFirstItrCandlesticksProperties(uid, symbol, token)
 
     # print(f"the of execution is {time.time() - startTime}")
 

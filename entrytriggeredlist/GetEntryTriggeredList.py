@@ -27,21 +27,22 @@ def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
         # get black list for ET
         getBlackListForET(lock)
 
-        # EL due support and resistance
-        entryTriggeredForResistancePivot(lock)
-        entryTriggeredForSupportPivot(lock)
-
-        # EL due to top gainer and loser
-        entryTriggeredForTopGainerToBuy(lock)
-        entryTriggeredForTopLoserToSell(lock)
-
+        # # EL due support and resistance
+        # entryTriggeredForResistancePivot(lock)
+        # entryTriggeredForSupportPivot(lock)
+        #
+        # # EL due to top gainer and loser
+        # entryTriggeredForTopGainerToBuy(lock)
+        # entryTriggeredForTopLoserToSell(lock)
+        #
+        # EL due to reversal pattern
+        entryTriggeredForBearishReversalPatternForSell(lock)
+        entryTriggeredForBullishReversalPatternForBuy(lock)
+        #
         # EL due RSI
         entryTriggeredForRSIToBuy(lock)
         entryTriggeredForRSIToSell(lock)
 
-        # EL due to reversal pattern
-        entryTriggeredForBearishReversalPatternForSell(lock)
-        entryTriggeredForBullishReversalPatternForBuy(lock)
         ctrA = ctrA + 1
         if ctrA == 10:
             print(f"Execution time for getting entry triggered list (ET) is {time.time() - startTime}")

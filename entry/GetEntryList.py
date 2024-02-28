@@ -46,10 +46,10 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                 continue
             else:
                 if ot == 'buy':
-                    q, sl, target = longPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
+                    q, sl, target = longPositionCalculator(ltp, atr, 1000, 1.2, 100000, margin, 1.5)
                     lp = 1.00025 * ltp
                 else:
-                    q, sl, target = shortPositionCalculator(ltp, atr, 500, 1.2, 50000, margin, 1.5)
+                    q, sl, target = shortPositionCalculator(ltp, atr, 1000, 1.2, 100000, margin, 1.5)
                     lp = 0.99975 * ltp
 
                 # calculation for margin required

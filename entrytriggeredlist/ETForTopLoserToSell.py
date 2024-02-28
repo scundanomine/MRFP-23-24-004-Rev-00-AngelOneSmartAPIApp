@@ -22,7 +22,7 @@ def entryTriggeredForTopLoserToSell(lock):
             cTwo = row['CC2']
             atr = row['atr']
             # condition for buy
-            if row['rsi0'] <= 30 and row['rsi0'] < row['rsi1'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] <= -10 and ("hammer" not in row["bulRPC"]):
+            if row['rsi0'] <= 30 and row['rsi0'] < row['rsi1'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] <= -10 and ("hammer" not in row["t"]):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFTopLoserForSell"

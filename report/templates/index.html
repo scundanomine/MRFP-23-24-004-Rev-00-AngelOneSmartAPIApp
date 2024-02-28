@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="/static/css/bootstrap.css">-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <title>Report</title>
+</head>
+<body>
+    <h1 class="text-center text-primary">Report for stipe Foro on {{reportDate}}</h1>
+    <!--<div class="col">{{reportData}} {{reportDate}}</div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h4 class="border border-primary m-1 p-1 bg-info">Wining Percentage:
+                    <span class="text-primary">{{winPercentage}}%</span>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% for data in reportData %}
+        <div class="row">
+            <hr style="width: 100%; color: darkgray; height: 1px; background-color:darkgray;" />
+            <div class="col-md-1">
+                <a href="{% url 'detailPage' data.pid %}" target="_blank"> pid: {{data.pid}}</a>
+            </div>
+            <div class="col-md-1">id: {{data.id}}</div>
+            <div class="col-md-2">symbol: {{data.symbol}}</div>
+            <div class="col-md-2">ot: {{data.ot}}</div>
+            <div class="col-md-2">gol: {{data.gol}}</div>
+            <div class="col-md-2">wl: {{data.pid}}</div>
+            <div class="col-md-2">oc: {{data.oc}}</div>
+            <div class="col-md-2">sl: {{data.sl}}</div>
+            <div class="col-md-2">lp: {{data.lp}}</div>
+            <div class="col-md-2">target: {{data.target}}</div>
+            <div class="col-md-2">q: {{data.q}}</div>
+            <div class="col-md-2">mr: {{data.mr}}</div>
+            <hr style="width: 100%; color: darkgray; height: 1px; background-color:darkgray;" />
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

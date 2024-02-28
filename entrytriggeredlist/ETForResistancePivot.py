@@ -36,7 +36,7 @@ def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
 
             # condition for 'sell'
             elif cTwo <= rV and cOne <= rV and (cTwo - cOne) <= -0.25 * atr and checkBearishReversalPattern(
-                    row["berRP"]) and ("hammer" not in row["bulRPC"]):
+                    row["berRP"]) and ("hammer" not in row["t"]):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFResistancePivotToSell"

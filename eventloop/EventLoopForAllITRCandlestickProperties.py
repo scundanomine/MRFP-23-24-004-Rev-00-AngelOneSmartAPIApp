@@ -46,7 +46,7 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
                 continue
             else:
                 # calculation for candle properties
-                getAllItrCandlesticksProperties(uid, symbol, data)
+                getAllItrCandlesticksProperties(uid, symbol, data, token)
         print(f"Execution time for All Itr candle properties (CP) is {time.time() - startTime}")
         time.sleep(5)
 
