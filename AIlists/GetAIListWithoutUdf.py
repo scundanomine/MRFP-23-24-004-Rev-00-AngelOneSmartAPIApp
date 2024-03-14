@@ -54,8 +54,8 @@ def getAIListWithoutUdf(isLive=False):
         # function for top 10 loser AI list
         # dfL = uDf.nsmallest(glDf.loc[1, 'GL'], "GL")
         # setterAIList(dfL, "TopLoserAIList")
-        print(f"Execution time for AI list (AI) is {time.time() - startTime}")
-        time.sleep(1)
+        # print(f"Execution time for AI list (AI) is {time.time() - startTime}")
+        time.sleep(0.125)
 
 
 # getAIListWithoutUdf()
