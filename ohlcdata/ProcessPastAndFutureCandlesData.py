@@ -18,6 +18,7 @@ def processPastAndFutureCandlesData(rfTime, flagZero, data):
                     dfOne.iloc[i] = df.loc[(df[0] == newDateF)]
                 rfTime = rfTime + delta
             except Exception as e:
-                print(f"Exception while processPastAndFutureCandlesData is {e}")
+                # print(f"Exception while processPastAndFutureCandlesData is {e}")
+                a = e
         return dfOne
 

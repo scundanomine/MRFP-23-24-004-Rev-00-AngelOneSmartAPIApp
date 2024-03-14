@@ -13,7 +13,7 @@ from smartwebsocketdata.GetterSpecificTokenCandleDataFromWebSocket import getter
 
 
 def eventLoopForAllITRCandlestickProperties(isLive=False):
-    startTime = time.time()
+    # startTime = time.time()
     if isLive:
         cv = pd.to_timedelta(0)
     else:
@@ -46,9 +46,9 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
                 continue
             else:
                 # calculation for candle properties
-                getAllItrCandlesticksProperties(uid, symbol, data, token)
-        print(f"Execution time for All Itr candle properties (CP) is {time.time() - startTime}")
-        time.sleep(5)
+                getAllItrCandlesticksProperties(uid, symbol, data)
+        # print(f"Execution time for All Itr candle properties (CP) is {time.time() - startTime}")
+        time.sleep(0.125)
 
 
 # eventLoopForAllITRCandlestickProperties()

@@ -14,7 +14,7 @@ from ohlcdata.SetterPDS import setterPDS
 
 
 def getTestCandlestickData(r=300):
-    startTime = time.time()
+    # startTime = time.time()
 
     # creating session one
     while True:
@@ -92,7 +92,7 @@ def getTestCandlestickData(r=300):
             setterFDS(fds)
             setterPDS(pds)
             setterFFDS(fFds)
-        print(f"Execution time for candlestick data (CD) is {time.time() - startTime}")
+        # print(f"Execution time for candlestick data (CD) is {time.time() - startTime}")
 
 
 # getTestCandlestickData(60)

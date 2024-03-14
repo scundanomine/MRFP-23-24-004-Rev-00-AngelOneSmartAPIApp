@@ -22,8 +22,8 @@ import pandas as pd
 
 
 def getPosition(lock=multiprocessing.Lock(), isLive=False):
-    startTime = time.time()
-    ctrA = 0
+    # startTime = time.time()
+    # ctrA = 0
     if isLive:
         cv = pd.to_timedelta(0)
     else:
@@ -136,11 +136,11 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         getterUpdateAndSetterECBList(uid, 0)
                         # removal of specific row from ET list
                         getterDropAndSetterEntryTriggeredList(uid)
-        ctrA = ctrA + 1
-        if ctrA == 10:
-            print(f"Execution time for getting position list (PL) is {time.time() - startTime}")
-            ctrA = 0
-        time.sleep(1)
+        # ctrA = ctrA + 1
+        # if ctrA == 10:
+        #     print(f"Execution time for getting position list (PL) is {time.time() - startTime}")
+        #     ctrA = 0
+        # time.sleep(0.125)
 
 
 # getPosition()

@@ -178,7 +178,35 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\107_SCHAEFFLER-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\108_LODHA-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\109_ZOMATO-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\10_KOTAKBANK-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\110_PGHH-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -206,6 +234,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\118_ALKEM-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\119_NHPC-EQ.csv">
           <value>
             <Attribute>
@@ -220,7 +255,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\eventloop\eventstate\candlewisedata\120_PAYTM-EQ.csv">
+        <entry key="\eventloop\eventstate\candlewisedata\120_Nifty 100.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -885,6 +920,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\73_GAIL-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\7_ITC-EQ.csv">
           <value>
             <Attribute>
@@ -914,6 +956,13 @@
           </value>
         </entry>
         <entry key="\eventloop\eventstate\candlewisedata\8_SBIN-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\eventloop\eventstate\candlewisedata\94_TRENT-EQ.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -956,6 +1005,13 @@
           </value>
         </entry>
         <entry key="\margin\marginstate\margin.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\marketstructure\marketstate\MarketStructure.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -1194,6 +1250,13 @@
           </value>
         </entry>
         <entry key="\pastthirtycandles\pastthirycandlesstate\pastthirtycandlewisedata\2_TCS-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\portfolio\portfoliostate\CurrentPortfolio.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

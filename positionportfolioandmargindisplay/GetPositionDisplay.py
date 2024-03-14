@@ -30,7 +30,8 @@ def getPositionDisplay():
                 i = i + 1
             break
         except Exception as e:
-            print(f"The exception while getPositionDisplay is {e}")
+            # print(f"The exception while getPositionDisplay is {e}")
+            a = e
 
 
 # getPositionDisplay()

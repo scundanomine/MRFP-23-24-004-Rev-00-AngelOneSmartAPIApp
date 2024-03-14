@@ -10,8 +10,8 @@ from universallist.GetterDfThree import getterDfThree
 
 
 def getUniversalListWithoutThreading(isLive=False):
-    startTime = time.time()
-    ctrA = 0
+    # startTime = time.time()
+    # ctrA = 0
     if isLive:
         cv = pd.to_timedelta(0)
     else:
@@ -49,11 +49,11 @@ def getUniversalListWithoutThreading(isLive=False):
         dfU.to_csv(
                 "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
                 index=False)
-        ctrA = ctrA + 1
-        if ctrA == 10:
-            print(f"Execution time for Universal list (UL) is {time.time() - startTime}")
-            ctrA = 0
-        time.sleep(1)
+        # ctrA = ctrA + 1
+        # if ctrA == 10:
+        #     print(f"Execution time for Universal list (UL) is {time.time() - startTime}")
+        #     ctrA = 0
+        time.sleep(0.125)
 
 
 # getUniversalListWithoutThreading()

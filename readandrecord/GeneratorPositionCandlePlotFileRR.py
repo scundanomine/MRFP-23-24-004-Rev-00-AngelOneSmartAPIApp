@@ -6,7 +6,7 @@ from readandrecord.GetterPECBListRR import getterPECBListRR
 from readandrecord.ProcessDfForMplFinance import processDfForMplFinance
 
 
-def generatorPositionCandlePlotFileRR():
+def generatorPositionCandlePlotFileRR(source, destination):
     reportDate = getterReportDateForRR()
     # getter position chart black list
     pEDf = getterPECBListRR()
@@ -16,14 +16,14 @@ def generatorPositionCandlePlotFileRR():
             continue
         else:
             # get position candle for specific pid
-            pCDf = getterDfFromSpecificRRState('positioncandles', pid)
+            pCDf = getterDfFromSpecificRRState(source, pid)
             if len(pCDf) == 0:
                 continue
             else:
                 # pCDf = getterSpecificCandleData(1, "RELIANCE-EQ")
                 pcDf = processDfForMplFinance(pCDf)
                 # process position candle for specific pid
-                filePath = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionplots\\{pid}.png"
+                filePath = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\{destination}\\{pid}.png"
                 mpf.plot(pcDf, type='candle', style='yahoo', savefig=filePath)
                 pEDf.loc[index, 'flagCP'] = 1
     pEDf.to_csv(
@@ -31,4 +31,4 @@ def generatorPositionCandlePlotFileRR():
         index=False)
 
 
-generatorPositionCandlePlotFileRR()
+# generatorPositionCandlePlotFileRR()

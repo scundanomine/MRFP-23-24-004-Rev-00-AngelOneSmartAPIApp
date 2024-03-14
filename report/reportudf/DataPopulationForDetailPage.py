@@ -13,6 +13,12 @@ def dataPopulationForDetailPage(pid, reportDate):
     # image url
     positionPlotUrl = f"{reportDate}/positionplots/{pid}.PNG"
 
+    # get data for market position detail
+    positionMDetail = getterDataForSpecificPidAndDate(pid, reportDate, "positionmdetails")
+
+    # image market position url
+    positionMPlotUrl = f"{reportDate}/positionmplots/{pid}.PNG"
+
     # get data for exit detail
     exitDetail = getterDataForSpecificPidAndDate(pid, reportDate, "exitdetails")
 
@@ -22,8 +28,16 @@ def dataPopulationForDetailPage(pid, reportDate):
     # image url
     exitPlotUrl = f"{reportDate}/exitplots/{pid}.PNG"
 
+    # get data for market exit detail
+    exitMDetail = getterDataForSpecificPidAndDate(pid, reportDate, "exitmdetails")
+
+    # image market exit url
+    exitMPlotUrl = f"{reportDate}/exitmplots/{pid}.PNG"
+
     return {"positionDetail": positionDetail, "positionCandles": positionCandles, "positionPlotUrl": positionPlotUrl,
-            "exitDetail": exitDetail, "exitCandles": exitCandles, "exitPlotUrl": exitPlotUrl}
+            "positionMDetail": positionMDetail, "positionMPlotUrl": positionMPlotUrl,
+            "exitDetail": exitDetail, "exitCandles": exitCandles, "exitPlotUrl": exitPlotUrl,
+            "exitMDetail": exitMDetail, "exitMPlotUrl": exitMPlotUrl}
 
 
 # print(dataPopulationForDetailPage(1, "2024-01-25")["positionPlotUrl"])

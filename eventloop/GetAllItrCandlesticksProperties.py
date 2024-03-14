@@ -12,7 +12,7 @@ from indicators.GetAllItrSMAForNiftyIndex import getAllItrSMAForNiftyIndex
 from indicators.GetROCInPTM import getROCInPTM
 
 
-def getAllItrCandlesticksProperties(sid, symbol, data, token="99926012"):
+def getAllItrCandlesticksProperties(sid, symbol, data):
     # startTime = time.time()
 
     # get df (getter function)
@@ -37,9 +37,9 @@ def getAllItrCandlesticksProperties(sid, symbol, data, token="99926012"):
     gdf.loc[9, 'atrV'] = atrV
 
     # calculation for SMA for indexes
-    if token == "99926012":
-        sma = getAllItrSMAForNiftyIndex(gdf)
-        gdf.loc[9, 'sma'] = sma
+    # if token == 99926012:
+    #     sma = getAllItrSMAForNiftyIndex(gdf)
+    #     gdf.loc[9, 'sma'] = sma
 
     # calculation for volume size
     gdf = getAllItrVolumeCandleSize(gdf)

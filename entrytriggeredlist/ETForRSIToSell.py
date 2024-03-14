@@ -6,7 +6,7 @@ from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
-def entryTriggeredForRSIToSell(lock):
+def entryTriggeredForRSIToSell(flagBullish, lock):
     # get current resistance AI list
     rdf = getterAIList("SellerRSIAIList")
 
@@ -22,8 +22,8 @@ def entryTriggeredForRSIToSell(lock):
             cOne = row['CC1']
             cTwo = row['CC2']
             atr = row['atr']
-            # condition for buy
-            if row['rsi0'] < row['rsi1'] < row['rsi2'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] >= 15 and not checkBullishReversalCandle(row["t"]):
+            # condition for sell
+            if not flagBullish and row['rsi0'] < row['rsi1'] < row['rsi2'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] >= 15 and not checkBullishReversalCandle(row["t"]):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFRSIDivergenceForSell"

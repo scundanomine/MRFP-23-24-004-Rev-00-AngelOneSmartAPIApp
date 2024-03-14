@@ -9,9 +9,10 @@ import datetime
 
 from smartwebsocketdata.SetPartlyAndWholeCandleData import setPartlyAndWholeCandleData
 
-tDf = getSymbolAndToken()
-tDf['token'] = tDf['token'].astype("str")
-tokenLst = tDf['token'].tolist()[:40]
+# tDf = getSymbolAndToken()
+# tDf['token'] = tDf['token'].astype("str")
+# tokenLst = tDf['token'].tolist()[:40]
+tokenLst = ["2885"]
 
 objOneX, accessTokenOneX = getAccessTokenOne("h7mCIfdW", "J52460798", "4235", "4AGGACU2HEUMO2T2UV5YZHNG7M")
 
@@ -34,10 +35,10 @@ sws = SmartWebSocketV2(AUTH_TOKEN, API_KEY, CLIENT_CODE, FEED_TOKEN)
 def on_data(wsapp, message):
     # logger.info("Ticks: {}".format(message))
     try:
-        # LIVE_FEED_JSON[message['token']] = {'time': datetime.datetime.fromtimestamp(message['exchange_timestamp']/1000).isoformat(), 'token': message['token'], 'ltp': message['last_traded_price'] / 100, 'volume': message['volume_trade_for_the_day']}
-        # print(LIVE_FEED_JSON)
+        LIVE_FEED_JSON[message['token']] = {'time': datetime.datetime.fromtimestamp(message['exchange_timestamp']/1000).isoformat(), 'token': message['token'], 'ltp': message['last_traded_price'] / 100, 'volume': message['volume_trade_for_the_day']}
+        print(LIVE_FEED_JSON)
         # insertTick(message)
-        setPartlyAndWholeCandleData(message)
+        # setPartlyAndWholeCandleData(message)
     except Exception as e:
         print(e)
     # print(LIVE_FEED_JSON)

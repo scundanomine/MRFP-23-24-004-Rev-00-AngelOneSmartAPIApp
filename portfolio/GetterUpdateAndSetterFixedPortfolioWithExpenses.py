@@ -6,7 +6,7 @@ def getterUpdateAndSetterFixedPortfolioWithExpenses(mr, lock):
         try:
             df = pd.read_csv(
                 "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\portfolio\\portfoliostate\\FixedPortfolio.csv")
-            df.loc[0, 'portfolio'] = df.loc[0, 'portfolio'] - 88 / 50000 * mr
+            df.loc[0, 'portfolio'] = df.loc[0, 'portfolio'] - 90 / 50000 * mr
             df.to_csv(
                 "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\portfolio\\portfoliostate\\FixedPortfolio.csv",
                 index=False)

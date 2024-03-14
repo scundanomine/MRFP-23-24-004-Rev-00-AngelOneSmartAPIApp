@@ -37,12 +37,12 @@ def getKotakNeoApiAccessToken():
     # except Exception as e:
     #     print("Exception when calling get Quote api->quotes: %s\n" % e)
 
-    # try:
-    #     # Get live feed data
-    #     client.subscribe(instrument_tokens=inst_tokens)
-    # except Exception as e:
-    #     print("Exception while connection to socket->socket: %s\n" % e)
-    # return client
+    try:
+        # Get live feed data
+        client.subscribe(instrument_tokens=inst_tokens)
+    except Exception as e:
+        print("Exception while connection to socket->socket: %s\n" % e)
+    return client
 
 
 getKotakNeoApiAccessToken()

@@ -13,7 +13,7 @@ from indicators.GetROCInPTM import getROCInPTM
 from indicators.GetRSIValueWithoutThreading import getRSIValueWithoutThreading
 
 
-def getFirstItrCandlesticksProperties(sid, symbol, token="99926012"):
+def getFirstItrCandlesticksProperties(sid, symbol):
     # startTime = time.time()
     # get df (getter function)
     # gdf = queueOperation(sid, symbol, data)
@@ -39,8 +39,8 @@ def getFirstItrCandlesticksProperties(sid, symbol, token="99926012"):
     gdf['atrV'] = atrV
 
     # calculation for SMA for indexes
-    if token == "99926012":
-        gdf = getFirstItrSMAForNiftyIndex(gdf)
+    # if token == 99926012:
+    #     gdf = getFirstItrSMAForNiftyIndex(gdf)
 
     # calculation for volume size
     gdf = getVolumeCandleSizeWithoutThreading(gdf)

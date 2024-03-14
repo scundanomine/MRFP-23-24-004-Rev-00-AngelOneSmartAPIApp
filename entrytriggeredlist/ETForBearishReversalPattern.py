@@ -7,7 +7,7 @@ from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalP
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
-def entryTriggeredForBearishReversalPatternForSell(lock):
+def entryTriggeredForBearishReversalPatternForSell(flagBullish, lock):
     # get current resistance AI list
     rdf = getterAIList("BearishReversalAIList")
 
@@ -26,7 +26,7 @@ def entryTriggeredForBearishReversalPatternForSell(lock):
             rsi = row['rsi0']
 
             # condition for 'sell'
-            if cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and row['g'] == 'red' and row['roc0'] >= 15 and not checkBullishReversalCandle(row["t"]):
+            if not flagBullish and cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and row['g'] == 'red' and row['roc0'] >= 15 and not checkBullishReversalCandle(row["t"]):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFBearishReversalPatternToSell"

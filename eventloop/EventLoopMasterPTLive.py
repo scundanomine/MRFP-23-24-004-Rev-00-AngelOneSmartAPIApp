@@ -12,6 +12,8 @@ from eventloop.CleaningAndPreRequisitePT import cleaningAndPreRequisitePT
 from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITRCandlestickProperties
 from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirstITRCandlestickProperties
 from exit.TakeExit import takeExit
+from marketstructure.GetAllItrMarketStructure import getAllItrMarketStructure
+from marketstructure.GetFirstItrMarketStructure import getFirstItrMarketStructure
 from ohlcdata.GetTestFirstItrCandlestickData import getTestFirstItrCandlestickData
 from pastthirtycandles.GetPastThirtyCandles import getPastThirtyCandles
 from pastthirtycandles.GetPrePastThirtyCandle import getPrePastThirtyCandle
@@ -85,6 +87,11 @@ def rPastThirtyCandles():
     getPastThirtyCandles(True)
 
 
+def marketStructureData():
+    print("Multiprocess thirteen has been started")
+    getAllItrMarketStructure(True)
+
+
 # def eventLoop():
 # four multiple process
 if __name__ == "__main__":
@@ -111,6 +118,9 @@ if __name__ == "__main__":
 
     # getting past 10 candles properties
     eventLoopForFirstITRCandlestickProperties()
+
+    # get market structure data for past nifty 100
+    getFirstItrMarketStructure()
 
     # setter pre past 30 candles data
     getPrePastThirtyCandle()
@@ -155,6 +165,9 @@ if __name__ == "__main__":
     # starting 12th process of position, portfolio and margin display
     pTwelve = multiprocessing.Process(target=rPastThirtyCandles, args=[])
 
+    # starting 13th process of market structure data
+    pThirteen = multiprocessing.Process(target=rPastThirtyCandles, args=[])
+
     pTwo.start()
     pThree.start()
     pFour.start()
@@ -166,6 +179,7 @@ if __name__ == "__main__":
     pTen.start()
     pEleven.start()
     pTwelve.start()
+    pThirteen.start()
 
     pTwo.join()
     pThree.join()
@@ -178,6 +192,7 @@ if __name__ == "__main__":
     pTen.join()
     pEleven.join()
     pTwelve.join()
+    pThirteen.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")

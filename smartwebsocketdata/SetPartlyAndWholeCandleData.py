@@ -60,4 +60,4 @@ def setPartlyAndWholeCandleData(r=30, lock=multiprocessing.Lock()):
                 df.to_csv(
                     f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisepartlycandledata\\{token}.csv",
                     index=False)
-            time.sleep(1/120)
+            # time.sleep(1/120)

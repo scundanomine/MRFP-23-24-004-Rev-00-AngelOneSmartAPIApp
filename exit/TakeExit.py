@@ -11,6 +11,8 @@ from exit.CheckBullishReversalPatternForExit import checkBullishReversalPatternF
 from exit.ExitUdf import exitUDf
 from exit.GetExitInputs import getExitInputs
 from exit.GetterUpdateAndSetterExitInputs import getterUpdateAndSetterExitInputs
+from marketstructure.CheckForPotentialBearishMarket import checkForPotentialBearishMarket
+from marketstructure.CheckForPotentialBullishMarket import checkForPotentialBullishMarket
 from ohlcdata.GetFutureLTP import getFutureLTP
 from position.GetterPositionList import getterPositionList
 from position.GetterUpdateAndSetterPositionList import getterUpdateAndSetterPositionList
@@ -19,8 +21,8 @@ from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket imp
 
 
 def takeExit(lock=multiprocessing.Lock(), isLive=False):
-    startTime = time.time()
-    ctrA = 0
+    # startTime = time.time()
+    # ctrA = 0
     if isLive:
         cv = pd.to_timedelta(0)
     else:
@@ -30,6 +32,11 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
     while datetime.datetime.now() - cv < exitTime:
         # getter position list
         pLDf = getterPositionList()
+        # market condition
+        # flagBullish = checkForPotentialBullishMarket()
+        # flagBearish = checkForPotentialBearishMarket()
+        flagBullish = False
+        flagBearish = False
 
         for index, row in pLDf.iterrows():
             eIDf = getExitInputs()
@@ -120,6 +127,11 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
+                elif flagBearish and rowC['C'] - ltp >= 0.375 * rowC['atr']:
+                    row['tOP'] = 'h'
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
                 # condition for Trailing stop loss
                 elif row["rFlag"] == 1:
                     if dx > 0:
@@ -177,6 +189,11 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for buy order for {uid} wow!!!!!")
                     continue
+                elif flagBullish and ltp - rowC['C'] >= 0.375 * rowC['atr']:
+                    row['tOP'] = 'H'
+                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                    print(f"Exit happened for buy order for {uid} wow!!!!!")
+                    continue
                 # condition for Trailing stop loss
                 elif row["rFlag"] == 1:
                     if dx < 0:
@@ -202,10 +219,10 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     getterUpdateAndSetterExitInputs([uid, 1, 0], lock)
                     getterUpdateAndSetterPositionList(uid, row, lock)
 
-        ctrA = ctrA + 1
-        if ctrA == 50:
-            print(f"Execution time for getting Exit Position (EP) is {time.time() - startTime}")
-            ctrA = 0
+        # ctrA = ctrA + 1
+        # if ctrA == 50:
+        #     print(f"Execution time for getting Exit Position (EP) is {time.time() - startTime}")
+        #     ctrA = 0
         # time.sleep(0.5)
 
 # takeExit()

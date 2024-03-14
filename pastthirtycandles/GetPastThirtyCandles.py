@@ -12,8 +12,8 @@ from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket imp
 
 
 def getPastThirtyCandles(isLive=False):
-    startTime = time.time()
-    ctrA = 0
+    # startTime = time.time()
+    # ctrA = 0
     if isLive:
         cv = pd.to_timedelta(0)
     else:
@@ -50,10 +50,10 @@ def getPastThirtyCandles(isLive=False):
                 tdf.to_csv(
                     f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\pastthirtycandlewisedata\\{uid}_{symbol}.csv",
                     index=False)
-        ctrA = ctrA + 1
-        if ctrA == 10:
-            print(f"Execution time for getting Entry List (EL) is {time.time() - startTime}")
-            ctrA = 0
+        # ctrA = ctrA + 1
+        # if ctrA == 10:
+        #     print(f"Execution time for getting Entry List (EL) is {time.time() - startTime}")
+        #     ctrA = 0
         time.sleep(1)
 
 

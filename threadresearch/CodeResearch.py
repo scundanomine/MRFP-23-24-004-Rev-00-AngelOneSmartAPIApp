@@ -1,10 +1,6 @@
 import pandas as pd
-import datetime
 
-a = True
-b = False
-
-if a and not b:
-    print('wow')
-
-
+df = pd.DataFrame([[1, 2, 3, 4, 8, 9], [1, 2, 3, 4, 8, 9], [1, 2, 3, 4, 8, 9]])
+dfTwo = pd.DataFrame([[9, 9, 9], [1, 2, 3], [9, 9, 9]])
+df.iloc[2][3:] = dfTwo.iloc[2]
+print(df)

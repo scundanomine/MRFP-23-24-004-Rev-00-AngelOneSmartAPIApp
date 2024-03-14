@@ -10,7 +10,7 @@ from readandrecord.GeneratorPositionCandlePlotFileRR import generatorPositionCan
 
 
 def getRecords(isLive=False):
-    startTime = time.time()
+    # startTime = time.time()
     if isLive:
         cv = pd.to_timedelta(0)
     else:
@@ -24,12 +24,18 @@ def getRecords(isLive=False):
         generatorChartBlackListRR(pid)
 
         # population of position plots
-        generatorPositionCandlePlotFileRR()
+        generatorPositionCandlePlotFileRR('positioncandles', 'positionplots')
+
+        # population of market position plots
+        generatorPositionCandlePlotFileRR('positionmcandles', 'positionmplots')
 
         # population of exit plots
-        generatorExitCandlePlotFileRR()
+        generatorExitCandlePlotFileRR('exitcandles', 'exitplots')
 
-        print(f"Execution time for Getting Records (RR) is {time.time() - startTime}")
+        # population of market exit plots
+        generatorExitCandlePlotFileRR('exitmcandles', 'exitmplots')
+
+        # print(f"Execution time for Getting Records (RR) is {time.time() - startTime}")
         time.sleep(20)
 
 
