@@ -67,40 +67,18 @@
 <br>
     <!--table for position plots-->
     <div class="container-fluid">
-        <h4 class="text-secondary">Position Plots</h4>
-        <img class="grayscale" src="/media/{{reportData.positionPlotUrl}}" alt="">
+        <h4 class="text-secondary">Position And Exit plots</h4>
+        <div class="row">
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionPlotUrl}}" alt=""></div>
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitPlotUrl}}" alt=""></div>
     </div>
     <br>
-    <br>
-    <!--table for market position details-->
-    <div  class="container-fluid">
-        <h4 class="text-secondary">Position Market Details</h4>
-        <table id="tbl4" class="table table-bordered table-sm">
-            <!--population of table header-->
-            <tr>
-                {% for dataOne in reportData.positionMDetail %}
-                {% if forloop.counter == 1 %}
-                {% for key, values in dataOne.items %}
-                <th>{{key}}</th>
-                {% endfor %}
-                {% endif %}
-                {% endfor %}
-            </tr>
-            {% for dataOne in reportData.positionMDetail %}
-            <tr>
-                {% for key, values in dataOne.items %}
-                <td>{{values}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-
-<br>
-    <!--table for market position plots-->
+        <!--table for position plots-->
     <div class="container-fluid">
-        <h4 class="text-secondary">Position Market Plots</h4>
-        <img class="grayscale" src="/media/{{reportData.positionMPlotUrl}}" alt="">
+        <h4 class="text-secondary">Market Position And Exit plots</h4>
+        <div class="row">
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionMPlotUrl}}" alt=""></div>
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitMPlotUrl}}" alt=""></div>
     </div>
     <br>
     <hr style="width: 100%; color: darkgray; height: 1px; background-color:darkgray;" />
@@ -148,9 +126,28 @@
     </div>
 
 <br>
-    <div class="container-fluid">
-        <h4 class="text-secondary">Exit Plots</h4>
-        <img class="grayscale" src="/media/{{reportData.exitPlotUrl}}" alt="">
+    <!--table for market position details-->
+    <div  class="container-fluid">
+        <h4 class="text-secondary">Position Market Details</h4>
+        <table id="tbl4" class="table table-bordered table-sm">
+            <!--population of table header-->
+            <tr>
+                {% for dataTwo in reportData.positionMDetail %}
+                {% if forloop.counter == 1 %}
+                {% for key, values in dataOne.items %}
+                <th>{{key}}</th>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% for dataOne in reportData.positionMDetail %}
+            <tr>
+                {% for key, values in dataOne.items %}
+                <td>{{values}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 <br>
     <div class="container-fluid">
@@ -176,11 +173,6 @@
         </table>
     </div>
 
-<br>
-    <div class="container-fluid">
-        <h4 class="text-secondary">Exit Market Plots</h4>
-        <img class="grayscale" src="/media/{{reportData.exitMPlotUrl}}" alt="">
-    </div>
 
 </body>
 </html>

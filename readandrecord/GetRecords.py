@@ -23,17 +23,11 @@ def getRecords(isLive=False):
         # Population of black list
         generatorChartBlackListRR(pid)
 
-        # population of position plots
-        generatorPositionCandlePlotFileRR('positioncandles', 'positionplots')
+        # population of position plots and market plot
+        generatorPositionCandlePlotFileRR()
 
-        # population of market position plots
-        generatorPositionCandlePlotFileRR('positionmcandles', 'positionmplots')
-
-        # population of exit plots
-        generatorExitCandlePlotFileRR('exitcandles', 'exitplots')
-
-        # population of market exit plots
-        generatorExitCandlePlotFileRR('exitmcandles', 'exitmplots')
+        # population of exit plots and market plot
+        generatorExitCandlePlotFileRR()
 
         # print(f"Execution time for Getting Records (RR) is {time.time() - startTime}")
         time.sleep(20)

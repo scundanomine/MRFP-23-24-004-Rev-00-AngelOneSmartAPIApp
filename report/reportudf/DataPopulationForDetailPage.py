@@ -1,6 +1,7 @@
 # from report.reportudf.GetterDataForSpecificPidAndDate import getterDataForSpecificPidAndDate
 from reportudf.GetterDataForSpecificPidAndDate import getterDataForSpecificPidAndDate
 from reportudf.GetterCandleDataForForSpecificPidAndDate import getterCandleDataForForSpecificPidAndDate
+from reportudf.GetterMarketCandleDataForSpecificPidAndDate import getterMarketCandleDataForSpecificPidAndDate
 
 
 def dataPopulationForDetailPage(pid, reportDate):
@@ -14,7 +15,7 @@ def dataPopulationForDetailPage(pid, reportDate):
     positionPlotUrl = f"{reportDate}/positionplots/{pid}.PNG"
 
     # get data for market position detail
-    positionMDetail = getterDataForSpecificPidAndDate(pid, reportDate, "positionmdetails")
+    positionMDetail = getterMarketCandleDataForSpecificPidAndDate(pid, reportDate, "positionmdetails")
 
     # image market position url
     positionMPlotUrl = f"{reportDate}/positionmplots/{pid}.PNG"
@@ -29,7 +30,7 @@ def dataPopulationForDetailPage(pid, reportDate):
     exitPlotUrl = f"{reportDate}/exitplots/{pid}.PNG"
 
     # get data for market exit detail
-    exitMDetail = getterDataForSpecificPidAndDate(pid, reportDate, "exitmdetails")
+    exitMDetail = getterMarketCandleDataForSpecificPidAndDate(pid, reportDate, "exitmdetails")
 
     # image market exit url
     exitMPlotUrl = f"{reportDate}/exitmplots/{pid}.PNG"
