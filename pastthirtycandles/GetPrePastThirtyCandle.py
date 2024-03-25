@@ -16,6 +16,10 @@ def getPrePastThirtyCandle():
         symbol = row['symbol']
         cdf = getterSpecificCandleData(uid, symbol)
         df = pd.concat([dfOne, cdf, dfTwo], ignore_index=True)
+        if row['id'] == 120:
+            new_cols = ['emaOne', 'emaTwo', 'QOne', 'QTwo', 'QQOne', 'QQTwo', 'mTyp']
+            cols_to_add = [col for col in new_cols if col not in df.columns]
+            df.loc[:, cols_to_add] = 0
         df.to_csv(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\pastthirtycandlewisedata\\{uid}_{symbol}.csv", index=False)
     # print(f"Time taken: {time.time() - startTime}")
