@@ -1298,6 +1298,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\report\media\2024-03-07\exitmcandles\3.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\report\media\2024-03-07\exitmdetails\3.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\report\media\2024-03-07\positionmdetails\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\smartwebsocketdata\websocketstate\tokenlist\TokenList0.csv">
           <value>
             <Attribute>
