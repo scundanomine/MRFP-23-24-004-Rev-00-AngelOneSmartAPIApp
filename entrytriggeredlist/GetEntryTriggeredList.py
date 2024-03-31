@@ -4,20 +4,13 @@ from entrytriggeredlist.ETForBearishReversalPattern import entryTriggeredForBear
 from entrytriggeredlist.ETForBullishReversalPattern import entryTriggeredForBullishReversalPatternForBuy
 from entrytriggeredlist.ETForRSIToBuy import entryTriggeredForRSIToBuy
 from entrytriggeredlist.ETForRSIToSell import entryTriggeredForRSIToSell
-from entrytriggeredlist.ETForResistancePivot import entryTriggeredForResistancePivot
-from entrytriggeredlist.ETForSupportPivot import entryTriggeredForSupportPivot
-from entrytriggeredlist.ETForTopGainerToBuy import entryTriggeredForTopGainerToBuy
-from entrytriggeredlist.ETForTopLoserToSell import entryTriggeredForTopLoserToSell
 from entrytriggeredlist.GetBlackListForET import getBlackListForET
 import time
 import datetime
 import multiprocessing
 import pandas as pd
 
-from marketstructure.CheckBearishMarket import checkBearishMarket
-from marketstructure.CheckBullishMarket import checkBullishMarket
-from marketstructure.CheckForPotentialBearishMarket import checkForPotentialBearishMarket
-from marketstructure.CheckForPotentialBullishMarket import checkForPotentialBullishMarket
+from entrytriggeredlist.GetterPreCustomBlackListForET import getterPreCustomBlackListForET
 
 
 def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
@@ -34,8 +27,8 @@ def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
         # flagBearish = checkForPotentialBearishMarket()
         flagBullish = False
         flagBearish = False
-        # get black list for ET
-        getBlackListForET(lock)
+        # get custom pre black list for ET
+        getterPreCustomBlackListForET()
 
         # # EL due support and resistance
         # entryTriggeredForResistancePivot(lock)
@@ -46,10 +39,10 @@ def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
         # entryTriggeredForTopLoserToSell(lock)
         #
         # EL due to reversal pattern
-        entryTriggeredForBearishReversalPatternForSell(flagBullish, lock)
         entryTriggeredForBullishReversalPatternForBuy(flagBearish, lock)
-        #
-        # EL due RSI
+        entryTriggeredForBearishReversalPatternForSell(flagBullish, lock)
+
+        # EL due to RSI
         entryTriggeredForRSIToBuy(flagBearish, lock)
         entryTriggeredForRSIToSell(flagBullish, lock)
 

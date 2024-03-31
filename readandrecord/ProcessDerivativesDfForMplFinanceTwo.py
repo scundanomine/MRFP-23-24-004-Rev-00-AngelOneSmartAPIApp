@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 
 
-def processDerivativesDfForMplFinance(df=pd.DataFrame()):
+def processDerivativesDfForMplFinanceTwo(df=pd.DataFrame()):
     df = df.loc[:, ['time', 'O', 'H', 'L', 'C', 'V', 'emaOne', 'emaTwo', 'QOne', 'QTwo', 'QQOne', 'QQTwo']]
     dicT = {
         'O': 'Open',
@@ -19,10 +19,10 @@ def processDerivativesDfForMplFinance(df=pd.DataFrame()):
             time = row['time']
             time = time[:16]
             time = time.replace('T', ' ')
-            refDate = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M")
+            refDate = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M").strftime("%H:%M")
             df.loc[index, 'time'] = refDate
     df = df.set_index('time')
     return df
 
 # cdf = getterSpecificCandleData(1, "RELIANCE-EQ")
-# processDfForMplFinance(cdf)
+# processDerivativesDfForMplFinanceTwo(cdf)

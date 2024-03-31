@@ -2,6 +2,8 @@ from entrytriggeredlist.GetCustomDfBlackListET import getCustomDfBlackListET
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 import multiprocessing
 
+from entrytriggeredlist.GetterCustomBlackListET import getterCustomBlackListET
+
 
 def getBlackListForET(lock=multiprocessing.Lock()):
     # get custom black list dataframe

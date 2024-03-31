@@ -1,9 +1,12 @@
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
+from entrytriggeredlist.GetCustomDfBlackListET import getCustomDfBlackListET
 from entrytriggeredlist.GetterAppendAndSetterEntryTriggeredList import getterAppendAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterBlackListET import getterBlackListET
 from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
 import multiprocessing
+
+from entrytriggeredlist.GetterCustomBlackListET import getterCustomBlackListET
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
@@ -13,11 +16,12 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
 
     # getter ET black list
     bLDf = getterBlackListET()
+    cBLDf = getterCustomBlackListET()
 
     for index, row in rdf.iterrows():
         uid = row['id']
         # condition of black listed
-        if bLDf['bFlag'][uid-1] == 1:
+        if bLDf['bFlag'][uid - 1] == 1 or cBLDf['bFlag'][uid - 1] == 1:
             continue
         else:
             cOne = row['CC1']

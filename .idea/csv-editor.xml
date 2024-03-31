@@ -136,6 +136,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\entry\entrystate\ETLAFlag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\entry\entrystate\EntryList.csv">
           <value>
             <Attribute>
@@ -144,6 +151,27 @@
           </value>
         </entry>
         <entry key="\entrytriggeredlist\entrytriggeredstate\BlackListET.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\entrytriggeredlist\entrytriggeredstate\CustomBlackListET.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\entrytriggeredlist\entrytriggeredstate\ETFlag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\entrytriggeredlist\entrytriggeredstate\ETLAFlag.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -990,6 +1018,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\exit\exitstate\EXLAFlag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\exit\exitstate\ExitInputs.csv">
           <value>
             <Attribute>
@@ -1242,6 +1277,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\pastthirtycandles\pastthirycandlesstate\pastthirtycandlewisedata\120_Nifty 100.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\pastthirtycandles\pastthirycandlesstate\pastthirtycandlewisedata\1_RELIANCE-EQ.csv">
           <value>
             <Attribute>
@@ -1298,21 +1340,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\report\media\2024-03-07\exitmcandles\3.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\report\media\2024-03-07\exitmdetails\3.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\report\media\2024-03-07\positionmdetails\1.csv">
+        <entry key="\report\media\2024-03-27\positionmcandles\8.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

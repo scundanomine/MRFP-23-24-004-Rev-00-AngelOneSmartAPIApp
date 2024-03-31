@@ -37,7 +37,60 @@
         </table>
     </div>
 
+    <br>
+    <div class="container-fluid">
+        <h4 class="text-secondary">Exit Details</h4>
+        <table class="table table-bordered table-sm">
+            <!--population of table header-->
+            <tr>
+                {% for key, values in reportData.exitDetail.items %}
+                <th>{{key}}</th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for key, values in reportData.exitDetail.items %}
+                <td>{{values}}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
 <br>
+    <!--table for position plots-->
+    <div class="container-fluid">
+        <h4 class="text-secondary">Position And Exit plots</h4>
+        <div class="row">
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionPlotUrl}}" alt=""></div>
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitPlotUrl}}" alt=""></div>
+    </div>
+    <br>
+        <!--table for position plots-->
+    <div class="container-fluid">
+        <h4 class="text-secondary">Market Position And Exit plots</h4>
+        <div class="row">
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionMPlotUrl}}" alt=""></div>
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitMPlotUrl}}" alt=""></div>
+    </div>
+        <br>
+        <!--table for position plots-->
+    <div class="container-fluid">
+        <h4 class="text-secondary">Fist Derivative Market Position And Exit plots</h4>
+        <div class="row">
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionMQPlotUrl}}" alt=""></div>
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitMQPlotUrl}}" alt=""></div>
+    </div>
+
+        <br>
+        <!--table for position plots-->
+    <div class="container-fluid">
+        <h4 class="text-secondary">Second Derivative Market Position And Exit plots</h4>
+        <div class="row">
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionMQQPlotUrl}}" alt=""></div>
+            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitMQQPlotUrl}}" alt=""></div>
+    </div>
+    <br>
+    <hr style="width: 100%; color: darkgray; height: 1px; background-color:darkgray;" />
+        <br>
     <!--table for position candles-->
     <div  class="container-fluid">
         <h4 class="text-secondary">Position Candles</h4>
@@ -63,42 +116,6 @@
             {% endfor %}
         </table>
     </div>
-
-<br>
-    <!--table for position plots-->
-    <div class="container-fluid">
-        <h4 class="text-secondary">Position And Exit plots</h4>
-        <div class="row">
-            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionPlotUrl}}" alt=""></div>
-            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitPlotUrl}}" alt=""></div>
-    </div>
-    <br>
-        <!--table for position plots-->
-    <div class="container-fluid">
-        <h4 class="text-secondary">Market Position And Exit plots</h4>
-        <div class="row">
-            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.positionMPlotUrl}}" alt=""></div>
-            <div class="col-md-6"><img class="grayscale" src="/media/{{reportData.exitMPlotUrl}}" alt=""></div>
-    </div>
-    <br>
-    <hr style="width: 100%; color: darkgray; height: 1px; background-color:darkgray;" />
-<div class="container-fluid">
-        <h4 class="text-secondary">Exit Details</h4>
-        <table class="table table-bordered table-sm">
-            <!--population of table header-->
-            <tr>
-                {% for key, values in reportData.exitDetail.items %}
-                <th>{{key}}</th>
-                {% endfor %}
-            </tr>
-            <tr>
-                {% for key, values in reportData.exitDetail.items %}
-                <td>{{values}}</td>
-                {% endfor %}
-            </tr>
-        </table>
-    </div>
-
 <br>
     <div class="container-fluid">
         <h4 class="text-secondary">Exit Candles</h4>

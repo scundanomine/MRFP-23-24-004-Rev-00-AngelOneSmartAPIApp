@@ -19,6 +19,8 @@ def dataPopulationForDetailPage(pid, reportDate):
 
     # image market position url
     positionMPlotUrl = f"{reportDate}/positionmplots/{pid}.PNG"
+    positionMQPlotUrl = f"{reportDate}/positionmplots/{pid}_q.PNG"
+    positionMQQPlotUrl = f"{reportDate}/positionmplots/{pid}_qq.PNG"
 
     # get data for exit detail
     exitDetail = getterDataForSpecificPidAndDate(pid, reportDate, "exitdetails")
@@ -34,11 +36,13 @@ def dataPopulationForDetailPage(pid, reportDate):
 
     # image market exit url
     exitMPlotUrl = f"{reportDate}/exitmplots/{pid}.PNG"
+    exitMQPlotUrl = f"{reportDate}/exitmplots/{pid}_q.PNG"
+    exitMQQPlotUrl = f"{reportDate}/exitmplots/{pid}_qq.PNG"
 
     return {"positionDetail": positionDetail, "positionCandles": positionCandles, "positionPlotUrl": positionPlotUrl,
-            "positionMDetail": positionMDetail, "positionMPlotUrl": positionMPlotUrl,
+            "positionMDetail": positionMDetail, "positionMPlotUrl": positionMPlotUrl, "positionMQPlotUrl": positionMQPlotUrl, "positionMQQPlotUrl": positionMQQPlotUrl,
             "exitDetail": exitDetail, "exitCandles": exitCandles, "exitPlotUrl": exitPlotUrl,
-            "exitMDetail": exitMDetail, "exitMPlotUrl": exitMPlotUrl}
+            "exitMDetail": exitMDetail, "exitMPlotUrl": exitMPlotUrl, "exitMQPlotUrl": exitMQPlotUrl, "exitMQQPlotUrl": exitMQQPlotUrl}
 
 
 # print(dataPopulationForDetailPage(1, "2024-01-25")["positionPlotUrl"])

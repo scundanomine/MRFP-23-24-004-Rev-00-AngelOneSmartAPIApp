@@ -182,6 +182,11 @@ a.readmore{
     }
 }
 
+/*img {
+  max-width: 400px;
+  height: 400px;
+}*/
+
 /*Filter styles*/
 img {
   filter: invert(100%);
