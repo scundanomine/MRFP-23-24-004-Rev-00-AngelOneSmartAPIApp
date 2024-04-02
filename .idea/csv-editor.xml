@@ -164,20 +164,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\entrytriggeredlist\entrytriggeredstate\ETFlag.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\entrytriggeredlist\entrytriggeredstate\ETLAFlag.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\entrytriggeredlist\entrytriggeredstate\EntryTriggeredList.csv">
           <value>
             <Attribute>
@@ -1334,13 +1320,6 @@
           </value>
         </entry>
         <entry key="\report\areportstate\date.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\report\media\2024-03-27\positionmcandles\8.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
