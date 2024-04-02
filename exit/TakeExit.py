@@ -32,7 +32,12 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
     reportDate = getterReportDateForRR()
     while datetime.datetime.now() - cv < exitTime:
         # getting live action flags and they should not be interacted with strategy
-        eXBF, eXSF = getterExitLiveActionFlag()
+        while True:
+            try:
+                eXBF, eXSF = getterExitLiveActionFlag()
+                break
+            except Exception as e:
+                print(f"exception while getting  eXBF, eXSF is {e}")
         # getter position list
         pLDf = getterPositionList()
         # market condition

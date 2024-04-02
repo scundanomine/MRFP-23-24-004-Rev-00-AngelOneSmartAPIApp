@@ -26,7 +26,12 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
     exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         # getting live action flags and they should not be interacted with strategy
-        eTBF, eTSF = getterETLiveActionFlag()
+        while True:
+            try:
+                eTBF, eTSF = getterETLiveActionFlag()
+                break
+            except Exception as e:
+                print(f"exception while getting  eTBF, eTSF is {e}")
 
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList()
