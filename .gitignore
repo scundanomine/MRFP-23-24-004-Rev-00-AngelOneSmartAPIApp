@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 AngelOneSmartAPIApp/login_credentials.txt
+*.csv
 used/
 neoapistate/
 media/
