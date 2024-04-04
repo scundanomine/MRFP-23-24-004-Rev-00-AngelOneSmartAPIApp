@@ -4,3 +4,6 @@ def checkBullishReversalPatternForExit(patternData):
         if listItem in patternData:
             return True
     return False
+
+
+# print(checkBullishReversalPatternForExit("Bullish_Engulfing"))
