@@ -1,6 +1,5 @@
 import multiprocessing
 import time
-
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.CheckBearishReversalCandle import checkBearishReversalCandle
 from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
@@ -27,13 +26,14 @@ def entryTriggeredForBullishReversalPatternForBuy(flagBearish, lock=multiprocess
                 cOne = row['CC1']
                 cTwo = row['CC2']
                 # atr = row['atr']
-                rsi = row['rsi0']
+                # rsi = row['rsi0']
 
                 # condition for buy
                 if not flagBearish and cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and row['g'] == 'green' and row['roc0'] <= -15 and not checkBearishReversalCandle(row["t"]):
                     # update the order type and upend the order list
                     row["ot"] = "buy"
                     row['oc'] = "ETFBullishReversalPatternToBuy"
+                    row['srT'] = time.time()
                     with lock:
                         getterAppendAndSetterEntryTriggeredList(row)
                         # update the black list

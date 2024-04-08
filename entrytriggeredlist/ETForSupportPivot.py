@@ -1,3 +1,5 @@
+import time
+
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
 from entrytriggeredlist.GetCustomDfBlackListET import getCustomDfBlackListET
@@ -33,6 +35,7 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFSupportPivotToSell"
+                row['srT'] = time.time()
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list
@@ -43,6 +46,7 @@ def entryTriggeredForSupportPivot(lock=multiprocessing.Lock()):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
                 row['oc'] = "ETFSupportPivotToBuy"
+                row['srT'] = time.time()
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list

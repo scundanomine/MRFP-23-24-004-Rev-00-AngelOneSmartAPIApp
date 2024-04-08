@@ -1,3 +1,5 @@
+import time
+
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
 from entrytriggeredlist.GetCustomDfBlackListET import getCustomDfBlackListET
@@ -31,6 +33,7 @@ def entryTriggeredForTopGainerToBuy(lock=multiprocessing.Lock()):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
                 row['oc'] = "ETFTopGainerForBuy"
+                row['srT'] = time.time()
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list

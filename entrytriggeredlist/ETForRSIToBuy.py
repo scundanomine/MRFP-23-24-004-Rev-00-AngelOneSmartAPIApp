@@ -30,6 +30,7 @@ def entryTriggeredForRSIToBuy(flagBearish, lock):
                     # update the order type and upend the order list
                     row["ot"] = "buy"
                     row['oc'] = "ETFRSIDivergenceForBuy"
+                    row['srT'] = time.time()
                     with lock:
                         getterAppendAndSetterEntryTriggeredList(row)
                         # update the black list

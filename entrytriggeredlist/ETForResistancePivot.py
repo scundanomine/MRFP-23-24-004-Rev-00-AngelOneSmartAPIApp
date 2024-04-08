@@ -1,4 +1,5 @@
 import multiprocessing
+import time
 
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.CheckBearishReversalPattern import checkBearishReversalPattern
@@ -31,6 +32,7 @@ def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
                 # update the order type and upend the order list
                 row["ot"] = "buy"
                 row['oc'] = "ETFResistancePivotToBuy"
+                row['srT'] = time.time()
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list
@@ -42,6 +44,7 @@ def entryTriggeredForResistancePivot(lock=multiprocessing.Lock()):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFResistancePivotToSell"
+                row['srT'] = time.time()
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list

@@ -105,7 +105,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             # exit condition for buy
             elif ot == "buy":
                 # condition for live action exit
-                if eXBF == 'T':
+                if eXBF == 'T' and dx <= 0:
                     row['tOP'] = 'LABEx'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} emergency!!!!!")
@@ -163,7 +163,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             # exit condition for sell
             elif ot == "sell":
                 # condition for live action exit
-                if eXSF == 'T':
+                if eXSF == 'T' and dx >= 0:
                     row['tOP'] = 'LASEx'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} alas!!!!!")
@@ -174,16 +174,6 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for sell order {uid} alas!!!!!")
                     continue
-                # elif ltp - rowC['C'] >= 1.5 * rowC['atr']:
-                #     row['tOP'] = 'B'
-                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                #     print(f"Exit happened for {pid} for sell order for {uid} wow!!!!!")
-                #     continue
-                # elif rowC["g"] == 'green' and rowCC["g"] == 'green' and (rowC['s'] + rowCC['s']) >= 2:
-                #     row['tOP'] = 'C'
-                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                #     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
-                #     continue
                 elif checkBullishReversalPatternForExit(rowC["bulRP"]) and ltp - rowC['C'] >= 0.25 * rowC['atr']:
                     row['tOP'] = 'D'
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)

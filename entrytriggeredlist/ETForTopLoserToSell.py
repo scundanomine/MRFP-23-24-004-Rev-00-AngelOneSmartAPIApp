@@ -1,3 +1,5 @@
+import time
+
 from AIlists.GetterAIList import getterAIList
 from entrytriggeredlist.CheckBullishReversalPattern import checkBullishReversalPattern
 from entrytriggeredlist.GetCustomDfBlackListET import getCustomDfBlackListET
@@ -29,6 +31,7 @@ def entryTriggeredForTopLoserToSell(lock):
                 # update the order type and upend the order list
                 row["ot"] = "sell"
                 row['oc'] = "ETFTopLoserForSell"
+                row['srT'] = time.time()
                 with lock:
                     getterAppendAndSetterEntryTriggeredList(row)
                     # update the black list
