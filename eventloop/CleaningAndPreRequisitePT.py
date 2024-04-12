@@ -9,6 +9,8 @@ from entry.SetterPreEntryList import setterPreEntryList
 from entrytriggeredlist.CleaningAndSettingETList import cleaningAndSettingETList
 from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
 from exit.SetterPreExitInputs import setterPreExitInputs
+from ltpdistribution.GetSampleDistributionDf import getSampleDistributionDf
+from ltpdistribution.SetPreLtpDistribution import setPreLtpDistribution
 from margin.GetterPreMargin import getterPreMargin
 from ohlcdata.CleaningAndSettingPastTenCandleData import cleaningAndSettingPastTenCandleData
 from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
@@ -45,6 +47,8 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # cleaning and setting past pds and fds and fFds
     if not isLive:
         setterPrePdsFdsAndFfdsList()
+        getSampleDistributionDf()
+        setPreLtpDistribution()
 
     # setter pre pivot data
     setterSRData()
