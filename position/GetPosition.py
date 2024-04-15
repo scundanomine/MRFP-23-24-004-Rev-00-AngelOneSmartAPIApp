@@ -6,6 +6,7 @@ from entry.GetterEntryList import getterEntryList
 from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
 from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
+from ltpdistribution.GetLTPFromDistribution import getLTPFromDistribution
 from margin.GetterAvailableMargin import getterAvailableMargin
 from margin.GetterDebitAndSetterAvailableMargin import getterDebitAndSetterAvailableMargin
 from ohlcdata.GetFutureLTP import getFutureLTP
@@ -42,7 +43,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
             if isLive:
                 ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).loc[0, '4']
             else:
-                ltp = getFutureLTP(uid)
+                ltp = getLTPFromDistribution(uid, cv)
             lp = row['lp']
             sl = row['sl']
             refTime = row["tOEP"]

@@ -25,7 +25,7 @@ def getAllItrLtpDistribution():
                 ldDf.loc[len(ldDf)] = 0
                 idx = 2
                 if rowX['4'] != 0:
-                    if rowX['0'] <= rowX['4']:  # for bullish candle
+                    if rowX['1'] <= rowX['4']:  # for bullish candle
                         ltpLst = getBullishCandleLtpDistribution(rowX)
                         ldDf[idx] = ltpLst
                     else:  # for bearish candle

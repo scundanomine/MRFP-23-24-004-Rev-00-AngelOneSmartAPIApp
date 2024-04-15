@@ -12,6 +12,7 @@ from exit.ExitUdf import exitUDf
 from exit.GetExitInputs import getExitInputs
 from exit.GetterExitLiveActionFlag import getterExitLiveActionFlag
 from exit.GetterUpdateAndSetterExitInputs import getterUpdateAndSetterExitInputs
+from ltpdistribution.GetLTPFromDistribution import getLTPFromDistribution
 from marketstructure.CheckForPotentialBearishMarket import checkForPotentialBearishMarket
 from marketstructure.CheckForPotentialBullishMarket import checkForPotentialBullishMarket
 from ohlcdata.GetFutureLTP import getFutureLTP
@@ -75,7 +76,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             if isLive:
                 ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).loc[0, '4']
             else:
-                ltp = getFutureLTP(uid)
+                ltp = getLTPFromDistribution(uid, cv)
             if ltp != 0:
                 row['ltp'] = ltp
                 dx = ltp - ltpP

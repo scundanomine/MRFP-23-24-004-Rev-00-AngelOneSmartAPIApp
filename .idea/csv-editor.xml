@@ -1032,6 +1032,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ltpdistribution\ltpdistributionstate\specificdistributiondf\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\ltpdistribution\ltpdistributionstate\specificdistributiondf\1_RELIANCE-EQ.csv">
           <value>
             <Attribute>

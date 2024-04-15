@@ -15,6 +15,7 @@ import time
 import multiprocessing
 
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
+from ltpdistribution.GetLTPFromDistribution import getLTPFromDistribution
 from ohlcdata.GetFutureLTP import getFutureLTP
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
     getterSpecificTokenLivePartlyCandleDataFromWebSocket
@@ -65,7 +66,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                 if isLive:
                     ltp = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).loc[0, '4']
                 else:
-                    ltp = getFutureLTP(uid)
+                    ltp = getLTPFromDistribution(uid, cv)
                 if eCBLDf.loc[uid - 1, 'eCBFlag'] == 1 or ltp == 0:
                     continue
                 else:
