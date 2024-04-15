@@ -4,13 +4,13 @@ import datetime
 
 def processPastAndFutureCandlesData(rfTime, flagZero, data):
     df = pd.DataFrame(data)
-    if len(df) == 3 and flagZero is False:
+    if len(df) == 4 and flagZero is False:
         return df
     else:
-        dfOne = pd.DataFrame(columns=list(range(6)), index=list(range(3)))
+        dfOne = pd.DataFrame(columns=list(range(6)), index=list(range(4)))
         dfOne[:] = 0
         delta = datetime.timedelta(minutes=1)
-        for i in range(3):
+        for i in range(4):
             newDateF = rfTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
             dfOne.loc[i, 0] = newDateF
             try:

@@ -6,7 +6,8 @@ def getHistoricDataForPastTenCandles(obj, c, token):
     # date time formulation
     refDate = datetime.datetime.now() - c
     pastTenMinRefDate = refDate - datetime.timedelta(minutes=9)
-    newDateF = refDate.strftime("%Y-%m-%d %H:%M")
+    futureMinRefDate = refDate + datetime.timedelta(minutes=3)
+    newDateF = futureMinRefDate.strftime("%Y-%m-%d %H:%M")
     pastDateF = pastTenMinRefDate.strftime("%Y-%m-%d %H:%M")
 
     try:

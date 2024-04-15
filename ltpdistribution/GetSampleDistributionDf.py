@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def getSampleDistributionDf():
-    df = pd.DataFrame(columns=['time', 'O', 'H', "L", 'C', 'V'], index=[0, 1, 2])
+    df = pd.DataFrame(columns=['time'], index=[0, 1, 2])
     new_cols = range(60)
     df[:] = 0
     # cols_to_add = [col for col in new_cols if col not in sdf.columns]

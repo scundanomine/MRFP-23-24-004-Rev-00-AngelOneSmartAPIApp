@@ -47,7 +47,7 @@ def getTestCandlestickData(r=300):
                 try:
                     data, rfDate = getHistoricDataForPastAndFutureCandles(objOneX, c, str(b))
                 except:
-                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
+                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
                     rfDate = datetime.datetime.now() - c
                     flagZero = True
         else:
@@ -58,7 +58,7 @@ def getTestCandlestickData(r=300):
                 try:
                     data, rfDate = getHistoricDataForPastAndFutureCandles(objTwoX, c, str(b))
                 except:
-                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
+                    data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
                     rfDate = datetime.datetime.now() - c
                     flagZero = True
         tDf = processPastAndFutureCandlesData(rfDate, flagZero, data)
@@ -83,7 +83,7 @@ def getTestCandlestickData(r=300):
                 for result in results:
                     pds.iloc[ck] = result.iloc[0]
                     fds.iloc[ck] = result.iloc[1]
-                    fFds.iloc[ck] = result.iloc[2]
+                    fFds.iloc[ck] = result.iloc[3]
                     ck = ck + 1
             ctr = ctr + 6
             timeDiff = 1 - (time.time() - stt)

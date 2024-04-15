@@ -5,7 +5,7 @@ def getHistoricDataForPastAndFutureCandles(obj, c, token):
     candleStickData = []
     # date time formulation
     refDate = datetime.datetime.now() - c
-    futureRefDate = refDate + datetime.timedelta(minutes=2)
+    futureRefDate = refDate + datetime.timedelta(minutes=3)
     newDateF = refDate.strftime("%Y-%m-%d %H:%M")
     futureDateF = futureRefDate.strftime("%Y-%m-%d %H:%M")
 

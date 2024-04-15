@@ -1032,6 +1032,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ltpdistribution\ltpdistributionstate\specificdistributiondf\1_RELIANCE-EQ.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\margin\marginstate\margin.csv">
           <value>
             <Attribute>
@@ -1495,6 +1502,13 @@
           </value>
         </entry>
         <entry key="\used\kotak-neo-api-main\neo_api_client\api\nse_fo.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\used\pivotalarm\srn.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
