@@ -2,6 +2,9 @@ import datetime
 import multiprocessing
 import time
 import pandas as pd
+
+from belliprogressionem.bellientry.GetEntryFlagUsingBasicStrategy import getEntryFlagUsingBasicStrategy
+from belliprogressionem.belliexit.GetExitFlagUsingBasicStrategy import getExitFlagUsingBasicStrategy
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
@@ -35,10 +38,12 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
         # getting live action flags and they should not be interacted with strategy
         while True:
             try:
-                eXBF, eXSF = getterExitLiveActionFlag()
+                eXBLF, eXSLF = getterExitLiveActionFlag()
                 break
             except Exception as e:
-                print(f"exception while getting  eXBF, eXSF is {e}")
+                print(f"exception while getting  eXBLF, eXSLF is {e}")
+                # getter entry flags from the belli progressionem
+        xbf, xsf = getExitFlagUsingBasicStrategy()
         # getter position list
         pLDf = getterPositionList()
         # market condition
@@ -106,37 +111,37 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             # exit condition for buy
             elif ot == "buy":
                 # condition for live action exit
-                if eXBF == 'T' and dx <= 0:
-                    row['tOP'] = 'LABEx'
+                if (eXBLF == 'T' or xbf == 'T') and dx <= 0:
+                    row['tOP'] = 'BExDTLiveAndStrFlags'   # Exit due live and strategy flags
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} emergency!!!!!")
                     continue
                 # condition for sl exit
                 elif ltp <= sl:
-                    row['tOP'] = 'a'
+                    row['tOP'] = 'BExDTSLHit'    # exit due to sl hit
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} alas!!!!!")
                     continue
                 elif checkBearishReversalPatternForExit(rowC["berRP"]) and rowC['C'] - ltp >= 0.25 * rowC['atr']:
-                    row['tOP'] = 'd'
+                    row['tOP'] = 'BExdTBerRP'    # exit due to Bearish reversal pattern
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
                     continue
                 elif rowC["g"] == 'red' and rowCC["g"] == 'red' and rowCCC["g"] == 'red' and rowC["C"] <= rowCC["C"] <= rowCCC["C"]:
-                    row['tOP'] = 'e'
+                    row['tOP'] = 'BExDTConRedCan'    # exit due to continuous red candle
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
                     continue
                 elif checkBearishReversalPatternForExit(rowCC["berRP"]) and rowCC['C'] - ltp >= 0.25 * rowC['atr']:
-                    row['tOP'] = 'g'
+                    row['tOP'] = 'BExDTPreBerRP' # exit due to previous bearish reversal pattern
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
                     continue
-                elif flagBearish and rowC['C'] - ltp >= 0.375 * rowC['atr']:
-                    row['tOP'] = 'h'
-                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                    print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
-                    continue
+                # elif flagBearish and rowC['C'] - ltp >= 0.375 * rowC['atr']:
+                #     row['tOP'] = 'h'
+                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                #     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
+                #     continue
                 # condition for Trailing stop loss
                 elif row["rFlag"] == 1:
                     if dx > 0:
@@ -150,7 +155,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                         getterUpdateAndSetterPositionList(uid, row, lock)
                 # condition for exit
                 elif ltp >= target or time.time() - refTime >= 7200:
-                    row['tOP'] = 'f'
+                    row['tOP'] = 'BExDTTargetHit'    # exit due to target hit
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} boom!!!!!")
                     continue
@@ -164,37 +169,37 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             # exit condition for sell
             elif ot == "sell":
                 # condition for live action exit
-                if eXSF == 'T' and dx >= 0:
-                    row['tOP'] = 'LASEx'
+                if (eXSLF == 'T' or xsf == 'T') and dx >= 0:
+                    row['tOP'] = 'SXDTLiveStrFlag'     # exit due to live and strategy flags
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} alas!!!!!")
                     continue
                 # condition for sl exit
                 elif ltp >= sl:
-                    row['tOP'] = 'A'
+                    row['tOP'] = 'SXDTSLHit'   # exit due to sl hit
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for sell order {uid} alas!!!!!")
                     continue
                 elif checkBullishReversalPatternForExit(rowC["bulRP"]) and ltp - rowC['C'] >= 0.25 * rowC['atr']:
-                    row['tOP'] = 'D'
+                    row['tOP'] = 'SXDTBulRP'   # exit due to bullish reversal pattern
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
                     continue
                 elif rowC["g"] == 'green' and rowCC["g"] == 'green' and rowCCC["g"] == 'green' and rowC["C"] >= rowCC["C"] >= rowCCC["C"]:
-                    row['tOP'] = 'E'
+                    row['tOP'] = 'SXDTConGreenCan'     # exit due to continuous green candle
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
                     continue
                 elif checkBullishReversalPatternForExit(rowCC["bulRP"]) and ltp - rowCC['C'] >= 0.25 * rowC['atr']:
-                    row['tOP'] = 'G'
+                    row['tOP'] = 'SXDTPreBulRP'    # exit due to previous bullish reversal pattern
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
                     continue
-                elif flagBullish and ltp - rowC['C'] >= 0.375 * rowC['atr']:
-                    row['tOP'] = 'H'
-                    exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
-                    print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
-                    continue
+                # elif flagBullish and ltp - rowC['C'] >= 0.375 * rowC['atr']:
+                #     row['tOP'] = 'H'
+                #     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
+                #     print(f"Exit happened for {pid} for buy order for {uid} wow!!!!!")
+                #     continue
                 # condition for Trailing stop loss
                 elif row["rFlag"] == 1:
                     if dx < 0:
@@ -208,7 +213,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
                         getterUpdateAndSetterPositionList(uid, row, lock)
                 # condition for exit
                 elif ltp <= target or time.time() - refTime >= 7200:
-                    row['tOP'] = 'F'
+                    row['tOP'] = 'SXDTTargetHit'   # exit due to target hit
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for sell order {uid} boom!!!!!")
                     continue

@@ -50,7 +50,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
 
         for index, row in eTDf.iterrows():
             uid = row['id']
-            if row['srV'] > 240:
+            if row['srV'] > 240:    # it is a time in seconds for which stack applies
                 with lock:
                     # condition for removal of df
                     getterUpdateAndSetterBlackListET(uid, 0)

@@ -2,34 +2,24 @@ import pandas as pd
 import datetime
 
 
-def processPastTenCandlesData(uid, a, rfTime, flagZero, df=pd.DataFrame(columns=list(range(6)), index=list(range(13)))):
-    if len(df) == 13 and flagZero is False:
-        dfx = df[:10]
-        dfy = df[10:]
-        dfx.to_csv(
+def processPastTenCandlesData(uid, a, rfTime, flagZero, df=pd.DataFrame(columns=list(range(6)), index=list(range(10)))):
+    if len(df) == 10 and flagZero is False:
+        df.to_csv(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}_{a}.csv",
             index=False)
-        dfy.to_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\specificohlcdf\\{uid}.csv",
-            index=False)
     else:
-        dfOne = pd.DataFrame(columns=list(range(6)), index=list(range(13)))
+        dfOne = pd.DataFrame(columns=list(range(6)), index=list(range(10)))
         dfOne[:] = 0
         delta = datetime.timedelta(minutes=1)
-        for i in range(13):
+        for i in range(10):
             newDateF = rfTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
             dfOne.loc[i, 0] = newDateF
             # query condition
             if len(df.loc[(df[0] == newDateF)]) != 0:
                 dfOne.iloc[i] = df.loc[(df[0] == newDateF)]
             rfTime = rfTime + delta
-        dfx = dfOne[:10]
-        dfy = dfOne[10:]
-        dfx.to_csv(
+        dfOne.to_csv(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}_{a}.csv",
-            index=False)
-        dfy.to_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\specificohlcdf\\{uid}.csv",
             index=False)
         # print(dfOne)
 

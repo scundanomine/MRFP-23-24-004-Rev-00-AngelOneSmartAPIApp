@@ -9,14 +9,15 @@ def getLTPFromDistribution(uid, cv):
     # cv = getterTimeDelta()
     # get time
     refDate = datetime.datetime.now() - cv + datetime.timedelta(minutes=1)
-    ts = int(refDate.strftime("%S"))
+    ts = str(refDate.strftime("%S"))
     reqTime = refDate.strftime("%Y-%m-%dT%H:%M:00+05:30")
 
     # getting required ohlc
-    if df[0, 'time'] == reqTime:
-        ltp = df[0, ts]
+    if df.loc[0, 'time'] == reqTime:
+        ltp = df.loc[0, ts]
     else:
-        ltp = df[1, ts]
+        ltp = df.loc[1, ts]
     return ltp
 
-# getLTPFromDistribution(67)
+
+# print(getLTPFromDistribution(11))

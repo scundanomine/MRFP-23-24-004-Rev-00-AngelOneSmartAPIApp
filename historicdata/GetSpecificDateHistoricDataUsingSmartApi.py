@@ -1,23 +1,25 @@
-from commonudm.GetSymbolAndToken import getSymbolAndToken
-from commonudm.GetterTimeDelta import getterTimeDelta
-from AngelOneSmartAPIApp.test import *
-from AngelOneSmartAPIApp.HistoricDataForPastTenCandles import *
-from eventloop.CreateGSTDataFile import *
+import os
 from concurrent.futures import ThreadPoolExecutor
-import datetime
+from AngelOneSmartAPIApp.test import *
+from commonudm.GetSymbolAndToken import getSymbolAndToken
+from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTokenList
+from eventloop.CreateGSTDataFile import *
+from historicdata.HistoricDataForOneMinuteForTraditionalPivot import historicDataForOneMinuteForTraditionalPivot
 
-from ohlcdata.ProcessPastTenCandlesData import processPastTenCandlesData
 
-
-def getTestFirstItrCandlestickData(r, isLive=False):
+def getSpecificDateHistoricDataUsingSmartApi(c):
+    # getter required symbol and token
+    gDf = getterRequiredSymbolAndTokenList()
+    r = len(gDf)
+    # create date folder if doesn't exit
+    if not os.path.exists(
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}"):
+        os.makedirs(
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}")
     print("Process for past 10 candles data started")
     startTime = time.time()
     dfc = getSymbolAndToken()
-    if isLive:
-        cv = pd.to_timedelta(0)
-    else:
-        cv = getterTimeDelta()
-    c = getterTimeDelta()
+    # c = getterTimeDelta()
     # creating session one
     while True:
         try:
@@ -44,38 +46,38 @@ def getTestFirstItrCandlestickData(r, isLive=False):
         flagZero = False
         if uid < i - 3:
             try:
-                data, rfTime = getHistoricDataForPastTenCandles(objOneX, c, str(b))
+                data = historicDataForOneMinuteForTraditionalPivot(objOneX, c, str(b))
             except:
                 time.sleep(1)
                 try:
-                    data, rfTime = getHistoricDataForPastTenCandles(objOneX, c, str(b))
+                    data = historicDataForOneMinuteForTraditionalPivot(objOneX, c, str(b))
                 except:
                     data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
-                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
-                    refDate = datetime.datetime.now() - c
-                    rfTime = refDate - datetime.timedelta(minutes=9)
-                    flagZero = True
+                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
+                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
+                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
         else:
             try:
-                data, rfTime = getHistoricDataForPastTenCandles(objTwoX, c, str(b))
+                data = historicDataForOneMinuteForTraditionalPivot(objTwoX, c, str(b))
             except:
                 time.sleep(1)
                 try:
-                    data, rfTime = getHistoricDataForPastTenCandles(objTwoX, c, str(b))
+                    data = historicDataForOneMinuteForTraditionalPivot(objTwoX, c, str(b))
                 except:
                     data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
-                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
-                    refDate = datetime.datetime.now() - c
-                    rfTime = refDate - datetime.timedelta(minutes=9)
-                    flagZero = True
+                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
+                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
+                            {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
         dfT = pd.DataFrame(data)
-        processPastTenCandlesData(uid + 1, a, rfTime, flagZero, dfT)
+        sid = uid + 1
+        dfT.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}\\{sid}.csv", index=False)
+        # processPastTenCandlesData(uid + 1, a, rfTime, flagZero, dfT)
         # getFirstItrCandlesticksProperties(uid+1, a)
 
     # main loop for thread
@@ -84,12 +86,9 @@ def getTestFirstItrCandlestickData(r, isLive=False):
         with ThreadPoolExecutor() as executor:
             ltc = list(range(i - 6, i))
             executor.map(getCandleFirstDataC, ltc)
-        timeDiff = 1 - (time.time() - stt)
-        if timeDiff > 0:
-            time.sleep(timeDiff)
+            time.sleep(1)
 
     print(f"The execution time is {time.time() - startTime}")
 
 
-# c = getRefDateConstant("30 Oct 2023  09:35:00.000")
-# getTestFirstItrCandlestickData(60)
+getSpecificDateHistoricDataUsingSmartApi("2024-04-16")
