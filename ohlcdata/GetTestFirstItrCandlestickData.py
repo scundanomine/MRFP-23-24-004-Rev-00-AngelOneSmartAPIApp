@@ -40,7 +40,6 @@ def getTestFirstItrCandlestickData(r, isLive=False):
 
     def getCandleFirstDataC(uid):
         b = dfc["token"][uid]
-        a = dfc["symbol"][uid]
         flagZero = False
         if uid < i - 3:
             try:
@@ -75,7 +74,7 @@ def getTestFirstItrCandlestickData(r, isLive=False):
                     rfTime = refDate - datetime.timedelta(minutes=9)
                     flagZero = True
         dfT = pd.DataFrame(data)
-        processPastTenCandlesData(uid + 1, a, rfTime, flagZero, dfT)
+        processPastTenCandlesData(uid + 1, rfTime, dfT, flagZero)
         # getFirstItrCandlesticksProperties(uid+1, a)
 
     # main loop for thread

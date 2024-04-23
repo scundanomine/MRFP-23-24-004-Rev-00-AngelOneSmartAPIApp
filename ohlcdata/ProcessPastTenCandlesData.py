@@ -2,10 +2,10 @@ import pandas as pd
 import datetime
 
 
-def processPastTenCandlesData(uid, a, rfTime, flagZero, df=pd.DataFrame(columns=list(range(6)), index=list(range(10)))):
-    if len(df) == 10 and flagZero is False:
+def processPastTenCandlesData(uid, rfTime, df, flagZero=False):
+    if len(df) == 10 or flagZero:
         df.to_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}_{a}.csv",
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
             index=False)
     else:
         dfOne = pd.DataFrame(columns=list(range(6)), index=list(range(10)))
@@ -15,14 +15,13 @@ def processPastTenCandlesData(uid, a, rfTime, flagZero, df=pd.DataFrame(columns=
             newDateF = rfTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
             dfOne.loc[i, 0] = newDateF
             # query condition
-            if len(df.loc[(df[0] == newDateF)]) != 0:
-                dfOne.iloc[i] = df.loc[(df[0] == newDateF)]
+            if len(df.loc[(df['0'] == newDateF)]) != 0:
+                dfOne.iloc[i] = df.loc[(df['0'] == newDateF)]
             rfTime = rfTime + delta
         dfOne.to_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}_{a}.csv",
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
             index=False)
         # print(dfOne)
-
 
 # c = getRefDateConstant("30 Oct 2023  09:35:00.000")
 # refDate = datetime.datetime.now() - c

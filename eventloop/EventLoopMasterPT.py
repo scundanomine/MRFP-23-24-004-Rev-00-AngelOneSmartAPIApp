@@ -12,6 +12,7 @@ from eventloop.CleaningAndPreRequisitePT import cleaningAndPreRequisitePT
 from eventloop.EventLoopForAllITRCandlestickProperties import eventLoopForAllITRCandlestickProperties
 from eventloop.EventLoopForFirstITRCandlestickProperties import eventLoopForFirstITRCandlestickProperties
 from exit.TakeExit import takeExit
+from historicdata.GetFirstItrHistoricData import getFirstItrHistoricData
 from ltpdistribution.GetAllItrLtpDistribution import getAllItrLtpDistribution
 from ltpdistribution.GetFirstItrLtpDistribution import getFirstItrLtpDistribution
 from marketstructure.GetAllItrMarketStructure import getAllItrMarketStructure
@@ -130,7 +131,8 @@ if __name__ == "__main__":
     cleaningAllRecordsFromRR()
 
     # getting past 10 candles data
-    getTestFirstItrCandlestickData(m)
+    # getTestFirstItrCandlestickData(m)   # obsolete only in past pt
+    getFirstItrHistoricData()
 
     # getting past 10 candles properties
     eventLoopForFirstITRCandlestickProperties()

@@ -5,6 +5,7 @@ from commonudm.GetSymbolAndToken import getSymbolAndToken
 from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTokenList
 from eventloop.CreateGSTDataFile import *
 from historicdata.HistoricDataForOneMinuteForTraditionalPivot import historicDataForOneMinuteForTraditionalPivot
+from historicdata.ParsingHistoricDataWithDateTime import parsingHistoricDataWithDateTime
 
 
 def getSpecificDateHistoricDataUsingSmartApi(c):
@@ -87,6 +88,8 @@ def getSpecificDateHistoricDataUsingSmartApi(c):
             ltc = list(range(i - 6, i))
             executor.map(getCandleFirstDataC, ltc)
             time.sleep(1)
+    for j in range(r):
+        parsingHistoricDataWithDateTime(c, j+1)
 
     print(f"The execution time is {time.time() - startTime}")
 
