@@ -4,34 +4,35 @@ from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTo
 from commonudm.GetterTimeDelta import getterTimeDelta
 from ltpdistribution.GetBearishCandleLtpDistribution import getBearishCandleLtpDistribution
 from ltpdistribution.GetBullishCandleLtpDistribution import getBullishCandleLtpDistribution
-from ltpdistribution.GetLtpDistributionWithQuery import getLtpDistributionWithQuery
 from ltpdistribution.GetterSpecificDistributionDf import getterSpecificDistributionDf
 from ohlcdata.GetterFFDS import getterFFDS
 
 
-def getAllItrLtpDistribution():
+def getAllItrLtpDistributionOld():
     cv = getterTimeDelta()
     exitTime = getterExitTime()
-    date = datetime.datetime.today() - cv
-    date = date.strftime("%Y-%m-%d")
     while datetime.datetime.now() - cv < exitTime:
         gDf = getterRequiredSymbolAndTokenList()
-        futureDateTime = datetime.datetime.now() - cv + datetime.timedelta(minutes=4)
-        reqTime = futureDateTime.strftime("%Y-%m-%d %H:%M")
+        fFds = getterFFDS()
         for index, row in gDf.iterrows():
             uid = row['id']
             ldDf = getterSpecificDistributionDf("specificdistributiondf", uid)
-            refTime = ldDf[2, 'time']
-            if refTime != reqTime:
+            rowX = fFds.iloc[uid - 1]
+            if rowX['0'] != ldDf.loc[2, "time"]:
                 # queue operation for ltp distribution
                 ldDf = ldDf.drop(0, axis=0)
                 ldDf.index = list(range(2))
                 ldDf.loc[len(ldDf)] = 0
-                ldDf.loc[2, 'time'] = reqTime
-                # get data from query
-                df = getLtpDistributionWithQuery(futureDateTime, futureDateTime, uid, date)
-                df = df.reset_index()
-                if len(df.loc[df['time'] == reqTime]) != 0:
-                    ldDf.iloc[2] = df.loc[df['time'] == reqTime]
+                idx = 2
+                if rowX['4'] != 0:
+                    if rowX['1'] <= rowX['4']:  # for bullish candle
+                        ltpLst = getBullishCandleLtpDistribution(rowX)
+                        ldDf.loc[idx] = ltpLst
+                    else:  # for bearish candle
+                        ltpLst = getBearishCandleLtpDistribution(rowX)
+                        ldDf.loc[idx] = ltpLst
+                else:
+                    ldDf.loc[idx, 'time'] = rowX["0"]
                 ldDf.to_csv(
-                    f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv")
+                    f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv",
+                    index=False)

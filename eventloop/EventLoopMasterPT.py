@@ -195,7 +195,7 @@ if __name__ == "__main__":
     # starting 14th process of ltp distribution
     pFourteen = multiprocessing.Process(target=ltpDistribution, args=[])
 
-    pOne.start()
+    # pOne.start()
     pTwo.start()
     # pThree.start()
     pFour.start()
@@ -210,7 +210,7 @@ if __name__ == "__main__":
     pThirteen.start()
     pFourteen.start()
 
-    pOne.join()
+    # pOne.join()
     pTwo.join()
     # pThree.join()
     pFour.join()

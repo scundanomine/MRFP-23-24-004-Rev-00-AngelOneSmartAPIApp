@@ -15,8 +15,8 @@ def getFirstItrHistoricData():
     date = date.strftime("%Y-%m-%d")
     # getter required symbol and token
     gDf = getterRequiredSymbolAndTokenList()
-    fromDateTime = datetime.datetime.now() - cv - datetime.timedelta(minutes=9)
-    toDateTime = datetime.datetime.now() - cv + datetime.timedelta(minutes=1)
+    toDateTime = datetime.datetime.now()
+    fromDateTime = toDateTime - datetime.timedelta(minutes=10)
     for index, row in gDf.iterrows():
         uid = row['id']
         data = getHistoricDataWithQuery(fromDateTime, toDateTime, uid, date)

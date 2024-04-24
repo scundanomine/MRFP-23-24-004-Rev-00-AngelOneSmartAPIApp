@@ -3,13 +3,11 @@ import math
 
 def getBearishCandleLtpDistribution(rowX):
     # calculation for abc
-    time = rowX['0']
     opn = rowX['1']
     high = rowX['2']
     low = rowX['3']
     close = rowX['4']
-    ltpLst = list(range(61))
-    ltpLst[0] = time
+    ltpLst = list(range(60))
     if high > low:
         a = (high - opn) / (high - low)
         a = math.floor(a * 60)
@@ -39,5 +37,5 @@ def getBearishCandleLtpDistribution(rowX):
             ltp = low + m * (t - a - b - cByTwo)
         else:
             ltp = rowX['4']
-        ltpLst[t + 1] = ltp
+        ltpLst[t] = ltp
     return ltpLst

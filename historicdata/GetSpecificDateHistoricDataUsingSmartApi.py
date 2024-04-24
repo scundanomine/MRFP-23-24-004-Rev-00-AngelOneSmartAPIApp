@@ -6,6 +6,7 @@ from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTo
 from eventloop.CreateGSTDataFile import *
 from historicdata.HistoricDataForOneMinuteForTraditionalPivot import historicDataForOneMinuteForTraditionalPivot
 from historicdata.ParsingHistoricDataWithDateTime import parsingHistoricDataWithDateTime
+from ltpdistribution.GetLtpDistributionForAllCandles import getLtpDistributionForAllCandles
 
 
 def getSpecificDateHistoricDataUsingSmartApi(c):
@@ -17,6 +18,10 @@ def getSpecificDateHistoricDataUsingSmartApi(c):
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}"):
         os.makedirs(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}")
+    if not os.path.exists(
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{c}"):
+        os.makedirs(
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{c}")
     print("Process for past 10 candles data started")
     startTime = time.time()
     dfc = getSymbolAndToken()
@@ -90,8 +95,9 @@ def getSpecificDateHistoricDataUsingSmartApi(c):
             time.sleep(1)
     for j in range(r):
         parsingHistoricDataWithDateTime(c, j+1)
+    getLtpDistributionForAllCandles(c)
 
     print(f"The execution time is {time.time() - startTime}")
 
 
-getSpecificDateHistoricDataUsingSmartApi("2024-04-16")
+getSpecificDateHistoricDataUsingSmartApi("2024-04-15")
