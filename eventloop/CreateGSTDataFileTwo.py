@@ -7,7 +7,7 @@ from ohlcdata.GetterPastTenCandleDF import getterPastTenCandleDf
 
 def createGSTDataFileTwo(sid, symbol):
     # get df
-    df = getterPastTenCandleDf(sid, symbol)
+    df = getterPastTenCandleDf(sid)
 
     sdf = getterDummyDf()
 

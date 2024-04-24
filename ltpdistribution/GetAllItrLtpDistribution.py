@@ -21,7 +21,7 @@ def getAllItrLtpDistribution():
         for index, row in gDf.iterrows():
             uid = row['id']
             ldDf = getterSpecificDistributionDf("specificdistributiondf", uid)
-            refTime = ldDf[2, 'time']
+            refTime = ldDf.loc[2, 'time']
             if refTime != reqTime:
                 # queue operation for ltp distribution
                 ldDf = ldDf.drop(0, axis=0)

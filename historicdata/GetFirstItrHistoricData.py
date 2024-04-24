@@ -8,15 +8,16 @@ from ohlcdata.ProcessPastTenCandlesData import processPastTenCandlesData
 
 
 def getFirstItrHistoricData():
-    print("Process for past 10GetHistoricDataForSpecificUidWithToAndFromDateTime candles data started")
+    print("Process for past 10 candles data started")
     startTime = time.time()
     cv = getterTimeDelta()
     date = datetime.datetime.today() - cv
     date = date.strftime("%Y-%m-%d")
     # getter required symbol and token
     gDf = getterRequiredSymbolAndTokenList()
-    toDateTime = datetime.datetime.now()
-    fromDateTime = toDateTime - datetime.timedelta(minutes=10)
+    currentRefTime = datetime.datetime.now() - cv
+    toDateTime = currentRefTime + datetime.timedelta(minutes=1)
+    fromDateTime = currentRefTime - datetime.timedelta(minutes=9)
     for index, row in gDf.iterrows():
         uid = row['id']
         data = getHistoricDataWithQuery(fromDateTime, toDateTime, uid, date)

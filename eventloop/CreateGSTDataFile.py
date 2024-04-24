@@ -6,7 +6,7 @@ from ohlcdata.GetterPastTenCandleDF import getterPastTenCandleDf
 
 def createGSTDataFile(sid, symbol):
     # get df
-    sdf = getterPastTenCandleDf(sid, symbol)
+    sdf = getterPastTenCandleDf(sid)
 
     # rename ohlc
     sdf.rename(columns={'0': "time", '1': "O", '2': "H", '3': "L", '4': "C", '5': "V"}, inplace=True)

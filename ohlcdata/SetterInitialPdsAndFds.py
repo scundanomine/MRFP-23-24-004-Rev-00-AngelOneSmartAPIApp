@@ -16,7 +16,7 @@ def setterInitialPdsAndFds():
     for index, row in gDf.iterrows():
         uid = row['id']
         symbol = row['symbol']
-        df = getterPastTenCandleDf(uid, symbol)
+        df = getterPastTenCandleDf(uid)
         data = df.iloc[9]
         pds.iloc[index] = data
         fds.iloc[index] = data

@@ -1,23 +1,21 @@
 import datetime
 from commonudm.GetterTimeDelta import getterTimeDelta
-from ltpdistribution.GetterSpecificDistributionDf import getterSpecificDistributionDf
+from ltpdistribution.GetterSpecificDistributionDfWithTime import getterPartlySpecificDistributionDf
 
 
 def getLTPFromDistribution(uid, cv):
-    # getter fds and fFds
-    df = getterSpecificDistributionDf("specificdistributiondf", uid)
-    # cv = getterTimeDelta()
+    df = getterPartlySpecificDistributionDf(uid)
     # get time
     refDate = datetime.datetime.now() - cv + datetime.timedelta(minutes=1)
-    ts = str(refDate.strftime("%S"))
-    reqTime = refDate.strftime("%Y-%m-%dT%H:%M:00+05:30")
-
+    ts = refDate.strftime("%S")
+    reqTime = refDate.strftime("%Y-%m-%d %H:%M")
     # getting required ohlc
-    if df.loc[0, 'time'] == reqTime:
-        ltp = df.loc[0, ts]
-    else:
-        ltp = df.loc[1, ts]
-    return ltp
+    try:
+        return df.loc[reqTime, ts]
+    except:
+        ts = int(ts)
+        return df.loc[reqTime, str(ts)]
 
 
-# print(getLTPFromDistribution(11))
+cvs = getterTimeDelta()
+print(getLTPFromDistribution(11, cvs))

@@ -23,6 +23,7 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
         # get the id and symbol df
         gDf = getterRequiredSymbolAndTokenList()
         currentTime = datetime.datetime.now() - cv
+        toTime = currentTime + datetime.timedelta(minutes=1)
         reqTime = currentTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
         # iterate gDf
         for index, row in gDf.iterrows():
@@ -37,7 +38,7 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
                     sdf = getterSpecificTokenCandleDataFromWebSocket(token)
                     data = sdf.values.tolist()[0][:6]
                 else:
-                    data = getHistoricDataWithQuery(currentTime, currentTime, uid, date)
+                    data = getHistoricDataWithQuery(currentTime, toTime, uid, date)
                 # calculation for candle properties
                 getAllItrCandlesticksProperties(uid, symbol, data)
         # print(f"Execution time for All Itr candle properties (CP) is {time.time() - startTime}")

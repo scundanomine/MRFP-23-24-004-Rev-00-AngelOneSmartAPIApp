@@ -16,7 +16,7 @@ def setterPrePivotData():
     for index, row in gDf.iterrows():
         uid = row['id']
         symbol = row['symbol']
-        close = getterPastTenCandleDf(uid, symbol).loc[9, '4']
+        close = getterPastTenCandleDf(uid).loc[9, '4']
         pivDf.loc[index, 'C'] = close
 
     pivDf.to_csv(
