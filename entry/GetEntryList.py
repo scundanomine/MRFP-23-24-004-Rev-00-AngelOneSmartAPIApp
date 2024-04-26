@@ -42,7 +42,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
 
         # getter entry flags from the belli progressionem
         # ebf, esf = getEntryFlagUsingBasicStrategy()
-        ebf, esf = getEntryFlagUsingTrendingStrategy()
+        ebf, esf = getEntryFlagUsingTrendingStrategy(cv)
 
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList()
