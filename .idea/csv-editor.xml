@@ -94,6 +94,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\commonudm\resource\PastTimeByMin.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\commonudm\resource\RefTime.csv">
           <value>
             <Attribute>

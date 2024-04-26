@@ -4,6 +4,7 @@ import pandas as pd
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from positionportfolioandmargindisplay.ClockForReferenceTime import clockForReferenceTime
+from positionportfolioandmargindisplay.DisplayPastFiveMarketTrend import displayPastFiveMarketTrend
 from positionportfolioandmargindisplay.GetMarginDisplay import getMarginDisplay
 from positionportfolioandmargindisplay.GetPortfolioDisplay import getPortfolioDisplay
 from positionportfolioandmargindisplay.GetPositionDisplay import getPositionDisplay
@@ -26,6 +27,9 @@ def getPositionPortfolioAndMarginDisplay(isLive=False):
 
         # getter portfolio display
         getPortfolioDisplay()
+
+        # display for past last trend type
+        displayPastFiveMarketTrend(cv)
 
         # getter position display
         getPositionDisplay()

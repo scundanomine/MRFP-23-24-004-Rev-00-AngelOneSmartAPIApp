@@ -1,4 +1,5 @@
 from belliprogressionem.bellientry.GetEntryFlagUsingBasicStrategy import getEntryFlagUsingBasicStrategy
+from belliprogressionem.bellientry.GetEntryFlagUsingTrendingStrategy import getEntryFlagUsingTrendingStrategy
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetStackedETList import getStackedETList
@@ -40,7 +41,8 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                 print(f"exception while getting  eTBF, eTSF is {e}")
 
         # getter entry flags from the belli progressionem
-        ebf, esf = getEntryFlagUsingBasicStrategy()
+        # ebf, esf = getEntryFlagUsingBasicStrategy()
+        ebf, esf = getEntryFlagUsingTrendingStrategy()
 
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList()

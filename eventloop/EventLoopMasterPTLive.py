@@ -3,6 +3,7 @@ import time
 from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterStockQtn import getterStockQtn
+from commonudm.SetPrePastTimeByMin import setPrePastTimeByMin
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
 from commonudm.SetterReportDateForRR import setterReportDateForRR
 from entry.GetEntryList import getEntryList
@@ -107,6 +108,8 @@ if __name__ == "__main__":
 
     # setter reference time for trading
     setterReferenceDateConstant()
+
+    setPrePastTimeByMin(True)
 
     # setter report date and required data for rr
     setterReportDateForRR()

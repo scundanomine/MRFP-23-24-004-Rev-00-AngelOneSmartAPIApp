@@ -5,6 +5,7 @@ import pandas as pd
 
 from belliprogressionem.bellientry.GetEntryFlagUsingBasicStrategy import getEntryFlagUsingBasicStrategy
 from belliprogressionem.belliexit.GetExitFlagUsingBasicStrategy import getExitFlagUsingBasicStrategy
+from belliprogressionem.belliexit.GetExitFlagUsingTrendingStrategy import getExitFlagUsingTrendingStrategy
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
@@ -43,7 +44,8 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             except Exception as e:
                 print(f"exception while getting  eXBLF, eXSLF is {e}")
                 # getter entry flags from the belli progressionem
-        xbf, xsf = getExitFlagUsingBasicStrategy()
+        # xbf, xsf = getExitFlagUsingBasicStrategy()
+        xbf, xsf = getExitFlagUsingTrendingStrategy(cv)
         # getter position list
         pLDf = getterPositionList()
         # market condition
