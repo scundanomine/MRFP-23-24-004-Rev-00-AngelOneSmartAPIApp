@@ -21,6 +21,8 @@ def getFirstItrHistoricData():
     for index, row in gDf.iterrows():
         uid = row['id']
         data = getHistoricDataWithQuery(fromDateTime, toDateTime, uid, date)
+        if not data:
+            data = [{'0': "", '1': 0, '2': 0, '3': 0, '4': 0, '5': 0}]
         dfT = pd.DataFrame(data)
         processPastTenCandlesData(uid, fromDateTime, dfT)
 

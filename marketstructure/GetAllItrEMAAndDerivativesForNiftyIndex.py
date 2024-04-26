@@ -8,8 +8,8 @@ def getAllItrEMAAndDerivativesForNiftyIndex(df):
         df.loc[index, 'emaOne'] = (df.loc[9, 'C'] - df.loc[8, 'emaOne']) / 3 + df.loc[8, 'emaOne']
         df.loc[index, 'emaTwo'] = (df.loc[9, 'C'] - df.loc[8, 'emaTwo']) / 5 + df.loc[8, 'emaTwo']
         # calculation for first derivatives
-        df.loc[index, 'QOne'] = math.atan((df.loc[index, 'emaOne'] - df.loc[index - 1, 'emaOne']) / 2) * 180 / math.pi
-        df.loc[index, 'QTwo'] = math.atan((df.loc[index, 'emaTwo'] - df.loc[index - 1, 'emaTwo']) / 2) * 180 / math.pi
+        df.loc[index, 'QOne'] = math.atan((df.loc[index, 'emaOne'] - df.loc[index - 1, 'emaOne']) / 4) * 180 / math.pi
+        df.loc[index, 'QTwo'] = math.atan((df.loc[index, 'emaTwo'] - df.loc[index - 1, 'emaTwo']) / 4) * 180 / math.pi
         # calculation for second derivatives
         dyTwo = math.tan(df.loc[index, 'QOne'] * math.pi / 180) * 2
         dyOne = math.tan(df.loc[index - 1, 'QOne'] * math.pi / 180) * 2

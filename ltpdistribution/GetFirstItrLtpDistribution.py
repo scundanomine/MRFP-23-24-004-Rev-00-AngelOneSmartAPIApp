@@ -43,4 +43,4 @@ def getFirstItrLtpDistribution():
     # print(time.time() - startTime)
 
 
-getFirstItrLtpDistribution()
+# getFirstItrLtpDistribution()

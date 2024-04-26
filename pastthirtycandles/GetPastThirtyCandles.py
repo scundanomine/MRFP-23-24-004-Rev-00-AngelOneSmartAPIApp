@@ -5,6 +5,7 @@ from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterRequiredSymbolAndTokenList import getterRequiredSymbolAndTokenList
 from commonudm.GetterTimeDelta import getterTimeDelta
+from historicdata.GetHistoricDataWithQuery import getHistoricDataWithQuery
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
 from ohlcdata.GetterFDS import getterFDS
 from pastthirtycandles.GetterSpecificPastThirtyCandlesData import getterSpecificPastThirtyCandlesData
@@ -20,9 +21,14 @@ def getPastThirtyCandles(isLive=False):
     else:
         cv = getterTimeDelta()
     exitTime = getterExitTime()
+    date = datetime.datetime.today() - cv
+    date = date.strftime("%Y-%m-%d")
     while datetime.datetime.now() - cv < exitTime:
         # getter symbol and token list
         sTDf = getterRequiredSymbolAndTokenList()
+        currentTimePlusOne = datetime.datetime.now() - cv + datetime.timedelta(minutes=1)
+        toTime = currentTimePlusOne + datetime.timedelta(minutes=1)
+        reqTime = currentTimePlusOne.strftime("%Y-%m-%dT%H:%M:00+05:30")
         for index, row in sTDf.iterrows():
             uid = row['id']
             symbol = row['symbol']
@@ -43,15 +49,23 @@ def getPastThirtyCandles(isLive=False):
                 if isLive:
                     data = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).iloc[0]
                 else:
-                    data = getterFDS().iloc[uid - 1]
+                    lstData = getHistoricDataWithQuery(currentTimePlusOne, toTime, uid, date)
+                    if not lstData:
+                        data = {"0": reqTime, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0}
+                    else:
+                        try:
+                            data = lstData[0]
+                        except Exception as e:
+                            print(f"exception while getting historic data for {uid} for process-2 is {e}")
+                            data = {"0": reqTime, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0}
                 lid = 29
                 tdf.iloc[lid] = tdf.iloc[lid-1]
-                tdf.loc[lid, "time"] = data[0]
-                tdf.loc[lid, "O"] = data[1]
-                tdf.loc[lid, "H"] = data[2]
-                tdf.loc[lid, "L"] = data[3]
-                tdf.loc[lid, "C"] = data[4]
-                tdf.loc[lid, "V"] = data[5]
+                tdf.loc[lid, "time"] = data['0']
+                tdf.loc[lid, "O"] = data['1']
+                tdf.loc[lid, "H"] = data['2']
+                tdf.loc[lid, "L"] = data['3']
+                tdf.loc[lid, "C"] = data['4']
+                tdf.loc[lid, "V"] = data['5']
                 tdf.to_csv(
                     f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\pastthirtycandlewisedata\\{uid}_{symbol}.csv",
                     index=False)

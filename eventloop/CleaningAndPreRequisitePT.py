@@ -9,17 +9,13 @@ from entry.SetterPreEntryList import setterPreEntryList
 from entrytriggeredlist.CleaningAndSettingETList import cleaningAndSettingETList
 from entrytriggeredlist.GetterPreBlackListForET import getterPreBlackListForET
 from exit.SetterPreExitInputs import setterPreExitInputs
-from ltpdistribution.GetSampleDistributionDf import getSampleDistributionDf
-from ltpdistribution.SetPreLtpDistribution import setPreLtpDistribution
 from margin.GetterPreMargin import getterPreMargin
 from ohlcdata.CleaningAndSettingPastTenCandleData import cleaningAndSettingPastTenCandleData
-from ohlcdata.SetterInitialPdsAndFds import setterInitialPdsAndFds
 from ohlcdata.SetterPrePdsFdsAndFfdsList import setterPrePdsFdsAndFfdsList
 from pastthirtycandles.SetterDfOneForPastThirtyCandles import setterDfOneForPastThirtyCandles
 from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
 from position.GetterPrePositionId import getterPrePositionId
 from position.SetterPrePositionList import setterPrePositionList
-from readandrecord.CleaningAllRecordsFromRR import cleaningAllRecordsFromRR
 from readandrecord.SetterPrePECBListRR import setterPrePECBListRR
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
 from traditionalpivotalarm.SetterSRData import setterSRData
@@ -47,8 +43,6 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # cleaning and setting past pds and fds and fFds
     if not isLive:
         setterPrePdsFdsAndFfdsList()
-        getSampleDistributionDf()
-        setPreLtpDistribution()
 
     # setter pre pivot data
     setterSRData()
@@ -87,6 +81,5 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
 
     # cleaning and setter for past thirty candles
     setterDfOneForPastThirtyCandles()
-
 
 # cleaningAndPreRequisitePT()

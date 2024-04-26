@@ -11,12 +11,12 @@ def queueOperation(sid, symbol, data):
     gdf.loc[9, 'bulRP'] = 'none'
     gdf.loc[9, 'berRP'] = 'none'
     lid = 9
-    gdf.loc[lid, "time"] = data[0]
-    gdf.loc[lid, "O"] = data[1]
-    gdf.loc[lid, "H"] = data[2]
-    gdf.loc[lid, "L"] = data[3]
-    gdf.loc[lid, "C"] = data[4]
-    gdf.loc[lid, "V"] = data[5]
+    gdf.loc[lid, "time"] = data['0']
+    gdf.loc[lid, "O"] = data['1']
+    gdf.loc[lid, "H"] = data['2']
+    gdf.loc[lid, "L"] = data['3']
+    gdf.loc[lid, "C"] = data['4']
+    gdf.loc[lid, "V"] = data['5']
 
     return gdf
 
