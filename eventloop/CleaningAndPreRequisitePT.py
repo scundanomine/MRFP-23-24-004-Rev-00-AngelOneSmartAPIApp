@@ -16,6 +16,7 @@ from pastthirtycandles.SetterDfOneForPastThirtyCandles import setterDfOneForPast
 from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
 from position.GetterPrePositionId import getterPrePositionId
 from position.SetterPrePositionList import setterPrePositionList
+from positionportfolioandmargindisplay.SetterPreEntryBanned import setterPreEntryBanned
 from readandrecord.SetterPrePECBListRR import setterPrePECBListRR
 from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
 from traditionalpivotalarm.SetterSRData import setterSRData
@@ -74,6 +75,7 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # cleaning the setting the portfolio and margin
     getterPreFixedPortfolio()
     getterPreMargin()
+    setterPreEntryBanned()
 
     # cleaning for RR
     setterPrePECBListRR()
