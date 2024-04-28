@@ -1,5 +1,8 @@
+import time
+
 from ltpdistribution.GetPartlyCandleLengthFromDistribution import getPartlyCandleLengthAndGenderFromDistribution
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
+from positionportfolioandmargindisplay.SetETLiveAndEntryBannedParameters import setETLiveAndEntryBannedParameters
 
 
 def getExitFlagUsingTrendingStrategy(cv):
@@ -20,15 +23,23 @@ def getExitFlagUsingTrendingStrategy(cv):
         if mTyp == "Bullish" and pcg == 'red' and pl > 0.6 * atr:  # condition for emergency buy exit
             xBF = 'T'
             xSF = 'T'
+            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
+                                              trend=mTyp)
         elif mTyp == "Bearish" and pcg == 'green' and pl > 0.6 * atr:  # condition for emergency sell exit
             xBF = 'T'
             xSF = 'T'
+            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
+                                              trend=mTyp)
         elif pMTyp == "Bullish" and pMTyp != mTyp:  # condition for emergency buy exit due to market change
             xBF = 'T'
             xSF = 'F'
+            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
+                                              trend=mTyp)
         elif pMTyp == "Bearish" and pMTyp != mTyp:  # condition for emergency sell exit due to market change
             xBF = 'F'
             xSF = 'T'
+            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
+                                              trend=mTyp)
         elif mTyp == "Bullish":
             xBF = 'F'
             xSF = 'T'
