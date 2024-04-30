@@ -1,7 +1,9 @@
+from belliprogressionem.bellientry.GetEntryFlagUsingTrendingStrategy import getEntryFlagUsingTrendingStrategy
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetterDropAndSetterEntryList import getterDropAndSetterEntryList
+from entry.GetterETLiveActionFlag import getterETLiveActionFlag
 from entry.GetterEntryList import getterEntryList
 from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
 from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
@@ -32,6 +34,19 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
     exitTime = getterExitTime()
     reportDate = getterReportDateForRR()
     while datetime.datetime.now() - cv < exitTime:
+
+        # getting live action flags and they should not be interacted with strategy
+        while True:
+            try:
+                eTBF, eTSF = getterETLiveActionFlag()
+                break
+            except Exception as e:
+                print(f"exception while getting  eTBF, eTSF is {e}")
+
+        # getter entry flags from the belli progressionem
+        # ebf, esf = getEntryFlagUsingBasicStrategy()
+        ebf, esf = getEntryFlagUsingTrendingStrategy(cv)
+
         # getter Entry list
         eLDf = getterEntryList()
 
@@ -63,7 +78,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                     getterDropAndSetterEntryTriggeredList(uid)
             elif ltp == 0:
                 continue
-            elif ot == "buy":
+            elif ot == "buy" and eTBF == "F" and ebf == 'F':
                 if ltp >= lp:
                     maDf = getterAvailableMargin()
                     ma = maDf['margin'][0]
@@ -101,7 +116,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         getterDropAndSetterEntryTriggeredList(uid)
 
             # condition for short position
-            elif ot == "sell":
+            elif ot == "sell" and eTSF == "F" and esf == 'F':
                 if ltp <= lp:
                     maDf = getterAvailableMargin()
                     ma = maDf['margin'][0]

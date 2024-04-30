@@ -2747,6 +2747,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\historicdata\historicdatastate\2024-04-18\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\historicdata\historicdatastate\2024-04-18\120.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\ltpdistribution\ltpdistributionstate\SDDf.csv">
           <value>
             <Attribute>
@@ -3588,6 +3602,20 @@
           </value>
         </entry>
         <entry key="\ltpdistribution\ltpdistributionstate\allcandledistributiondf\2024-04-15\99.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ltpdistribution\ltpdistributionstate\allcandledistributiondf\2024-04-18\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ltpdistribution\ltpdistributionstate\allcandledistributiondf\2024-04-18\120.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -7060,6 +7088,20 @@
           </value>
         </entry>
         <entry key="\position\positionstate\PositionList.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\positionportfolioandmargindisplay\displaystate\EntryBanned.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\positionportfolioandmargindisplay\displaystate\PastTimeByMinEB.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

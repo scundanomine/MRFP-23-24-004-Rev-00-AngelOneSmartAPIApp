@@ -5,7 +5,7 @@ from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
 from positionportfolioandmargindisplay.SetETLiveAndEntryBannedParameters import setETLiveAndEntryBannedParameters
 
 
-def getExitFlagUsingTrendingStrategy(cv):
+def getExitFlagUsingTrendingStrategy(cv, pSize=0):
     try:
         df = getterMarketStructureDf()
         mTyp = df.loc[9, 'mTyp']
@@ -17,29 +17,20 @@ def getExitFlagUsingTrendingStrategy(cv):
 
         pl, pcg = getPartlyCandleLengthAndGenderFromDistribution(120, cv)
 
-        # elif mTyp == "SideWise" and trT >= 3:
-        #     xBF = 'F'
-        #     xSF = 'F'
         if mTyp == "Bullish" and pcg == 'red' and pl > 0.6 * atr:  # condition for emergency buy exit
             xBF = 'T'
             xSF = 'T'
-            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
-                                              trend=mTyp)
+            setETLiveAndEntryBannedParameters("T", "T", 'All', 'All', time.time(), mTyp, pSize)
         elif mTyp == "Bearish" and pcg == 'green' and pl > 0.6 * atr:  # condition for emergency sell exit
             xBF = 'T'
             xSF = 'T'
-            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
-                                              trend=mTyp)
+            setETLiveAndEntryBannedParameters("T", "T", 'All', 'All', time.time(), mTyp, pSize)
         elif pMTyp == "Bullish" and pMTyp != mTyp:  # condition for emergency buy exit due to market change
             xBF = 'T'
             xSF = 'F'
-            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
-                                              trend=mTyp)
         elif pMTyp == "Bearish" and pMTyp != mTyp:  # condition for emergency sell exit due to market change
             xBF = 'F'
             xSF = 'T'
-            setETLiveAndEntryBannedParameters(lbf="T", lsf="T", optionEntry='All', optionExit='All', rf=time.time(),
-                                              trend=mTyp)
         elif mTyp == "Bullish":
             xBF = 'F'
             xSF = 'T'

@@ -20,6 +20,7 @@ from pastthirtycandles.GetPastThirtyCandles import getPastThirtyCandles
 from pastthirtycandles.GetPrePastThirtyCandle import getPrePastThirtyCandle
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
+from positionportfolioandmargindisplay.SetPrePastTimeByMinEntryBanned import setPrePastTimeByMinEntryBanned
 from readandrecord.CleaningAllRecordsFromRR import cleaningAllRecordsFromRR
 from readandrecord.CreateRRDirectoriesIfNotExist import createRRDirectoriesIfNotExist
 from readandrecord.GetRecords import getRecords
@@ -110,6 +111,7 @@ if __name__ == "__main__":
     setterReferenceDateConstant()
 
     setPrePastTimeByMin(True)
+    setPrePastTimeByMinEntryBanned(True)
 
     # setter report date and required data for rr
     setterReportDateForRR()

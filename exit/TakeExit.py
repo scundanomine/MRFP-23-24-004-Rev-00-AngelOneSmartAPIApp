@@ -44,10 +44,12 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
             except Exception as e:
                 print(f"exception while getting  eXBLF, eXSLF is {e}")
                 # getter entry flags from the belli progressionem
-        # xbf, xsf = getExitFlagUsingBasicStrategy()
-        xbf, xsf = getExitFlagUsingTrendingStrategy(cv)
+
         # getter position list
         pLDf = getterPositionList()
+
+        # xbf, xsf = getExitFlagUsingBasicStrategy()
+        xbf, xsf = getExitFlagUsingTrendingStrategy(cv, len(pLDf))
         # market condition
         # flagBullish = checkForPotentialBullishMarket()
         # flagBearish = checkForPotentialBearishMarket()

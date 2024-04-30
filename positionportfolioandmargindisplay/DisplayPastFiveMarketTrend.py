@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 import datetime
 import xlwings as xw
@@ -14,10 +16,7 @@ def displayPastFiveMarketTrend(cv):
     ct = datetime.datetime.now() - cv
     ct = ct.strftime("%Y-%m-%d %H:%M:00")
     if ct != pt:
-        dfPt.loc[0, 'time'] = ct
-        dfPt.to_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\PastTimeByMin.csv",
-            index=False)
+        time.sleep(2)
         while True:
             try:
                 # getting data from the sheet
@@ -34,6 +33,10 @@ def displayPastFiveMarketTrend(cv):
                 break
             except Exception as e:
                 print(f"The exception while getPositionDisplay is {e}")
+        dfPt.loc[0, 'time'] = ct
+        dfPt.to_csv(
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\PastTimeByMin.csv",
+            index=False)
 
 
 # cvp = getterTimeDelta()
