@@ -4,7 +4,9 @@ from marketstructure.GetFirstItrMarketTimeOfTrend import getFirstItrMarketTimeOf
 from marketstructure.GetFirstItrMarketTrend import getFirstItrMarketTrend
 from marketstructure.GetFirstItrThitaOneForNiftyIndex import getFirstItrThitaOneForNiftyIndex
 from marketstructure.GetFirstItrThitaTwoForNiftyIndex import getFirstItrThitaTwoForNiftyIndex
+from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
 from marketstructure.SetterPreMarketStructureDf import setterPreMarketStructureDf
+from positionportfolioandmargindisplay.DisplayPastFiveMarketTrend import displayPastFiveMarketTrend
 
 
 def getFirstItrMarketStructure():
@@ -15,3 +17,5 @@ def getFirstItrMarketStructure():
     getFirstItrMarketTrend()
     getFirstItrMarketStrength()
     getFirstItrMarketTimeOfTrend()
+    df = getterMarketStructureDf()
+    displayPastFiveMarketTrend(df)

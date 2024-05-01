@@ -9,6 +9,8 @@ from marketstructure.GetAllItrMarketStrength import getAllItrMarketStrength
 from marketstructure.GetAllItrMarketTimeOfTrend import getAllItrMarketTimeOfTrend
 from marketstructure.GetAllItrMarketTrend import getAllItrMarketTrend
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
+from positionportfolioandmargindisplay.DisplayPastFiveMarketTrend import displayPastFiveMarketTrend
+from positionportfolioandmargindisplay.GetEntryBannedDueToEmergencyExit import getEntryBannedDueToEmergencyExit
 
 
 def getAllItrMarketStructure(isLive=False):
@@ -38,6 +40,8 @@ def getAllItrMarketStructure(isLive=False):
             df.to_csv(
                 f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\marketstructure\\marketstate\\MarketStructure.csv",
                 index=False)
+            displayPastFiveMarketTrend(df)
+            getEntryBannedDueToEmergencyExit(df)
 
 
 # getAllItrMarketStructure()
