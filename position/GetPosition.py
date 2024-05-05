@@ -45,7 +45,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
 
         # getter entry flags from the belli progressionem
         # ebf, esf = getEntryFlagUsingBasicStrategy()
-        ebf, esf = getEntryFlagUsingTrendingStrategy(cv)
+        ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
 
         # getter Entry list
         eLDf = getterEntryList()
@@ -62,7 +62,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
             lp = row['lp']
             sl = row['sl']
             refTime = row["tOEP"]
-            mr = row['mr']
+            margin = 5
             # condition for long position
             # condition for pre exit
             if ltp == 0 and time.time() - refTime >= 600:
@@ -80,6 +80,9 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                 continue
             elif ot == "buy" and eTBF == "F" and ebf == 'F':
                 if ltp >= lp:
+                    row['lp'] = ltp
+                    # calculation for margin required
+                    mr = abs(lp * row["q"] / margin)
                     maDf = getterAvailableMargin()
                     ma = maDf['margin'][0]
                     if mr <= ma:
@@ -91,6 +94,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
                         row['gol'] = 0
+                        row['mr'] = mr
                         with lock:
                             # upend the position list
                             getterAppendAndSetterPositionList(row)
@@ -118,6 +122,9 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
             # condition for short position
             elif ot == "sell" and eTSF == "F" and esf == 'F':
                 if ltp <= lp:
+                    row['lp'] = ltp
+                    # calculation for margin required
+                    mr = abs(lp * row["q"] / margin)
                     maDf = getterAvailableMargin()
                     ma = maDf['margin'][0]
                     if mr <= ma:
@@ -129,6 +136,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
                         row['gol'] = 0
+                        row['mr'] = mr
                         with lock:
                             # upend the position list
                             getterAppendAndSetterPositionList(row)

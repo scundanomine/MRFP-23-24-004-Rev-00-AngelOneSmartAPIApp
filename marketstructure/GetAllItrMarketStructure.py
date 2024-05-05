@@ -8,6 +8,7 @@ from marketstructure.GetAllItrEMAAndDerivativesForNiftyIndex import getAllItrEMA
 from marketstructure.GetAllItrMarketStrength import getAllItrMarketStrength
 from marketstructure.GetAllItrMarketTimeOfTrend import getAllItrMarketTimeOfTrend
 from marketstructure.GetAllItrMarketTrend import getAllItrMarketTrend
+from marketstructure.GetAllItrMarketTrendWithWeightedAvg import getAllItrMarketTrendWithWeightedAvg
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
 from positionportfolioandmargindisplay.DisplayPastFiveMarketTrend import displayPastFiveMarketTrend
 from positionportfolioandmargindisplay.GetEntryBannedDueToEmergencyExit import getEntryBannedDueToEmergencyExit
@@ -33,7 +34,8 @@ def getAllItrMarketStructure(isLive=False):
                 df.loc[9, name] = cdf.loc[9, name]
             # calculation for EMAs and their derivatives
             df = getAllItrEMAAndDerivativesForNiftyIndex(df)
-            df = getAllItrMarketTrend(df)
+            # df = getAllItrMarketTrend(df)
+            df = getAllItrMarketTrendWithWeightedAvg(df)
             df = getAllItrMarketStrength(df)
             df = getAllItrMarketTimeOfTrend(df)
             df = df.round(decimals=2)

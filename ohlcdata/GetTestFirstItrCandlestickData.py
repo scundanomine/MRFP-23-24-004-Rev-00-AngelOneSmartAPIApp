@@ -14,10 +14,10 @@ def getTestFirstItrCandlestickData(r, isLive=False):
     startTime = time.time()
     dfc = getSymbolAndToken()
     if isLive:
-        cv = pd.to_timedelta(0)
+        c = pd.to_timedelta(0)
     else:
-        cv = getterTimeDelta()
-    c = getterTimeDelta()
+        c = getterTimeDelta()
+    # c = getterTimeDelta()
     # creating session one
     while True:
         try:

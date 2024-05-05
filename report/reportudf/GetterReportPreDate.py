@@ -11,16 +11,14 @@ def getterReportPreDate():
             dt = wb.sheets("MAndP")
 
             # creating the df
-            marDf = pd.DataFrame(dt.range("Q2:Q3").value)
+            marDf = pd.DataFrame([dt['Q2'].value], columns=['date'])
             break
         except Exception as e:
             print(f"Exception while getterPrePositionId is {e}")
-    marDf.rename(columns={0: 'date'}, inplace=True)
-    marDf = marDf.drop(labels=[1], axis=0)
     marDf.to_csv(
         "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\areportstate\\date.csv",
         index=False)
     return marDf
 
 
-getterReportPreDate()
+# print(getterReportPreDate())

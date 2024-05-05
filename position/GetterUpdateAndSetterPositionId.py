@@ -1,21 +1,22 @@
 import multiprocessing
 import pandas as pd
 
+from position.GetterPositionIdForSpecificDate import getterPositionIdForSpecificDate
 
-def getterUpdateAndSetterPositionId(lock=multiprocessing.Lock()):
+
+def getterUpdateAndSetterPositionId(rDate, lock=multiprocessing.Lock()):
     try:
         with lock:
-            df = pd.read_csv(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PId.csv")
-            df.loc[0, 'pid'] = df.loc[0, 'pid'] + 1
-            sid = df.loc[0, 'pid']
+            pid = getterPositionIdForSpecificDate(rDate)
+            pid = pid + 1
+            df = pd.DataFrame([pid], columns=['pid'])
             df.to_csv(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PId.csv",
-                index=False)
+                    f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{rDate}\\state\\PId.csv",
+                    index=False)
     except Exception as e:
         print(f"The exception while getterUpdateAndSetterPositionId is {e}")
-        sid = getterUpdateAndSetterPositionId(lock)
-    return sid
+        pid = getterUpdateAndSetterPositionId(rDate, lock)
+    return pid
 
 
 # print(getterUpdateAndSetterPositionId())

@@ -1,9 +1,10 @@
 import multiprocessing
 import time
+
 from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
+from commonudm.GetterFirstTimeRunFlagFromExcel import getterFirstTimeRunFlagFromExcel
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterStockQtn import getterStockQtn
-from commonudm.SetPrePastTimeByMin import setPrePastTimeByMin
 from commonudm.SetterReferenceDateConstant import setterReferenceDateConstant
 from commonudm.SetterReportDateForRR import setterReportDateForRR
 from entry.GetEntryList import getEntryList
@@ -20,77 +21,66 @@ from pastthirtycandles.GetPastThirtyCandles import getPastThirtyCandles
 from pastthirtycandles.GetPrePastThirtyCandle import getPrePastThirtyCandle
 from position.GetPosition import getPosition
 from positionportfolioandmargindisplay.GetPositionPortfolioAndMarginDisplay import getPositionPortfolioAndMarginDisplay
-from positionportfolioandmargindisplay.SetPrePastTimeByMinEntryBanned import setPrePastTimeByMinEntryBanned
 from readandrecord.CleaningAllRecordsFromRR import cleaningAllRecordsFromRR
 from readandrecord.CreateRRDirectoriesIfNotExist import createRRDirectoriesIfNotExist
 from readandrecord.GetRecords import getRecords
-from traditionalpivotalarm.CheckTraditionalPivotAlarmsWithoutThreading import \
-    checkTraditionalPivotAlarmsWithoutThreading
-from traditionalpivotalarm.SetterPrePivotData import setterPrePivotData
 from universallist.GetUniversalListWithoutThreading import getUniversalListWithoutThreading
 
 
 def candlesPropertiesAllITREvent():
-    print("Multiprocess two has been started")
+    print("Multiprocess One has been started")
     eventLoopForAllITRCandlestickProperties(True)
 
 
-def pivotAlarmEvent():
-    print("Multiprocess three has been started")
-    # setterSRData()
-    setterPrePivotData()
-    checkTraditionalPivotAlarmsWithoutThreading(True)
-
-
 def universalListEvent():
-    print("Multiprocess four has been started")
+    print("Multiprocess Two has been started")
     # setterDfThree()
     # setterNiftyDetailedListWithPivot()
     getUniversalListWithoutThreading(True)
 
 
 def aIListEvent():
-    print("Multiprocess five has been started")
+    print("Multiprocess three has been started")
     getAIListWithoutUdf(True)
 
 
 def eTListEvent(lock):
-    print("Multiprocess six has been started")
+    print("Multiprocess four has been started")
     getEntryTriggeredList(lock, True)
 
 
 def eLListEvent(lock):
-    print("Multiprocess seven has been started")
+    print("Multiprocess five has been started")
     getEntryList(lock, True)
 
 
 def positionListEvent(lock):
-    print("Multiprocess eight has been started")
+    print("Multiprocess six has been started")
     getPosition(lock, True)
 
 
 def exitEvent(lock):
-    print("Multiprocess nine has been started")
+    print("Multiprocess seven has been started")
     takeExit(lock, True)
 
 
 def PPMEvent():
-    print("Multiprocess ten has been started")
+    print("Multiprocess eight has been started")
     getPositionPortfolioAndMarginDisplay(True)
 
 
 def rREvent():
-    print("Multiprocess eleven has been started")
+    print("Multiprocess nine has been started")
     getRecords()
 
 
 def rPastThirtyCandles():
-    print("Multiprocess twelve has been started")
+    print("Multiprocess ten has been started")
     getPastThirtyCandles(True)
 
 
 def marketStructureData():
-    print("Multiprocess thirteen has been started")
+    print("Multiprocess eleven has been started")
     getAllItrMarketStructure(True)
 
 
@@ -110,13 +100,15 @@ if __name__ == "__main__":
     # setter reference time for trading
     setterReferenceDateConstant()
 
-    setPrePastTimeByMin(True)
-    setPrePastTimeByMinEntryBanned(True)
+    # setPrePastTimeByMin(True)   # check the validity of it
+    # setPrePastTimeByMinEntryBanned(True)  # check the validity of it
 
     # setter report date and required data for rr
     setterReportDateForRR()
     createRRDirectoriesIfNotExist()
-    cleaningAllRecordsFromRR()
+    flagF = getterFirstTimeRunFlagFromExcel()
+    if flagF == 'T':
+        cleaningAllRecordsFromRR()  # need to optimize it
 
     # getting past 10 candles data
     getTestFirstItrCandlestickData(m, True)
@@ -137,44 +129,41 @@ if __name__ == "__main__":
 
     lockA = multiprocessing.Lock()
 
-    # starting second process of getting present candles data property
-    pTwo = multiprocessing.Process(target=candlesPropertiesAllITREvent, args=[])
+    # starting one process of getting present candles data property
+    pOne = multiprocessing.Process(target=candlesPropertiesAllITREvent, args=[])
 
-    # starting Third process of getting pivot alarm
-    pThree = multiprocessing.Process(target=pivotAlarmEvent, args=[])
+    # starting two process of getting Universal list
+    pTwo = multiprocessing.Process(target=universalListEvent, args=[])
 
-    # starting Fourth process of getting Universal list
-    pFour = multiprocessing.Process(target=universalListEvent, args=[])
+    # starting three process of getting AI list
+    pThree = multiprocessing.Process(target=aIListEvent, args=[])
 
-    # starting Fifth process of getting AI list
-    pFive = multiprocessing.Process(target=aIListEvent, args=[])
+    # starting four process of getting Entry triggered list
+    pFour = multiprocessing.Process(target=eTListEvent, args=[lockA])
 
-    # starting sixth process of getting Entry triggered list
-    pSix = multiprocessing.Process(target=eTListEvent, args=[lockA])
+    # starting five process of getting entry list
+    pFive = multiprocessing.Process(target=eLListEvent, args=[lockA])
 
-    # starting seventh process of getting entry list
-    pSeven = multiprocessing.Process(target=eLListEvent, args=[lockA])
+    # starting six process of getting position
+    pSix = multiprocessing.Process(target=positionListEvent, args=[lockA])
 
-    # starting eighth process of getting position
-    pEight = multiprocessing.Process(target=positionListEvent, args=[lockA])
+    # starting seven process of getting Exit
+    pSeven = multiprocessing.Process(target=exitEvent, args=[lockA])
 
-    # starting ninth process of getting Exit
-    pNine = multiprocessing.Process(target=exitEvent, args=[lockA])
+    # starting eight process of position, portfolio and margin display
+    pEight = multiprocessing.Process(target=PPMEvent, args=[])
 
-    # starting tenth process of position, portfolio and margin display
-    pTen = multiprocessing.Process(target=PPMEvent, args=[])
+    # starting nine process of position, portfolio and margin display
+    pNine = multiprocessing.Process(target=rREvent, args=[])
 
-    # starting tenth process of position, portfolio and margin display
-    pEleven = multiprocessing.Process(target=rREvent, args=[])
+    # starting 10th process of position, portfolio and margin display
+    pTen = multiprocessing.Process(target=rPastThirtyCandles, args=[])
 
-    # starting 12th process of position, portfolio and margin display
-    pTwelve = multiprocessing.Process(target=rPastThirtyCandles, args=[])
+    # starting 11th process of market structure data
+    pEleven = multiprocessing.Process(target=rPastThirtyCandles, args=[])
 
-    # starting 13th process of market structure data
-    pThirteen = multiprocessing.Process(target=rPastThirtyCandles, args=[])
-
+    pOne.start()
     pTwo.start()
-    pThree.start()
     pFour.start()
     pFive.start()
     pSix.start()
@@ -183,11 +172,9 @@ if __name__ == "__main__":
     pNine.start()
     pTen.start()
     pEleven.start()
-    pTwelve.start()
-    pThirteen.start()
 
+    pOne.join()
     pTwo.join()
-    pThree.join()
     pFour.join()
     pFive.join()
     pSix.join()
@@ -196,8 +183,6 @@ if __name__ == "__main__":
     pNine.join()
     pTen.join()
     pEleven.join()
-    pTwelve.join()
-    pThirteen.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")

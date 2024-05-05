@@ -1,9 +1,20 @@
 import os
 from commonudm.GetterReportDateForRR import getterReportDateForRR
+import pandas as pd
 
 
 def createRRDirectoriesIfNotExist():
     reportDate = getterReportDateForRR()
+
+    # folder creation for state folder
+    if not os.path.exists(
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\state"):
+        os.makedirs(
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\state")
+        marDf = pd.DataFrame([0], columns=['pid'])
+        marDf.to_csv(
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\state\\PId.csv",
+            index=False)
     # folder creation for position details
     if not os.path.exists(
             f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positiondetails"):

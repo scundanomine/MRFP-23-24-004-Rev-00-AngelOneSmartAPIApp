@@ -42,7 +42,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
 
         # getter entry flags from the belli progressionem
         # ebf, esf = getEntryFlagUsingBasicStrategy()
-        ebf, esf = getEntryFlagUsingTrendingStrategy(cv)
+        ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
 
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList()
@@ -77,9 +77,9 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                         lp = 1.00025 * ltp
 
                         # calculation for margin required
-                        mr = abs(lp * q / margin)
+                        # mr = abs(lp * q / margin)
 
-                        upList = [0, uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0, 0,
+                        upList = [0, uid, sector, symbol, token, ot, ltp, lp, q, sl, target, 0, 'open', 'open', '', 0, 0,
                                   0,
                                   row['oc'],
                                   time.time(), '', '', ltp]
@@ -91,9 +91,9 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                         lp = 0.99975 * ltp
 
                         # calculation for margin required
-                        mr = abs(lp * q / margin)
+                        # mr = abs(lp * q / margin)
 
-                        upList = [0, uid, sector, symbol, token, ot, ltp, lp, q, sl, target, mr, 'open', 'open', '', 0, 0,
+                        upList = [0, uid, sector, symbol, token, ot, ltp, lp, q, sl, target, 0, 'open', 'open', '', 0, 0,
                                   0,
                                   row['oc'],
                                   time.time(), '', '', ltp]

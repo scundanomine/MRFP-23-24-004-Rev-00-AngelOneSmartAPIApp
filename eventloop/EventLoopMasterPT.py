@@ -1,6 +1,7 @@
 import multiprocessing
 import time
 from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
+from commonudm.GetterFirstTimeRunFlagFromExcel import getterFirstTimeRunFlagFromExcel
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterStockQtn import getterStockQtn
 from commonudm.SetPrePastTimeByMin import setPrePastTimeByMin
@@ -133,7 +134,9 @@ if __name__ == "__main__":
     # setter report date and required data for rr
     setterReportDateForRR()
     createRRDirectoriesIfNotExist()
-    cleaningAllRecordsFromRR()
+    flagF = getterFirstTimeRunFlagFromExcel()
+    if flagF == 'T':
+        cleaningAllRecordsFromRR()  # need to optimize it
 
     # getting past 10 candles data
     # getTestFirstItrCandlestickData(m)   # obsolete only in past pt

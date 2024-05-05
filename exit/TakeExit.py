@@ -49,12 +49,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
         pLDf = getterPositionList()
 
         # xbf, xsf = getExitFlagUsingBasicStrategy()
-        xbf, xsf = getExitFlagUsingTrendingStrategy(cv, len(pLDf))
-        # market condition
-        # flagBullish = checkForPotentialBullishMarket()
-        # flagBearish = checkForPotentialBearishMarket()
-        flagBullish = False
-        flagBearish = False
+        xbf, xsf = getExitFlagUsingTrendingStrategy(cv, len(pLDf), isLive)
 
         for index, row in pLDf.iterrows():
             eIDf = getExitInputs()

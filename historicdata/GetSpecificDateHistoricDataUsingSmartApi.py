@@ -100,4 +100,4 @@ def getSpecificDateHistoricDataUsingSmartApi(c):
     print(f"The execution time is {time.time() - startTime}")
 
 
-# getSpecificDateHistoricDataUsingSmartApi("2024-04-18")
+getSpecificDateHistoricDataUsingSmartApi("2024-04-26")

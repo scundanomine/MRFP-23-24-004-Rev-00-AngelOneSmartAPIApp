@@ -67,7 +67,6 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
 
     # cleaning the setting the position list
     setterPrePositionList()
-    getterPrePositionId()
 
     # setter pre exit inputs
     setterPreExitInputs()

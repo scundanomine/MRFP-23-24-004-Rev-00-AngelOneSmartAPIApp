@@ -2,8 +2,10 @@ import datetime
 import time
 import pandas as pd
 from commonudm.GetterExitTime import getterExitTime
+from commonudm.GetterReportDateForRR import getterReportDateForRR
 from commonudm.GetterTimeDelta import getterTimeDelta
 from position.GetterPositionId import getterPositionId
+from position.GetterPositionIdForSpecificDate import getterPositionIdForSpecificDate
 from readandrecord.GeneratorChartBlackListRR import generatorChartBlackListRR
 from readandrecord.GeneratorExitCandlePlotFileRR import generatorExitCandlePlotFileRR
 from readandrecord.GeneratorPositionCandlePlotFileRR import generatorPositionCandlePlotFileRR
@@ -16,9 +18,10 @@ def getRecords(isLive=False):
     else:
         cv = getterTimeDelta()
     exitTime = getterExitTime()
+    reportDate = getterReportDateForRR()
     while datetime.datetime.now() - cv < exitTime:
         # getter position id
-        pid = getterPositionId()
+        pid = getterPositionIdForSpecificDate(reportDate)
 
         # Population of black list
         generatorChartBlackListRR(pid)

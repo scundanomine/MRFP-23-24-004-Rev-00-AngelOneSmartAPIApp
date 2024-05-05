@@ -23,7 +23,6 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
         # get the id and symbol df
         gDf = getterRequiredSymbolAndTokenList()
         currentTime = datetime.datetime.now() - cv
-        toTime = currentTime + datetime.timedelta(minutes=1)
         reqTime = currentTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
         # iterate gDf
         for index, row in gDf.iterrows():
@@ -38,6 +37,7 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
                     sdf = getterSpecificTokenCandleDataFromWebSocket(token)
                     data = sdf.values.tolist()[0][:6]
                 else:
+                    toTime = currentTime + datetime.timedelta(minutes=1)
                     lstData = getHistoricDataWithQuery(currentTime, toTime, uid, date)
                     if not lstData:
                         data = {"0": reqTime, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0}

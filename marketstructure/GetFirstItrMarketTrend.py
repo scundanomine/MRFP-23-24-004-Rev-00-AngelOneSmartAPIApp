@@ -16,7 +16,7 @@ def getFirstItrMarketTrend():
                 elif row['QOne'] >= -30 and row['QOne'] <= 30:
                     cdf.loc[index, 'mTyp'] = "SideWise"
                 else:
-                    cdf.loc[index, 'mTyp'] = "NoTradingZone"
+                    cdf.loc[index, 'mTyp'] = "NTZ"
 
     cdf.to_csv(
         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\marketstructure\\marketstate\\MarketStructure.csv",
