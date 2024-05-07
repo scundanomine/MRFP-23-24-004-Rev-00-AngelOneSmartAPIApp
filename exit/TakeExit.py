@@ -5,6 +5,7 @@ import time
 import pandas as pd
 
 from belliprogressionem.GetterExitStrategyFlag import getterExitStrategyFlag
+from belliprogressionem.belliexit.GetExitFlagUsingTrendingStrategy import getExitFlagUsingTrendingStrategy
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
@@ -45,7 +46,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
         pLDf = getterPositionList()
 
         # xbf, xsf = getExitFlagUsingBasicStrategy()
-        xbf, xsf = getterExitStrategyFlag()
+        xbf, xsf = getExitFlagUsingTrendingStrategy(cv, len(pLDf), isLive)
 
         for index, row in pLDf.iterrows():
             eIDf = getExitInputs()

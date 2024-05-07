@@ -1,12 +1,10 @@
+import datetime
 import time
-from AIlists.GetCustomDfGainerOrLoser import getCustomDfGainerOrLoser
+import pandas as pd
 from AIlists.SetterAIList import setterAIList
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from universallist.GetterUniversalList import getterUniversalList
-import multiprocessing
-import datetime
-import pandas as pd
 
 
 def getAIListWithoutUdf(isLive=False):

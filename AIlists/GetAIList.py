@@ -76,4 +76,4 @@ def getAIList(niftySize=300):
     print(f"time of execution is {time.time() - startTime}")
 
 
-getAIList()
+# getAIList()

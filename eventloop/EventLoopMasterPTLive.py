@@ -2,6 +2,7 @@ import multiprocessing
 import time
 
 from AIlists.GetAIListWithoutUdf import getAIListWithoutUdf
+from belliprogressionem.GetAllItrStrategyEntryAndExitFlags import getAllItrStrategyEntryAndExitFlags
 from commonudm.GetterFirstTimeRunFlagFromExcel import getterFirstTimeRunFlagFromExcel
 from commonudm.GetterPreReferenceTime import getterPreReferenceTime
 from commonudm.GetterStockQtn import getterStockQtn
@@ -84,6 +85,11 @@ def marketStructureData():
     getAllItrMarketStructure(True)
 
 
+def rEntryAndExitStrategyFlags():
+    print("Multiprocess twelve has been started")
+    getAllItrStrategyEntryAndExitFlags(True)
+
+
 # def eventLoop():
 # four multiple process
 if __name__ == "__main__":
@@ -162,8 +168,12 @@ if __name__ == "__main__":
     # starting 11th process of market structure data
     pEleven = multiprocessing.Process(target=marketStructureData, args=[])
 
+    # starting 12th process of Entry and exit strategy flags
+    pTwelve = multiprocessing.Process(target=rEntryAndExitStrategyFlags, args=[])
+
     pOne.start()
     pTwo.start()
+    pThree.start()
     pFour.start()
     pFive.start()
     pSix.start()
@@ -172,9 +182,11 @@ if __name__ == "__main__":
     pNine.start()
     pTen.start()
     pEleven.start()
+    pTwelve.start()
 
     pOne.join()
     pTwo.join()
+    pThree.join()
     pFour.join()
     pFive.join()
     pSix.join()
@@ -183,6 +195,7 @@ if __name__ == "__main__":
     pNine.join()
     pTen.join()
     pEleven.join()
+    pTwelve.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")
