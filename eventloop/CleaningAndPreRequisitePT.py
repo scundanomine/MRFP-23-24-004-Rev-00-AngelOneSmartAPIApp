@@ -1,9 +1,12 @@
 from AIlists.CleaningAndSettingAIList import cleaningAndSettingAIList
+from belliprogressionem.SetterPreETStrategyFlag import setterPreETStrategyFlag
+from belliprogressionem.SetterPreExitStrategyFlag import setterPreExitStrategyFlag
 from candlestickdata.CleaningAndSettingGSTDataFiles import cleaningAndSettingGSTDataFiles
 from commonudm.GetterPreExitTime import getterPreExitTime
 from commonudm.GetterPreStockQtn import getterPreStockQtn
 from commonudm.SetterNiftyDetailedListWithPivots import setterNiftyDetailedListWithPivot
 from commonudm.SetterRequiredSymbolAndTokenList import setterRequiredSymbolAndTokenList
+from belliprogressionem.GetterETStrategyFlag import getterETStrategyFlag
 from entry.SetterPreECBList import setterPreECBList
 from entry.SetterPreEntryList import setterPreEntryList
 from entrytriggeredlist.CleaningAndSettingETList import cleaningAndSettingETList
@@ -14,7 +17,6 @@ from ohlcdata.CleaningAndSettingPastTenCandleData import cleaningAndSettingPastT
 from ohlcdata.SetterPrePdsFdsAndFfdsList import setterPrePdsFdsAndFfdsList
 from pastthirtycandles.SetterDfOneForPastThirtyCandles import setterDfOneForPastThirtyCandles
 from portfolio.GetterPreFixedPortfolio import getterPreFixedPortfolio
-from position.GetterPrePositionId import getterPrePositionId
 from position.SetterPrePositionList import setterPrePositionList
 from positionportfolioandmargindisplay.SetterPreEntryBanned import setterPreEntryBanned
 from readandrecord.SetterPrePECBListRR import setterPrePECBListRR
@@ -64,6 +66,8 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # cleaning the setting the Entry list
     setterPreECBList()
     setterPreEntryList()
+    setterPreETStrategyFlag()
+    setterPreExitStrategyFlag()
 
     # cleaning the setting the position list
     setterPrePositionList()

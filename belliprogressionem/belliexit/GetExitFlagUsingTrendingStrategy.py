@@ -1,5 +1,5 @@
 import time
-
+import pandas as pd
 from ltpdistribution.GetPartlyCandleLengthFromDistribution import getPartlyCandleLengthAndGenderFromDistribution
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
 from positionportfolioandmargindisplay.SetETLiveAndEntryBannedParameters import setETLiveAndEntryBannedParameters
@@ -52,6 +52,10 @@ def getExitFlagUsingTrendingStrategy(cv, pSize=0, liveFlag=False):
         else:
             xBF = 'F'
             xSF = 'F'
+        cdf = pd.DataFrame([[xBF, xSF]], columns=['xBF', 'xSF'])
+        cdf.to_csv(
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\belliprogressionem\\state\\ExSFlag.csv",
+            index=False)
         return xBF, xSF
     except Exception as e:
         print(f"Exception while getExitFlagUsingTrendingStrategy is {e}")

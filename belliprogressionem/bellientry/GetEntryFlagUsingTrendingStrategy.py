@@ -1,6 +1,7 @@
 from ltpdistribution.GetPartlyCandleLengthFromDistribution import getPartlyCandleLengthAndGenderFromDistribution
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
 from smartwebsocketdata.GetPartlyCandleLengthAndGenderFromWebSocket import getPartlyCandleLengthAndGenderFromWebSocket
+import pandas as pd
 
 
 def getEntryFlagUsingTrendingStrategy(cv, liveFlag=False):
@@ -31,6 +32,10 @@ def getEntryFlagUsingTrendingStrategy(cv, liveFlag=False):
         else:
             ebf = 'T'
             esf = 'T'
+        cdf = pd.DataFrame([[ebf, esf]], columns=['eTBF', 'eTSF'])
+        cdf.to_csv(
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\entry\\entrystate\\ETSFlag.csv",
+            index=False)
         return ebf, esf
     except Exception as e:
         print(f"Exception while getEntryFlagUsingTrendingStrategy is {e}")

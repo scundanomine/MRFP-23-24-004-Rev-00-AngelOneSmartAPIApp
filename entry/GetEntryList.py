@@ -1,5 +1,10 @@
-from belliprogressionem.bellientry.GetEntryFlagUsingBasicStrategy import getEntryFlagUsingBasicStrategy
-from belliprogressionem.bellientry.GetEntryFlagUsingTrendingStrategy import getEntryFlagUsingTrendingStrategy
+import datetime
+import multiprocessing
+import time
+
+import pandas as pd
+
+from belliprogressionem.GetterETStrategyFlag import getterETStrategyFlag
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetStackedETList import getStackedETList
@@ -10,17 +15,10 @@ from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
 from entry.LongPositionCalculator import longPositionCalculator
 from entry.ShortPositionCalculator import shortPositionCalculator
 from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
-from entrytriggeredlist.GetterEntryTriggeredList import getterEntryTriggeredList
-import datetime
-import time
-import multiprocessing
-
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 from ltpdistribution.GetLTPFromDistribution import getLTPFromDistribution
-from ohlcdata.GetFutureLTP import getFutureLTP
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
     getterSpecificTokenLivePartlyCandleDataFromWebSocket
-import pandas as pd
 
 
 def getEntryList(lock=multiprocessing.Lock(), isLive=False):
@@ -41,8 +39,8 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                 print(f"exception while getting  eTBF, eTSF is {e}")
 
         # getter entry flags from the belli progressionem
-        # ebf, esf = getEntryFlagUsingBasicStrategy()
-        ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
+        # ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
+        ebf, esf = getterETStrategyFlag()
 
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList()

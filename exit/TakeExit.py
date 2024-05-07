@@ -1,11 +1,10 @@
 import datetime
 import multiprocessing
 import time
+
 import pandas as pd
 
-from belliprogressionem.bellientry.GetEntryFlagUsingBasicStrategy import getEntryFlagUsingBasicStrategy
-from belliprogressionem.belliexit.GetExitFlagUsingBasicStrategy import getExitFlagUsingBasicStrategy
-from belliprogressionem.belliexit.GetExitFlagUsingTrendingStrategy import getExitFlagUsingTrendingStrategy
+from belliprogressionem.GetterExitStrategyFlag import getterExitStrategyFlag
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
@@ -17,9 +16,6 @@ from exit.GetExitInputs import getExitInputs
 from exit.GetterExitLiveActionFlag import getterExitLiveActionFlag
 from exit.GetterUpdateAndSetterExitInputs import getterUpdateAndSetterExitInputs
 from ltpdistribution.GetLTPFromDistribution import getLTPFromDistribution
-from marketstructure.CheckForPotentialBearishMarket import checkForPotentialBearishMarket
-from marketstructure.CheckForPotentialBullishMarket import checkForPotentialBullishMarket
-from ohlcdata.GetFutureLTP import getFutureLTP
 from position.GetterPositionList import getterPositionList
 from position.GetterUpdateAndSetterPositionList import getterUpdateAndSetterPositionList
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
@@ -49,7 +45,7 @@ def takeExit(lock=multiprocessing.Lock(), isLive=False):
         pLDf = getterPositionList()
 
         # xbf, xsf = getExitFlagUsingBasicStrategy()
-        xbf, xsf = getExitFlagUsingTrendingStrategy(cv, len(pLDf), isLive)
+        xbf, xsf = getterExitStrategyFlag()
 
         for index, row in pLDf.iterrows():
             eIDf = getExitInputs()

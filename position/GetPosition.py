@@ -1,27 +1,24 @@
-from belliprogressionem.bellientry.GetEntryFlagUsingTrendingStrategy import getEntryFlagUsingTrendingStrategy
+import datetime
+import multiprocessing
+import time
+import pandas as pd
+from belliprogressionem.GetterETStrategyFlag import getterETStrategyFlag
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetterDropAndSetterEntryList import getterDropAndSetterEntryList
 from entry.GetterETLiveActionFlag import getterETLiveActionFlag
 from entry.GetterEntryList import getterEntryList
-from entry.GetterUpdateAndSetterECBList import getterUpdateAndSetterECBList
-from entrytriggeredlist.GetterDropAndSetterEntryTriggeredList import getterDropAndSetterEntryTriggeredList
-from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 from ltpdistribution.GetLTPFromDistribution import getLTPFromDistribution
 from margin.GetterAvailableMargin import getterAvailableMargin
 from margin.GetterDebitAndSetterAvailableMargin import getterDebitAndSetterAvailableMargin
-from ohlcdata.GetFutureLTP import getFutureLTP
 from portfolio.GetterUpdateAndSetterFixedPortfolioWithExpenses import getterUpdateAndSetterFixedPortfolioWithExpenses
+from position.GetEtAndEntryDropFunction import getEtAndEntryDropFunction
 from position.GetterAppendAndSetterPositionList import getterAppendAndSetterPositionList
-import time
-import datetime
-import multiprocessing
 from position.GetterUpdateAndSetterPositionId import getterUpdateAndSetterPositionId
 from readandrecord.SetPositionDetailsAndCandles import setPositionDetailsAndCandles
 from smartwebsocketdata.GetterSpecificTokenLivePartlyCandleDataFromWebSocket import \
     getterSpecificTokenLivePartlyCandleDataFromWebSocket
-import pandas as pd
 
 
 def getPosition(lock=multiprocessing.Lock(), isLive=False):
@@ -35,20 +32,22 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
     reportDate = getterReportDateForRR()
     while datetime.datetime.now() - cv < exitTime:
 
-        # getting live action flags and they should not be interacted with strategy
-        while True:
-            try:
-                eTBF, eTSF = getterETLiveActionFlag()
-                break
-            except Exception as e:
-                print(f"exception while getting  eTBF, eTSF is {e}")
-
-        # getter entry flags from the belli progressionem
-        # ebf, esf = getEntryFlagUsingBasicStrategy()
-        ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
-
         # getter Entry list
         eLDf = getterEntryList()
+        if len(eLDf) != 0:
+            # getting live action flags and they should not be interacted with strategy
+            while True:
+                try:
+                    eTBF, eTSF = getterETLiveActionFlag()
+                    break
+                except Exception as e:
+                    print(f"exception while getting  eTBF, eTSF is {e}")
+
+            # getter entry flags from the belli progressionem
+            # ebf, esf = getEntryFlagUsingBasicStrategy()
+            ebf, esf = getterETStrategyFlag()
+        else:
+            continue
 
         for index, row in eLDf.iterrows():
             uid = row["id"]
@@ -68,18 +67,13 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
             if ltp == 0 and time.time() - refTime >= 600:
                 # row['po'] = 'cancel'
                 # row['slo'] = 'cancel'
-                with lock:
-                    # remove specific row from Entry list
-                    getterDropAndSetterEntryList(uid)
-                    # reset of black list
-                    getterUpdateAndSetterBlackListET(uid, 0)
-                    getterUpdateAndSetterECBList(uid, 0)
-                    # removal of specific row from ET list
-                    getterDropAndSetterEntryTriggeredList(uid)
+                getEtAndEntryDropFunction(lock, uid)
             elif ltp == 0:
                 continue
-            elif ot == "buy" and eTBF == "F" and ebf == 'F':
-                if ltp >= lp:
+            elif ot == "buy":
+                if eTBF == "T" or ebf == 'T':
+                    getEtAndEntryDropFunction(lock, uid)
+                elif ltp >= lp:
                     row['lp'] = ltp
                     # calculation for margin required
                     mr = abs(lp * row["q"] / margin)
@@ -110,18 +104,13 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                 elif ltp <= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'
                     # row['slo'] = 'cancel'
-                    with lock:
-                        # remove specific row from Entry list
-                        getterDropAndSetterEntryList(uid)
-                        # reset of black list
-                        getterUpdateAndSetterBlackListET(uid, 0)
-                        getterUpdateAndSetterECBList(uid, 0)
-                        # removal of specific row from ET list
-                        getterDropAndSetterEntryTriggeredList(uid)
+                    getEtAndEntryDropFunction(lock, uid)
 
             # condition for short position
-            elif ot == "sell" and eTSF == "F" and esf == 'F':
-                if ltp <= lp:
+            elif ot == "sell":
+                if eTSF == "T" or esf == 'T':
+                    getEtAndEntryDropFunction(lock, uid)
+                elif ltp <= lp:
                     row['lp'] = ltp
                     # calculation for margin required
                     mr = abs(lp * row["q"] / margin)
@@ -152,19 +141,11 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                 elif ltp >= sl or time.time() - refTime >= 600:
                     # row['po'] = 'cancel'
                     # row['slo'] = 'cancel'
-                    with lock:
-                        # remove specific row from Entry list
-                        getterDropAndSetterEntryList(uid)
-                        # reset of black list
-                        getterUpdateAndSetterBlackListET(uid, 0)
-                        getterUpdateAndSetterECBList(uid, 0)
-                        # removal of specific row from ET list
-                        getterDropAndSetterEntryTriggeredList(uid)
+                    getEtAndEntryDropFunction(lock, uid)
         # ctrA = ctrA + 1
         # if ctrA == 10:
         #     print(f"Execution time for getting position list (PL) is {time.time() - startTime}")
         #     ctrA = 0
         # time.sleep(0.125)
-
 
 # getPosition()

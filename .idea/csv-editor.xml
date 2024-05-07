@@ -66,6 +66,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\belliprogressionem\state\ExSFlag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\candlestickdata\candle_state\gstData.csv">
           <value>
             <Attribute>
@@ -151,6 +158,13 @@
           </value>
         </entry>
         <entry key="\entry\entrystate\ETLAFlag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\entry\entrystate\ETSFlag.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
