@@ -89,7 +89,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         print(f"Entry is place for buy order for {uid} hurray!!!!!!")
 
                         # assigning pid
-                        row['pid'] = getterUpdateAndSetterPositionId(lock)
+                        row['pid'] = getterUpdateAndSetterPositionId(reportDate, lock)
 
                         row['po'] = 'executed'
                         row['tOP'] = time.time()
@@ -131,7 +131,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                         print(f"Entry is place for sell order for {uid} hurray!!!!!!")
 
                         # assigning position id
-                        row['pid'] = getterUpdateAndSetterPositionId(lock)
+                        row['pid'] = getterUpdateAndSetterPositionId(reportDate, lock)
 
                         row['po'] = 'executed'
                         row['tOP'] = time.time()

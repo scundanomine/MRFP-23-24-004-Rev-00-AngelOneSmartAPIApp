@@ -35,7 +35,9 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
             else:
                 if isLive:
                     sdf = getterSpecificTokenCandleDataFromWebSocket(token)
-                    data = sdf.values.tolist()[0][:6]
+                    data = sdf.to_dict('records')[0]
+                    if data['0'] == psTime:
+                        continue
                 else:
                     toTime = currentTime + datetime.timedelta(minutes=1)
                     lstData = getHistoricDataWithQuery(currentTime, toTime, uid, date)

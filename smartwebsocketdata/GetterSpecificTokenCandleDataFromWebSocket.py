@@ -12,4 +12,4 @@ def getterSpecificTokenCandleDataFromWebSocket(token):
     return gdf
 
 
-# print(getterSpecificTokenCandleDataFromWebSocket(25))
+# print(getterSpecificTokenCandleDataFromWebSocket(25).to_dict('records')[0])

@@ -20,8 +20,9 @@ def setPartlyAndWholeCandleData(r=30, lock=multiprocessing.Lock()):
                     cdf = pd.read_csv(
                         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisefreshcandledata\\{token}.csv")
                     break
-                except Exception as e:
-                    print(f"Exception while reading {token} from tokenwisefreshcandledata is {e}")
+                except:
+                    pass
+                    # print(f"Exception while reading {token} from tokenwisefreshcandledata is {e}")
             timeOne = datetime.datetime.fromtimestamp(cdf.loc[0, '0'] / 1000).isoformat()[:16] + ":00+05:30"
             ltp = cdf.loc[0, '1'] / 100
             volume = cdf.loc[0, '2']
@@ -31,8 +32,9 @@ def setPartlyAndWholeCandleData(r=30, lock=multiprocessing.Lock()):
                     df = pd.read_csv(
                         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisepartlycandledata\\{token}.csv")
                     break
-                except Exception as e:
-                    print(f"Exception while reading {token} from tokenwisepartlycandledata is {e}")
+                except:
+                    pass
+                    # print(f"Exception while reading {token} from tokenwisepartlycandledata is {e}")
 
             pTime = df.loc[0, '0']
             if pTime == 0:

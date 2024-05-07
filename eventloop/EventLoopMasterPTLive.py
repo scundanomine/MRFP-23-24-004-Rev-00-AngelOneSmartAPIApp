@@ -160,7 +160,7 @@ if __name__ == "__main__":
     pTen = multiprocessing.Process(target=rPastThirtyCandles, args=[])
 
     # starting 11th process of market structure data
-    pEleven = multiprocessing.Process(target=rPastThirtyCandles, args=[])
+    pEleven = multiprocessing.Process(target=marketStructureData, args=[])
 
     pOne.start()
     pTwo.start()
