@@ -182,7 +182,7 @@ if __name__ == "__main__":
     pNine.start()
     pTen.start()
     pEleven.start()
-    pTwelve.start()
+    # pTwelve.start()
 
     pOne.join()
     pTwo.join()
@@ -195,7 +195,7 @@ if __name__ == "__main__":
     pNine.join()
     pTen.join()
     pEleven.join()
-    pTwelve.join()
+    # pTwelve.join()
 
     print("Multiprocess have been finished")
     print(f"execution time is {time.time() - startTimeEventLoop}")

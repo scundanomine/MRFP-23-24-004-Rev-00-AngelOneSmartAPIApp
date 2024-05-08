@@ -11,4 +11,4 @@ def getterSpecificTokenLivePartlyCandleDataFromWebSocket(token):
     return gdf
 
 
-# print(getterSpecificTokenLivePartlyCandleDataFromWebSocket(13)["4"]*2)
+# print(getterSpecificTokenLivePartlyCandleDataFromWebSocket(13).loc[0, '4'])

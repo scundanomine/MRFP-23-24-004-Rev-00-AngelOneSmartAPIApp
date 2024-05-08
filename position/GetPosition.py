@@ -1,8 +1,10 @@
 import datetime
 import multiprocessing
 import time
+
 import pandas as pd
-from belliprogressionem.GetterETStrategyFlag import getterETStrategyFlag
+
+from belliprogressionem.bellientry.GetEntryFlagUsingTrendingStrategy import getEntryFlagUsingTrendingStrategy
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterReportDateForRR import getterReportDateForRR
 from commonudm.GetterTimeDelta import getterTimeDelta
@@ -45,7 +47,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
 
             # getter entry flags from the belli progressionem
             # ebf, esf = getEntryFlagUsingBasicStrategy()
-            ebf, esf = getterETStrategyFlag()
+            ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
         else:
             continue
 

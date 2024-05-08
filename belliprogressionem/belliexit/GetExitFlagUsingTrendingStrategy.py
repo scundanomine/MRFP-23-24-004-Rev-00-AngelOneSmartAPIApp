@@ -3,9 +3,11 @@ from ltpdistribution.GetPartlyCandleLengthFromDistribution import getPartlyCandl
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
 from positionportfolioandmargindisplay.SetETLiveAndEntryBannedParameters import setETLiveAndEntryBannedParameters
 from smartwebsocketdata.GetPartlyCandleLengthAndGenderFromWebSocket import getPartlyCandleLengthAndGenderFromWebSocket
+import pandas as pd
 
 
 def getExitFlagUsingTrendingStrategy(cv, pSize=0, liveFlag=False):
+    # startTime = time.time()
     try:
         df = getterMarketStructureDf()
         mTyp = df.loc[9, 'mTyp']
@@ -51,6 +53,7 @@ def getExitFlagUsingTrendingStrategy(cv, pSize=0, liveFlag=False):
         else:
             xBF = 'F'
             xSF = 'F'
+        # print(time.time()-startTime)
         return xBF, xSF
     except Exception as e:
         print(f"Exception while getExitFlagUsingTrendingStrategy is {e}")

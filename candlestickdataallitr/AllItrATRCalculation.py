@@ -4,12 +4,15 @@ def calculationAllItrForATR(sdf):
     r = 9
 
     if sdf.loc[r, 'C'] != 0:
-        # ger last tr
-        a = sdf["H"][r] - sdf["L"][r]
-        b = abs(sdf["H"][r] - sdf["C"][r - 1])
-        c = abs(sdf["L"][r] - sdf["C"][r - 1])
-        lst = [a, b, c]
-        tr = max(lst)
+        if sdf.loc[r - 1, 'C'] != 0:
+            # ger last tr
+            a = sdf["H"][r] - sdf["L"][r]
+            b = abs(sdf["H"][r] - sdf["C"][r - 1])
+            c = abs(sdf["L"][r] - sdf["C"][r - 1])
+            lst = [a, b, c]
+            tr = max(lst)
+        else:
+            tr = sdf["H"][r] - sdf["L"][r]
 
         # atr calculation with EMA
         # atr = (prvAtr * 9 + tr) / 10

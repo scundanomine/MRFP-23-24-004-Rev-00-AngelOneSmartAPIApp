@@ -4,7 +4,7 @@ import time
 
 import pandas as pd
 
-from belliprogressionem.GetterETStrategyFlag import getterETStrategyFlag
+from belliprogressionem.bellientry.GetEntryFlagUsingTrendingStrategy import getEntryFlagUsingTrendingStrategy
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetStackedETList import getStackedETList
@@ -40,7 +40,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
 
         # getter entry flags from the belli progressionem
         # ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
-        ebf, esf = getterETStrategyFlag()
+        ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
 
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList()
