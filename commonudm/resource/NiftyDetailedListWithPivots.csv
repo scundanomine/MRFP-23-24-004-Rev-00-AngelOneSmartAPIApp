@@ -1,0 +1,121 @@
+id,sector,symbol,token,PC
+1,Oil Gas & Consumable Fuels,RELIANCE-EQ,2885,2878.05
+2,Information Technology,TCS-EQ,11536,3973.3
+3,Financial Services,HDFCBANK-EQ,1333,1444.85
+4,Financial Services,ICICIBANK-EQ,4963,1023.5
+5,Fast Moving Consumer Goods,HINDUNILVR-EQ,1394,2419.5
+6,Information Technology,INFY-EQ,1594,1687.2
+7,Fast Moving Consumer Goods,ITC-EQ,1660,438.05
+8,Financial Services,SBIN-EQ,3045,642.95
+9,Telecommunication,BHARTIARTL-EQ,10604,1113.55
+10,Financial Services,KOTAKBANK-EQ,1922,1808.35
+11,Financial Services,BAJFINANCE-EQ,317,6608.2
+12,Financial Services,LICI-EQ,9480,998.85
+13,Construction,LT-EQ,11483,3341.75
+14,Information Technology,HCLTECH-EQ,7229,1555.35
+15,Consumer Durables,ASIANPAINT-EQ,236,2917.35
+16,Financial Services,AXISBANK-EQ,5900,1061.5
+17,Automobile and Auto Components,MARUTI-EQ,10999,10428.55
+18,Healthcare,SUNPHARMA-EQ,3351,1463.8
+19,Consumer Durables,TITAN-EQ,3506,3552.05
+20,Consumer Services,DMART-EQ,19913,3729.6
+21,Construction Materials,ULTRACEMCO-EQ,11532,9916.35
+22,Fast Moving Consumer Goods,NESTLEIND-EQ,17963,2462.7
+23,Financial Services,BAJAJFINSV-EQ,16675,1614.9
+24,Information Technology,WIPRO-EQ,3787,482.35
+25,Metals & Mining,ADANIENT-EQ,25,3173.45
+26,Oil Gas & Consumable Fuels,ONGC-EQ,2475,262.95
+27,Power,NTPC-EQ,11630,336.1
+28,Metals & Mining,JSWSTEEL-EQ,11723,814.65
+29,Power,POWERGRID-EQ,14977,282.9
+30,Automobile and Auto Components,M&M-EQ,2031,1703.55
+31,Information Technology,LTIM-EQ,17818,5438.45
+32,Automobile and Auto Components,TATAMOTORS-EQ,3456,926.8
+33,Power,ADANIGREEN-EQ,3563,1668.65
+34,Services,ADANIPORTS-EQ,15083,1258.55
+35,Oil Gas & Consumable Fuels,COALINDIA-EQ,20374,440.25
+36,Metals & Mining,TATASTEEL-EQ,3499,141.55
+37,Metals & Mining,HINDZINC-EQ,1424,315.5
+38,Chemicals,PIDILITIND-EQ,2664,2554.2
+39,Capital Goods,SIEMENS-EQ,3150,4152.0
+40,Financial Services,SBILIFE-EQ,21808,1419.85
+41,Oil Gas & Consumable Fuels,IOC-EQ,1624,173.95
+42,Automobile and Auto Components,BAJAJ-AUTO-EQ,16669,7658.25
+43,Construction Materials,GRASIM-EQ,1232,2089.75
+44,Information Technology,TECHM-EQ,13538,1332.75
+45,Financial Services,HDFCLIFE-EQ,467,563.35
+46,Fast Moving Consumer Goods,BRITANNIA-EQ,547,5124.5
+47,Metals & Mining,VEDL-EQ,3063,273.6
+48,Fast Moving Consumer Goods,GODREJCP-EQ,10099,1218.45
+49,Fast Moving Consumer Goods,DABUR-EQ,772,533.65
+50,Oil Gas & Consumable Fuels,ATGL-EQ,6066,989.05
+51,Construction Materials,SHREECEM-EQ,3103,26954.8
+52,Power,ADANIENSOL-EQ,10217,1022.6
+53,Capital Goods,HAL-EQ,2303,2932.5
+54,Metals & Mining,HINDALCO-EQ,1363,579.9
+55,Fast Moving Consumer Goods,VBL-EQ,18921,1302.5
+56,Realty,DLF-EQ,14732,786.6
+57,Financial Services,BANKBARODA-EQ,4668,257.45
+58,Financial Services,INDUSINDBK-EQ,5258,1537.8
+59,Automobile and Auto Components,EICHERMOT-EQ,910,3889.95
+60,Healthcare,DRREDDY-EQ,881,6094.45
+61,Healthcare,DIVISLAB-EQ,10940,3699.5
+62,Oil Gas & Consumable Fuels,BPCL-EQ,526,574.75
+63,Consumer Durables,HAVELLS-EQ,9819,1339.75
+64,Power,ADANIPOWER-EQ,17388,546.3
+65,Services,INDIGO-EQ,11195,3171.15
+66,Healthcare,CIPLA-EQ,694,1433.9
+67,Construction Materials,AMBUJACEM-EQ,1270,555.0
+68,Chemicals,SRF-EQ,3273,2251.1
+69,Capital Goods,ABB-EQ,13,4368.2
+70,Capital Goods,BEL-EQ,383,181.55
+71,Healthcare,MANKIND-EQ,15380,2057.45
+72,Financial Services,SBICARD-EQ,17971,703.15
+73,Oil Gas & Consumable Fuels,GAIL-EQ,4717,181.6
+74,Financial Services,BAJAJHLDNG-EQ,305,8310.0
+75,Fast Moving Consumer Goods,TATACONSUM-EQ,3432,1150.75
+76,Financial Services,ICICIPRULI-EQ,18652,504.8
+77,Financial Services,CHOLAFIN-EQ,685,1136.35
+78,Fast Moving Consumer Goods,MARICO-EQ,4067,523.2
+79,Healthcare,APOLLOHOSP-EQ,157,6235.2
+80,Power,TATAPOWER-EQ,3426,394.0
+81,Automobile and Auto Components,BOSCHLTD-EQ,2181,24241.0
+82,Consumer Durables,BERGEPAINT-EQ,404,567.1
+83,Metals & Mining,JINDALSTEL-EQ,6733,763.1
+84,Fast Moving Consumer Goods,MCDOWELL-N-EQ,10447,1062.9
+85,Chemicals,UPL-EQ,11287,474.0
+86,Fast Moving Consumer Goods,AWL-EQ,8110,343.35
+87,Financial Services,ICICIGI-EQ,21770,1518.6
+88,Healthcare,TORNTPHARM-EQ,3518,2643.7
+89,Financial Services,CANBK-EQ,10794,520.25
+90,Financial Services,PNB-EQ,10666,121.65
+91,Automobile and Auto Components,TVSMOTOR-EQ,8479,2024.15
+92,Healthcare,ZYDUSLIFE-EQ,7929,760.9
+93,Automobile and Auto Components,TIINDIA-EQ,312,3608.05
+94,Consumer Services,TRENT-EQ,1964,3027.15
+95,Financial Services,IDBI-EQ,1476,93.25
+96,Consumer Services,NAUKRI-EQ,13751,5183.45
+97,Healthcare,ABBOTINDIA-EQ,17903,28069.5
+98,Financial Services,SHRIRAMFIN-EQ,4306,2357.1
+99,Automobile and Auto Components,HEROMOTOCO-EQ,1348,4746.65
+100,Consumer Services,INDHOTEL-EQ,1512,509.1
+101,Chemicals,PIIND-EQ,24184,3281.95
+102,Consumer Services,IRCTC-EQ,13611,946.65
+103,Capital Goods,CGPOWER-EQ,760,439.65
+104,Financial Services,UNIONBANK-EQ,10753,146.75
+105,Automobile and Auto Components,MOTHERSON-EQ,4204,117.05
+106,Capital Goods,CUMMINSIND-EQ,1901,2350.2
+107,Automobile and Auto Components,SCHAEFFLER-EQ,1011,3061.7
+108,Realty,LODHA-EQ,3220,1137.25
+109,Consumer Services,ZOMATO-EQ,5097,140.25
+110,Fast Moving Consumer Goods,PGHH-EQ,2535,16739.25
+111,Financial Services,YESBANK-EQ,11915,22.8
+112,Capital Goods,POLYCAB-EQ,9590,4385.25
+113,Healthcare,MAXHEALTH-EQ,22377,789.55
+114,Financial Services,IOB-EQ,9348,62.65
+115,Textiles,PAGEIND-EQ,14413,36761.9
+116,Fast Moving Consumer Goods,COLPAL-EQ,15141,2531.3
+117,Capital Goods,ASHOKLEY-EQ,212,179.25
+118,Healthcare,ALKEM-EQ,11703,4924.05
+119,Power,NHPC-EQ,17400,103.65
+120,Nifty 100,Nifty 100,99926012,438.5

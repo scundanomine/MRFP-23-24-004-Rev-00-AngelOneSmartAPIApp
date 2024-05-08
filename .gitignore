@@ -6,17 +6,34 @@ __pycache__/
 # C extensions
 *.so
 AngelOneSmartAPIApp/login_credentials.txt
-*.csv
+# *.csv
 *.xlsm
 *.json
+
+# commom .csv files block
+eventloop/eventstate/candlewisedata/*.csv
+historicdata/historicdatastate/
+ltpdistribution/ltpdistributionstate/allcandledistributiondf/
+ltpdistribution/ltpdistributionstate/specificdistributiondf/
+ohlcdata/ohlcstate/pasttenohlcdatafiles/*.csv
+pastthirtycandles/pastthirycandlesstate/pastthirtycandlewisedata/*.csv
+# report/media/*.csv
+smartwebsocketdata/websocketstate/tokenwisefreshcandledata/*.csv
+smartwebsocketdata/websocketstate/tokenwisepartlycandledata/*.csv
+smartwebsocketdata/websocketstate/tokenwisewholecandledata/*.csv
+
+
+threadresearch/AccessToken/dummy/*.txt
 used/
-neoapistate/
+# neoapistate/
 media/
-pasttenohlcdatafiles/
+# pasttenohlcdatafiles/
 # Distribution / packaging
 .Python
 AngelOneSmartAPIApp/AccessToken
-candlewisedata/
+# candlewisedata/
+
+
 build/
 develop-eggs/
 dist/
