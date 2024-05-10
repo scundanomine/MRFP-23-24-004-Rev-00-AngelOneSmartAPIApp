@@ -30,16 +30,16 @@ def generatorExitCandlePlotFileRR():
                 qdf = processDerivativesDfForMplFinance(mCDf)
                 sdf = processDerivativesDfForMplFinanceTwo(mCDf)
                 # process position candle for specific pid
-                filePathOne = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitplots\\{pid}.png"
+                filePathOne = f"F:\\AT\\report\\media\\{reportDate}\\exitplots\\{pid}.png"
                 mpf.plot(pcDf, type='candle', style='yahoo', savefig=filePathOne)
 
                 # subplot for market structure
-                filePathTwo = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitmplots\\{pid}.png"
+                filePathTwo = f"F:\\AT\\report\\media\\{reportDate}\\exitmplots\\{pid}.png"
                 subplotMarketStructure(filePathTwo, qdf)
                 # mpf.plot(mcDf, type='candle', style='yahoo', savefig=filePathTwo)
 
                 # plot for first derivative for EMA 5 and EMA 9
-                filePathThree = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitmplots\\{pid}_q.png"
+                filePathThree = f"F:\\AT\\report\\media\\{reportDate}\\exitmplots\\{pid}_q.png"
                 plt.plot(sdf.index, sdf['QOne'], label='QOne', color='green')
                 plt.plot(sdf.index, sdf['QTwo'], label='QTwo', color='blue')
                 plt.xticks(rotation=45)
@@ -47,7 +47,7 @@ def generatorExitCandlePlotFileRR():
                 plt.close(fig=None)
 
                 # plot for second derivative for EMA 5 and EMA 9
-                filePathFour = f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitmplots\\{pid}_qq.png"
+                filePathFour = f"F:\\AT\\report\\media\\{reportDate}\\exitmplots\\{pid}_qq.png"
                 plt.plot(sdf.index, sdf['QQOne'], label='QQOne', color='green')
                 plt.plot(sdf.index, sdf['QQTwo'], label='QQTwo', color='blue')
                 plt.xticks(rotation=45)
@@ -55,7 +55,7 @@ def generatorExitCandlePlotFileRR():
                 plt.close(fig=None)
                 pEDf.loc[index, 'flagCE'] = 1
     pEDf.to_csv(
-        'E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\PECBList.csv',
+        'F:\\AT\\readandrecord\\rrstate\\PECBList.csv',
         index=False)
 
 

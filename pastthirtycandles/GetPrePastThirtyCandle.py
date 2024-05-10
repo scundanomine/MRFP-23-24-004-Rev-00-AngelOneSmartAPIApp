@@ -23,7 +23,7 @@ def getPrePastThirtyCandle():
             df = pd.concat([sdfOne, cdf, sdfTwo], ignore_index=True)
 
         df.to_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\pastthirtycandlewisedata\\{uid}_{symbol}.csv", index=False)
+            f"F:\\AT\\pastthirtycandles\\pastthirycandlesstate\\pastthirtycandlewisedata\\{uid}_{symbol}.csv", index=False)
     # print(f"Time taken: {time.time() - startTime}")
 
 

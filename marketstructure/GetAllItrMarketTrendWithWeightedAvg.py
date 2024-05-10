@@ -26,7 +26,7 @@ def getAllItrMarketTrendWithWeightedAvg(cdf):
 
     return cdf
     # cdf.to_csv(
-    #     f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\marketstructure\\marketstate\\MarketStructure.csv",
+    #     f"F:\\AT\\marketstructure\\marketstate\\MarketStructure.csv",
     #     index=False)
 
 

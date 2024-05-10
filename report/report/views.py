@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import sys
 from reportudf import GetterReportDate, DataPopulationForHomePage, DataPopulationForDetailPage, GetterReportPreDate, GetWinPercentage
-sys.path.append('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position')
+sys.path.append('F:\\AT\\position')
 import GetterPositionIdForSpecificDate
 
 

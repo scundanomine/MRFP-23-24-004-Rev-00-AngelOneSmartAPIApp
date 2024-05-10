@@ -11,10 +11,10 @@ def setterDfOneForPastThirtyCandles():
                  'um', 'dm', 'rsi'], index=[0])
     dfTwo[:] = 0
     df.to_csv(
-        'E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\dfOne.csv',
+        'F:\\AT\\pastthirtycandles\\pastthirycandlesstate\\dfOne.csv',
         index=False)
     dfTwo.to_csv(
-        'E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\dfTwo.csv',
+        'F:\\AT\\pastthirtycandles\\pastthirycandlesstate\\dfTwo.csv',
         index=False)
 
     sdfOne = pd.DataFrame(
@@ -29,10 +29,10 @@ def setterDfOneForPastThirtyCandles():
     sdfTwo[:] = 0
 
     sdfOne.to_csv(
-        'E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\sdfOne.csv',
+        'F:\\AT\\pastthirtycandles\\pastthirycandlesstate\\sdfOne.csv',
         index=False)
     sdfTwo.to_csv(
-        'E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\sdfTwo.csv',
+        'F:\\AT\\pastthirtycandles\\pastthirycandlesstate\\sdfTwo.csv',
         index=False)
 
 

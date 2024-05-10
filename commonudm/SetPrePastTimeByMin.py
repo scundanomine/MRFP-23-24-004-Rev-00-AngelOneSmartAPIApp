@@ -12,7 +12,7 @@ def setPrePastTimeByMin(isLive=False):
     ct = ct.strftime("%Y-%m-%d %H:%M:00")
     df = pd.DataFrame([ct], columns=['time'])
     df.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\PastTimeByMin.csv", index=False)
+        "F:\\AT\\commonudm\\resource\\PastTimeByMin.csv", index=False)
 
 
 # setPrePastTimeByMin()

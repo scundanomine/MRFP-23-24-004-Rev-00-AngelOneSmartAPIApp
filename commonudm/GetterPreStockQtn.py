@@ -7,7 +7,7 @@ def getterPreStockQtn():
     while True:
         try:
             # getting data from the sheet
-            wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+            wb = xw.Book("F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
             # creating the df
@@ -22,7 +22,7 @@ def getterPreStockQtn():
     else:
         marDf.loc[0, 'stockQtn'] = 120
     marDf.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\StockQtn.csv",
+        "F:\\AT\\commonudm\\resource\\StockQtn.csv",
         index=False)
     return marDf
 

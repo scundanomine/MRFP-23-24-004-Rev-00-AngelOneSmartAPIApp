@@ -21,12 +21,12 @@ def getNeoLtpDataUsingThreads(r, fileName, lock="", c=""):
     ds = pd.DataFrame(index=list(range(r)), columns=['id', "ltp"])
     ds[:] = 0
     ds.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\neoapi\\neoapistate\\NeoLiveCandleData.csv",
+        "F:\\AT\\neoapi\\neoapistate\\NeoLiveCandleData.csv",
         index=False)
 
     # data instance for excel
     wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
 
     # getting big dataframe
     dtc = wb.sheets("Sheet3")
@@ -81,7 +81,7 @@ def getNeoLtpDataUsingThreads(r, fileName, lock="", c=""):
     # while 300 - (time.time() - startTime) > 0:
     while ctrA < 1:
         ds = pd.read_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\neoapi\\neoapistate\\NeoLiveCandleData.csv")
+            "F:\\AT\\neoapi\\neoapistate\\NeoLiveCandleData.csv")
         ctr = 10
         for i in range(10, r + 10, 10):
             stt = time.time()
@@ -99,7 +99,7 @@ def getNeoLtpDataUsingThreads(r, fileName, lock="", c=""):
                 time.sleep(timeDiff)
             # dtc.range(f"g{i-6+2}:k{i + 2}").options(pd.DataFrame, index=False, header=False).value = ds[i-6:i]
             ds.to_csv(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\neoapi\\neoapistate\\NeoLiveCandleData.csv",
+                "F:\\AT\\neoapi\\neoapistate\\NeoLiveCandleData.csv",
                 index=False)
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")

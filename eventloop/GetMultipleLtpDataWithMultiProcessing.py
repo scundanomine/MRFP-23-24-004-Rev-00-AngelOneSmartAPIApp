@@ -24,7 +24,7 @@ def getAccessTokenWithThread(r, fileName, lock=""):
 
     # data instance for excel
     wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
 
     # getting big dataframe
     dtc = wb.sheets("Sheet1")
@@ -87,7 +87,7 @@ def getAccessTokenWithThread(r, fileName, lock=""):
 
             ctr = ctr + 20
         dtc.range(f"g{r - 100 + 2}:g{r + 2}").options(pd.Series, index=False).value = ds[:]
-        # ds.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\{fileName}")
+        # ds.to_csv(f"F:\\AT\\eventloop\\eventstate\\{fileName}")
         ctrA = ctrA + 1
         # print(f"{ctrA} execution time is {time.time() - startTime}")
 

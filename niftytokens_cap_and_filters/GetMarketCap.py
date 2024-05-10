@@ -6,7 +6,7 @@ import time
 def getMarketCap(smallDataSheetName, smallDataUpperBound):
     startTime = time.time()
     wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
 
     # getting big dataframe
     dtBig = wb.sheets("MarketCap")

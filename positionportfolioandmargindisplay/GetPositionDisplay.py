@@ -7,10 +7,10 @@ def getPositionDisplay():
         try:
             # getting data from the sheet
             wb = xw.Book(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             dt = wb.sheets("MAndP")
             dfC = pd.read_csv(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv")
+                "F:\\AT\\position\\positionstate\\PositionList.csv")
             dfCL = dfC.values.tolist()
             m = len(dfC)
             dt.range(f"a{6+m}:v{6 + m + 20}").clear_contents()

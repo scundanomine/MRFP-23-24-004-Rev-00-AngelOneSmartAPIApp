@@ -13,7 +13,7 @@ def getNiftyToken(sheetName):
     global varBig, smallData
     startTime = time.time()
     with open(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\niftytokens\\OpenAPIScripMaster.json",
+            f"F:\\AT\\niftytokens\\OpenAPIScripMaster.json",
             "r") as f:
         bigData = json.load(f)
     varBig = pd.DataFrame(bigData, columns=["token", "symbol"])
@@ -22,7 +22,7 @@ def getNiftyToken(sheetName):
     # print(varBig)
 
     wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
     dt = wb.sheets(sheetName)
 
     smallData = dt.range("d2:d502").value

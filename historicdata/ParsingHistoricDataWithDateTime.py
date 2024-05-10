@@ -20,7 +20,7 @@ def parsingHistoricDataWithDateTime(date, uid):
             refDate = datetime.datetime.strptime(timeX, "%Y-%m-%d %H:%M")
             df.loc[index, 'time'] = refDate
     df = df.set_index('time')
-    df.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{date}\\{uid}.csv")
+    df.to_csv(f"F:\\AT\\historicdata\\historicdatastate\\{date}\\{uid}.csv")
 
 
 # parsingHistoricDataWithDateTime("2024-04-15", 1)

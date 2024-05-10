@@ -7,13 +7,13 @@ def setterPrePdsFdsAndFfdsList():
     df = pd.DataFrame(columns=list(range(6)), index=list(range(n)))
     df[:] = 0
     df.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pastohlcdatafile\\pds.csv",
+        "F:\\AT\\ohlcdata\\ohlcstate\\pastohlcdatafile\\pds.csv",
         index=False)
     df.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\futureohlcdatafile\\fds.csv",
+        "F:\\AT\\ohlcdata\\ohlcstate\\futureohlcdatafile\\fds.csv",
         index=False)
     df.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\futureohlcdatafile\\ffds.csv",
+        "F:\\AT\\ohlcdata\\ohlcstate\\futureohlcdatafile\\ffds.csv",
         index=False)
     return df
 

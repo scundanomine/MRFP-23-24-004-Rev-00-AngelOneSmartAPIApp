@@ -3,10 +3,10 @@ import pandas as pd
 
 def getterDropAndSetterPositionList(uid):
     try:
-        df = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv")
+        df = pd.read_csv("F:\\AT\\position\\positionstate\\PositionList.csv")
         i = df[(df.id == uid)].index
         df = df.drop(i)
-        df.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv", index=False)
+        df.to_csv("F:\\AT\\position\\positionstate\\PositionList.csv", index=False)
     except Exception as e:
         print(f"The exception while getterDropAndSetterPositionList is {e}")
         getterDropAndSetterPositionList(uid)

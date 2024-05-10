@@ -7,7 +7,7 @@ def setterSRData():
     while True:
         try:
             # getting data from the sheet
-            wb = xw.Book("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+            wb = xw.Book("F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             dt = wb.sheets("nifty500")
             n = getterStockQtn()
             # creating the df
@@ -34,7 +34,7 @@ def setterSRData():
 
     # rename the column
     varSR.columns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-    varSR.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\SRData.csv", index=False)
+    varSR.to_csv("F:\\AT\\traditionalpivotalarm\\pivotstate\\SRData.csv", index=False)
 
     return varSR
 

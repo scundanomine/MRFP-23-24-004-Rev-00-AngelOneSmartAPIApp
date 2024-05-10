@@ -14,5 +14,5 @@ def cleaningAllFilesFromSpecificDirectory(dirName):
 
 
 # Usage
-# dirNameA = 'E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\positionplots'
+# dirNameA = 'F:\\AT\\readandrecord\\rrstate\\positionplots'
 # cleaningAllFilesFromSpecificDirectory(dirNameA)

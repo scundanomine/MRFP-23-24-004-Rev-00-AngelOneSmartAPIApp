@@ -25,5 +25,5 @@ def createGSTDataFile(sid, symbol):
 
     # create import function
     sdf.to_csv(
-        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv",
+        f"F:\\AT\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv",
         index=False)

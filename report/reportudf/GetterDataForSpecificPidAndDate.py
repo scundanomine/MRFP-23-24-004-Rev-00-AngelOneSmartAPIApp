@@ -4,7 +4,7 @@ import pandas as pd
 def getterDataForSpecificPidAndDate(pid, date, folderName="exitdetails"):
     try:
         df = pd.read_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{date}\\{folderName}\\{pid}.csv")
+            f"F:\\AT\\report\\media\\{date}\\{folderName}\\{pid}.csv")
         df = df[['pid', 'id', 'sector', 'symbol', 'token', "ot", "ltp", "lp", "q", "sl", "target", "mr", "tOP", "tOEx", "gol", 'oc', "po", "slo", "to", 'rFlag', 'eFlag', "tOEP", 'ltpP']]
     except Exception as e:
         print(f"The exception while getterDataForSpecificPidAndDate is {e}")

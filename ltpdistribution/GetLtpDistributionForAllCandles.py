@@ -24,7 +24,7 @@ def getLtpDistributionForAllCandles(date):
                     ltpLst = getBearishCandleLtpDistribution(rowX)
                     ldDf.loc[idx] = ltpLst
         ldDf.to_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{date}\\{uid}.csv")
+            f"F:\\AT\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{date}\\{uid}.csv")
     # print(time.time()-startTime)
 
 

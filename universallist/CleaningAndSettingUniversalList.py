@@ -21,7 +21,7 @@ def cleaningAndSettingUniversalList():
     dfU["oc"] = ""
 
     dfU.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
+        "F:\\AT\\universallist\\liststate\\UniversalList.csv",
         index=False)
 
     # print(dfU)

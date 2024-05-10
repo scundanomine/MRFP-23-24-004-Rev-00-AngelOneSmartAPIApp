@@ -19,7 +19,7 @@ def get_login_credentials():
                             "token": str(input("Enter token :"))
                             }
         if input("Press Y to save login_credential and any key to bypass : ").upper() == "Y":
-            with open(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\login_credentials.txt", "w") as f:
+            with open(f"F:\\AT\\AngelOneSmartAPIApp\\login_credentials.txt", "w") as f:
                 json.dump(login_credential, f)
             print("Data Saved. ..")
         else:
@@ -27,7 +27,7 @@ def get_login_credentials():
 
     while True:
         try:
-            with open(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\login_credentials.txt", "r") as f:
+            with open(f"F:\\AT\\AngelOneSmartAPIApp\\login_credentials.txt", "r") as f:
                 login_credential = json.load(f)
             break
         except:

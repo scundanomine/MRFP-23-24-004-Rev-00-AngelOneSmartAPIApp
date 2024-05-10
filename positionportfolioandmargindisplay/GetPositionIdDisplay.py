@@ -9,7 +9,7 @@ def getPositionIdDisplay(rDate):
     while True:
         try:
             wb = xw.Book(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
             dt['O2'].value = pid

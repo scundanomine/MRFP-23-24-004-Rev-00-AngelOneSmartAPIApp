@@ -7,7 +7,7 @@ def getCustomDfBlackListET():
     while True:
         try:
             wb = xw.Book(
-                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             dt = wb.sheets("BlackList")
             n = getterStockQtn()
             df = pd.DataFrame(dt.range(f"a{2}:b{n+1}").value, columns=["id", 'bFlag'])

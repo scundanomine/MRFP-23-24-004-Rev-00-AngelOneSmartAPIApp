@@ -9,7 +9,7 @@ def cleaningAndSettingPastTenCandleData():
         df = pd.DataFrame(columns=list(range(6)), index=list(range(10)))
         df[:] = 0
         df.to_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
+            f"F:\\AT\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
             index=False)
 
 

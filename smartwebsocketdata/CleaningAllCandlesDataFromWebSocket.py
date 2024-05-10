@@ -4,11 +4,11 @@ from commonudm.CleaningAllFilesFromSpecificDirectory import cleaningAllFilesFrom
 def cleaningAllCandlesDataFromWebSocket(cleaningFlag=False):
     if cleaningFlag:
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisefreshcandledata")
+            "F:\\AT\\smartwebsocketdata\\websocketstate\\tokenwisefreshcandledata")
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisepartlycandledata")
+            "F:\\AT\\smartwebsocketdata\\websocketstate\\tokenwisepartlycandledata")
         cleaningAllFilesFromSpecificDirectory(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\smartwebsocketdata\\websocketstate\\tokenwisewholecandledata")
+            "F:\\AT\\smartwebsocketdata\\websocketstate\\tokenwisewholecandledata")
 
 
 # cleaningAllRecordsFromRR()

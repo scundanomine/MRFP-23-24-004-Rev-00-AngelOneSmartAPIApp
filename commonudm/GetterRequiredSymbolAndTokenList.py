@@ -5,7 +5,7 @@ from commonudm.SetterRequiredSymbolAndTokenList import setterRequiredSymbolAndTo
 def getterRequiredSymbolAndTokenList():
     try:
         df = pd.read_csv(
-            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\RequiredSymbolAndToken.csv")
+            "F:\\AT\\commonudm\\resource\\RequiredSymbolAndToken.csv")
     except Exception as e:
         print(f"Exception while getterRequiredSymbolAndTokenList is {e}")
         df = getterRequiredSymbolAndTokenList()

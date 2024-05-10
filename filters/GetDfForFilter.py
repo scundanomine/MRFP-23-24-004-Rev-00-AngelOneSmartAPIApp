@@ -4,7 +4,7 @@ import xlwings as xw
 
 def getDfForFilter(sheetName, upperBound):
     wb = xw.Book(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
     dt = wb.sheets(sheetName)
     df = pd.DataFrame(dt.range(f"a1:u{upperBound}").value)
     df.columns = df.iloc[0]

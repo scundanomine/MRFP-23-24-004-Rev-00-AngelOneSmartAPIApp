@@ -7,7 +7,7 @@ def setterPreETStrategyFlag():
     # gol is gain or loss, tOEP is reference time of entry placed, tOP is time of position taken and tOEx is time of exit
     df = pd.DataFrame([['F', 'F']], columns=['eTBF', 'eTSF'])
     df.to_csv(
-        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\belliprogressionem\\state\\ETSFlag.csv",
+        "F:\\AT\\belliprogressionem\\state\\ETSFlag.csv",
         index=False)
     return df
 

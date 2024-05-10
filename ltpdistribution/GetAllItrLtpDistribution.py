@@ -33,7 +33,7 @@ def getAllItrLtpDistribution():
                 if len(df.loc[df['time'] == reqTime]) != 0:
                     ldDf.iloc[2] = df.loc[df['time'] == reqTime]
                 ldDf.to_csv(
-                    f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv",
+                    f"F:\\AT\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv",
                     index=False)
         time.sleep(1)
 

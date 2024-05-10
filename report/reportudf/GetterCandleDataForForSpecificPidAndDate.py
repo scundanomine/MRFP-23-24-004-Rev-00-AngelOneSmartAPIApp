@@ -4,7 +4,7 @@ import pandas as pd
 def getterCandleDataForForSpecificPidAndDate(pid, date, folderName="positioncandles"):
     try:
         df = pd.read_csv(
-            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{date}\\{folderName}\\{pid}.csv")
+            f"F:\\AT\\report\\media\\{date}\\{folderName}\\{pid}.csv")
         df = df[['time', 'O', 'H', 'L', 'C', 'V', 'atr', 'g', 's', 't', 'bulRP', 'berRP', 'rsi', 'roc', 'atrPer', 'atrV', 'vs', 'um', 'dm']]
     except Exception as e:
         print(f"The exception while getterCandleDataForForSpecificPidAndDate is {e}")
