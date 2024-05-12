@@ -18,7 +18,7 @@ def checkTraditionalPivotAlarms(niftySize=300):
 
     # dcs and dcs list
     dcs = pd.read_csv(
-        "F:\\AT\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv")
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv")
     dcsLst = dcs.to_dict('records')
 
     # define sub function
@@ -27,7 +27,7 @@ def checkTraditionalPivotAlarms(niftySize=300):
         symbol = dst["symbol"][uid]
         try:
             df = pd.read_csv(
-                f"F:\\AT\\eventloop\\eventstate\\candlewisedata\\{uid + 1}_{symbol}.csv")
+                f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{uid + 1}_{symbol}.csv")
         except:
             data = [{0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
                     {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}, {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0},
@@ -66,7 +66,7 @@ def checkTraditionalPivotAlarms(niftySize=300):
             dcs.loc[ck, "GL"] = result["GL"]
             ck = ck + 1
     dcs.to_csv(
-        "F:\\AT\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv",
         index=False)
     print(dcs)
     print(f"execution time is {time.time() - startTime}")

@@ -16,7 +16,7 @@ def getUniversalList(niftySize=300):
 
     # dcs and dcs list
     dcs = pd.read_csv(
-        "F:\\AT\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv")
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\LiveCandleData.csv")
     dcs = dcs.loc[:, ['alarmTimer', 'srT', 'srV', 'nSR', 'GL']]
     # print(dcs)
 
@@ -51,7 +51,7 @@ def getUniversalList(niftySize=300):
 
     # save the list
     dfU.to_csv(
-        "F:\\AT\\universallist\\liststate\\UniversalList.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\universallist\\liststate\\UniversalList.csv",
         index=False)
     # print(dfU)
 

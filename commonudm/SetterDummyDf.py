@@ -10,5 +10,5 @@ def setterDummyDf():
     sdf["rsi"] = 50
     sdf["um"] = 0
     sdf["dm"] = 0
-    sdf.to_csv("F:\\AT\\eventloop\\eventstate\\dummyDf.csv", index=False)
+    sdf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\dummyDf.csv", index=False)
 

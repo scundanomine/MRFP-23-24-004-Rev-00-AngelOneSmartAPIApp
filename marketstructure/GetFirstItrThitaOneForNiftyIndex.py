@@ -12,7 +12,7 @@ def getFirstItrThitaOneForNiftyIndex():
                 cdf.loc[index, 'QTwo'] = math.atan((row['emaTwo'] - cdf.loc[index - 1, 'emaTwo']) / 4) * 180 / math.pi
 
     cdf.to_csv(
-        f"F:\\AT\\marketstructure\\marketstate\\MarketStructure.csv",
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\marketstructure\\marketstate\\MarketStructure.csv",
         index=False)
 
 

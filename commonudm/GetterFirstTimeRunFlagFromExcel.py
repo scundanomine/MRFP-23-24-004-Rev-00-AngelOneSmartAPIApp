@@ -10,7 +10,7 @@ def getterFirstTimeRunFlagFromExcel():
         try:
             # getting data from the sheet
             wb = xw.Book(
-                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
             # creating the df
@@ -21,7 +21,7 @@ def getterFirstTimeRunFlagFromExcel():
                 dt['O2'].value = 0
                 marDf = pd.DataFrame([0], columns=['pid'])
                 marDf.to_csv(
-                    f"F:\\AT\\report\\media\\{reportDate}\\state\\PId.csv",
+                    f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\state\\PId.csv",
                     index=False)
             else:
                 pid = getterPositionIdForSpecificDate(reportDate)

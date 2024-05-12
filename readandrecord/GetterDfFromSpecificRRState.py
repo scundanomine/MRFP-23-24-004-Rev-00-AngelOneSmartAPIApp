@@ -6,9 +6,9 @@ import os
 def getterDfFromSpecificRRState(source, pid):
     reportDate = getterReportDateForRR()
     try:
-        if os.path.isfile(f"F:\\AT\\report\\media\\{reportDate}\\{source}\\{pid}.csv"):
+        if os.path.isfile(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\{source}\\{pid}.csv"):
             df = pd.read_csv(
-                    f"F:\\AT\\report\\media\\{reportDate}\\{source}\\{pid}.csv")
+                    f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\{source}\\{pid}.csv")
         else:
             df = pd.DataFrame()
     except Exception as e:

@@ -67,7 +67,7 @@ def getPastThirtyCandles(isLive=False):
                 tdf.loc[lid, "C"] = data['4']
                 tdf.loc[lid, "V"] = data['5']
                 tdf.to_csv(
-                    f"F:\\AT\\pastthirtycandles\\pastthirycandlesstate\\pastthirtycandlewisedata\\{uid}_{symbol}.csv",
+                    f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\pastthirtycandles\\pastthirycandlesstate\\pastthirtycandlewisedata\\{uid}_{symbol}.csv",
                     index=False)
         # ctrA = ctrA + 1
         # if ctrA == 10:

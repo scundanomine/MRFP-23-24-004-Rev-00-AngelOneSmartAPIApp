@@ -12,13 +12,13 @@ def setterPrePositionList():
         columns=['pid', 'id', 'sector', 'symbol', 'token', "ot", "ltp", "lp", "q", "sl", "target", "mr", "po", "slo", "to",
                  "gol", 'rFlag', 'eFlag', 'oc', "tOEP", "tOP", "tOEx", 'ltpP'])
     df.to_csv(
-            "F:\\AT\\position\\positionstate\\PositionList.csv",
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\position\\positionstate\\PositionList.csv",
             index=False)
     # getting data from the sheet
     while True:
         try:
             wb = xw.Book(
-                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             dt = wb.sheets("MAndP")
             dt.range(f"a5:w{n + 1}").clear_contents()
             # clear the sheet

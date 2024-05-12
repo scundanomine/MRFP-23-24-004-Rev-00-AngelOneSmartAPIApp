@@ -5,7 +5,7 @@ import datetime
 def processPastTenCandlesData(uid, rfTime, df, flagZero=False):
     if len(df) == 10 or flagZero:
         df.to_csv(
-            f"F:\\AT\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
             index=False)
     else:
         dfOne = pd.DataFrame(columns=list(range(6)), index=list(range(10)))
@@ -19,7 +19,7 @@ def processPastTenCandlesData(uid, rfTime, df, flagZero=False):
                 dfOne.iloc[i] = df.loc[(df['0'] == newDateF)]
             rfTime = rfTime + delta
         dfOne.to_csv(
-            f"F:\\AT\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ohlcdata\\ohlcstate\\pasttenohlcdatafiles\\{uid}.csv",
             index=False)
         # print(dfOne)
 

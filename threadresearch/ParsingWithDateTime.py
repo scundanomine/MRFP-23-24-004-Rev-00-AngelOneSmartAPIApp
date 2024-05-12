@@ -18,7 +18,7 @@ def parsingWithDateTime():
             refDate = datetime.datetime.strptime(timeX, "%Y-%m-%d %H:%M")
             df.loc[index, 'time'] = refDate
     df = df.set_index('time')
-    df.to_csv('F:\\AT\\threadresearch\\mat.csv')
+    df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat.csv')
     # print(df)
     print(time.time() - startTime)
 

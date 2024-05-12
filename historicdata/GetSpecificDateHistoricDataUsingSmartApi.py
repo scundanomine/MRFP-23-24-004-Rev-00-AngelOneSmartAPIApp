@@ -15,13 +15,13 @@ def getSpecificDateHistoricDataUsingSmartApi(c):
     r = len(gDf)
     # create date folder if doesn't exit
     if not os.path.exists(
-            f"F:\\AT\\historicdata\\historicdatastate\\{c}"):
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}"):
         os.makedirs(
-            f"F:\\AT\\historicdata\\historicdatastate\\{c}")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}")
     if not os.path.exists(
-            f"F:\\AT\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{c}"):
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{c}"):
         os.makedirs(
-            f"F:\\AT\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{c}")
+            f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\allcandledistributiondf\\{c}")
     print("Process for past 10 candles data started")
     startTime = time.time()
     dfc = getSymbolAndToken()
@@ -82,7 +82,7 @@ def getSpecificDateHistoricDataUsingSmartApi(c):
                             {0: "", 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
         dfT = pd.DataFrame(data)
         sid = uid + 1
-        dfT.to_csv(f"F:\\AT\\historicdata\\historicdatastate\\{c}\\{sid}.csv", index=False)
+        dfT.to_csv(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\historicdata\\historicdatastate\\{c}\\{sid}.csv", index=False)
         # processPastTenCandlesData(uid + 1, a, rfTime, flagZero, dfT)
         # getFirstItrCandlesticksProperties(uid+1, a)
 

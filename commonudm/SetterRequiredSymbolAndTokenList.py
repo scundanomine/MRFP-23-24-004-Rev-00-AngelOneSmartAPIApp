@@ -11,7 +11,7 @@ def setterRequiredSymbolAndTokenList():
     gDf = gDf.drop(labels=range(n, dfSize), axis=0)
     gDf = gDf.loc[:, ['id', 'symbol', 'token']]
     gDf.to_csv(
-        "F:\\AT\\commonudm\\resource\\RequiredSymbolAndToken.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\RequiredSymbolAndToken.csv",
         index=False)
 
 

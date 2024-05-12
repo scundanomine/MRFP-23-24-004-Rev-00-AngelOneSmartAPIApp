@@ -49,7 +49,7 @@ def getCandlestickGSTData(gdf):
         executor.map(getGstData, lt)
 
     # print(sdf)
-    # sdf.to_csv("F:\\AT\\candlestickdata\\candle_state\\gstData.csv", index=False)
+    # sdf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\candlestickdata\\candle_state\\gstData.csv", index=False)
     return sdf
 
 

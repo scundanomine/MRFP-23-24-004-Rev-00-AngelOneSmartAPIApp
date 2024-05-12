@@ -20,7 +20,7 @@ def getFirstItrLtpDistribution():
         df = getLtpDistributionWithQuery(fromDateTime, toDateTime, uid, date)
         if len(df) == 3:
             df.to_csv(
-                f"F:\\AT\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv")
+                f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv")
         else:
             cdf = pd.DataFrame(columns=list(range(60)), index=list(range(3)))
             cdf[:] = 0
@@ -38,7 +38,7 @@ def getFirstItrLtpDistribution():
                 if len(df.loc[df['time'] == tList[i]]) != 0:
                     cdf.iloc[i] = df.loc[df['time'] == tList[i]]
             cdf.to_csv(
-                f"F:\\AT\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv",
+                f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\ltpdistribution\\ltpdistributionstate\\specificdistributiondf\\{uid}.csv",
                 index=False)
     # print(time.time() - startTime)
 

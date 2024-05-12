@@ -24,12 +24,12 @@ def getDesiredFilterResults(source, target, sectorList):
 
     # save results in target sheet
     wb = xw.Book(
-        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
     dt = wb.sheets(target)
     dt.range(f"a1:u{ub}").options(pd.DataFrame, index=False).value = tdf
 
     # load results in the .csv file
-    tdf.to_csv("F:\\AT\\filters\\filter_state\\filter.csv", index=False)
+    tdf.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\filters\\filter_state\\filter.csv", index=False)
     print(f"time of execution is {time.time() - startTime}")
 
 

@@ -18,7 +18,7 @@ def getFirstItrCandlesticksProperties(sid, symbol):
     # get df (getter function)
     # gdf = queueOperation(sid, symbol, data)
     gdf = pd.read_csv(
-        f"F:\\AT\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv")
 
     # atr calculation
     atr, atrPer = calculationOfATRWithoutThreading(gdf)
@@ -56,6 +56,6 @@ def getFirstItrCandlesticksProperties(sid, symbol):
 
     # setter function
     gdf.to_csv(
-        f"F:\\AT\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv",
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\candlewisedata\\{sid}_{symbol}.csv",
         index=False)
 

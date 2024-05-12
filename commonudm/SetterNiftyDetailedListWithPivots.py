@@ -7,7 +7,7 @@ def setterNiftyDetailedListWithPivot(sheetName="nifty500"):
     while True:
         try:
             wb = xw.Book(
-                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             n = getterStockQtn()
             # getting dataframe
             dt = wb.sheets(sheetName)
@@ -24,7 +24,7 @@ def setterNiftyDetailedListWithPivot(sheetName="nifty500"):
     # here PC is previous intraday close price
     df.rename(columns={'C': 'PC'}, inplace=True)
     df.to_csv(
-        "F:\\AT\\commonudm\\resource\\NiftyDetailedListWithPivots.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\NiftyDetailedListWithPivots.csv",
         index=False)
     return df
 

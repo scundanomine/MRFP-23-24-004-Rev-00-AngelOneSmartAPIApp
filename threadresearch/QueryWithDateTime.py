@@ -14,7 +14,7 @@ def queryWithDateTime(fromDate="", toDate="", uid=""):
     cv = getterTimeDelta()
     startTime = time.time()
     df = pd.read_csv(
-        "F:\\AT\\threadresearch\\mat.csv")
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat.csv")
     df = df.set_index('time')
     df.index = pd.to_datetime(df.index)
     ct = datetime.datetime.now() - cv

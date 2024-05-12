@@ -29,17 +29,17 @@ def get_access_token():
                             "refreshToken": data['data']['refreshToken'],
                             "feedToken": smartApi.getfeedToken(),
                             }
-            os.makedirs(f"F:\\AT\\AngelOneSmartAPIApp\\AccessToken", exist_ok=True)
+            os.makedirs(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\AccessToken", exist_ok=True)
 
-            with open(f"F:\\AT\\AngelOneSmartAPIApp\\AccessToken\\{datetime.datetime.now().date()}.json", "w") as g:
+            with open(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\AccessToken\\{datetime.datetime.now().date()}.json", "w") as g:
                 json.dump(access_token, g)
             print("Login successful...")
         except Exception as e:
             print(f"Login Failed {{{e}}}")
 
     while True:
-        if os.path.exists(f"F:\\AT\\AngelOneSmartAPIApp\\AccessToken\\{datetime.datetime.now().date()}.json"):
-            with open(f"F:\\AT\\AngelOneSmartAPIApp\\AccessToken\\{datetime.datetime.now().date()}.json", "r") as f:
+        if os.path.exists(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\AccessToken\\{datetime.datetime.now().date()}.json"):
+            with open(f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\AccessToken\\{datetime.datetime.now().date()}.json", "r") as f:
                 access_token = json.load(f)
             break
         else:

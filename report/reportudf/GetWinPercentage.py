@@ -7,11 +7,11 @@ def getWinPercentage(pid, rDate):
     winC = 0
     for i in range(pid):
         if os.path.isfile(
-                f"F:\\AT\\report\\media\\{rDate}\\exitdetails\\{i}.csv"):
+                f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{rDate}\\exitdetails\\{i}.csv"):
             while True:
                 try:
                     df = pd.read_csv(
-                        f"F:\\AT\\report\\media\\{rDate}\\exitdetails\\{i}.csv")
+                        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{rDate}\\exitdetails\\{i}.csv")
                     break
                 except Exception as e:
                     print(f"Exception while getWinPercentage {e}")

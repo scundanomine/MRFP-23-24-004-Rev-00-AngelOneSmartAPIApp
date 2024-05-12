@@ -13,7 +13,7 @@ def getFirstItrMarketTimeOfTrend():
                     cdf.loc[index, 'trT'] = cdf.loc[index - 1, 'trT'] + 1
 
     cdf.to_csv(
-        f"F:\\AT\\marketstructure\\marketstate\\MarketStructure.csv",
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\marketstructure\\marketstate\\MarketStructure.csv",
         index=False)
 
 

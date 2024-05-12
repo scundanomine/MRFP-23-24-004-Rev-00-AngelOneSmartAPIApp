@@ -12,7 +12,7 @@ def generatorChartBlackListRR(pid):
         print(f"The exception while generatorChartBlackListRR is {e}")
         df = getterPECBListRR()
     df.to_csv(
-        'F:\\AT\\readandrecord\\rrstate\\PECBList.csv',
+        'E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\readandrecord\\rrstate\\PECBList.csv',
         index=False)
     return df
 

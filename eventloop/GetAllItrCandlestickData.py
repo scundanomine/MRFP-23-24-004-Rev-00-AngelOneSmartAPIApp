@@ -24,7 +24,7 @@ def getAllItrCandlestickData(r, fileName, lock="", c=""):
 
     # data instance for excel
     wb = xw.Book(
-        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
 
     # getting big dataframe
     dtc = wb.sheets("Sheet3")
@@ -80,7 +80,7 @@ def getAllItrCandlestickData(r, fileName, lock="", c=""):
     ctrA = 0
     # while 300 - (time.time() - startTime) > 0:
     while ctrA < 5:
-        ds = pd.read_csv("F:\\AT\\eventloop\\eventstate\\LiveCandleData.csv")
+        ds = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv")
         ctr = 6
         for i in range(6, r + 6, 6):
             stt = time.time()
@@ -101,7 +101,7 @@ def getAllItrCandlestickData(r, fileName, lock="", c=""):
             if timeDiff > 0:
                 time.sleep(timeDiff)
             # dtc.range(f"g{i-6+2}:k{i + 2}").options(pd.DataFrame, index=False, header=False).value = ds[i-6:i]
-            ds.to_csv("F:\\AT\\eventloop\\eventstate\\LiveCandleData.csv", index=False)
+            ds.to_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\eventloop\\eventstate\\LiveCandleData.csv", index=False)
         ctrA = ctrA + 1
         print(f"{ctrA} execution time is {time.time() - startTime}")
         # break

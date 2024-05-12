@@ -10,9 +10,9 @@ def processOne(lock, startTime):
         time.sleep(1)
         # print('I have waited for process one!!!!!!!!!')
         # df = pd.DataFrame([[0, 0, 0], [0, 0, 0]])
-        # df.to_csv('F:\\AT\\threadresearch\\mat2.csv', index=False)
+        # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv', index=False)
         df = pd.read_csv(
-            "F:\\AT\\threadresearch\\mat2.csv")
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
         print(f"time of execution for processOne!!!!!!!!! is {time.time() - startTime}")
 
 
@@ -23,10 +23,10 @@ def processTwo(lock, startTime):
         time.sleep(1)
         # print('I have waited for process two@@@@@@@@@@@@@@@@')
         df = pd.read_csv(
-            "F:\\AT\\threadresearch\\mat2.csv")
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
         # while True:
         #     try:
-        #         df = pd.read_csv("F:\\AT\\threadresearch\\mat2.csv")
+        #         df = pd.read_csv("E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
         #         break
         #     except Exception as e:
         #         print(f"Exception while getting df is +++++++++++++++++++++++++++++++++++ {e}")
@@ -40,9 +40,9 @@ def processThree(lock, startTime):
         time.sleep(1)
         # print('I have waited for process three############')
         df = pd.read_csv(
-            "F:\\AT\\threadresearch\\mat2.csv")
+            "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv")
         # df = pd.DataFrame([[2, 2, 2], [2, 2, 2]])
-        # df.to_csv('F:\\AT\\threadresearch\\mat2.csv',
+        # df.to_csv('E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\threadresearch\\mat2.csv',
         #           index=False)
         print(f"time of execution for processThree######## is {time.time() - startTime}")
 

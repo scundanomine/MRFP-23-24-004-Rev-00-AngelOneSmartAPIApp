@@ -20,7 +20,7 @@ def setterPrePivotData():
         pivDf.loc[index, 'C'] = close
 
     pivDf.to_csv(
-        "F:\\AT\\traditionalpivotalarm\\pivotstate\\PivotData.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\traditionalpivotalarm\\pivotstate\\PivotData.csv",
         index=False)
     return pivDf
 

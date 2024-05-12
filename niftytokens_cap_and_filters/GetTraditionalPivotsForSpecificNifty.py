@@ -22,7 +22,7 @@ def getTraditionalPivotsForSpecificNiftyFile(sheetName, upperBound, refDate, obj
             time.sleep(1)
 
     wb = xw.Book(
-        "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
 
     # getting dataframe
     dt = wb.sheets(sheetName)

@@ -7,7 +7,7 @@ def getterPreLiveStatus():
         try:
             # getting data from the sheet
             wb = xw.Book(
-                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
 
@@ -20,7 +20,7 @@ def getterPreLiveStatus():
     marDf.rename(columns={0: 'isLive'}, inplace=True)
     marDf = marDf.drop(labels=[1], axis=0)
     marDf.to_csv(
-        "F:\\AT\\commonudm\\resource\\LiveStatus.csv",
+        "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\commonudm\\resource\\LiveStatus.csv",
         index=False)
     return eval(isLive)
 

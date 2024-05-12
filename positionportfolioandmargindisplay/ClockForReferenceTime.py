@@ -9,7 +9,7 @@ def  clockForReferenceTime(cv):
     while True:
         try:
             wb = xw.Book(
-                "F:\\AT\\AngelOneSmartAPIApp\\TA_Python.xlsm")
+                "E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\AngelOneSmartAPIApp\\TA_Python.xlsm")
             # MAndP is margin and portfolio list
             dt = wb.sheets("MAndP")
             pt = datetime.datetime.now() - cv

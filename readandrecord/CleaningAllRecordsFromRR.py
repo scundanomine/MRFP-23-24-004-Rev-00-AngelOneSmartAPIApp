@@ -5,29 +5,29 @@ from commonudm.GetterReportDateForRR import getterReportDateForRR
 def cleaningAllRecordsFromRR():
     reportDate = getterReportDateForRR()
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\exitcandles")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitcandles")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\exitdetails")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitdetails")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\exitplots")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitplots")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\exitmcandles")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitmcandles")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\exitmdetails")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitmdetails")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\exitmplots")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\exitmplots")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\positioncandles")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positioncandles")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\positiondetails")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positiondetails")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\positionplots")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionplots")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\positionmcandles")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionmcandles")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\positionmdetails")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionmdetails")
     cleaningAllFilesFromSpecificDirectory(
-        f"F:\\AT\\report\\media\\{reportDate}\\positionmplots")
+        f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionmplots")
 
 
 # cleaningAllRecordsFromRR()
