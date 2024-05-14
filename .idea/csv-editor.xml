@@ -24,6 +24,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\AIlists\AIstate\NiftyAIList.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\AIlists\AIstate\NiftyNo.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\AIlists\AIstate\ResistanceAIList.csv">
           <value>
             <Attribute>
@@ -2832,6 +2846,13 @@
           </value>
         </entry>
         <entry key="\historicdata\historicdatastate\2024-04-29\120.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\historicdata\historicdatastate\2024-05-13\1.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

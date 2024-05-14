@@ -1,6 +1,8 @@
 import datetime
 import time
 import pandas as pd
+
+from AIlists.GetterAIList import getterAIList
 from AIlists.SetterAIList import setterAIList
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
@@ -17,7 +19,14 @@ def getAIListWithoutUdf(isLive=False):
     while datetime.datetime.now() - cv < exitTime:
         # get universal list
         uDf = getterUniversalList()
+
         try:
+            # getter specific nifty no
+            NifNo = int(getterAIList("NiftyNo").loc[0, "NiftyNo"])
+            # function for Nifty AI list
+            dfBRsi = uDf.loc[uDf['id'] <= NifNo]
+            setterAIList(dfBRsi, "NiftyAIList")
+
             # function for Buyer Rsi list (over bought region)
             dfBRsi = uDf.loc[(uDf['rsi0'] <= 40) | (uDf['rsi1'] <= 40) | (uDf['rsi2'] <= 40)]
             setterAIList(dfBRsi, "BuyerRSIAIList")

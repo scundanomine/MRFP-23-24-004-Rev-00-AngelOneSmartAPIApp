@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="CompoundRunOne" type="CompoundRunConfigurationType">
     <toRun name="EventLoopForCandlesDataFromWebSocket" type="PythonConfigurationType" />
-    <toRun name="EventLoopMasterPTLive" type="PythonConfigurationType" />
+    <toRun name="EventLoopMasterPTLiveWithDominance" type="PythonConfigurationType" />
     <method v="2" />
   </configuration>
 </component>
