@@ -8,7 +8,7 @@ from entrytriggeredlist.GetterCustomBlackListET import getterCustomBlackListET
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
-def entryTriggeredForRSIToBuy(flagBearish, lock):
+def entryTriggeredForRSIToBuy(lock):
     # get current resistance AI list
     rdf = getterAIList("BuyerRSIAIList")
 
@@ -26,7 +26,7 @@ def entryTriggeredForRSIToBuy(flagBearish, lock):
                 cTwo = row['CC2']
                 atr = row['atr']
                 # condition for buy
-                if not flagBearish and row['rsi0'] >= row['rsi1'] >= row["rsi2"] and (cTwo - cOne) >= 0.2*atr and row['roc0'] <= -15 and not checkBearishReversalCandle(row["t"]):
+                if row['rsi0'] >= row['rsi1'] >= row["rsi2"] and (cTwo - cOne) >= 0.2*atr and row['roc0'] <= -15 and not checkBearishReversalCandle(row["t"]):
                     # update the order type and upend the order list
                     row["ot"] = "buy"
                     row['oc'] = "ETFRSIDivergenceForBuy"
@@ -38,7 +38,7 @@ def entryTriggeredForRSIToBuy(flagBearish, lock):
     except Exception as e:
         print(f"Exception while entryTriggeredForRSIToBuy: is {e}")
         time.sleep(1)
-        entryTriggeredForRSIToBuy(flagBearish, lock)
+        entryTriggeredForRSIToBuy(lock)
 
 
 # entryTriggeredForRSIToBuy()

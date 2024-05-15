@@ -9,9 +9,9 @@ from entrytriggeredlist.GetterCustomBlackListET import getterCustomBlackListET
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
-def entryTriggeredForBearishReversalPatternForSell(lock):
+def entryTriggeredForNiftyBearishReversalPatternForSell(lock):
     # get current resistance AI list
-    rdf = getterAIList("BearishReversalAIList")
+    rdf = getterAIList("NiftyAIList")
 
     # getter ET black list
     bLDf = getterBlackListET()
@@ -29,18 +29,18 @@ def entryTriggeredForBearishReversalPatternForSell(lock):
                 rsi = row['rsi0']
 
                 # condition for 'sell'
-                if cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and row['g'] == 'red' and row['roc0'] >= 15 and not checkBullishReversalCandle(row["t"]):
+                if cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and row['g'] == 'red' and not checkBullishReversalCandle(row["t"]):
                     # update the order type and upend the order list
                     row["ot"] = "sell"
-                    row['oc'] = "ETFBearishReversalPatternToSell"
+                    row['oc'] = "ETFNiftyBearishReversalPatternToSell"
                     row['srT'] = time.time()
                     with lock:
                         getterAppendAndSetterEntryTriggeredList(row)
                         # update the black list
                         getterUpdateAndSetterBlackListET(uid, 1)
     except Exception as e:
-        print(f"Exception while entryTriggeredForBearishReversalPatternForSell: is {e}")
+        print(f"Exception while entryTriggeredForNiftyBearishReversalPatternForSell: is {e}")
         time.sleep(1)
-        entryTriggeredForBearishReversalPatternForSell(lock)
+        entryTriggeredForNiftyBearishReversalPatternForSell(lock)
 
 # entryTriggeredForBearishReversalPatternForSell()

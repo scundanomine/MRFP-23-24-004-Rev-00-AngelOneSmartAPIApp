@@ -8,7 +8,7 @@ from entrytriggeredlist.GetterCustomBlackListET import getterCustomBlackListET
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
-def entryTriggeredForRSIToSell(flagBullish, lock):
+def entryTriggeredForRSIToSell(lock):
     # get current resistance AI list
     rdf = getterAIList("SellerRSIAIList")
 
@@ -26,7 +26,7 @@ def entryTriggeredForRSIToSell(flagBullish, lock):
                 cTwo = row['CC2']
                 atr = row['atr']
                 # condition for sell
-                if not flagBullish and row['rsi0'] < row['rsi1'] < row['rsi2'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] >= 15 and not checkBullishReversalCandle(row["t"]):
+                if row['rsi0'] < row['rsi1'] < row['rsi2'] and (cTwo - cOne) <= -0.2*atr and row['roc0'] >= 15 and not checkBullishReversalCandle(row["t"]):
                     # update the order type and upend the order list
                     row["ot"] = "sell"
                     row['oc'] = "ETFRSIDivergenceForSell"
@@ -38,7 +38,7 @@ def entryTriggeredForRSIToSell(flagBullish, lock):
     except Exception as e:
         print(f"Exception while entryTriggeredForRSIToSell: is {e}")
         time.sleep(1)
-        entryTriggeredForRSIToSell(flagBullish, lock)
+        entryTriggeredForRSIToSell(lock)
 
 
 # entryTriggeredForRSIToSell()

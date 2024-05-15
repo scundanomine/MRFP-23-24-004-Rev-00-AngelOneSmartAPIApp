@@ -3727,6 +3727,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ltpdistribution\ltpdistributionstate\allcandledistributiondf\2024-05-13\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\ltpdistribution\ltpdistributionstate\specificdistributiondf\1.csv">
           <value>
             <Attribute>

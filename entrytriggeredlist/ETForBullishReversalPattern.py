@@ -9,7 +9,7 @@ from entrytriggeredlist.GetterCustomBlackListET import getterCustomBlackListET
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
-def entryTriggeredForBullishReversalPatternForBuy(flagBearish, lock=multiprocessing.Lock()):
+def entryTriggeredForBullishReversalPatternForBuy(lock=multiprocessing.Lock()):
     # get current resistance AI list
     rdf = getterAIList("BullishReversalAIList")
 
@@ -29,7 +29,7 @@ def entryTriggeredForBullishReversalPatternForBuy(flagBearish, lock=multiprocess
                 # rsi = row['rsi0']
 
                 # condition for buy
-                if not flagBearish and cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and row['g'] == 'green' and row['roc0'] <= -15 and not checkBearishReversalCandle(row["t"]):
+                if cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and row['g'] == 'green' and row['roc0'] <= -15 and not checkBearishReversalCandle(row["t"]):
                     # update the order type and upend the order list
                     row["ot"] = "buy"
                     row['oc'] = "ETFBullishReversalPatternToBuy"
@@ -41,7 +41,7 @@ def entryTriggeredForBullishReversalPatternForBuy(flagBearish, lock=multiprocess
     except Exception as e:
         print(f"Exception while entryTriggeredForBullishReversalPatternForBuy: is {e}")
         time.sleep(1)
-        entryTriggeredForBullishReversalPatternForBuy(flagBearish, lock)
+        entryTriggeredForBullishReversalPatternForBuy(lock)
 
 
 # entryTriggeredForBullishReversalPatternForBuy()

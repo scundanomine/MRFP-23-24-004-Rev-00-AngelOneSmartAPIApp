@@ -2,6 +2,10 @@ from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entrytriggeredlist.ETForBearishReversalPattern import entryTriggeredForBearishReversalPatternForSell
 from entrytriggeredlist.ETForBullishReversalPattern import entryTriggeredForBullishReversalPatternForBuy
+from entrytriggeredlist.ETForNiftyBearishReversalPattern import entryTriggeredForNiftyBearishReversalPatternForSell
+from entrytriggeredlist.ETForNiftyBullishReversalPattern import entryTriggeredForNiftyBullishReversalPatternForBuy
+from entrytriggeredlist.ETForNiftyRSIToBuy import entryTriggeredForNiftyRSIToBuy
+from entrytriggeredlist.ETForNiftyRSIToSell import entryTriggeredForNiftyRSIToSell
 from entrytriggeredlist.ETForRSIToBuy import entryTriggeredForRSIToBuy
 from entrytriggeredlist.ETForRSIToSell import entryTriggeredForRSIToSell
 from entrytriggeredlist.GetBlackListForET import getBlackListForET
@@ -23,28 +27,24 @@ def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
     exitTime = getterExitTime()
 
     while datetime.datetime.now() - cv < exitTime:
-        # flagBullish = checkForPotentialBullishMarket()
-        # flagBearish = checkForPotentialBearishMarket()
-        flagBullish = False
-        flagBearish = False
         # get custom pre black list for ET
         getterPreCustomBlackListForET()
 
-        # # EL due support and resistance
-        # entryTriggeredForResistancePivot(lock)
-        # entryTriggeredForSupportPivot(lock)
-        #
-        # # EL due to top gainer and loser
-        # entryTriggeredForTopGainerToBuy(lock)
-        # entryTriggeredForTopLoserToSell(lock)
-        #
         # EL due to reversal pattern
-        entryTriggeredForBullishReversalPatternForBuy(flagBearish, lock)
-        entryTriggeredForBearishReversalPatternForSell(flagBullish, lock)
+        entryTriggeredForBullishReversalPatternForBuy(lock)
+        entryTriggeredForBearishReversalPatternForSell(lock)
 
         # EL due to RSI
-        entryTriggeredForRSIToBuy(flagBearish, lock)
-        entryTriggeredForRSIToSell(flagBullish, lock)
+        entryTriggeredForRSIToBuy(lock)
+        entryTriggeredForRSIToSell(lock)
+
+        # EL due to reversal pattern
+        entryTriggeredForNiftyBullishReversalPatternForBuy(lock)
+        entryTriggeredForNiftyBearishReversalPatternForSell(lock)
+
+        # EL due to RSI
+        entryTriggeredForNiftyRSIToBuy(lock)
+        entryTriggeredForNiftyRSIToSell(lock)
 
         # ctrA = ctrA + 1
         # if ctrA == 10:
