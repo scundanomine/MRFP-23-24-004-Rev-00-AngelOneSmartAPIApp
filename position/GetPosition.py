@@ -77,6 +77,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                     getEtAndEntryDropFunction(lock, uid)
                 elif ltp >= lp:
                     row['lp'] = ltp
+                    row['ltp'] = ltp
                     # calculation for margin required
                     mr = abs(lp * row["q"] / margin)
                     maDf = getterAvailableMargin()
@@ -114,6 +115,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
                     getEtAndEntryDropFunction(lock, uid)
                 elif ltp <= lp:
                     row['lp'] = ltp
+                    row['ltp'] = ltp
                     # calculation for margin required
                     mr = abs(lp * row["q"] / margin)
                     maDf = getterAvailableMargin()

@@ -15,7 +15,7 @@ def getterUpdateAndSetterPositionId(rDate, lock=multiprocessing.Lock()):
                     index=False)
     except Exception as e:
         print(f"The exception while getterUpdateAndSetterPositionId is {e}")
-        pid = getterUpdateAndSetterPositionId(rDate, lock)
+        getterUpdateAndSetterPositionId(rDate, lock)
     return pid
 
 

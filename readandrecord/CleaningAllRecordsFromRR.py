@@ -30,4 +30,4 @@ def cleaningAllRecordsFromRR():
         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionmplots")
 
 
-# cleaningAllRecordsFromRR()
+cleaningAllRecordsFromRR()

@@ -7850,6 +7850,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\report\media\2024-05-14\state\PId.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\report\media\2024-05-15\positiondetails\10.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\report\media\2024-05-15\positiondetails\22.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\report\media\2024-05-15\state\PId.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\smartwebsocketdata\websocketstate\tokenlist\TokenList0.csv">
           <value>
             <Attribute>
