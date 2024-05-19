@@ -16,7 +16,6 @@ def getterFirstTimeRunFlagFromExcel():
             # creating the df
             flagF = dt['T2'].value
             if flagF is None or flagF == "T":
-                flagF = 'F'
                 dt['T2'].value = 'F'
                 dt['O2'].value = 0
                 marDf = pd.DataFrame([0], columns=['pid'])

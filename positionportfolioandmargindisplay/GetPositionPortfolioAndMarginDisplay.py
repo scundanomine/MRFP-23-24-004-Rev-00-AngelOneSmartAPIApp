@@ -38,4 +38,5 @@ def getPositionPortfolioAndMarginDisplay(isLive=False):
 
         time.sleep(2)
 
+
 # getPositionPortfolioAndMarginDisplay()

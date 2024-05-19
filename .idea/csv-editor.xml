@@ -2859,6 +2859,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\historicdata\historicdatastate\2024-05-15\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\historicdata\historicdatastate\2024-05-17\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\ltpdistribution\ltpdistributionstate\SDDf.csv">
           <value>
             <Attribute>
@@ -7857,21 +7871,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\report\media\2024-05-15\positiondetails\10.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\report\media\2024-05-15\positiondetails\22.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\report\media\2024-05-15\state\PId.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\report\media\2024-05-17\state\PId.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

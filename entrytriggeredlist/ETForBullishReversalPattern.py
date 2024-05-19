@@ -29,7 +29,7 @@ def entryTriggeredForBullishReversalPatternForBuy(lock=multiprocessing.Lock()):
                 # rsi = row['rsi0']
 
                 # condition for buy
-                if cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and row['g'] == 'green' and row['roc0'] <= -15 and not checkBearishReversalCandle(row["t"]):
+                if uid <= 50 and cTwo > cOne and checkBullishReversalPattern(row["bulRP"]) and row['g'] == 'green' and row['roc0'] <= -15 and not checkBearishReversalCandle(row["t"]):
                     # update the order type and upend the order list
                     row["ot"] = "buy"
                     row['oc'] = "ETFBullishReversalPatternToBuy"

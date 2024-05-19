@@ -11,7 +11,7 @@ def shortPositionCalculator(ltp, atr, mpl=200, rrr=1.2, lot=20000, margin=5, atr
         q = -math.floor(nOne)
 
     # calculation for sl and target
-    sl = ltp + atrF * atr
+    sl = ltp + 5 * atr
     target = ltp - rrr * atrF * atr
 
     if q == 0:
