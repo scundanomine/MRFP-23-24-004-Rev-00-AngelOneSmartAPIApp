@@ -1,5 +1,6 @@
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
+from entry.GetterETLiveActionFlag import getterETLiveActionFlag
 from entrytriggeredlist.ETForBearishReversalPattern import entryTriggeredForBearishReversalPatternForSell
 from entrytriggeredlist.ETForBullishReversalPattern import entryTriggeredForBullishReversalPatternForBuy
 from entrytriggeredlist.ETForNiftyBearishReversalPattern import entryTriggeredForNiftyBearishReversalPatternForSell
@@ -27,8 +28,24 @@ def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
     exitTime = getterExitTime()
 
     while datetime.datetime.now() - cv < exitTime:
+
+        # getting live action flags and they should not be interacted with strategy
+        while True:
+            try:
+                eTBF, eTSF = getterETLiveActionFlag()
+                break
+            except Exception as e:
+                print(f"exception while getting  eTBF, eTSF is {e}")
         # get custom pre black list for ET
         getterPreCustomBlackListForET()
+
+        # EL due to reversal pattern
+        entryTriggeredForNiftyBullishReversalPatternForBuy(lock, eTBF)
+        entryTriggeredForNiftyBearishReversalPatternForSell(lock, eTSF)
+
+        # EL due to RSI
+        # entryTriggeredForNiftyRSIToBuy(lock, eTBF)
+        # entryTriggeredForNiftyRSIToSell(lock)
 
         # EL due to reversal pattern
         entryTriggeredForBullishReversalPatternForBuy(lock)
@@ -38,19 +55,10 @@ def getEntryTriggeredList(lock=multiprocessing.Lock(), isLive=False):
         entryTriggeredForRSIToBuy(lock)
         entryTriggeredForRSIToSell(lock)
 
-        # EL due to reversal pattern
-        entryTriggeredForNiftyBullishReversalPatternForBuy(lock)
-        entryTriggeredForNiftyBearishReversalPatternForSell(lock)
-
-        # EL due to RSI
-        entryTriggeredForNiftyRSIToBuy(lock)
-        entryTriggeredForNiftyRSIToSell(lock)
-
         # ctrA = ctrA + 1
         # if ctrA == 10:
         #     print(f"Execution time for getting entry triggered list (ET) is {time.time() - startTime}")
         #     ctrA = 0
         time.sleep(0.125)
-
 
 # getEntryTriggeredList()

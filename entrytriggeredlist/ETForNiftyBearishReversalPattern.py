@@ -9,7 +9,7 @@ from entrytriggeredlist.GetterCustomBlackListET import getterCustomBlackListET
 from entrytriggeredlist.GetterUpdateAndSetterBlackListET import getterUpdateAndSetterBlackListET
 
 
-def entryTriggeredForNiftyBearishReversalPatternForSell(lock):
+def entryTriggeredForNiftyBearishReversalPatternForSell(lock, eTSF="T"):
     # get current resistance AI list
     rdf = getterAIList("NiftyAIList")
 
@@ -29,10 +29,10 @@ def entryTriggeredForNiftyBearishReversalPatternForSell(lock):
                 rsi = row['rsi0']
 
                 # condition for 'sell'
-                if cTwo < cOne and checkBearishReversalPattern(row["berRP"]) and row['g'] == 'red' and not checkBullishReversalCandle(row["t"]):
+                if eTSF == 'F':
                     # update the order type and upend the order list
                     row["ot"] = "sell"
-                    row['oc'] = "ETFNiftyBearishReversalPatternToSell"
+                    row['oc'] = "ETFNiftyToSell"
                     row['srT'] = time.time()
                     with lock:
                         getterAppendAndSetterEntryTriggeredList(row)
