@@ -39,7 +39,7 @@ def getFirstItrCandlesticksProperties(sid, symbol):
     gdf['atrV'] = atrV
 
     # calculation for SMA for indexes
-    # if token == 99926012:
+    # if token == 99926000:
     #     gdf = getFirstItrSMAForNiftyIndex(gdf)
 
     # calculation for volume size

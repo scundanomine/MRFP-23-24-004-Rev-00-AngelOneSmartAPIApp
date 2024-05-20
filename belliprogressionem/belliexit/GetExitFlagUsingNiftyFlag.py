@@ -6,7 +6,7 @@ from smartwebsocketdata.GetPartlyCandleLengthAndGenderFromWebSocket import getPa
 import pandas as pd
 
 
-def getExitFlagUsingTrendingStrategy(cv, pSize=0, liveFlag=False):
+def getExitFlagUsingNiftyFlag(cv, pSize=0, liveFlag=False):
     # startTime = time.time()
     try:
         df = getterMarketStructureDf()

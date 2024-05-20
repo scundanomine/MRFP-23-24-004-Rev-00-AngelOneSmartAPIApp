@@ -37,7 +37,7 @@ def getAllItrCandlesticksProperties(sid, symbol, data):
     gdf.loc[9, 'atrV'] = atrV
 
     # calculation for SMA for indexes
-    # if token == 99926012:
+    # if token == 99926000:
     #     sma = getAllItrSMAForNiftyIndex(gdf)
     #     gdf.loc[9, 'sma'] = sma
 

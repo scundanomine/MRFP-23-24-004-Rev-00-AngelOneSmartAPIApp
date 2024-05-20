@@ -2866,6 +2866,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\historicdata\historicdatastate\2024-05-15\120.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\historicdata\historicdatastate\2024-05-17\1.csv">
           <value>
             <Attribute>
@@ -3742,6 +3749,13 @@
           </value>
         </entry>
         <entry key="\ltpdistribution\ltpdistributionstate\allcandledistributiondf\2024-05-13\1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ltpdistribution\ltpdistributionstate\allcandledistributiondf\2024-05-15\120.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

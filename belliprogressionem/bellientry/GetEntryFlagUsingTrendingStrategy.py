@@ -14,12 +14,12 @@ def getEntryFlagUsingTrendingStrategy(cv, liveFlag=False):
         atr = df.loc[9, "atr"]
         if mTyp == pMTyp:
             if liveFlag:
-                pl, pcg = getPartlyCandleLengthAndGenderFromWebSocket(99926012)
+                pl, pcg = getPartlyCandleLengthAndGenderFromWebSocket(99926000)
             else:
                 pl, pcg = getPartlyCandleLengthAndGenderFromDistribution(120, cv)
         else:
             if liveFlag:
-                pl, pcg = getPartlyCandleLengthAndGenderFromWebSocket(99926012, True)
+                pl, pcg = getPartlyCandleLengthAndGenderFromWebSocket(99926000, True)
             else:
                 pl, pcg = getPartlyCandleLengthAndGenderFromDistribution(120, cv, True)
         # Strategy for market change

@@ -23,4 +23,4 @@ def getPartlyCandleLengthAndGenderFromWebSocket(token, trg=False):
         return 0, 'none'
 
 
-# print(getPartlyCandleLengthAndGenderFromWebSocket(99926012, True))
+# print(getPartlyCandleLengthAndGenderFromWebSocket(99926000, True))

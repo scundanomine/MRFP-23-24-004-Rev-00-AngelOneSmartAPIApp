@@ -87,11 +87,36 @@ def takeExitWithDominance(lock=multiprocessing.Lock(), isLive=False):
                         row['gol'] = q * (sl - lp)
                     else:
                         row['gol'] = q * (ltp - lp)
+                    # condition for warning
+                    if checkBearishReversalPatternForExit(rowC["berRP"]) and rowC['C'] - ltp >= 0.25 * rowC['atr']:
+                        row['po'] = 'doomed!'  # exit due to Bearish reversal pattern
+                        row['slo'] = "BDBerRP"
+                    elif rowC["g"] == 'red' and rowCC["g"] == 'red' and rowCCC["g"] == 'red' and rowC["C"] <= rowCC["C"] <= rowCCC["C"]:
+                        row['po'] = 'doomed!'  # exit due to continuous red candle
+                        row['slo'] = "BDConRedCan"
+                    elif checkBearishReversalPatternForExit(rowCC["berRP"]) and rowCC['C'] - ltp >= 0.25 * rowC['atr']:
+                        row['po'] = 'doomed!'
+                        row['slo'] = 'BDPreBerRP'  # exit due to previous bearish reversal pattern
+                    else:
+                        row['po'] = ''
+                        row['slo'] = ''
                 else:
                     if ltp >= sl:
                         row['gol'] = q * (sl - lp)
                     else:
                         row['gol'] = q * (ltp - lp)
+                    if checkBullishReversalPatternForExit(rowC["bulRP"]) and ltp - rowC['C'] >= 0.25 * rowC['atr']:
+                        row['po'] = 'doomed!'
+                        row['slo'] = 'SDBulRP'  # exit due to bullish reversal pattern
+                    elif rowC["g"] == 'green' and rowCC["g"] == 'green' and rowCCC["g"] == 'green' and rowC["C"] >= rowCC["C"] >= rowCCC["C"]:
+                        row['po'] = 'doomed!'
+                        row['slo'] = 'SDConGreenCan'  # exit due to continuous green candle
+                    elif checkBullishReversalPatternForExit(rowCC["bulRP"]) and ltp - rowCC['C'] >= 0.25 * rowC['atr']:
+                        row['po'] = 'doomed!'  # exit due to previous bullish reversal pattern
+                        row['slo'] = 'SDPreBulRP'
+                    else:
+                        row['po'] = ''
+                        row['slo'] = ''
                 getterUpdateAndSetterPositionList(uid, row, lock)
             else:
                 dx = 0
@@ -118,22 +143,7 @@ def takeExitWithDominance(lock=multiprocessing.Lock(), isLive=False):
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} alas!!!!!")
                     continue
-                elif checkBearishReversalPatternForExit(rowC["berRP"]) and rowC['C'] - ltp >= 0.25 * rowC['atr']:
-                    row['po'] = 'doomed!'    # exit due to Bearish reversal pattern
-                    row['slo'] = "BDBerRP"
-                    getterUpdateAndSetterPositionList(uid, row, lock)
-                    continue
-                elif rowC["g"] == 'red' and rowCC["g"] == 'red' and rowCCC["g"] == 'red' and rowC["C"] <= rowCC["C"] <= rowCCC["C"]:
-                    row['po'] = 'doomed!'    # exit due to continuous red candle
-                    row['slo'] = "BDConRedCan"
-                    getterUpdateAndSetterPositionList(uid, row, lock)
-                    continue
-                elif checkBearishReversalPatternForExit(rowCC["berRP"]) and rowCC['C'] - ltp >= 0.25 * rowC['atr']:
-                    row['po'] = 'doomed!'
-                    row['slo'] = 'BDPreBerRP' # exit due to previous bearish reversal pattern
-                    getterUpdateAndSetterPositionList(uid, row, lock)
-                    continue
-            # exit condition for sell
+                    # exit condition for sell
             elif ot == "sell":
                 # condition for live action exit
                 if (eXSLF == 'T') and dx >= 0:
@@ -146,21 +156,6 @@ def takeExitWithDominance(lock=multiprocessing.Lock(), isLive=False):
                     row['tOP'] = 'SXDTSLHit'  # exit due to sl hit
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for sell order {uid} alas!!!!!")
-                    continue
-                elif checkBullishReversalPatternForExit(rowC["bulRP"]) and ltp - rowC['C'] >= 0.25 * rowC['atr']:
-                    row['po'] = 'doomed!'
-                    row['slo'] = 'SDBulRP'  # exit due to bullish reversal pattern
-                    getterUpdateAndSetterPositionList(uid, row, lock)
-                    continue
-                elif rowC["g"] == 'green' and rowCC["g"] == 'green' and rowCCC["g"] == 'green' and rowC["C"] >= rowCC["C"] >= rowCCC["C"]:
-                    row['po'] = 'doomed!'
-                    row['slo'] = 'SDConGreenCan'  # exit due to continuous green candle
-                    getterUpdateAndSetterPositionList(uid, row, lock)
-                    continue
-                elif checkBullishReversalPatternForExit(rowCC["bulRP"]) and ltp - rowCC['C'] >= 0.25 * rowC['atr']:
-                    row['po'] = 'doomed!'    # exit due to previous bullish reversal pattern
-                    row['slo'] = 'SDPreBulRP'
-                    getterUpdateAndSetterPositionList(uid, row, lock)
                     continue
 
         # ctrA = ctrA + 1
