@@ -25,7 +25,7 @@ def setPositionDetailsAndCandles(pid, uid, symbol, row, cv, reportDate):
         index=False)
 
     # setting market position candles
-    df = getterSpecificPastThirtyCandlesData(120, "Nifty 100")
+    df = getterSpecificPastThirtyCandlesData(120, "Nifty 50")
     df.to_csv(
         f"E:\\WebDevelopment\\2023-2024\\MRFP-23-24-004-Rev-00-AngelOneSmartAPIApp\\report\\media\\{reportDate}\\positionmcandles\\{pid}.csv",
         index=False)

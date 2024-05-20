@@ -4,7 +4,7 @@ from entrytriggeredlist.CheckBullishReversalCandle import checkBullishReversalCa
 
 
 def checkBearishMarket():
-    df = getterSpecificCandleData(120, "Nifty 100")
+    df = getterSpecificCandleData(120, "Nifty 50")
     cOne = df.loc[8, 'C']
     cTwo = df.loc[9, 'C']
     atr = df.loc[9, 'atr']

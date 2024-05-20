@@ -9,6 +9,7 @@ from marketstructure.GetAllItrMarketStrength import getAllItrMarketStrength
 from marketstructure.GetAllItrMarketTimeOfTrend import getAllItrMarketTimeOfTrend
 from marketstructure.GetAllItrMarketTrendWithWeightedAvg import getAllItrMarketTrendWithWeightedAvg
 from marketstructure.GetterMarketStructureDf import getterMarketStructureDf
+from positionportfolioandmargindisplay.DisplayNiftyAtr import displayNiftyAtr
 from positionportfolioandmargindisplay.DisplayPastFiveMarketTrend import displayPastFiveMarketTrend
 from positionportfolioandmargindisplay.GetEntryBannedDueToEmergencyExit import getEntryBannedDueToEmergencyExit
 
@@ -21,7 +22,7 @@ def getAllItrMarketStructure(isLive=False):
     exitTime = getterExitTime()
     while datetime.datetime.now() - cv < exitTime:
         df = getterMarketStructureDf()
-        cdf = getterSpecificCandleData(120, "Nifty 100")
+        cdf = getterSpecificCandleData(120, "Nifty 50")
         if cdf.loc[9, 'time'] == df.loc[9, 'time']:
             time.sleep(1 / 100)
         else:
@@ -43,6 +44,7 @@ def getAllItrMarketStructure(isLive=False):
                 index=False)
             displayPastFiveMarketTrend(df)
             getEntryBannedDueToEmergencyExit(df)
+            displayNiftyAtr(df.loc[9, "atr"])
 
 
 # getAllItrMarketStructure()
