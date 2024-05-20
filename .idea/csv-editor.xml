@@ -87,6 +87,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\belliprogressionem\state\NiftySL.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\candlestickdata\candle_state\gstData.csv">
           <value>
             <Attribute>

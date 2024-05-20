@@ -1,6 +1,7 @@
 from AIlists.CleaningAndSettingAIList import cleaningAndSettingAIList
 from belliprogressionem.SetterPreETStrategyFlag import setterPreETStrategyFlag
 from belliprogressionem.SetterPreExitStrategyFlag import setterPreExitStrategyFlag
+from belliprogressionem.SetterPreNiftySL import setterPreNiftySL
 from candlestickdata.CleaningAndSettingGSTDataFiles import cleaningAndSettingGSTDataFiles
 from commonudm.GetterPreExitTime import getterPreExitTime
 from commonudm.GetterPreStockQtn import getterPreStockQtn
@@ -66,8 +67,7 @@ def cleaningAndPreRequisitePT(isLive=False, cleaningFlag=False):
     # cleaning the setting the Entry list
     setterPreECBList()
     setterPreEntryList()
-    setterPreETStrategyFlag()
-    setterPreExitStrategyFlag()
+    setterPreNiftySL()
 
     # cleaning the setting the position list
     setterPrePositionList()

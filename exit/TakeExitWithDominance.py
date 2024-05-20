@@ -5,6 +5,7 @@ import time
 import pandas as pd
 
 from belliprogressionem.GetterExitStrategyFlag import getterExitStrategyFlag
+from belliprogressionem.belliexit.GetExitFlagUsingNiftySL import getExitFlagUsingNiftySL
 from belliprogressionem.belliexit.GetExitFlagUsingTrendingStrategy import getExitFlagUsingTrendingStrategy
 from candlestickdata.GetterSpecificCandleData import getterSpecificCandleData
 from commonudm.GetterExitTime import getterExitTime
@@ -46,7 +47,10 @@ def takeExitWithDominance(lock=multiprocessing.Lock(), isLive=False):
         pLDf = getterPositionList()
 
         # xbf, xsf = getExitFlagUsingBasicStrategy()
-        # xbf, xsf = getExitFlagUsingTrendingStrategy(cv, len(pLDf), isLive)
+        if len(pLDf) != 0:
+            xbf, xsf = getExitFlagUsingNiftySL(cv, isLive)
+        else:
+            continue
 
         for index, row in pLDf.iterrows():
             eIDf = getExitInputs()
@@ -132,7 +136,7 @@ def takeExitWithDominance(lock=multiprocessing.Lock(), isLive=False):
             # exit condition for buy
             elif ot == "buy":
                 # condition for live action exit
-                if (eXBLF == 'T') and dx <= 0:
+                if (eXBLF == 'T') and dx <= 0 and xbf == 'T':
                     row['tOP'] = 'BExDTLiveAndStrFlags'  # Exit due live and strategy flags
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} emergency!!!!!")
@@ -146,7 +150,7 @@ def takeExitWithDominance(lock=multiprocessing.Lock(), isLive=False):
                     # exit condition for sell
             elif ot == "sell":
                 # condition for live action exit
-                if (eXSLF == 'T') and dx >= 0:
+                if (eXSLF == 'T') and dx >= 0 and xsf == 'T':
                     row['tOP'] = 'SXDTLiveStrFlag'  # exit due to live and strategy flags
                     exitUDf(pid, uid, symbol, row, cv, reportDate, mr, row['gol'], lock)
                     print(f"Exit happened for {pid} for buy order for {uid} alas!!!!!")

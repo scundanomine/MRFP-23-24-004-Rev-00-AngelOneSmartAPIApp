@@ -1,7 +1,7 @@
 import xlwings as xw
 
 
-def setValueForEntryAndExitOption(optionEntry="Default", optionExit="Default", warningMsg=""):
+def setValueForEntryAndExitOption(optionEntry="All", optionExit="All", warningMsg="Exit due to SL hit"):
     while True:
         try:
             wb = xw.Book(
@@ -10,8 +10,8 @@ def setValueForEntryAndExitOption(optionEntry="Default", optionExit="Default", w
             dt = wb.sheets("MAndP")
             # creating the df
             # dt.range("a1:a2").options(pd.DataFrame, index=False).value = df
-            # dt['N2'].value = optionEntry
-            # dt['P2'].value = optionExit
+            dt['N2'].value = optionEntry
+            dt['P2'].value = optionExit
             dt['I3'].value = warningMsg
             break
         except Exception as e:
