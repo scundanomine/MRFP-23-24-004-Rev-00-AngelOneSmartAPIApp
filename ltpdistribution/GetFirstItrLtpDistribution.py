@@ -13,8 +13,8 @@ def getFirstItrLtpDistribution():
     date = date.strftime("%Y-%m-%d")
     gDf = getterRequiredSymbolAndTokenList()
     currentDateTime = datetime.datetime.now() - cv
-    fromDateTime = currentDateTime + datetime.timedelta(minutes=1)
-    toDateTime = currentDateTime + datetime.timedelta(minutes=4)
+    fromDateTime = currentDateTime
+    toDateTime = currentDateTime + datetime.timedelta(minutes=3)
     for index, row in gDf.iterrows():
         uid = row['id']
         df = getLtpDistributionWithQuery(fromDateTime, toDateTime, uid, date)

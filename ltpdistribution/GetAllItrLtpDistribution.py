@@ -14,7 +14,7 @@ def getAllItrLtpDistribution():
     date = date.strftime("%Y-%m-%d")
     while datetime.datetime.now() - cv < exitTime:
         gDf = getterRequiredSymbolAndTokenList()
-        futureDateTime = datetime.datetime.now() - cv + datetime.timedelta(minutes=3)
+        futureDateTime = datetime.datetime.now() - cv + datetime.timedelta(minutes=2)
         futureDateTimeTo = futureDateTime + datetime.timedelta(minutes=1)
         reqTime = futureDateTime.strftime("%Y-%m-%d %H:%M:00")
         for index, row in gDf.iterrows():

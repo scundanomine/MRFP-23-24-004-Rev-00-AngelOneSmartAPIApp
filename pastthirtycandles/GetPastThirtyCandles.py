@@ -26,9 +26,9 @@ def getPastThirtyCandles(isLive=False):
     while datetime.datetime.now() - cv < exitTime:
         # getter symbol and token list
         sTDf = getterRequiredSymbolAndTokenList()
-        currentTimePlusOne = datetime.datetime.now() - cv + datetime.timedelta(minutes=1)
-        toTime = currentTimePlusOne + datetime.timedelta(minutes=1)
-        reqTime = currentTimePlusOne.strftime("%Y-%m-%dT%H:%M:00+05:30")
+        currentTime = datetime.datetime.now() - cv
+        toTime = currentTime + datetime.timedelta(minutes=1)
+        reqTime = currentTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
         for index, row in sTDf.iterrows():
             uid = row['id']
             symbol = row['symbol']
@@ -49,7 +49,7 @@ def getPastThirtyCandles(isLive=False):
                 if isLive:
                     data = getterSpecificTokenLivePartlyCandleDataFromWebSocket(token).iloc[0]
                 else:
-                    lstData = getHistoricDataWithQuery(currentTimePlusOne, toTime, uid, date)
+                    lstData = getHistoricDataWithQuery(currentTime, toTime, uid, date)
                     if not lstData:
                         data = {"0": reqTime, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0}
                     else:

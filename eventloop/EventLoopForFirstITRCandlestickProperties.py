@@ -5,7 +5,7 @@ from eventloop.GetFirstItrCandlesticksProperties import getFirstItrCandlesticksP
 
 
 def eventLoopForFirstITRCandlestickProperties():
-    startTime = time.time()
+    # startTime = time.time()
     # get the id and symbol df
     gDf = getterRequiredSymbolAndTokenList()
 

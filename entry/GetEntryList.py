@@ -1,10 +1,7 @@
 import datetime
 import multiprocessing
 import time
-
 import pandas as pd
-
-from belliprogressionem.bellientry.GetEntryFlagUsingTrendingStrategy import getEntryFlagUsingTrendingStrategy
 from commonudm.GetterExitTime import getterExitTime
 from commonudm.GetterTimeDelta import getterTimeDelta
 from entry.GetStackedETList import getStackedETList
@@ -40,7 +37,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
 
         # getter entry flags from the belli progressionem
         # ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
-        ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
+        # ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
 
         # getter Entry calculated and entry happened black list
         eCBLDf = getterECBList()
@@ -70,7 +67,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                 if eCBLDf.loc[uid - 1, 'eCBFlag'] == 1 or ltp == 0:
                     continue
                 else:
-                    if ot == 'buy' and eTBF == "F" and ebf == 'F':
+                    if ot == 'buy' and eTBF == "F":
                         q, sl, target = longPositionCalculator(ltp, atr, 1000, 1.2, 100000, margin, 1.5)
                         lp = 1.00025 * ltp
 
@@ -84,7 +81,7 @@ def getEntryList(lock=multiprocessing.Lock(), isLive=False):
                         with lock:
                             getterAppendAndSetterEntryList(upList)
                             getterUpdateAndSetterECBList(uid, 1)
-                    elif ot == 'sell' and eTSF == "F" and esf == 'F':
+                    elif ot == 'sell' and eTSF == "F":
                         q, sl, target = shortPositionCalculator(ltp, atr, 1000, 1.2, 100000, margin, 1.5)
                         lp = 0.99975 * ltp
 

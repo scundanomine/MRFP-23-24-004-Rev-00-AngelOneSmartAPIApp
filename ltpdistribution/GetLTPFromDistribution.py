@@ -8,7 +8,7 @@ def getLTPFromDistribution(uid, cv):
     df = getterSpecificDistributionDf(uid)
     df.set_index("time", inplace=True)
     # get time
-    refDate = datetime.datetime.now() - cv + datetime.timedelta(minutes=1)
+    refDate = datetime.datetime.now() - cv
     ts = refDate.strftime("%S")
     reqTime = refDate.strftime("%Y-%m-%d %H:%M:00")
     # print(time.time() - startTime)

@@ -381,13 +381,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\eventloop\eventstate\candlewisedata\120_Nifty 100.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\eventloop\eventstate\candlewisedata\12_LICI-EQ.csv">
           <value>
             <Attribute>

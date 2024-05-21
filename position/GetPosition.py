@@ -47,7 +47,7 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
 
             # getter entry flags from the belli progressionem
             # ebf, esf = getEntryFlagUsingBasicStrategy()
-            ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
+            # ebf, esf = getEntryFlagUsingTrendingStrategy(cv, isLive)
         else:
             continue
 
@@ -73,11 +73,10 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
             elif ltp == 0:
                 continue
             elif ot == "buy":
-                if eTBF == "T" or ebf == 'T':
+                if eTBF == "T":
                     getEtAndEntryDropFunction(lock, uid)
                 elif ltp >= lp:
                     row['lp'] = ltp
-                    row['ltp'] = ltp
                     # calculation for margin required
                     mr = abs(lp * row["q"] / margin)
                     maDf = getterAvailableMargin()
@@ -111,11 +110,10 @@ def getPosition(lock=multiprocessing.Lock(), isLive=False):
 
             # condition for short position
             elif ot == "sell":
-                if eTSF == "T" or esf == 'T':
+                if eTSF == "T":
                     getEtAndEntryDropFunction(lock, uid)
                 elif ltp <= lp:
                     row['lp'] = ltp
-                    row['ltp'] = ltp
                     # calculation for margin required
                     mr = abs(lp * row["q"] / margin)
                     maDf = getterAvailableMargin()

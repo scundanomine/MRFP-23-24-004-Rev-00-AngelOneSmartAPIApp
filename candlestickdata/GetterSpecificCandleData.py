@@ -11,4 +11,4 @@ def getterSpecificCandleData(sid, symbol):
     return gdf
 
 
-# print(getterPDS())
+# print(getterSpecificCandleData(120, "Nifty 50"))

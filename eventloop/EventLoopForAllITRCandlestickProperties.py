@@ -22,7 +22,7 @@ def eventLoopForAllITRCandlestickProperties(isLive=False):
     while datetime.datetime.now() - cv < exitTime:
         # get the id and symbol df
         gDf = getterRequiredSymbolAndTokenList()
-        currentTime = datetime.datetime.now() - cv
+        currentTime = datetime.datetime.now() - cv - datetime.timedelta(minutes=1)
         reqTime = currentTime.strftime("%Y-%m-%dT%H:%M:00+05:30")
         # iterate gDf
         for index, row in gDf.iterrows():
